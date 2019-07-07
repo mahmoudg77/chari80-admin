@@ -1,0 +1,94 @@
+﻿@model IEnumerable<Chair80CP.Models.sec_sessions>
+
+@using Chair80CP.Libs
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    @ViewBag.Title
+                </h2>
+
+
+            </div>
+            <div class="body">
+                <div class="table-responsive">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover js-basic-example dataTable">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Account Name
+                                    </th>
+                                    <th>
+                                        Start time
+                                    </th>
+                                    <th>
+                                        IP
+                                    </th>
+
+                                    <th>
+                                        Browser
+                                    </th>
+                                   
+                                    <th>
+                                        Platform
+                                    </th>
+                                    
+
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <img src="@Settings.Get("api_url")/img/crope/tbl_accounts/@item.user_id/30x30/main-last.gif" class="img-circle">
+
+                                        @item.sec_users.tbl_accounts.first_name @item.sec_users.tbl_accounts.last_name
+                                    </td>
+                                    <td>
+                                        @item.start_time.Value.ToString("yyyy-MM-dd hh:mm")
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ip)
+                                    </td>
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.browser)
+                                    </td>
+                                   
+                                    <td>
+                                        @if (item.paltform == 1)
+                                        {<span>Web</span>}
+                                        else
+                                        { <span>Phone</span>}
+                                    </td>
+                                  
+
+                                    <td>
+                                        @using (Html.BeginForm("Delete", "Sessions", new { id = item.id }, FormMethod.Post, new { @class = "ajaxform" }))
+                                        {
+                                            @Html.AntiForgeryToken()
+                                            @Html.HiddenFor(model => item.id);
+                                            <input type="hidden" value="@item.id" id="" name="id" />
+
+                                            <button type="submit" class="btn btn-danger btn-md delete material-icons" onclick="return confirm('Are you sure you wont to delete this row?');">delete</button>
+                                        }
+                                    </td>
+
+                                </tr>
+                            }
+
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>

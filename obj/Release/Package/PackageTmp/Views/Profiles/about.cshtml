@@ -1,0 +1,81 @@
+﻿@model Chair80CP.Models.vwProfile
+@using Chair80CP.Libs
+@{
+    ViewBag.Title = "about";
+}
+
+<div class="card card-about-me">
+    <div class="body">
+
+        <ul>
+            <li>
+                <div class="title">
+                    <i class="material-icons">library_books</i>
+                    ID No
+                </div>
+                <div class="content">
+                    @Html.DisplayFor(model => model.id_no)
+                </div>
+            </li>
+            <li>
+                <div class="title">
+                    <i class="material-icons">location_on</i>
+                    Location
+                </div>
+                <div class="content">
+                    @Model.city_name.local() , @Model.country_name.local()
+                </div>
+            </li>
+            <li>
+                <div class="title">
+                    <i class="material-icons">edit</i>
+                    Driver license No.
+                </div>
+                <div class="content">
+                    @*<span class="label bg-red">UI Design</span>
+                        <span class="label bg-teal">JavaScript</span>
+                        <span class="label bg-blue">PHP</span>
+                        <span class="label bg-amber">Node.js</span>*@
+                    @Html.DisplayFor(model => model.driver_license_no)
+
+                </div>
+            </li>
+            <li>
+                <div class="title">
+                    <i class="material-icons">notes</i>
+                    Gender
+                </div>
+                <div class="content">
+                    @Model.gender_name.local()
+                </div>
+            </li>
+            <li>
+                <div class="title">
+                    <i class="material-icons">notes</i>
+                    Mobile
+                </div>
+                <div class="content">
+                    @Model.mobile
+                </div>
+            </li>
+            <li>
+                <div class="title">
+                    <i class="material-icons">notes</i>
+                    Register Date
+                </div>
+                <div class="content">
+                    @Model.register_time.Value.ToLongDateString()
+                </div>
+            </li>
+            <li>
+                <div class="title">
+                    <i class="material-icons">notes</i>
+                    Date Of Birth
+                </div>
+                <div class="content">
+                    @(Model.date_of_birth != null ? Model.date_of_birth.Value.ToLongDateString() : "")
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

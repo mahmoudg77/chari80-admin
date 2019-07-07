@@ -1,0 +1,121 @@
+﻿@model Chair80CP.Models.tbl_vehicles
+@using Chair80CP.Libs
+@{
+    ViewBag.Title = "Edit - Vehicle";
+}
+
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    @ViewBag.Title
+                </h2>
+                <ul class="header-dropdown m-r--5">
+                    <li>
+
+                    </li>
+                </ul>
+            </div>
+            <div class="body">
+                <div class="row clearfix">
+                    <div class="col-sm-12">
+                        @using (Html.BeginForm("Edit", "Vehicles", FormMethod.Post, new { @class = "ajaxform" ,enctype= "multipart/form-data"}))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            @Html.HiddenFor(model => model.id)
+
+                            <label for="model">Model</label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    @Html.EditorFor(model => model.model, new { htmlAttributes = new { @class = "form-control", placeholder = "Model" } })
+                                </div>
+                            </div>
+
+                            <label for="color">Color</label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    @Html.EditorFor(model => model.color, new { htmlAttributes = new { @class = "form-control", placeholder = "Color" } })
+                                </div>
+                            </div>
+
+                            <label for="capacity">Capacity</label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    @Html.EditorFor(model => model.capacity, new { htmlAttributes = new { @class = "form-control", placeholder = "Capacity" } })
+                                </div>
+                            </div>
+                            
+                                <input type="hidden" name="owner_id" value="@Model.owner_id" />
+                           
+                            <label for="license_no">license No</label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    @Html.EditorFor(model => model.license_no, new { htmlAttributes = new { @class = "form-control", placeholder = "license_no" } })
+                                </div>
+                            </div>
+
+                            <fieldset>
+                                <legend>Images</legend>
+                                <div class="row">
+                                    @{
+                                        var x = 0;
+                                    }
+                                    @foreach (var img in ViewBag.Images)
+                                    {
+
+                                        <div class="col col-sm-3">
+                                            <div class="img-buttons"><a data-id="@img.id" class="btn btn-default btn-xs text-danger material-icons">delete</a> </div>
+                                            <img src="@Settings.Get("api_url")/img/crope/tbl_vehicles/@Model.id/150x80/main-@{@x}.gif" alt="Alternate Text" />
+                                        </div>
+
+                                        x++;
+                                    }
+                                </div>
+
+                                <div class="img-upload">
+                                    <input type="file" name="img1" value="" accept=".gif,.jpg,.png,.jpeg" />
+                                </div>
+                                <div class="img-upload">
+                                    <input type="file" name="img2" value="" accept=".gif,.jpg,.png,.jpeg" />
+                                </div>
+                                <div class="img-upload">
+                                    <input type="file" name="img3" value="" accept=".gif,.jpg,.png,.jpeg" />
+                                </div>
+                                <div class="img-upload">
+                                    <input type="file" name="img4" value="" accept=".gif,.jpg,.png,.jpeg" />
+                                </div>
+                            </fieldset>
+
+                            <div class="form-actions no-color">
+                                <button type="submit" class="btn btn-success save">Save</button>
+                                @Html.ActionLink("Back to List", "Index", "Vehicles", new { }, new { @class = "btn btn-primary back" })
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        $(".img-buttons a ").click(function (e) {
+            e.preventDefault();
+            var btn = $(this);
+            $.ajax({
+                type: "post",
+                url: "/Images/Delete/" + btn.data("id"),
+                dataType: "json",
+                success: function (resp) {
+                    success(resp.message);
+                    btn.closest(".col").remove();
+                },
+                error: function (err) {
+                    error(err.responseText);
+                }
+            })
+        })
+    })
+</script>

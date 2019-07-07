@@ -1,0 +1,73 @@
+﻿@model IEnumerable<Chair80CP.Models.sec_access_right>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    @ViewBag.Title
+                </h2>
+                <u class="header-dropdown m-r--5">
+                    <li>
+                        @Html.ActionLink("Create New", "Create", "SecAccessRight", new { }, new { @class = "btn btn-primary btn-md addnew " })
+                    </li>
+                </u>
+
+            </div>
+            <div class="body">
+                <div class="table-responsive">
+    <div class="table-responsive">
+        <table class="table table-striped table-hover js-basic-example dataTable">
+            <thead>
+                <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.model_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.method_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.force_filter)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.sec_roles.name)
+        </th>
+        <th></th>
+    </tr>
+	</thead>
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.model_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.method_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.force_filter)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.sec_roles.name)
+        </td>
+        
+		<td>
+            @Html.ActionLink("edit", "Edit", new { id = item.id }, new { @class = "btn text-success material-icons edit" })
+            @Html.ActionLink("remove_red_eye", "Details", new { id = item.id }, new { @class = "btn material-icons details" })
+            @Html.ActionLink("delete", "Delete", new { id = item.id}, new { @class = "btn text-danger material-icons delete" })
+        </td>
+			
+    </tr>
+}
+
+</table>
+</div>
+
+                </div>            
+            </div>
+</div>
+</div>

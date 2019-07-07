@@ -1,0 +1,3070 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FollowupDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="clients">
+    <Key>
+      <PropertyRef Name="client_id" />
+    </Key>
+    <Property Name="client_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="client_id" Type="Int32" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="client_representative" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="rep_phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="rep_email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="company_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="comp_website" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="comp_bbox" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="comp_phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="mailing_id" Type="Int32" />
+    <Property Name="client_nationalityid" Type="Int32" />
+    <Property Name="rep_nationalityid" Type="Int32" />
+    <NavigationProperty Name="nationalities_list" Relationship="Self.FK_clients_nationalities_list" FromRole="clients" ToRole="nationalities_list" />
+    <NavigationProperty Name="nationalities_list1" Relationship="Self.FK_clients_nationalities_list1" FromRole="clients" ToRole="nationalities_list" />
+    <NavigationProperty Name="clients_userpass" Relationship="Self.FK_dbo_clients_userpass_dbo_clients" FromRole="clients" ToRole="clients_userpass" />
+    <NavigationProperty Name="projects" Relationship="Self.FK_projects_clients" FromRole="clients" ToRole="projects" />
+  </EntityType>
+  <EntityType Name="clients_userpass">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="client_username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="client_password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="client_id" Type="Int32" />
+    <Property Name="group_id" Type="Int32" />
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="employee_id" Type="Int32" />
+    <NavigationProperty Name="clients" Relationship="Self.FK_dbo_clients_userpass_dbo_clients" FromRole="clients_userpass" ToRole="clients" />
+    <NavigationProperty Name="notify" Relationship="Self.FK_notify_clients" FromRole="clients_userpass" ToRole="notify" />
+    <NavigationProperty Name="notify1" Relationship="Self.FK_notify_clients1" FromRole="clients_userpass" ToRole="notify" />
+    <NavigationProperty Name="sec_users_groups_rel" Relationship="Self.FK_sec_users_groups_rel_clients_userpass" FromRole="clients_userpass" ToRole="sec_users_groups_rel" />
+  </EntityType>
+  <EntityType Name="DailyPlan_Projects">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PermitID" Type="Int32" Nullable="false" />
+    <Property Name="TaskTypeID" Type="Int32" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="ProgressPerc" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="userid" Type="Int32" />
+    <Property Name="reg_date" Type="DateTime" Precision="3" />
+    <Property Name="notes" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Periority" Type="Int32" />
+    <Property Name="TaskID" Type="Int32" />
+    <NavigationProperty Name="DailyPlan_Tasks" Relationship="Self.FK_DailyPlan_Projects_DailyPlan_Tasks" FromRole="DailyPlan_Projects" ToRole="DailyPlan_Tasks" />
+    <NavigationProperty Name="projects_permits" Relationship="Self.FK_DailyPlan_Projects_projects_permits" FromRole="DailyPlan_Projects" ToRole="projects_permits" />
+  </EntityType>
+  <EntityType Name="DailyPlan_Tasks">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PermitID" Type="Int32" Nullable="false" />
+    <Property Name="TaskTypeID" Type="Int32" />
+    <Property Name="PlanHours" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="UserID" Type="Int32" />
+    <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+    <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+    <Property Name="FinishedTime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="DailyPlan_Projects" Relationship="Self.FK_DailyPlan_Projects_DailyPlan_Tasks" FromRole="DailyPlan_Tasks" ToRole="DailyPlan_Projects" />
+    <NavigationProperty Name="projects_permits" Relationship="Self.FK_DailyPlan_Tasks_projects_permits" FromRole="DailyPlan_Tasks" ToRole="projects_permits" />
+    <NavigationProperty Name="TaskTypes" Relationship="Self.FK_DailyPlan_Tasks_TaskTypes" FromRole="DailyPlan_Tasks" ToRole="TaskTypes" />
+    <NavigationProperty Name="DailyPlan_Times" Relationship="Self.FK_DailyPlan_Times_DailyPlan_Tasks" FromRole="DailyPlan_Tasks" ToRole="DailyPlan_Times" />
+  </EntityType>
+  <EntityType Name="DailyPlan_Times">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PermitID" Type="Int32" />
+    <Property Name="TaskTypeID" Type="Int32" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="FromTime" Type="DateTime" Precision="3" />
+    <Property Name="ToTime" Type="DateTime" Precision="3" />
+    <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+    <Property Name="SubTaskTypeID" Type="Int32" />
+    <Property Name="Duration" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Notes" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="TaskID" Type="Int32" />
+    <NavigationProperty Name="DailyPlan_Tasks" Relationship="Self.FK_DailyPlan_Times_DailyPlan_Tasks" FromRole="DailyPlan_Times" ToRole="DailyPlan_Tasks" />
+    <NavigationProperty Name="projects_permits" Relationship="Self.FK_DailyPlan_Times_projects_permits" FromRole="DailyPlan_Times" ToRole="projects_permits" />
+    <NavigationProperty Name="TaskTypes" Relationship="Self.FK_DailyPlan_Times_SubTaskType" FromRole="DailyPlan_Times" ToRole="TaskTypes" />
+    <NavigationProperty Name="TaskTypes1" Relationship="Self.FK_DailyPlan_Times_TaskTypes" FromRole="DailyPlan_Times" ToRole="TaskTypes" />
+  </EntityType>
+  <EntityType Name="Employee_AdminAccess">
+    <Key>
+      <PropertyRef Name="emp_id" />
+    </Key>
+    <Property Name="emp_id" Type="Int32" Nullable="false" />
+    <Property Name="emp_role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="emp_username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="emp_password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="employee_sysaccess" Relationship="Self.FK_Employee_AdminAccess_employee_sysaccess" FromRole="Employee_AdminAccess" ToRole="employee_sysaccess" />
+  </EntityType>
+  <EntityType Name="employee_sysaccess">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="employee_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="employee_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="emp_dept" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="nationality" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="job" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Employee_AdminAccess" Relationship="Self.FK_Employee_AdminAccess_employee_sysaccess" FromRole="employee_sysaccess" ToRole="Employee_AdminAccess" />
+  </EntityType>
+  <EntityType Name="files">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="file_name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="file_path" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="file_ext" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="upload_date" Type="DateTime" Precision="3" />
+    <Property Name="model_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="model_id" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="InvoicesD">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="invoice_number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="invoice_amount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="invoice_date" Type="DateTime" Precision="3" />
+    <Property Name="proj_id" Type="Int32" />
+  </EntityType>
+  <EntityType Name="InvoicesDesign">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="invoice_number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="invoice_amount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="invoice_date" Type="DateTime" Precision="3" />
+    <Property Name="proj_id" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="InvoicesS">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="invoice_number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="invoice_amount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="invoice_date" Type="DateTime" Precision="3" />
+    <Property Name="proj_id" Type="Int32" />
+    <Property Name="method_id" Type="Int32" />
+  </EntityType>
+  <EntityType Name="InvoicesSupervision">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="invoice_number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="invoice_amount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="invoice_date" Type="DateTime" Precision="3" />
+    <Property Name="proj_id" Type="Int32" />
+    <Property Name="method_id" Type="Int32" />
+  </EntityType>
+  <EntityType Name="nationalities_list">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="clients" Relationship="Self.FK_clients_nationalities_list" FromRole="nationalities_list" ToRole="clients" />
+    <NavigationProperty Name="clients1" Relationship="Self.FK_clients_nationalities_list1" FromRole="nationalities_list" ToRole="clients" />
+  </EntityType>
+  <EntityType Name="NewPermLog">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="permit_id" Type="Int32" Nullable="false" />
+    <Property Name="status_id" Type="Int32" Nullable="false" />
+    <Property Name="action_date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="comment" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="NewSchedule">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="proj_ref" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="contract_date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="cont_Expctd_date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="document_recv_date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="down_recv_date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="progstart_date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="planed_date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="actual_finish_date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="dev_days" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="proj_id" Type="Int32" />
+  </EntityType>
+  <EntityType Name="NewScope">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="scope" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="notify">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fromid" Type="Int32" Nullable="false" />
+    <Property Name="toid" Type="Int32" Nullable="false" />
+    <Property Name="subject" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="body" Type="String" MaxLength="550" FixedLength="false" Unicode="true" />
+    <Property Name="related_controller" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="related_method" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="related_id" Type="Int32" />
+    <Property Name="sent_time" Type="DateTime" Precision="3" />
+    <Property Name="notified_time" Type="DateTime" Precision="3" />
+    <Property Name="received_time" Type="DateTime" Precision="3" />
+    <Property Name="parent_id" Type="Int32" />
+    <NavigationProperty Name="clients_userpass" Relationship="Self.FK_notify_clients" FromRole="notify" ToRole="clients_userpass" />
+    <NavigationProperty Name="clients_userpass1" Relationship="Self.FK_notify_clients1" FromRole="notify" ToRole="clients_userpass" />
+  </EntityType>
+  <EntityType Name="payment_type_list">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="project_collectes" Relationship="Self.FK_project_collectes_payment_type_list" FromRole="payment_type_list" ToRole="project_collectes" />
+    <NavigationProperty Name="project_invoices" Relationship="Self.FK_project_invoices_payment_type_list" FromRole="payment_type_list" ToRole="project_invoices" />
+    <NavigationProperty Name="project_payments" Relationship="Self.FK_project_payments_payment_type_list" FromRole="payment_type_list" ToRole="project_payments" />
+    <NavigationProperty Name="projects_invoicefees_supervision" Relationship="Self.FK_projects_invoicefees_supervision_payment_type_list" FromRole="payment_type_list" ToRole="projects_invoicefees_supervision" />
+    <NavigationProperty Name="projects_payment_sup" Relationship="Self.FK_projects_payment_sup_payment_type_list" FromRole="payment_type_list" ToRole="projects_payment_sup" />
+  </EntityType>
+  <EntityType Name="Payments_Scope_list">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="project_collecte_details" Relationship="Self.FK_project_collecte_details_Payments_Scope_list" FromRole="Payments_Scope_list" ToRole="project_collecte_details" />
+    <NavigationProperty Name="project_fees" Relationship="Self.FK_project_fees_Payments_Scope_list" FromRole="Payments_Scope_list" ToRole="project_fees" />
+    <NavigationProperty Name="project_invoice_details" Relationship="Self.FK_project_invoice_details_Payments_Scope_list" FromRole="Payments_Scope_list" ToRole="project_invoice_details" />
+    <NavigationProperty Name="project_payment_details" Relationship="Self.FK_project_payment_details_Payments_Scope_list" FromRole="Payments_Scope_list" ToRole="project_payment_details" />
+    <NavigationProperty Name="projects_requirements" Relationship="Self.FK_projects_requirements_Payments_Scope_list" FromRole="Payments_Scope_list" ToRole="projects_requirements" />
+  </EntityType>
+  <EntityType Name="permits_addreesees">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="projects_permits" Relationship="Self.FK_projects_permits_permits_addreesees" FromRole="permits_addreesees" ToRole="projects_permits" />
+  </EntityType>
+  <EntityType Name="Permits_ProjectsNew">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="permit_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="issue_date" Type="DateTime" Precision="3" />
+    <Property Name="response_date" Type="DateTime" Precision="3" />
+    <Property Name="approve_date" Type="DateTime" Precision="3" />
+    <Property Name="kashaf_comments" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+    <Property Name="client_comments" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+    <Property Name="proj_id" Type="Int32" />
+    <Property Name="permit_type_id" Type="Int32" />
+    <Property Name="permit_scope_id" Type="Int32" />
+    <Property Name="addressee_id" Type="Int32" />
+    <Property Name="permit_status_id" Type="Int32" />
+    <NavigationProperty Name="projects" Relationship="Self.FK_Permits_ProjectsNew_projects" FromRole="Permits_ProjectsNew" ToRole="projects" />
+  </EntityType>
+  <EntityType Name="permits_status">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="css_style" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="permits_status_log" Relationship="Self.FK_permits_status_log_permits_status" FromRole="permits_status" ToRole="permits_status_log" />
+  </EntityType>
+  <EntityType Name="permits_status_log">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="permit_id" Type="Int32" Nullable="false" />
+    <Property Name="status_id" Type="Int32" Nullable="false" />
+    <Property Name="action_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="comment" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="permits_status" Relationship="Self.FK_permits_status_log_permits_status" FromRole="permits_status_log" ToRole="permits_status" />
+    <NavigationProperty Name="projects_permits" Relationship="Self.FK_permits_status_log_projects_permits" FromRole="permits_status_log" ToRole="projects_permits" />
+  </EntityType>
+  <EntityType Name="PerTB">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="proj_ref" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="permit_type" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="permit_scope" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="addressee" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="permit_id" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="issue_date" Type="DateTime" Precision="3" />
+    <Property Name="response_date" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="approve_date" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="permit_status" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="kashaf_comments" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="client_comments" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="iss" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="rej" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="reiss" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="preacc" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="acc" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="F18" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="F19" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="proj_id" Type="Int32" />
+  </EntityType>
+  <EntityType Name="proj_conditions_list">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="proj_delivers_list">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="proj_disciplines_list">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="division_id" Type="Int32" />
+    <Property Name="ShortCut" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="projects_permits" Relationship="Self.FK_projects_permits_proj_disciplines_list" FromRole="proj_disciplines_list" ToRole="projects_permits" />
+  </EntityType>
+  <EntityType Name="proj_req_list">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="projects_requirements" Relationship="Self.FK_projects_requirements_proj_req_list" FromRole="proj_req_list" ToRole="projects_requirements" />
+  </EntityType>
+  <EntityType Name="proj_req_status_log">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="proj_req_id" Type="Int32" Nullable="false" />
+    <Property Name="status_id" Type="Int32" Nullable="false" />
+    <Property Name="action_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="next_followup_date" Type="DateTime" Precision="3" />
+    <Property Name="comment" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="projects_requirements" Relationship="Self.FK_proj_req_status_log_projects_requirements" FromRole="proj_req_status_log" ToRole="projects_requirements" />
+    <NavigationProperty Name="req_status_list" Relationship="Self.FK_proj_req_status_log_req_status_list" FromRole="proj_req_status_log" ToRole="req_status_list" />
+  </EntityType>
+  <EntityType Name="proj_stages_list">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="proj_status_list">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="projects" Relationship="Self.FK_projects_proj_status_list" FromRole="proj_status_list" ToRole="projects" />
+  </EntityType>
+  <EntityType Name="proj_types_list">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="projects" Relationship="Self.FK_projects_proj_types_list" FromRole="proj_types_list" ToRole="projects" />
+  </EntityType>
+  <EntityType Name="proj_workscope_list">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="projects_permits" Relationship="Self.FK_projects_permits_proj_workscope_list" FromRole="proj_workscope_list" ToRole="projects_permits" />
+    <NavigationProperty Name="projects" Relationship="Self.FK_projects_proj_workscope_list" FromRole="proj_workscope_list" ToRole="projects" />
+  </EntityType>
+  <EntityType Name="project_category_list">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="projects_conditions" Relationship="Self.FK_projects_conditions_project_category_list" FromRole="project_category_list" ToRole="projects_conditions" />
+    <NavigationProperty Name="projects" Relationship="Self.FK_projects_project_category_list" FromRole="project_category_list" ToRole="projects" />
+  </EntityType>
+  <EntityType Name="project_collecte_details">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CollectID" Type="Int32" Nullable="false" />
+    <Property Name="ScopeID" Type="Int32" />
+    <Property Name="Value" Type="Decimal" Precision="18" Scale="2" />
+    <NavigationProperty Name="Payments_Scope_list" Relationship="Self.FK_project_collecte_details_Payments_Scope_list" FromRole="project_collecte_details" ToRole="Payments_Scope_list" />
+    <NavigationProperty Name="project_collectes" Relationship="Self.FK_project_collecte_details_project_collectes" FromRole="project_collecte_details" ToRole="project_collectes" />
+  </EntityType>
+  <EntityType Name="project_collectes">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="proj_id" Type="Int32" />
+    <Property Name="invoice_number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="invoice_amount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="invoice_date" Type="DateTime" Precision="3" />
+    <Property Name="ChequeNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="InvoiceID" Type="Int32" />
+    <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="ApprovedAt" Type="DateTime" Precision="3" />
+    <Property Name="ApprovedBy" Type="Int32" />
+    <Property Name="PaymentTypeID" Type="Int32" />
+    <NavigationProperty Name="payment_type_list" Relationship="Self.FK_project_collectes_payment_type_list" FromRole="project_collectes" ToRole="payment_type_list" />
+    <NavigationProperty Name="project_collecte_details" Relationship="Self.FK_project_collecte_details_project_collectes" FromRole="project_collectes" ToRole="project_collecte_details" />
+    <NavigationProperty Name="project_invoices" Relationship="Self.FK_project_collectes_project_invoices" FromRole="project_collectes" ToRole="project_invoices" />
+    <NavigationProperty Name="projects" Relationship="Self.FK_project_collectes_projects" FromRole="project_collectes" ToRole="projects" />
+  </EntityType>
+  <EntityType Name="project_fees">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="proj_id" Type="Int32" Nullable="false" />
+    <Property Name="ScopeID" Type="Int32" Nullable="false" />
+    <Property Name="Value" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="ApprovedAt" Type="DateTime" Precision="3" />
+    <Property Name="ApprovedBy" Type="Int32" />
+    <NavigationProperty Name="Payments_Scope_list" Relationship="Self.FK_project_fees_Payments_Scope_list" FromRole="project_fees" ToRole="Payments_Scope_list" />
+    <NavigationProperty Name="projects" Relationship="Self.FK_project_fees_projects" FromRole="project_fees" ToRole="projects" />
+  </EntityType>
+  <EntityType Name="project_invoice_details">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="InvoiceID" Type="Int32" Nullable="false" />
+    <Property Name="ScopeID" Type="Int32" />
+    <Property Name="Value" Type="Decimal" Precision="18" Scale="2" />
+    <NavigationProperty Name="Payments_Scope_list" Relationship="Self.FK_project_invoice_details_Payments_Scope_list" FromRole="project_invoice_details" ToRole="Payments_Scope_list" />
+    <NavigationProperty Name="project_invoices" Relationship="Self.FK_project_invoice_details_project_invoice_details" FromRole="project_invoice_details" ToRole="project_invoices" />
+  </EntityType>
+  <EntityType Name="project_invoices">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="proj_id" Type="Int32" />
+    <Property Name="invoice_number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="invoice_amount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="invoice_date" Type="DateTime" Precision="3" />
+    <Property Name="method_id" Type="Int32" />
+    <Property Name="PaymentID" Type="Int32" />
+    <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="ApprovedAt" Type="DateTime" Precision="3" />
+    <Property Name="ApprovedBy" Type="Int32" />
+    <NavigationProperty Name="payment_type_list" Relationship="Self.FK_project_invoices_payment_type_list" FromRole="project_invoices" ToRole="payment_type_list" />
+    <NavigationProperty Name="project_collectes" Relationship="Self.FK_project_collectes_project_invoices" FromRole="project_invoices" ToRole="project_collectes" />
+    <NavigationProperty Name="project_invoice_details" Relationship="Self.FK_project_invoice_details_project_invoice_details" FromRole="project_invoices" ToRole="project_invoice_details" />
+    <NavigationProperty Name="project_payments" Relationship="Self.FK_project_invoices_project_payments" FromRole="project_invoices" ToRole="project_payments" />
+    <NavigationProperty Name="projects" Relationship="Self.FK_project_invoices_projects" FromRole="project_invoices" ToRole="projects" />
+  </EntityType>
+  <EntityType Name="project_payment_config">
+    <Key>
+      <PropertyRef Name="proj_id" />
+    </Key>
+    <Property Name="proj_id" Type="Int32" Nullable="false" />
+    <Property Name="VisitCost" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="TimeIntervalID" Type="Int32" />
+    <Property Name="Target" Type="Int32" />
+    <Property Name="DueDayInMounth" Type="Int32" />
+    <Property Name="DueDayInWeek" Type="Int32" />
+    <NavigationProperty Name="projects" Relationship="Self.FK_project_payment_config_projects" FromRole="project_payment_config" ToRole="projects" />
+    <NavigationProperty Name="TimeIntervals" Relationship="Self.FK_project_payment_config_TimeIntervals" FromRole="project_payment_config" ToRole="TimeIntervals" />
+  </EntityType>
+  <EntityType Name="project_payment_details">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PaymentID" Type="Int32" Nullable="false" />
+    <Property Name="ScopeID" Type="Int32" Nullable="false" />
+    <Property Name="Perc" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Value" Type="Decimal" Precision="18" Scale="2" />
+    <NavigationProperty Name="Payments_Scope_list" Relationship="Self.FK_project_payment_details_Payments_Scope_list" FromRole="project_payment_details" ToRole="Payments_Scope_list" />
+    <NavigationProperty Name="project_payments" Relationship="Self.FK_project_payment_details_project_payments" FromRole="project_payment_details" ToRole="project_payments" />
+  </EntityType>
+  <EntityType Name="project_payments">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="proj_id" Type="Int32" />
+    <Property Name="PaymentTypeID" Type="Int32" />
+    <Property Name="PaymentIndex" Type="Int32" />
+    <Property Name="Perc" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Value" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="DueAt" Type="DateTime" Precision="3" />
+    <Property Name="Conditions" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Notes" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="ApprovedAt" Type="DateTime" Precision="3" />
+    <Property Name="ApprovedBy" Type="Int32" />
+    <Property Name="ConditionTypeID" Type="Int32" />
+    <NavigationProperty Name="payment_type_list" Relationship="Self.FK_project_payments_payment_type_list" FromRole="project_payments" ToRole="payment_type_list" />
+    <NavigationProperty Name="project_invoices" Relationship="Self.FK_project_invoices_project_payments" FromRole="project_payments" ToRole="project_invoices" />
+    <NavigationProperty Name="project_payment_details" Relationship="Self.FK_project_payment_details_project_payments" FromRole="project_payments" ToRole="project_payment_details" />
+    <NavigationProperty Name="projects" Relationship="Self.FK_project_payments_projects" FromRole="project_payments" ToRole="projects" />
+  </EntityType>
+  <EntityType Name="project_services_list">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="projects_requirements" Relationship="Self.FK_projects_requirements_projects" FromRole="project_services_list" ToRole="projects_requirements" />
+  </EntityType>
+  <EntityType Name="project_usage_list">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="projects" Relationship="Self.FK_projects_project_usage_list" FromRole="project_usage_list" ToRole="projects" />
+  </EntityType>
+  <EntityType Name="project_visits">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+    <Property Name="VisitDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="proj_id" Type="Int32" Nullable="false" />
+    <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="VisitCost" Type="Decimal" Precision="18" Scale="2" />
+    <NavigationProperty Name="projects" Relationship="Self.FK_project_visits_projects" FromRole="project_visits" ToRole="projects" />
+  </EntityType>
+  <EntityType Name="project_visits_contract">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="proj_id" Type="Int32" Nullable="false" />
+    <Property Name="DivisionID" Type="Int32" Nullable="false" />
+    <Property Name="Visits" Type="Int32" Nullable="false" />
+    <Property Name="ExtraVisitCost" Type="Decimal" Precision="18" Scale="2" />
+    <NavigationProperty Name="projects" Relationship="Self.FK_project_visits_contract_projects" FromRole="project_visits_contract" ToRole="projects" />
+  </EntityType>
+  <EntityType Name="projects">
+    <Key>
+      <PropertyRef Name="sn" />
+    </Key>
+    <Property Name="sn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="proj_client_id" Type="Int32" />
+    <Property Name="proj_name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="proj_ref" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="building_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="proj_area" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="proj_floors" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="discplns_list" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="progress_stage" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="proj_deliverable" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="dpme_projid" Type="Int32" />
+    <Property Name="location_id" Type="Int32" />
+    <Property Name="usag_id" Type="Int32" />
+    <Property Name="category_id" Type="Int32" />
+    <Property Name="type_id" Type="Int32" />
+    <Property Name="scope_id" Type="Int32" />
+    <Property Name="status_id" Type="Int32" />
+    <NavigationProperty Name="clients" Relationship="Self.FK_projects_clients" FromRole="projects" ToRole="clients" />
+    <NavigationProperty Name="Permits_ProjectsNew" Relationship="Self.FK_Permits_ProjectsNew_projects" FromRole="projects" ToRole="Permits_ProjectsNew" />
+    <NavigationProperty Name="proj_status_list" Relationship="Self.FK_projects_proj_status_list" FromRole="projects" ToRole="proj_status_list" />
+    <NavigationProperty Name="proj_types_list" Relationship="Self.FK_projects_proj_types_list" FromRole="projects" ToRole="proj_types_list" />
+    <NavigationProperty Name="proj_workscope_list" Relationship="Self.FK_projects_proj_workscope_list" FromRole="projects" ToRole="proj_workscope_list" />
+    <NavigationProperty Name="project_category_list" Relationship="Self.FK_projects_project_category_list" FromRole="projects" ToRole="project_category_list" />
+    <NavigationProperty Name="project_collectes" Relationship="Self.FK_project_collectes_projects" FromRole="projects" ToRole="project_collectes" />
+    <NavigationProperty Name="project_fees" Relationship="Self.FK_project_fees_projects" FromRole="projects" ToRole="project_fees" />
+    <NavigationProperty Name="project_invoices" Relationship="Self.FK_project_invoices_projects" FromRole="projects" ToRole="project_invoices" />
+    <NavigationProperty Name="project_payment_config" Relationship="Self.FK_project_payment_config_projects" FromRole="projects" ToRole="project_payment_config" />
+    <NavigationProperty Name="project_payments" Relationship="Self.FK_project_payments_projects" FromRole="projects" ToRole="project_payments" />
+    <NavigationProperty Name="project_usage_list" Relationship="Self.FK_projects_project_usage_list" FromRole="projects" ToRole="project_usage_list" />
+    <NavigationProperty Name="project_visits" Relationship="Self.FK_project_visits_projects" FromRole="projects" ToRole="project_visits" />
+    <NavigationProperty Name="project_visits_contract" Relationship="Self.FK_project_visits_contract_projects" FromRole="projects" ToRole="project_visits_contract" />
+    <NavigationProperty Name="projects_conditions" Relationship="Self.FK_projects_conditions_projects" FromRole="projects" ToRole="projects_conditions" />
+    <NavigationProperty Name="projects_fees" Relationship="Self.FK_projects_fees_projects" FromRole="projects" ToRole="projects_fees" />
+    <NavigationProperty Name="projects_permits" Relationship="Self.FK_projects_permits_projects" FromRole="projects" ToRole="projects_permits" />
+    <NavigationProperty Name="qat_cities_list" Relationship="Self.FK_projects_qat_cities_list" FromRole="projects" ToRole="qat_cities_list" />
+    <NavigationProperty Name="projects_schedule" Relationship="Self.FK_projects_schedule_projects" FromRole="projects" ToRole="projects_schedule" />
+  </EntityType>
+  <EntityType Name="projects_balance">
+    <Key>
+      <PropertyRef Name="proj_id" />
+    </Key>
+    <Property Name="projdesign_balance" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="projstudy_balance" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="projsup_balance" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="proj_totalbalance" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="proj_id" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Projects_BuildingList">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="building_typeid" Type="Int32" />
+    <NavigationProperty Name="projects_types_list" Relationship="Self.FK_Projects_BuildingList_projects_types_list" FromRole="Projects_BuildingList" ToRole="projects_types_list" />
+  </EntityType>
+  <EntityType Name="projects_collectedfees_design">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="invoice_number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="invoice_amount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="invoice_date" Type="DateTime" Precision="3" />
+    <Property Name="proj_id" Type="Int32" />
+    <Property Name="ChequeNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="projects_collectedfees_study">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="invoice_number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="invoice_amount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="invoice_date" Type="DateTime" Precision="3" />
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="proj_id" Type="Int32" />
+    <Property Name="ChequeNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="projects_collectedfees_supervision">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="supervision_type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="invoice_number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="invoice_amount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="invoice_date" Type="DateTime" Precision="3" />
+    <Property Name="proj_id" Type="Int32" />
+    <Property Name="ChequeNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="projects_conditions">
+    <Key>
+      <PropertyRef Name="SN" />
+    </Key>
+    <Property Name="SN" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="condition_category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="proj_condition" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+    <Property Name="proj_id" Type="Int32" />
+    <Property Name="category_id" Type="Int32" />
+    <NavigationProperty Name="project_category_list" Relationship="Self.FK_projects_conditions_project_category_list" FromRole="projects_conditions" ToRole="project_category_list" />
+    <NavigationProperty Name="projects" Relationship="Self.FK_projects_conditions_projects" FromRole="projects_conditions" ToRole="projects" />
+  </EntityType>
+  <EntityType Name="projects_fees">
+    <Key>
+      <PropertyRef Name="proj_id" />
+    </Key>
+    <Property Name="proj_design_fees" Type="Int32" />
+    <Property Name="proj_supervs_fees" Type="Int32" />
+    <Property Name="proj_study_fees" Type="Int32" />
+    <Property Name="pro_total" Type="Int32" />
+    <Property Name="proj_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="projects" Relationship="Self.FK_projects_fees_projects" FromRole="projects_fees" ToRole="projects" />
+  </EntityType>
+  <EntityType Name="projects_invoicefees_design">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="invoice_number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="invoice_amount" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="invoice_date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="proj_id" Type="Int32" />
+  </EntityType>
+  <EntityType Name="projects_invoicefees_study">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="invoive_number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="invoice_amount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="invoice_date" Type="DateTime" Precision="3" />
+    <Property Name="proj_id" Type="Int32" />
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="projects_invoicefees_supervision">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="invoice_number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="invoice_amount" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="invoice_date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="proj_id" Type="Int32" />
+    <Property Name="method_id" Type="Int32" />
+    <NavigationProperty Name="payment_type_list" Relationship="Self.FK_projects_invoicefees_supervision_payment_type_list" FromRole="projects_invoicefees_supervision" ToRole="payment_type_list" />
+  </EntityType>
+  <EntityType Name="projects_payment_design">
+    <Key>
+      <PropertyRef Name="proj_id" />
+    </Key>
+    <Property Name="downpayment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="downpayment_cond" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="firstpayment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="firstpayment_cond" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="secondpayment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="secondpayment_cond" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="thirdpayment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="thirdpayment_cond" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="fourthpayment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fourthpayment_cond" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="fifthpayment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fifthpayment_cond" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="sixthpayment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="sixthpayment_cond" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="sevenpayment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="sevenpayment_cond" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="proj_id" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="projects_payment_instsupvs">
+    <Key>
+      <PropertyRef Name="proj_id" />
+    </Key>
+    <Property Name="downpayment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="downpayment_cond" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="firstpayment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="firstpayment_cond" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="secondpayment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="secondpayment_cond" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="thirdpayment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="thirdpayment_cond" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="fourthpayment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fourthpayment_cond" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="fifthpayment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fifthpayment_cond" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="sixthpayment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="sixthpayment_cond" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="sevenpayment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="sevenpayment_cond" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="proj_id" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="projects_payment_study">
+    <Key>
+      <PropertyRef Name="proj_id" />
+    </Key>
+    <Property Name="downpayment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="downpayment_cond" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="firstpayment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="firstpayment_cond" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="proj_id" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="projects_payment_sup">
+    <Key>
+      <PropertyRef Name="proj_id" />
+    </Key>
+    <Property Name="fees_sup" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="proj_id" Type="Int32" Nullable="false" />
+    <Property Name="payment_typeid" Type="Int32" />
+    <NavigationProperty Name="payment_type_list" Relationship="Self.FK_projects_payment_sup_payment_type_list" FromRole="projects_payment_sup" ToRole="payment_type_list" />
+  </EntityType>
+  <EntityType Name="projects_permits">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="permit_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="client_comments" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+    <Property Name="proj_id" Type="Int32" />
+    <Property Name="permit_type_id" Type="Int32" />
+    <Property Name="permit_scope_id" Type="Int32" />
+    <Property Name="addressee_id" Type="Int32" />
+    <Property Name="uploadsys" Type="Int32" />
+    <Property Name="branch_id" Type="Int32" />
+    <Property Name="contract_design_time" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="contract_approve_time" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <NavigationProperty Name="DailyPlan_Projects" Relationship="Self.FK_DailyPlan_Projects_projects_permits" FromRole="projects_permits" ToRole="DailyPlan_Projects" />
+    <NavigationProperty Name="DailyPlan_Tasks" Relationship="Self.FK_DailyPlan_Tasks_projects_permits" FromRole="projects_permits" ToRole="DailyPlan_Tasks" />
+    <NavigationProperty Name="DailyPlan_Times" Relationship="Self.FK_DailyPlan_Times_projects_permits" FromRole="projects_permits" ToRole="DailyPlan_Times" />
+    <NavigationProperty Name="permits_addreesees" Relationship="Self.FK_projects_permits_permits_addreesees" FromRole="projects_permits" ToRole="permits_addreesees" />
+    <NavigationProperty Name="permits_status_log" Relationship="Self.FK_permits_status_log_projects_permits" FromRole="projects_permits" ToRole="permits_status_log" />
+    <NavigationProperty Name="proj_disciplines_list" Relationship="Self.FK_projects_permits_proj_disciplines_list" FromRole="projects_permits" ToRole="proj_disciplines_list" />
+    <NavigationProperty Name="proj_workscope_list" Relationship="Self.FK_projects_permits_proj_workscope_list" FromRole="projects_permits" ToRole="proj_workscope_list" />
+    <NavigationProperty Name="projects" Relationship="Self.FK_projects_permits_projects" FromRole="projects_permits" ToRole="projects" />
+    <NavigationProperty Name="UploadSystems" Relationship="Self.FK_projects_permits_UploadSystems" FromRole="projects_permits" ToRole="UploadSystems" />
+  </EntityType>
+  <EntityType Name="projects_requirements">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="requested_date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="collected_date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="req_comments" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="proj_id" Type="Int32" />
+    <Property Name="permit_typeid" Type="Int32" />
+    <Property Name="req_id" Type="Int32" />
+    <Property Name="status_id" Type="Int32" />
+    <Property Name="ScopeID" Type="Int32" />
+    <NavigationProperty Name="Payments_Scope_list" Relationship="Self.FK_projects_requirements_Payments_Scope_list" FromRole="projects_requirements" ToRole="Payments_Scope_list" />
+    <NavigationProperty Name="proj_req_list" Relationship="Self.FK_projects_requirements_proj_req_list" FromRole="projects_requirements" ToRole="proj_req_list" />
+    <NavigationProperty Name="proj_req_status_log" Relationship="Self.FK_proj_req_status_log_projects_requirements" FromRole="projects_requirements" ToRole="proj_req_status_log" />
+    <NavigationProperty Name="project_services_list" Relationship="Self.FK_projects_requirements_projects" FromRole="projects_requirements" ToRole="project_services_list" />
+    <NavigationProperty Name="req_status_list" Relationship="Self.FK_projects_requirements_req_status_list" FromRole="projects_requirements" ToRole="req_status_list" />
+  </EntityType>
+  <EntityType Name="projects_schedule">
+    <Key>
+      <PropertyRef Name="proj_id" />
+    </Key>
+    <Property Name="contract_date" Type="DateTime" Precision="0" />
+    <Property Name="cont_Expctd_date" Type="DateTime" Precision="0" />
+    <Property Name="Sup_Expctd_date" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="document_recv_date" Type="DateTime" Precision="0" />
+    <Property Name="down_recv_date" Type="DateTime" Precision="0" />
+    <Property Name="progstart_date" Type="DateTime" Precision="0" />
+    <Property Name="planed_date" Type="DateTime" Precision="0" />
+    <Property Name="actual_finish_date" Type="DateTime" Precision="0" />
+    <Property Name="dev_days" Type="Int32" />
+    <Property Name="proj_id" Type="Int32" Nullable="false" />
+    <Property Name="ExpectedDesignDuration" Type="Int32" />
+    <NavigationProperty Name="projects" Relationship="Self.FK_projects_schedule_projects" FromRole="projects_schedule" ToRole="projects" />
+  </EntityType>
+  <EntityType Name="projects_schedule_tb">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="contract_date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="cont_Expctd_date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="document_recv_date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="down_recv_date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="progstart_date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="planed_date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="actual_finish_date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="dev_days" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="proj_id" Type="Int32" />
+  </EntityType>
+  <EntityType Name="projects_status_log">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="proj_id" Type="Int32" Nullable="false" />
+    <Property Name="status_id" Type="Int32" Nullable="false" />
+    <Property Name="action_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="planned_date" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="projects_types_list">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="type" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Projects_BuildingList" Relationship="Self.FK_Projects_BuildingList_projects_types_list" FromRole="projects_types_list" ToRole="Projects_BuildingList" />
+  </EntityType>
+  <EntityType Name="ProjectSchedule">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="contract_date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="cont_Expctd_date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="document_recv_date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="down_recv_date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="progstart_date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="planed_date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="actual_finish_date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="dev_days" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="newcontr" Type="DateTime" Precision="3" />
+    <Property Name="proj_id" Type="Int32" />
+  </EntityType>
+  <EntityType Name="qat_cities_list">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="projects" Relationship="Self.FK_projects_qat_cities_list" FromRole="qat_cities_list" ToRole="projects" />
+  </EntityType>
+  <EntityType Name="req_status_list">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="proj_req_status_log" Relationship="Self.FK_proj_req_status_log_req_status_list" FromRole="req_status_list" ToRole="proj_req_status_log" />
+    <NavigationProperty Name="projects_requirements" Relationship="Self.FK_projects_requirements_req_status_list" FromRole="req_status_list" ToRole="projects_requirements" />
+  </EntityType>
+  <EntityType Name="ScheduleTest">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="proj_ref" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="contract_date" Type="DateTime" Precision="0" />
+    <Property Name="cont_Expctd_date" Type="DateTime" Precision="0" />
+    <Property Name="document_recv_date" Type="DateTime" Precision="0" />
+    <Property Name="down_recv_date" Type="DateTime" Precision="0" />
+    <Property Name="progstart_date" Type="DateTime" Precision="0" />
+    <Property Name="planed_date" Type="DateTime" Precision="0" />
+    <Property Name="actual_finish_date" Type="DateTime" Precision="0" />
+    <Property Name="dev_days" Type="Int32" />
+    <Property Name="proj_id" Type="Int32" />
+  </EntityType>
+  <EntityType Name="sec_group_permissions">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="controller_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="action_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="group_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="sec_groups" Relationship="Self.FK_sec_group_permissions_sec_groups" FromRole="sec_group_permissions" ToRole="sec_groups" />
+  </EntityType>
+  <EntityType Name="sec_groups">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="sec_group_permissions" Relationship="Self.FK_sec_group_permissions_sec_groups" FromRole="sec_groups" ToRole="sec_group_permissions" />
+    <NavigationProperty Name="sec_users_groups_rel" Relationship="Self.FK_sec_users_groups_rel_sec_groups" FromRole="sec_groups" ToRole="sec_users_groups_rel" />
+  </EntityType>
+  <EntityType Name="sec_users_groups_rel">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GroupID" Type="Int32" Nullable="false" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="clients_userpass" Relationship="Self.FK_sec_users_groups_rel_clients_userpass" FromRole="sec_users_groups_rel" ToRole="clients_userpass" />
+    <NavigationProperty Name="sec_groups" Relationship="Self.FK_sec_users_groups_rel_sec_groups" FromRole="sec_users_groups_rel" ToRole="sec_groups" />
+  </EntityType>
+  <EntityType Name="Sheet1schedule">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="proj_ref" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="contract_date" Type="DateTime" Precision="0" />
+    <Property Name="cont_Expctd_date" Type="DateTime" Precision="3" />
+    <Property Name="document_recv_date" Type="DateTime" Precision="3" />
+    <Property Name="down_recv_date" Type="DateTime" Precision="3" />
+    <Property Name="progstart_date" Type="DateTime" Precision="3" />
+    <Property Name="planed_date" Type="DateTime" Precision="3" />
+    <Property Name="actual_finish_date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="dev_days" Type="Int32" />
+    <Property Name="proj_id" Type="Int32" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TaskTypes">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="OnPermit" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="DailyPlan_Tasks" Relationship="Self.FK_DailyPlan_Tasks_TaskTypes" FromRole="TaskTypes" ToRole="DailyPlan_Tasks" />
+    <NavigationProperty Name="DailyPlan_Times" Relationship="Self.FK_DailyPlan_Times_SubTaskType" FromRole="TaskTypes" ToRole="DailyPlan_Times" />
+    <NavigationProperty Name="DailyPlan_Times1" Relationship="Self.FK_DailyPlan_Times_TaskTypes" FromRole="TaskTypes" ToRole="DailyPlan_Times" />
+  </EntityType>
+  <EntityType Name="TimeIntervals">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="project_payment_config" Relationship="Self.FK_project_payment_config_TimeIntervals" FromRole="TimeIntervals" ToRole="project_payment_config" />
+  </EntityType>
+  <EntityType Name="UploadSystems">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Shortcut" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="projects_permits" Relationship="Self.FK_projects_permits_UploadSystems" FromRole="UploadSystems" ToRole="projects_permits" />
+  </EntityType>
+  <EntityType Name="NewPermits">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="proj_ref" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="proj_ref" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="permit_type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="permit_scope" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="addressee" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="permit_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="issue_date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="response_date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="approve_date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="permit_status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="kashaf_comments" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="client_comments" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="iss" Type="Int32" />
+    <Property Name="rej" Type="Int32" />
+    <Property Name="reiss" Type="Int32" />
+    <Property Name="preacc" Type="Int32" />
+    <Property Name="acc" Type="Int32" />
+    <Property Name="proj_id" Type="Int32" />
+  </EntityType>
+  <EntityType Name="NewPermitTable">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="permit_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="issue_date" Type="DateTime" Precision="3" />
+    <Property Name="response_date" Type="DateTime" Precision="3" />
+    <Property Name="approve_date" Type="DateTime" Precision="3" />
+    <Property Name="kashaf_comments" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+    <Property Name="client_comments" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+    <Property Name="proj_id" Type="Int32" />
+    <Property Name="permit_type_id" Type="Int32" />
+    <Property Name="permit_scope_id" Type="Int32" />
+    <Property Name="addressee_id" Type="Int32" />
+    <Property Name="permit_status_id" Type="Int32" />
+  </EntityType>
+  <EntityType Name="ST_IDTime">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="date" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="dpme_clients">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="company_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="tel" Type="String" MaxLength="75" FixedLength="false" Unicode="true" />
+    <Property Name="fax" Type="String" MaxLength="75" FixedLength="false" Unicode="true" />
+    <Property Name="mobile" Type="String" MaxLength="75" FixedLength="false" Unicode="true" />
+    <Property Name="web" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="cat" Type="Int16" />
+    <Property Name="notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="lastupdate" Type="DateTime" Precision="3" />
+    <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="WorkedWith" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Competitors" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Importance_ID" Type="Int32" />
+    <Property Name="CityID" Type="Int32" />
+    <Property Name="ClassID" Type="Int32" />
+    <Property Name="isdeleted" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="dpme_projects">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="EmployeeMasterWorkingGroupID" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="type" Type="Int16" />
+    <Property Name="country" Type="Int32" />
+    <Property Name="location" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="client" Type="Int32" />
+    <Property Name="client_contact" Type="Int32" />
+    <Property Name="client_what" Type="Int32" />
+    <Property Name="owner" Type="Int32" />
+    <Property Name="owner_contact" Type="Int32" />
+    <Property Name="conslt" Type="Int32" />
+    <Property Name="conslt_contact" Type="Int32" />
+    <Property Name="planguage" Type="Int32" />
+    <Property Name="plevel" Type="Int32" />
+    <Property Name="draw_scale" Type="Int32" />
+    <Property Name="scale" Type="Int32" />
+    <Property Name="DrawingsSizeID" Type="Int32" />
+    <Property Name="similars" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="stage" Type="Int16" />
+    <Property Name="date_Entering" Type="DateTime" Precision="3" />
+    <Property Name="date_in" Type="DateTime" Precision="3" />
+    <Property Name="StartingDate" Type="DateTime" Precision="3" />
+    <Property Name="date_due" Type="DateTime" Precision="3" />
+    <Property Name="ExpectedFinishingDate" Type="DateTime" Precision="3" />
+    <Property Name="manager" Type="Int32" />
+    <Property Name="secr" Type="Int32" />
+    <Property Name="coord" Type="Int32" />
+    <Property Name="branch" Type="Int16" />
+    <Property Name="lastupdate" Type="DateTime" Precision="3" />
+    <Property Name="ContractValue" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="ActualFinishingDate" Type="DateTime" Precision="3" />
+    <Property Name="IsOldProject" Type="Boolean" />
+    <Property Name="EmployeeMasterWorkingGroupID" Type="Int32" Nullable="false" />
+    <Property Name="ConsultationServices" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="ReceivedClientDocument" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="ClientDocumentReceivedDate" Type="DateTime" Precision="0" />
+    <Property Name="ClientDocumentServerPath" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+    <Property Name="ClientRequest" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Payment" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="ContractCondition" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="MainOfficeContractPercentage" Type="Single" />
+    <Property Name="DesignDepartmentContractPercentage" Type="Single" />
+    <Property Name="BranchContractPercentage" Type="Single" />
+    <Property Name="BranchID" Type="Int32" />
+    <Property Name="CurrencyID" Type="Int32" />
+    <Property Name="EquvWorkTypeID" Type="Int32" />
+    <Property Name="ElectricEquivalentDrawingFee" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="HvacEquivalentDrawingFee" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="PlumbingEquivalentDrawingFee" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="ContractDate" Type="DateTime" Precision="0" />
+    <Property Name="DesignDepartmentReceivingDate" Type="DateTime" Precision="0" />
+    <Property Name="CurrencyExchangeRate" Type="Single" />
+    <Property Name="Parent" Type="Int32" />
+    <Property Name="FieldOfWork" Type="Int32" />
+    <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Area" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TypeID" Type="Int32" />
+    <Property Name="PinNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Fees" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Due" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="RollID" Type="Int32" />
+    <Property Name="Serial" Type="Int32" />
+  </EntityType>
+  <EntityType Name="repPermitsLastStatus">
+    <Key>
+      <PropertyRef Name="proj_ref" />
+      <PropertyRef Name="Last_Status" />
+      <PropertyRef Name="AllPermits" />
+      <PropertyRef Name="AcceptedPermits" />
+    </Key>
+    <Property Name="id" Type="Int32" />
+    <Property Name="permit_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="client_comments" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+    <Property Name="ProjectName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="PermitType" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Scope" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Addreessee" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="proj_ref" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="proj_id" Type="Int32" />
+    <Property Name="permit_type_id" Type="Int32" />
+    <Property Name="permit_scope_id" Type="Int32" />
+    <Property Name="addressee_id" Type="Int32" />
+    <Property Name="contract_date" Type="DateTime" Precision="0" />
+    <Property Name="client_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="progstart_date" Type="DateTime" Precision="0" />
+    <Property Name="Last_Status" Type="Int32" Nullable="false" />
+    <Property Name="Last_Status_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Last_Date" Type="DateTime" Precision="3" />
+    <Property Name="Location" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="project_status" Type="Int32" />
+    <Property Name="project_status_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Last_Comment" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="building_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="actual_finish_date" Type="DateTime" Precision="0" />
+    <Property Name="css_style" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="client_id" Type="Int32" />
+    <Property Name="Balance" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="AllPermits" Type="Int32" Nullable="false" />
+    <Property Name="AcceptedPermits" Type="Int32" Nullable="false" />
+    <Property Name="PermitTypeShortcut" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="division_id" Type="Int32" />
+    <Property Name="proj_area" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="sample_permitsstatus_subquery">
+    <Key>
+      <PropertyRef Name="status_id" />
+      <PropertyRef Name="action_date" />
+    </Key>
+    <Property Name="permit_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="client_comments" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+    <Property Name="proj_id" Type="Int32" />
+    <Property Name="permit_type_id" Type="Int32" />
+    <Property Name="permit_scope_id" Type="Int32" />
+    <Property Name="addressee_id" Type="Int32" />
+    <Property Name="status_id" Type="Int32" Nullable="false" />
+    <Property Name="action_date" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="vw_OurCompany">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ar_CompnyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="En_CompnyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NationalitiesID" Type="Int32" />
+    <Property Name="CompanyAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fax" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Logo" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+    <Property Name="DPMEIsEncrypted" Type="Boolean" />
+    <Property Name="DPMEAllowUpdate" Type="Boolean" />
+    <Property Name="MaxUploadSize" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="MaxMessagesCount" Type="Int32" />
+    <Property Name="MsgTimerInterval" Type="Int32" />
+    <Property Name="FileServerPath" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="WebSite" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Mail_Sign_En" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Mail_Sign_Ar" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="vwAllCollected">
+    <Key>
+      <PropertyRef Name="invoice_number" />
+      <PropertyRef Name="scope" />
+    </Key>
+    <Property Name="proj_id" Type="Int32" />
+    <Property Name="invoice_amount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="invoice_date" Type="DateTime" Precision="3" />
+    <Property Name="invoice_number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="worktype" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="scope" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="vwClientMailling">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="ProjectID" Type="Int32" />
+    <Property Name="Subject" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Purpose" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="State" Type="Int32" />
+    <Property Name="FromPerson" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FromCompany" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ProjectName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="IsEmployee" Type="Int32" />
+    <Property Name="ToDivision" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ToEmployee" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ToBranch" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FromCompanyID" Type="Int32" />
+    <Property Name="FromPersonID" Type="Int32" />
+  </EntityType>
+  <EntityType Name="vwDivisions">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="DivisionName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DivisionTypeID" Type="Int32" />
+    <Property Name="DivisionShortcutName" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+    <Property Name="OrderBy" Type="Int32" />
+  </EntityType>
+  <EntityType Name="vwEmployees">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="DateOfDeparture" />
+      <PropertyRef Name="FunctionalNamesID" />
+      <PropertyRef Name="SpecializationsID" />
+      <PropertyRef Name="EmployeesWorkingGroupsID" />
+      <PropertyRef Name="EmployeesWorkingGroupsManagerID" />
+      <PropertyRef Name="EmployeeMasterWorkingGroupsID" />
+      <PropertyRef Name="EmployeeMasterWorkingGroupsManagerID" />
+      <PropertyRef Name="OurCompanyID" />
+      <PropertyRef Name="BirthDate" />
+      <PropertyRef Name="Gender" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Salary" Type="Single" />
+    <Property Name="name_e" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="DepartmentID" Type="Int16" />
+    <Property Name="DepartmentManager" Type="Int32" />
+    <Property Name="Division" Type="Int32" />
+    <Property Name="DivisionManager" Type="Int32" />
+    <Property Name="nationality" Type="Int32" />
+    <Property Name="SalaryGroupID" Type="Int32" />
+    <Property Name="Deleted" Type="Boolean" />
+    <Property Name="EmploymentDate" Type="DateTime" Precision="3" />
+    <Property Name="DateOfDeparture" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="FunctionalNamesID" Type="Int32" Nullable="false" />
+    <Property Name="SpecializationsID" Type="Int32" Nullable="false" />
+    <Property Name="EmployeesWorkingGroupsID" Type="Int32" Nullable="false" />
+    <Property Name="EmployeesWorkingGroupsManagerID" Type="Int32" Nullable="false" />
+    <Property Name="EmployeeMasterWorkingGroupsID" Type="Int32" Nullable="false" />
+    <Property Name="EmployeeMasterWorkingGroupsManagerID" Type="Int32" Nullable="false" />
+    <Property Name="EmployeeStatusID" Type="Int64" />
+    <Property Name="PersonalPhoto" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="OurCompanyID" Type="Int32" Nullable="false" />
+    <Property Name="BranchManagerID" Type="Int32" />
+    <Property Name="BirthDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Gender" Type="Boolean" Nullable="false" />
+    <Property Name="Signature" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="SignaturePass" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NameVoice" Type="Binary" MaxLength="50" FixedLength="true" />
+    <Property Name="SalaryDescription" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="AccID" Type="Int32" />
+    <Property Name="Token" Type="Guid" />
+    <Property Name="SignatureHTML" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="vwLastActionLog">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="permit_id" />
+      <PropertyRef Name="status_id" />
+      <PropertyRef Name="action_date" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="permit_id" Type="Int32" Nullable="false" />
+    <Property Name="status_id" Type="Int32" Nullable="false" />
+    <Property Name="action_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="comment" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="proj_id" Type="Int32" />
+    <Property Name="DurDays" Type="Int32" />
+  </EntityType>
+  <EntityType Name="vwLastPlan">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="TaskTypeID" Type="Int32" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LastPlan_ProgressPerc" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="LastPlan_Date" Type="DateTime" Precision="0" />
+    <Property Name="LastPlan_ID" Type="Int32" />
+    <Property Name="LastPlan_TaskID" Type="Int32" />
+    <Property Name="LastPlan_Periority" Type="Int32" />
+  </EntityType>
+  <EntityType Name="vwNextPlan">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="TaskTypeID" Type="Int32" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NextPlan_ProgressPerc" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="NextPlan_Date" Type="DateTime" Precision="0" />
+    <Property Name="NextPlan_ID" Type="Int32" />
+    <Property Name="NextPlan_TaskID" Type="Int32" />
+    <Property Name="NextPlan_Periority" Type="Int32" />
+  </EntityType>
+  <EntityType Name="vwPermitsByStatus">
+    <Key>
+      <PropertyRef Name="status_id" />
+    </Key>
+    <Property Name="proj_id" Type="Int32" />
+    <Property Name="status_id" Type="Int32" Nullable="false" />
+    <Property Name="CountPermit" Type="Int32" />
+  </EntityType>
+  <EntityType Name="vwPermitsLastStatus">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="proj_ref" />
+      <PropertyRef Name="Last_Status" />
+      <PropertyRef Name="Last_Date" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="permit_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="client_comments" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+    <Property Name="ProjectName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="PermitType" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Scope" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Addreessee" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="proj_ref" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="proj_id" Type="Int32" />
+    <Property Name="permit_type_id" Type="Int32" />
+    <Property Name="permit_scope_id" Type="Int32" />
+    <Property Name="addressee_id" Type="Int32" />
+    <Property Name="contract_date" Type="DateTime" Precision="0" />
+    <Property Name="client_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="progstart_date" Type="DateTime" Precision="0" />
+    <Property Name="Last_Status" Type="Int32" Nullable="false" />
+    <Property Name="Last_Status_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Last_Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Location" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="comment" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="building_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DurDays" Type="Int32" />
+  </EntityType>
+  <EntityType Name="vwPlanDatasource">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="Last_Status" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="permit_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="client_comments" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+    <Property Name="ProjectName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="PermitType" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Scope" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Addreessee" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="proj_ref" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="proj_id" Type="Int32" />
+    <Property Name="permit_type_id" Type="Int32" />
+    <Property Name="permit_scope_id" Type="Int32" />
+    <Property Name="addressee_id" Type="Int32" />
+    <Property Name="contract_date" Type="DateTime" Precision="0" />
+    <Property Name="client_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="progstart_date" Type="DateTime" Precision="0" />
+    <Property Name="Last_Status" Type="Int32" Nullable="false" />
+    <Property Name="Last_Status_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Last_Date" Type="DateTime" Precision="3" />
+    <Property Name="Location" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="project_status" Type="Int32" />
+    <Property Name="project_status_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Last_Comment" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="building_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="actual_finish_date" Type="DateTime" Precision="0" />
+    <Property Name="css_style" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="client_id" Type="Int32" />
+    <Property Name="PermitTypeShortcut" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="division_id" Type="Int32" />
+    <Property Name="LastPlan_TaskName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LastPlan_ProgressPerc" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="LastPlan_Date" Type="DateTime" Precision="0" />
+    <Property Name="TaskTypeID" Type="Int32" />
+    <Property Name="NextPlan_TaskName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NextPlan_ProgressPerc" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="NextPlan_Date" Type="DateTime" Precision="0" />
+    <Property Name="NextPlan_ID" Type="Int32" />
+    <Property Name="LastPlan_ID" Type="Int32" />
+    <Property Name="LastPlan_TaskID" Type="Int32" />
+    <Property Name="NextPlan_TaskID" Type="Int32" />
+    <Property Name="LastPlan_PlanHours" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="NextPlan_PlanHours" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="NextPlan_Periority" Type="Int32" />
+    <Property Name="LastPlan_Periority" Type="Int32" />
+  </EntityType>
+  <EntityType Name="vwProjectBalance">
+    <Key>
+      <PropertyRef Name="sn" />
+    </Key>
+    <Property Name="sn" Type="Int32" Nullable="false" />
+    <Property Name="TotalCollected" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="ToTalFees" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="Balance" Type="Decimal" Precision="38" Scale="2" />
+  </EntityType>
+  <EntityType Name="vwProjectRequirements">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="RequuirementName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="PermitName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Scope" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="proj_id" Type="Int32" />
+    <Property Name="proj_ref" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="proj_name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="StatusName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="action_date" Type="DateTime" Precision="3" />
+    <Property Name="LastComment" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+    <Property Name="next_followup_date" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="vwProjectsView">
+    <Key>
+      <PropertyRef Name="sn" />
+      <PropertyRef Name="proj_ref" />
+      <PropertyRef Name="AcceptedPermits" />
+    </Key>
+    <Property Name="sn" Type="Int32" Nullable="false" />
+    <Property Name="proj_name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="proj_ref" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="building_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="proj_area" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="proj_floors" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="discplns_list" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="progress_stage" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="proj_deliverable" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="dpme_projid" Type="Int32" />
+    <Property Name="location_id" Type="Int32" />
+    <Property Name="usag_id" Type="Int32" />
+    <Property Name="category_id" Type="Int32" />
+    <Property Name="type_id" Type="Int32" />
+    <Property Name="scope_id" Type="Int32" />
+    <Property Name="status_id" Type="Int32" />
+    <Property Name="proj_client_id" Type="Int32" />
+    <Property Name="AllPermitsCount" Type="Int32" />
+    <Property Name="AcceptedPermits" Type="Int32" Nullable="false" />
+    <Property Name="client_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="qat_cities_list" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="project_usage_list" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="project_category_list" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="proj_types_list" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="proj_workscope_list" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="proj_workscope_list_1" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="proj_status_list" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="InBrogressPermits" Type="Int32" />
+    <Property Name="DaysFromExpDes" Type="Int32" />
+  </EntityType>
+  <EntityType Name="vwPVPermits">
+    <Key>
+      <PropertyRef Name="log_date" />
+    </Key>
+    <Property Name="log_status" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="log_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="log_comment" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="permit_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="permit_client_comment" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+    <Property Name="addressee" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="permit_type" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="permit_scope" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="project_name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="project_ref" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="project_category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="client_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="client_id" Type="Int32" />
+    <Property Name="fees_design" Type="Int32" />
+    <Property Name="fees_supervs" Type="Int32" />
+    <Property Name="fees_study" Type="Int32" />
+    <Property Name="fees_total" Type="Int32" />
+    <Property Name="balance_design" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="balance_study" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="balance_sup" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="balance_total" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="payment_sup_fees" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="payment_sup_type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="payment_study_down" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="payment_study_down_cond" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="payment_study_first" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="payment_study_first_cond" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="payment_design_down" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="payment_design_down_cond" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="payment_design_first" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="payment_design_first_cond" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="payment_design_second" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="payment_design_second_cond" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="payment_design_third" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="payment_design_third_cond" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="payment_design_fourth" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="payment_design_fourth_cond" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="payment_design_fifth" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="payment_design_fifth_cond" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="payment_design_sixth" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="payment_design_sixth_cond" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="payment_design_seven" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="payment_design_seven_cond" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="payment_instsupvs_down" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="payment_instsupvs_down_cond" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="payment_instsupvs_first" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="payment_instsupvs_first_cond" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="payment_instsupvs_second" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="payment_instsupvs_second_cond" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="payment_instsupvs_third" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="payment_instsupvs_third_cond" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="payment_instsupvs_fourth" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="payment_instsupvs_fourth_cond" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="payment_instsupvs_fifth" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="payment_instsupvs_fifth_cond" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="payment_instsupvs_sixth" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="payment_instsupvs_sixth_cond" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="payment_instsupvs_seven" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="payment_instsupvs_seven_cond" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="schedule_contract_date" Type="DateTime" Precision="0" />
+    <Property Name="schedule_cont_Expctd_date" Type="DateTime" Precision="0" />
+    <Property Name="schedule_document_recv_date" Type="DateTime" Precision="0" />
+    <Property Name="schedule_down_recv_date" Type="DateTime" Precision="0" />
+    <Property Name="schedule_progstart_date" Type="DateTime" Precision="0" />
+    <Property Name="schedule_planed_date" Type="DateTime" Precision="0" />
+    <Property Name="schedule_actual_finish_date" Type="DateTime" Precision="0" />
+    <Property Name="schedule_dev_days" Type="Int32" />
+    <Property Name="project_scope" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="project_usage" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="project_type" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_clients_nationalities_list">
+    <End Role="nationalities_list" Type="Self.nationalities_list" Multiplicity="0..1" />
+    <End Role="clients" Type="Self.clients" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="nationalities_list">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="clients">
+        <PropertyRef Name="client_nationalityid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_clients_nationalities_list1">
+    <End Role="nationalities_list" Type="Self.nationalities_list" Multiplicity="0..1" />
+    <End Role="clients" Type="Self.clients" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="nationalities_list">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="clients">
+        <PropertyRef Name="rep_nationalityid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_clients_userpass_dbo_clients">
+    <End Role="clients" Type="Self.clients" Multiplicity="0..1" />
+    <End Role="clients_userpass" Type="Self.clients_userpass" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="clients">
+        <PropertyRef Name="client_id" />
+      </Principal>
+      <Dependent Role="clients_userpass">
+        <PropertyRef Name="client_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_projects_clients">
+    <End Role="clients" Type="Self.clients" Multiplicity="0..1" />
+    <End Role="projects" Type="Self.projects" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="clients">
+        <PropertyRef Name="client_id" />
+      </Principal>
+      <Dependent Role="projects">
+        <PropertyRef Name="proj_client_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_notify_clients">
+    <End Role="clients_userpass" Type="Self.clients_userpass" Multiplicity="1" />
+    <End Role="notify" Type="Self.notify" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="clients_userpass">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="notify">
+        <PropertyRef Name="fromid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_notify_clients1">
+    <End Role="clients_userpass" Type="Self.clients_userpass" Multiplicity="1" />
+    <End Role="notify" Type="Self.notify" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="clients_userpass">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="notify">
+        <PropertyRef Name="toid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_sec_users_groups_rel_clients_userpass">
+    <End Role="clients_userpass" Type="Self.clients_userpass" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="sec_users_groups_rel" Type="Self.sec_users_groups_rel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="clients_userpass">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="sec_users_groups_rel">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DailyPlan_Projects_DailyPlan_Tasks">
+    <End Role="DailyPlan_Tasks" Type="Self.DailyPlan_Tasks" Multiplicity="0..1" />
+    <End Role="DailyPlan_Projects" Type="Self.DailyPlan_Projects" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DailyPlan_Tasks">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DailyPlan_Projects">
+        <PropertyRef Name="TaskID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DailyPlan_Projects_projects_permits">
+    <End Role="projects_permits" Type="Self.projects_permits" Multiplicity="1" />
+    <End Role="DailyPlan_Projects" Type="Self.DailyPlan_Projects" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="projects_permits">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="DailyPlan_Projects">
+        <PropertyRef Name="PermitID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DailyPlan_Tasks_projects_permits">
+    <End Role="projects_permits" Type="Self.projects_permits" Multiplicity="1" />
+    <End Role="DailyPlan_Tasks" Type="Self.DailyPlan_Tasks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="projects_permits">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="DailyPlan_Tasks">
+        <PropertyRef Name="PermitID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DailyPlan_Tasks_TaskTypes">
+    <End Role="TaskTypes" Type="Self.TaskTypes" Multiplicity="0..1" />
+    <End Role="DailyPlan_Tasks" Type="Self.DailyPlan_Tasks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TaskTypes">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DailyPlan_Tasks">
+        <PropertyRef Name="TaskTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DailyPlan_Times_DailyPlan_Tasks">
+    <End Role="DailyPlan_Tasks" Type="Self.DailyPlan_Tasks" Multiplicity="0..1" />
+    <End Role="DailyPlan_Times" Type="Self.DailyPlan_Times" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DailyPlan_Tasks">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DailyPlan_Times">
+        <PropertyRef Name="TaskID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DailyPlan_Times_projects_permits">
+    <End Role="projects_permits" Type="Self.projects_permits" Multiplicity="0..1" />
+    <End Role="DailyPlan_Times" Type="Self.DailyPlan_Times" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="projects_permits">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="DailyPlan_Times">
+        <PropertyRef Name="PermitID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DailyPlan_Times_SubTaskType">
+    <End Role="TaskTypes" Type="Self.TaskTypes" Multiplicity="0..1" />
+    <End Role="DailyPlan_Times" Type="Self.DailyPlan_Times" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TaskTypes">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DailyPlan_Times">
+        <PropertyRef Name="SubTaskTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DailyPlan_Times_TaskTypes">
+    <End Role="TaskTypes" Type="Self.TaskTypes" Multiplicity="0..1" />
+    <End Role="DailyPlan_Times" Type="Self.DailyPlan_Times" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TaskTypes">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DailyPlan_Times">
+        <PropertyRef Name="TaskTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_AdminAccess_employee_sysaccess">
+    <End Role="employee_sysaccess" Type="Self.employee_sysaccess" Multiplicity="1" />
+    <End Role="Employee_AdminAccess" Type="Self.Employee_AdminAccess" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="employee_sysaccess">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Employee_AdminAccess">
+        <PropertyRef Name="emp_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_project_collectes_payment_type_list">
+    <End Role="payment_type_list" Type="Self.payment_type_list" Multiplicity="0..1" />
+    <End Role="project_collectes" Type="Self.project_collectes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="payment_type_list">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="project_collectes">
+        <PropertyRef Name="PaymentTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_project_invoices_payment_type_list">
+    <End Role="payment_type_list" Type="Self.payment_type_list" Multiplicity="0..1" />
+    <End Role="project_invoices" Type="Self.project_invoices" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="payment_type_list">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="project_invoices">
+        <PropertyRef Name="method_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_project_payments_payment_type_list">
+    <End Role="payment_type_list" Type="Self.payment_type_list" Multiplicity="0..1" />
+    <End Role="project_payments" Type="Self.project_payments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="payment_type_list">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="project_payments">
+        <PropertyRef Name="PaymentTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_projects_invoicefees_supervision_payment_type_list">
+    <End Role="payment_type_list" Type="Self.payment_type_list" Multiplicity="0..1" />
+    <End Role="projects_invoicefees_supervision" Type="Self.projects_invoicefees_supervision" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="payment_type_list">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="projects_invoicefees_supervision">
+        <PropertyRef Name="method_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_projects_payment_sup_payment_type_list">
+    <End Role="payment_type_list" Type="Self.payment_type_list" Multiplicity="0..1" />
+    <End Role="projects_payment_sup" Type="Self.projects_payment_sup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="payment_type_list">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="projects_payment_sup">
+        <PropertyRef Name="payment_typeid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_project_collecte_details_Payments_Scope_list">
+    <End Role="Payments_Scope_list" Type="Self.Payments_Scope_list" Multiplicity="0..1" />
+    <End Role="project_collecte_details" Type="Self.project_collecte_details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Payments_Scope_list">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="project_collecte_details">
+        <PropertyRef Name="ScopeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_project_fees_Payments_Scope_list">
+    <End Role="Payments_Scope_list" Type="Self.Payments_Scope_list" Multiplicity="1" />
+    <End Role="project_fees" Type="Self.project_fees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Payments_Scope_list">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="project_fees">
+        <PropertyRef Name="ScopeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_project_invoice_details_Payments_Scope_list">
+    <End Role="Payments_Scope_list" Type="Self.Payments_Scope_list" Multiplicity="0..1" />
+    <End Role="project_invoice_details" Type="Self.project_invoice_details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Payments_Scope_list">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="project_invoice_details">
+        <PropertyRef Name="ScopeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_project_payment_details_Payments_Scope_list">
+    <End Role="Payments_Scope_list" Type="Self.Payments_Scope_list" Multiplicity="1" />
+    <End Role="project_payment_details" Type="Self.project_payment_details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Payments_Scope_list">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="project_payment_details">
+        <PropertyRef Name="ScopeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_projects_requirements_Payments_Scope_list">
+    <End Role="Payments_Scope_list" Type="Self.Payments_Scope_list" Multiplicity="0..1" />
+    <End Role="projects_requirements" Type="Self.projects_requirements" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Payments_Scope_list">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="projects_requirements">
+        <PropertyRef Name="ScopeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_projects_permits_permits_addreesees">
+    <End Role="permits_addreesees" Type="Self.permits_addreesees" Multiplicity="0..1" />
+    <End Role="projects_permits" Type="Self.projects_permits" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="permits_addreesees">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="projects_permits">
+        <PropertyRef Name="addressee_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Permits_ProjectsNew_projects">
+    <End Role="projects" Type="Self.projects" Multiplicity="0..1" />
+    <End Role="Permits_ProjectsNew" Type="Self.Permits_ProjectsNew" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="projects">
+        <PropertyRef Name="sn" />
+      </Principal>
+      <Dependent Role="Permits_ProjectsNew">
+        <PropertyRef Name="proj_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_permits_status_log_permits_status">
+    <End Role="permits_status" Type="Self.permits_status" Multiplicity="1" />
+    <End Role="permits_status_log" Type="Self.permits_status_log" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="permits_status">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="permits_status_log">
+        <PropertyRef Name="status_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_permits_status_log_projects_permits">
+    <End Role="projects_permits" Type="Self.projects_permits" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="permits_status_log" Type="Self.permits_status_log" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="projects_permits">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="permits_status_log">
+        <PropertyRef Name="permit_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_projects_permits_proj_disciplines_list">
+    <End Role="proj_disciplines_list" Type="Self.proj_disciplines_list" Multiplicity="0..1" />
+    <End Role="projects_permits" Type="Self.projects_permits" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="proj_disciplines_list">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="projects_permits">
+        <PropertyRef Name="permit_type_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_projects_requirements_proj_req_list">
+    <End Role="proj_req_list" Type="Self.proj_req_list" Multiplicity="0..1" />
+    <End Role="projects_requirements" Type="Self.projects_requirements" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="proj_req_list">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="projects_requirements">
+        <PropertyRef Name="req_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_proj_req_status_log_projects_requirements">
+    <End Role="projects_requirements" Type="Self.projects_requirements" Multiplicity="1" />
+    <End Role="proj_req_status_log" Type="Self.proj_req_status_log" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="projects_requirements">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="proj_req_status_log">
+        <PropertyRef Name="proj_req_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_proj_req_status_log_req_status_list">
+    <End Role="req_status_list" Type="Self.req_status_list" Multiplicity="1" />
+    <End Role="proj_req_status_log" Type="Self.proj_req_status_log" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="req_status_list">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="proj_req_status_log">
+        <PropertyRef Name="status_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_projects_proj_status_list">
+    <End Role="proj_status_list" Type="Self.proj_status_list" Multiplicity="0..1" />
+    <End Role="projects" Type="Self.projects" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="proj_status_list">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="projects">
+        <PropertyRef Name="status_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_projects_proj_types_list">
+    <End Role="proj_types_list" Type="Self.proj_types_list" Multiplicity="0..1" />
+    <End Role="projects" Type="Self.projects" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="proj_types_list">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="projects">
+        <PropertyRef Name="type_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_projects_permits_proj_workscope_list">
+    <End Role="proj_workscope_list" Type="Self.proj_workscope_list" Multiplicity="0..1" />
+    <End Role="projects_permits" Type="Self.projects_permits" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="proj_workscope_list">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="projects_permits">
+        <PropertyRef Name="permit_scope_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_projects_proj_workscope_list">
+    <End Role="proj_workscope_list" Type="Self.proj_workscope_list" Multiplicity="0..1" />
+    <End Role="projects" Type="Self.projects" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="proj_workscope_list">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="projects">
+        <PropertyRef Name="scope_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_projects_conditions_project_category_list">
+    <End Role="project_category_list" Type="Self.project_category_list" Multiplicity="0..1" />
+    <End Role="projects_conditions" Type="Self.projects_conditions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="project_category_list">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="projects_conditions">
+        <PropertyRef Name="category_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_projects_project_category_list">
+    <End Role="project_category_list" Type="Self.project_category_list" Multiplicity="0..1" />
+    <End Role="projects" Type="Self.projects" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="project_category_list">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="projects">
+        <PropertyRef Name="category_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_project_collecte_details_project_collectes">
+    <End Role="project_collectes" Type="Self.project_collectes" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="project_collecte_details" Type="Self.project_collecte_details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="project_collectes">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="project_collecte_details">
+        <PropertyRef Name="CollectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_project_collectes_project_invoices">
+    <End Role="project_invoices" Type="Self.project_invoices" Multiplicity="0..1" />
+    <End Role="project_collectes" Type="Self.project_collectes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="project_invoices">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="project_collectes">
+        <PropertyRef Name="InvoiceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_project_collectes_projects">
+    <End Role="projects" Type="Self.projects" Multiplicity="0..1" />
+    <End Role="project_collectes" Type="Self.project_collectes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="projects">
+        <PropertyRef Name="sn" />
+      </Principal>
+      <Dependent Role="project_collectes">
+        <PropertyRef Name="proj_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_project_fees_projects">
+    <End Role="projects" Type="Self.projects" Multiplicity="1" />
+    <End Role="project_fees" Type="Self.project_fees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="projects">
+        <PropertyRef Name="sn" />
+      </Principal>
+      <Dependent Role="project_fees">
+        <PropertyRef Name="proj_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_project_invoice_details_project_invoice_details">
+    <End Role="project_invoices" Type="Self.project_invoices" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="project_invoice_details" Type="Self.project_invoice_details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="project_invoices">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="project_invoice_details">
+        <PropertyRef Name="InvoiceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_project_invoices_project_payments">
+    <End Role="project_payments" Type="Self.project_payments" Multiplicity="0..1" />
+    <End Role="project_invoices" Type="Self.project_invoices" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="project_payments">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="project_invoices">
+        <PropertyRef Name="PaymentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_project_invoices_projects">
+    <End Role="projects" Type="Self.projects" Multiplicity="0..1" />
+    <End Role="project_invoices" Type="Self.project_invoices" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="projects">
+        <PropertyRef Name="sn" />
+      </Principal>
+      <Dependent Role="project_invoices">
+        <PropertyRef Name="proj_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_project_payment_config_projects">
+    <End Role="projects" Type="Self.projects" Multiplicity="1" />
+    <End Role="project_payment_config" Type="Self.project_payment_config" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="projects">
+        <PropertyRef Name="sn" />
+      </Principal>
+      <Dependent Role="project_payment_config">
+        <PropertyRef Name="proj_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_project_payment_config_TimeIntervals">
+    <End Role="TimeIntervals" Type="Self.TimeIntervals" Multiplicity="0..1" />
+    <End Role="project_payment_config" Type="Self.project_payment_config" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TimeIntervals">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="project_payment_config">
+        <PropertyRef Name="TimeIntervalID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_project_payment_details_project_payments">
+    <End Role="project_payments" Type="Self.project_payments" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="project_payment_details" Type="Self.project_payment_details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="project_payments">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="project_payment_details">
+        <PropertyRef Name="PaymentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_project_payments_projects">
+    <End Role="projects" Type="Self.projects" Multiplicity="0..1" />
+    <End Role="project_payments" Type="Self.project_payments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="projects">
+        <PropertyRef Name="sn" />
+      </Principal>
+      <Dependent Role="project_payments">
+        <PropertyRef Name="proj_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_projects_requirements_projects">
+    <End Role="project_services_list" Type="Self.project_services_list" Multiplicity="0..1" />
+    <End Role="projects_requirements" Type="Self.projects_requirements" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="project_services_list">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="projects_requirements">
+        <PropertyRef Name="permit_typeid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_projects_project_usage_list">
+    <End Role="project_usage_list" Type="Self.project_usage_list" Multiplicity="0..1" />
+    <End Role="projects" Type="Self.projects" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="project_usage_list">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="projects">
+        <PropertyRef Name="usag_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_project_visits_projects">
+    <End Role="projects" Type="Self.projects" Multiplicity="1" />
+    <End Role="project_visits" Type="Self.project_visits" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="projects">
+        <PropertyRef Name="sn" />
+      </Principal>
+      <Dependent Role="project_visits">
+        <PropertyRef Name="proj_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_project_visits_contract_projects">
+    <End Role="projects" Type="Self.projects" Multiplicity="1" />
+    <End Role="project_visits_contract" Type="Self.project_visits_contract" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="projects">
+        <PropertyRef Name="sn" />
+      </Principal>
+      <Dependent Role="project_visits_contract">
+        <PropertyRef Name="proj_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_projects_conditions_projects">
+    <End Role="projects" Type="Self.projects" Multiplicity="0..1" />
+    <End Role="projects_conditions" Type="Self.projects_conditions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="projects">
+        <PropertyRef Name="sn" />
+      </Principal>
+      <Dependent Role="projects_conditions">
+        <PropertyRef Name="proj_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_projects_fees_projects">
+    <End Role="projects" Type="Self.projects" Multiplicity="1" />
+    <End Role="projects_fees" Type="Self.projects_fees" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="projects">
+        <PropertyRef Name="sn" />
+      </Principal>
+      <Dependent Role="projects_fees">
+        <PropertyRef Name="proj_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_projects_permits_projects">
+    <End Role="projects" Type="Self.projects" Multiplicity="0..1" />
+    <End Role="projects_permits" Type="Self.projects_permits" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="projects">
+        <PropertyRef Name="sn" />
+      </Principal>
+      <Dependent Role="projects_permits">
+        <PropertyRef Name="proj_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_projects_qat_cities_list">
+    <End Role="qat_cities_list" Type="Self.qat_cities_list" Multiplicity="0..1" />
+    <End Role="projects" Type="Self.projects" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="qat_cities_list">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="projects">
+        <PropertyRef Name="location_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_projects_schedule_projects">
+    <End Role="projects" Type="Self.projects" Multiplicity="1" />
+    <End Role="projects_schedule" Type="Self.projects_schedule" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="projects">
+        <PropertyRef Name="sn" />
+      </Principal>
+      <Dependent Role="projects_schedule">
+        <PropertyRef Name="proj_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Projects_BuildingList_projects_types_list">
+    <End Role="projects_types_list" Type="Self.projects_types_list" Multiplicity="0..1" />
+    <End Role="Projects_BuildingList" Type="Self.Projects_BuildingList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="projects_types_list">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Projects_BuildingList">
+        <PropertyRef Name="building_typeid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_projects_permits_UploadSystems">
+    <End Role="UploadSystems" Type="Self.UploadSystems" Multiplicity="0..1" />
+    <End Role="projects_permits" Type="Self.projects_permits" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UploadSystems">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="projects_permits">
+        <PropertyRef Name="uploadsys" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_projects_requirements_req_status_list">
+    <End Role="req_status_list" Type="Self.req_status_list" Multiplicity="0..1" />
+    <End Role="projects_requirements" Type="Self.projects_requirements" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="req_status_list">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="projects_requirements">
+        <PropertyRef Name="status_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_sec_group_permissions_sec_groups">
+    <End Role="sec_groups" Type="Self.sec_groups" Multiplicity="1" />
+    <End Role="sec_group_permissions" Type="Self.sec_group_permissions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sec_groups">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="sec_group_permissions">
+        <PropertyRef Name="group_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_sec_users_groups_rel_sec_groups">
+    <End Role="sec_groups" Type="Self.sec_groups" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="sec_users_groups_rel" Type="Self.sec_users_groups_rel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sec_groups">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="sec_users_groups_rel">
+        <PropertyRef Name="GroupID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FollowupDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="clients" EntityType="Self.clients" />
+    <EntitySet Name="clients_userpass" EntityType="Self.clients_userpass" />
+    <EntitySet Name="DailyPlan_Projects" EntityType="Self.DailyPlan_Projects" />
+    <EntitySet Name="DailyPlan_Tasks" EntityType="Self.DailyPlan_Tasks" />
+    <EntitySet Name="DailyPlan_Times" EntityType="Self.DailyPlan_Times" />
+    <EntitySet Name="Employee_AdminAccess" EntityType="Self.Employee_AdminAccess" />
+    <EntitySet Name="employee_sysaccess" EntityType="Self.employee_sysaccess" />
+    <EntitySet Name="files" EntityType="Self.files" />
+    <EntitySet Name="InvoicesD" EntityType="Self.InvoicesD" />
+    <EntitySet Name="InvoicesDesign" EntityType="Self.InvoicesDesign" />
+    <EntitySet Name="InvoicesS" EntityType="Self.InvoicesS" />
+    <EntitySet Name="InvoicesSupervision" EntityType="Self.InvoicesSupervision" />
+    <EntitySet Name="nationalities_list" EntityType="Self.nationalities_list" />
+    <EntitySet Name="NewPermLog" EntityType="Self.NewPermLog" />
+    <EntitySet Name="NewSchedule" EntityType="Self.NewSchedule" />
+    <EntitySet Name="NewScope" EntityType="Self.NewScope" />
+    <EntitySet Name="notify" EntityType="Self.notify" />
+    <EntitySet Name="payment_type_list" EntityType="Self.payment_type_list" />
+    <EntitySet Name="Payments_Scope_list" EntityType="Self.Payments_Scope_list" />
+    <EntitySet Name="permits_addreesees" EntityType="Self.permits_addreesees" />
+    <EntitySet Name="Permits_ProjectsNew" EntityType="Self.Permits_ProjectsNew" />
+    <EntitySet Name="permits_status" EntityType="Self.permits_status" />
+    <EntitySet Name="permits_status_log" EntityType="Self.permits_status_log" />
+    <EntitySet Name="PerTB" EntityType="Self.PerTB" />
+    <EntitySet Name="proj_conditions_list" EntityType="Self.proj_conditions_list" />
+    <EntitySet Name="proj_delivers_list" EntityType="Self.proj_delivers_list" />
+    <EntitySet Name="proj_disciplines_list" EntityType="Self.proj_disciplines_list" />
+    <EntitySet Name="proj_req_list" EntityType="Self.proj_req_list" />
+    <EntitySet Name="proj_req_status_log" EntityType="Self.proj_req_status_log" />
+    <EntitySet Name="proj_stages_list" EntityType="Self.proj_stages_list" />
+    <EntitySet Name="proj_status_list" EntityType="Self.proj_status_list" />
+    <EntitySet Name="proj_types_list" EntityType="Self.proj_types_list" />
+    <EntitySet Name="proj_workscope_list" EntityType="Self.proj_workscope_list" />
+    <EntitySet Name="project_category_list" EntityType="Self.project_category_list" />
+    <EntitySet Name="project_collecte_details" EntityType="Self.project_collecte_details" />
+    <EntitySet Name="project_collectes" EntityType="Self.project_collectes" />
+    <EntitySet Name="project_fees" EntityType="Self.project_fees" />
+    <EntitySet Name="project_invoice_details" EntityType="Self.project_invoice_details" />
+    <EntitySet Name="project_invoices" EntityType="Self.project_invoices" />
+    <EntitySet Name="project_payment_config" EntityType="Self.project_payment_config" />
+    <EntitySet Name="project_payment_details" EntityType="Self.project_payment_details" />
+    <EntitySet Name="project_payments" EntityType="Self.project_payments" />
+    <EntitySet Name="project_services_list" EntityType="Self.project_services_list" />
+    <EntitySet Name="project_usage_list" EntityType="Self.project_usage_list" />
+    <EntitySet Name="project_visits" EntityType="Self.project_visits" />
+    <EntitySet Name="project_visits_contract" EntityType="Self.project_visits_contract" />
+    <EntitySet Name="projects" EntityType="Self.projects" />
+    <EntitySet Name="projects_balance" EntityType="Self.projects_balance" />
+    <EntitySet Name="Projects_BuildingList" EntityType="Self.Projects_BuildingList" />
+    <EntitySet Name="projects_collectedfees_design" EntityType="Self.projects_collectedfees_design" />
+    <EntitySet Name="projects_collectedfees_study" EntityType="Self.projects_collectedfees_study" />
+    <EntitySet Name="projects_collectedfees_supervision" EntityType="Self.projects_collectedfees_supervision" />
+    <EntitySet Name="projects_conditions" EntityType="Self.projects_conditions" />
+    <EntitySet Name="projects_fees" EntityType="Self.projects_fees" />
+    <EntitySet Name="projects_invoicefees_design" EntityType="Self.projects_invoicefees_design" />
+    <EntitySet Name="projects_invoicefees_study" EntityType="Self.projects_invoicefees_study" />
+    <EntitySet Name="projects_invoicefees_supervision" EntityType="Self.projects_invoicefees_supervision" />
+    <EntitySet Name="projects_payment_design" EntityType="Self.projects_payment_design" />
+    <EntitySet Name="projects_payment_instsupvs" EntityType="Self.projects_payment_instsupvs" />
+    <EntitySet Name="projects_payment_study" EntityType="Self.projects_payment_study" />
+    <EntitySet Name="projects_payment_sup" EntityType="Self.projects_payment_sup" />
+    <EntitySet Name="projects_permits" EntityType="Self.projects_permits" />
+    <EntitySet Name="projects_requirements" EntityType="Self.projects_requirements" />
+    <EntitySet Name="projects_schedule" EntityType="Self.projects_schedule" />
+    <EntitySet Name="projects_schedule_tb" EntityType="Self.projects_schedule_tb" />
+    <EntitySet Name="projects_status_log" EntityType="Self.projects_status_log" />
+    <EntitySet Name="projects_types_list" EntityType="Self.projects_types_list" />
+    <EntitySet Name="ProjectSchedule" EntityType="Self.ProjectSchedule" />
+    <EntitySet Name="qat_cities_list" EntityType="Self.qat_cities_list" />
+    <EntitySet Name="req_status_list" EntityType="Self.req_status_list" />
+    <EntitySet Name="ScheduleTest" EntityType="Self.ScheduleTest" />
+    <EntitySet Name="sec_group_permissions" EntityType="Self.sec_group_permissions" />
+    <EntitySet Name="sec_groups" EntityType="Self.sec_groups" />
+    <EntitySet Name="sec_users_groups_rel" EntityType="Self.sec_users_groups_rel" />
+    <EntitySet Name="Sheet1schedule" EntityType="Self.Sheet1schedule" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="TaskTypes" EntityType="Self.TaskTypes" />
+    <EntitySet Name="TimeIntervals" EntityType="Self.TimeIntervals" />
+    <EntitySet Name="UploadSystems" EntityType="Self.UploadSystems" />
+    <EntitySet Name="NewPermits" EntityType="Self.NewPermits" />
+    <EntitySet Name="NewPermitTable" EntityType="Self.NewPermitTable" />
+    <EntitySet Name="ST_IDTime" EntityType="Self.ST_IDTime" />
+    <EntitySet Name="dpme_clients" EntityType="Self.dpme_clients" />
+    <EntitySet Name="dpme_projects" EntityType="Self.dpme_projects" />
+    <EntitySet Name="repPermitsLastStatus" EntityType="Self.repPermitsLastStatus" />
+    <EntitySet Name="sample_permitsstatus_subquery" EntityType="Self.sample_permitsstatus_subquery" />
+    <EntitySet Name="vw_OurCompany" EntityType="Self.vw_OurCompany" />
+    <EntitySet Name="vwAllCollected" EntityType="Self.vwAllCollected" />
+    <EntitySet Name="vwClientMailling" EntityType="Self.vwClientMailling" />
+    <EntitySet Name="vwDivisions" EntityType="Self.vwDivisions" />
+    <EntitySet Name="vwEmployees" EntityType="Self.vwEmployees" />
+    <EntitySet Name="vwLastActionLog" EntityType="Self.vwLastActionLog" />
+    <EntitySet Name="vwLastPlan" EntityType="Self.vwLastPlan" />
+    <EntitySet Name="vwNextPlan" EntityType="Self.vwNextPlan" />
+    <EntitySet Name="vwPermitsByStatus" EntityType="Self.vwPermitsByStatus" />
+    <EntitySet Name="vwPermitsLastStatus" EntityType="Self.vwPermitsLastStatus" />
+    <EntitySet Name="vwPlanDatasource" EntityType="Self.vwPlanDatasource" />
+    <EntitySet Name="vwProjectBalance" EntityType="Self.vwProjectBalance" />
+    <EntitySet Name="vwProjectRequirements" EntityType="Self.vwProjectRequirements" />
+    <EntitySet Name="vwProjectsView" EntityType="Self.vwProjectsView" />
+    <EntitySet Name="vwPVPermits" EntityType="Self.vwPVPermits" />
+    <AssociationSet Name="FK_clients_nationalities_list" Association="Self.FK_clients_nationalities_list">
+      <End Role="nationalities_list" EntitySet="nationalities_list" />
+      <End Role="clients" EntitySet="clients" />
+    </AssociationSet>
+    <AssociationSet Name="FK_clients_nationalities_list1" Association="Self.FK_clients_nationalities_list1">
+      <End Role="nationalities_list" EntitySet="nationalities_list" />
+      <End Role="clients" EntitySet="clients" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_clients_userpass_dbo_clients" Association="Self.FK_dbo_clients_userpass_dbo_clients">
+      <End Role="clients" EntitySet="clients" />
+      <End Role="clients_userpass" EntitySet="clients_userpass" />
+    </AssociationSet>
+    <AssociationSet Name="FK_projects_clients" Association="Self.FK_projects_clients">
+      <End Role="clients" EntitySet="clients" />
+      <End Role="projects" EntitySet="projects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_notify_clients" Association="Self.FK_notify_clients">
+      <End Role="clients_userpass" EntitySet="clients_userpass" />
+      <End Role="notify" EntitySet="notify" />
+    </AssociationSet>
+    <AssociationSet Name="FK_notify_clients1" Association="Self.FK_notify_clients1">
+      <End Role="clients_userpass" EntitySet="clients_userpass" />
+      <End Role="notify" EntitySet="notify" />
+    </AssociationSet>
+    <AssociationSet Name="FK_sec_users_groups_rel_clients_userpass" Association="Self.FK_sec_users_groups_rel_clients_userpass">
+      <End Role="clients_userpass" EntitySet="clients_userpass" />
+      <End Role="sec_users_groups_rel" EntitySet="sec_users_groups_rel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DailyPlan_Projects_DailyPlan_Tasks" Association="Self.FK_DailyPlan_Projects_DailyPlan_Tasks">
+      <End Role="DailyPlan_Tasks" EntitySet="DailyPlan_Tasks" />
+      <End Role="DailyPlan_Projects" EntitySet="DailyPlan_Projects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DailyPlan_Projects_projects_permits" Association="Self.FK_DailyPlan_Projects_projects_permits">
+      <End Role="projects_permits" EntitySet="projects_permits" />
+      <End Role="DailyPlan_Projects" EntitySet="DailyPlan_Projects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DailyPlan_Tasks_projects_permits" Association="Self.FK_DailyPlan_Tasks_projects_permits">
+      <End Role="projects_permits" EntitySet="projects_permits" />
+      <End Role="DailyPlan_Tasks" EntitySet="DailyPlan_Tasks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DailyPlan_Tasks_TaskTypes" Association="Self.FK_DailyPlan_Tasks_TaskTypes">
+      <End Role="TaskTypes" EntitySet="TaskTypes" />
+      <End Role="DailyPlan_Tasks" EntitySet="DailyPlan_Tasks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DailyPlan_Times_DailyPlan_Tasks" Association="Self.FK_DailyPlan_Times_DailyPlan_Tasks">
+      <End Role="DailyPlan_Tasks" EntitySet="DailyPlan_Tasks" />
+      <End Role="DailyPlan_Times" EntitySet="DailyPlan_Times" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DailyPlan_Times_projects_permits" Association="Self.FK_DailyPlan_Times_projects_permits">
+      <End Role="projects_permits" EntitySet="projects_permits" />
+      <End Role="DailyPlan_Times" EntitySet="DailyPlan_Times" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DailyPlan_Times_SubTaskType" Association="Self.FK_DailyPlan_Times_SubTaskType">
+      <End Role="TaskTypes" EntitySet="TaskTypes" />
+      <End Role="DailyPlan_Times" EntitySet="DailyPlan_Times" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DailyPlan_Times_TaskTypes" Association="Self.FK_DailyPlan_Times_TaskTypes">
+      <End Role="TaskTypes" EntitySet="TaskTypes" />
+      <End Role="DailyPlan_Times" EntitySet="DailyPlan_Times" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_AdminAccess_employee_sysaccess" Association="Self.FK_Employee_AdminAccess_employee_sysaccess">
+      <End Role="employee_sysaccess" EntitySet="employee_sysaccess" />
+      <End Role="Employee_AdminAccess" EntitySet="Employee_AdminAccess" />
+    </AssociationSet>
+    <AssociationSet Name="FK_project_collectes_payment_type_list" Association="Self.FK_project_collectes_payment_type_list">
+      <End Role="payment_type_list" EntitySet="payment_type_list" />
+      <End Role="project_collectes" EntitySet="project_collectes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_project_invoices_payment_type_list" Association="Self.FK_project_invoices_payment_type_list">
+      <End Role="payment_type_list" EntitySet="payment_type_list" />
+      <End Role="project_invoices" EntitySet="project_invoices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_project_payments_payment_type_list" Association="Self.FK_project_payments_payment_type_list">
+      <End Role="payment_type_list" EntitySet="payment_type_list" />
+      <End Role="project_payments" EntitySet="project_payments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_projects_invoicefees_supervision_payment_type_list" Association="Self.FK_projects_invoicefees_supervision_payment_type_list">
+      <End Role="payment_type_list" EntitySet="payment_type_list" />
+      <End Role="projects_invoicefees_supervision" EntitySet="projects_invoicefees_supervision" />
+    </AssociationSet>
+    <AssociationSet Name="FK_projects_payment_sup_payment_type_list" Association="Self.FK_projects_payment_sup_payment_type_list">
+      <End Role="payment_type_list" EntitySet="payment_type_list" />
+      <End Role="projects_payment_sup" EntitySet="projects_payment_sup" />
+    </AssociationSet>
+    <AssociationSet Name="FK_project_collecte_details_Payments_Scope_list" Association="Self.FK_project_collecte_details_Payments_Scope_list">
+      <End Role="Payments_Scope_list" EntitySet="Payments_Scope_list" />
+      <End Role="project_collecte_details" EntitySet="project_collecte_details" />
+    </AssociationSet>
+    <AssociationSet Name="FK_project_fees_Payments_Scope_list" Association="Self.FK_project_fees_Payments_Scope_list">
+      <End Role="Payments_Scope_list" EntitySet="Payments_Scope_list" />
+      <End Role="project_fees" EntitySet="project_fees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_project_invoice_details_Payments_Scope_list" Association="Self.FK_project_invoice_details_Payments_Scope_list">
+      <End Role="Payments_Scope_list" EntitySet="Payments_Scope_list" />
+      <End Role="project_invoice_details" EntitySet="project_invoice_details" />
+    </AssociationSet>
+    <AssociationSet Name="FK_project_payment_details_Payments_Scope_list" Association="Self.FK_project_payment_details_Payments_Scope_list">
+      <End Role="Payments_Scope_list" EntitySet="Payments_Scope_list" />
+      <End Role="project_payment_details" EntitySet="project_payment_details" />
+    </AssociationSet>
+    <AssociationSet Name="FK_projects_requirements_Payments_Scope_list" Association="Self.FK_projects_requirements_Payments_Scope_list">
+      <End Role="Payments_Scope_list" EntitySet="Payments_Scope_list" />
+      <End Role="projects_requirements" EntitySet="projects_requirements" />
+    </AssociationSet>
+    <AssociationSet Name="FK_projects_permits_permits_addreesees" Association="Self.FK_projects_permits_permits_addreesees">
+      <End Role="permits_addreesees" EntitySet="permits_addreesees" />
+      <End Role="projects_permits" EntitySet="projects_permits" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Permits_ProjectsNew_projects" Association="Self.FK_Permits_ProjectsNew_projects">
+      <End Role="projects" EntitySet="projects" />
+      <End Role="Permits_ProjectsNew" EntitySet="Permits_ProjectsNew" />
+    </AssociationSet>
+    <AssociationSet Name="FK_permits_status_log_permits_status" Association="Self.FK_permits_status_log_permits_status">
+      <End Role="permits_status" EntitySet="permits_status" />
+      <End Role="permits_status_log" EntitySet="permits_status_log" />
+    </AssociationSet>
+    <AssociationSet Name="FK_permits_status_log_projects_permits" Association="Self.FK_permits_status_log_projects_permits">
+      <End Role="projects_permits" EntitySet="projects_permits" />
+      <End Role="permits_status_log" EntitySet="permits_status_log" />
+    </AssociationSet>
+    <AssociationSet Name="FK_projects_permits_proj_disciplines_list" Association="Self.FK_projects_permits_proj_disciplines_list">
+      <End Role="proj_disciplines_list" EntitySet="proj_disciplines_list" />
+      <End Role="projects_permits" EntitySet="projects_permits" />
+    </AssociationSet>
+    <AssociationSet Name="FK_projects_requirements_proj_req_list" Association="Self.FK_projects_requirements_proj_req_list">
+      <End Role="proj_req_list" EntitySet="proj_req_list" />
+      <End Role="projects_requirements" EntitySet="projects_requirements" />
+    </AssociationSet>
+    <AssociationSet Name="FK_proj_req_status_log_projects_requirements" Association="Self.FK_proj_req_status_log_projects_requirements">
+      <End Role="projects_requirements" EntitySet="projects_requirements" />
+      <End Role="proj_req_status_log" EntitySet="proj_req_status_log" />
+    </AssociationSet>
+    <AssociationSet Name="FK_proj_req_status_log_req_status_list" Association="Self.FK_proj_req_status_log_req_status_list">
+      <End Role="req_status_list" EntitySet="req_status_list" />
+      <End Role="proj_req_status_log" EntitySet="proj_req_status_log" />
+    </AssociationSet>
+    <AssociationSet Name="FK_projects_proj_status_list" Association="Self.FK_projects_proj_status_list">
+      <End Role="proj_status_list" EntitySet="proj_status_list" />
+      <End Role="projects" EntitySet="projects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_projects_proj_types_list" Association="Self.FK_projects_proj_types_list">
+      <End Role="proj_types_list" EntitySet="proj_types_list" />
+      <End Role="projects" EntitySet="projects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_projects_permits_proj_workscope_list" Association="Self.FK_projects_permits_proj_workscope_list">
+      <End Role="proj_workscope_list" EntitySet="proj_workscope_list" />
+      <End Role="projects_permits" EntitySet="projects_permits" />
+    </AssociationSet>
+    <AssociationSet Name="FK_projects_proj_workscope_list" Association="Self.FK_projects_proj_workscope_list">
+      <End Role="proj_workscope_list" EntitySet="proj_workscope_list" />
+      <End Role="projects" EntitySet="projects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_projects_conditions_project_category_list" Association="Self.FK_projects_conditions_project_category_list">
+      <End Role="project_category_list" EntitySet="project_category_list" />
+      <End Role="projects_conditions" EntitySet="projects_conditions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_projects_project_category_list" Association="Self.FK_projects_project_category_list">
+      <End Role="project_category_list" EntitySet="project_category_list" />
+      <End Role="projects" EntitySet="projects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_project_collecte_details_project_collectes" Association="Self.FK_project_collecte_details_project_collectes">
+      <End Role="project_collectes" EntitySet="project_collectes" />
+      <End Role="project_collecte_details" EntitySet="project_collecte_details" />
+    </AssociationSet>
+    <AssociationSet Name="FK_project_collectes_project_invoices" Association="Self.FK_project_collectes_project_invoices">
+      <End Role="project_invoices" EntitySet="project_invoices" />
+      <End Role="project_collectes" EntitySet="project_collectes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_project_collectes_projects" Association="Self.FK_project_collectes_projects">
+      <End Role="projects" EntitySet="projects" />
+      <End Role="project_collectes" EntitySet="project_collectes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_project_fees_projects" Association="Self.FK_project_fees_projects">
+      <End Role="projects" EntitySet="projects" />
+      <End Role="project_fees" EntitySet="project_fees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_project_invoice_details_project_invoice_details" Association="Self.FK_project_invoice_details_project_invoice_details">
+      <End Role="project_invoices" EntitySet="project_invoices" />
+      <End Role="project_invoice_details" EntitySet="project_invoice_details" />
+    </AssociationSet>
+    <AssociationSet Name="FK_project_invoices_project_payments" Association="Self.FK_project_invoices_project_payments">
+      <End Role="project_payments" EntitySet="project_payments" />
+      <End Role="project_invoices" EntitySet="project_invoices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_project_invoices_projects" Association="Self.FK_project_invoices_projects">
+      <End Role="projects" EntitySet="projects" />
+      <End Role="project_invoices" EntitySet="project_invoices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_project_payment_config_projects" Association="Self.FK_project_payment_config_projects">
+      <End Role="projects" EntitySet="projects" />
+      <End Role="project_payment_config" EntitySet="project_payment_config" />
+    </AssociationSet>
+    <AssociationSet Name="FK_project_payment_config_TimeIntervals" Association="Self.FK_project_payment_config_TimeIntervals">
+      <End Role="TimeIntervals" EntitySet="TimeIntervals" />
+      <End Role="project_payment_config" EntitySet="project_payment_config" />
+    </AssociationSet>
+    <AssociationSet Name="FK_project_payment_details_project_payments" Association="Self.FK_project_payment_details_project_payments">
+      <End Role="project_payments" EntitySet="project_payments" />
+      <End Role="project_payment_details" EntitySet="project_payment_details" />
+    </AssociationSet>
+    <AssociationSet Name="FK_project_payments_projects" Association="Self.FK_project_payments_projects">
+      <End Role="projects" EntitySet="projects" />
+      <End Role="project_payments" EntitySet="project_payments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_projects_requirements_projects" Association="Self.FK_projects_requirements_projects">
+      <End Role="project_services_list" EntitySet="project_services_list" />
+      <End Role="projects_requirements" EntitySet="projects_requirements" />
+    </AssociationSet>
+    <AssociationSet Name="FK_projects_project_usage_list" Association="Self.FK_projects_project_usage_list">
+      <End Role="project_usage_list" EntitySet="project_usage_list" />
+      <End Role="projects" EntitySet="projects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_project_visits_projects" Association="Self.FK_project_visits_projects">
+      <End Role="projects" EntitySet="projects" />
+      <End Role="project_visits" EntitySet="project_visits" />
+    </AssociationSet>
+    <AssociationSet Name="FK_project_visits_contract_projects" Association="Self.FK_project_visits_contract_projects">
+      <End Role="projects" EntitySet="projects" />
+      <End Role="project_visits_contract" EntitySet="project_visits_contract" />
+    </AssociationSet>
+    <AssociationSet Name="FK_projects_conditions_projects" Association="Self.FK_projects_conditions_projects">
+      <End Role="projects" EntitySet="projects" />
+      <End Role="projects_conditions" EntitySet="projects_conditions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_projects_fees_projects" Association="Self.FK_projects_fees_projects">
+      <End Role="projects" EntitySet="projects" />
+      <End Role="projects_fees" EntitySet="projects_fees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_projects_permits_projects" Association="Self.FK_projects_permits_projects">
+      <End Role="projects" EntitySet="projects" />
+      <End Role="projects_permits" EntitySet="projects_permits" />
+    </AssociationSet>
+    <AssociationSet Name="FK_projects_qat_cities_list" Association="Self.FK_projects_qat_cities_list">
+      <End Role="qat_cities_list" EntitySet="qat_cities_list" />
+      <End Role="projects" EntitySet="projects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_projects_schedule_projects" Association="Self.FK_projects_schedule_projects">
+      <End Role="projects" EntitySet="projects" />
+      <End Role="projects_schedule" EntitySet="projects_schedule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Projects_BuildingList_projects_types_list" Association="Self.FK_Projects_BuildingList_projects_types_list">
+      <End Role="projects_types_list" EntitySet="projects_types_list" />
+      <End Role="Projects_BuildingList" EntitySet="Projects_BuildingList" />
+    </AssociationSet>
+    <AssociationSet Name="FK_projects_permits_UploadSystems" Association="Self.FK_projects_permits_UploadSystems">
+      <End Role="UploadSystems" EntitySet="UploadSystems" />
+      <End Role="projects_permits" EntitySet="projects_permits" />
+    </AssociationSet>
+    <AssociationSet Name="FK_projects_requirements_req_status_list" Association="Self.FK_projects_requirements_req_status_list">
+      <End Role="req_status_list" EntitySet="req_status_list" />
+      <End Role="projects_requirements" EntitySet="projects_requirements" />
+    </AssociationSet>
+    <AssociationSet Name="FK_sec_group_permissions_sec_groups" Association="Self.FK_sec_group_permissions_sec_groups">
+      <End Role="sec_groups" EntitySet="sec_groups" />
+      <End Role="sec_group_permissions" EntitySet="sec_group_permissions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_sec_users_groups_rel_sec_groups" Association="Self.FK_sec_users_groups_rel_sec_groups">
+      <End Role="sec_groups" EntitySet="sec_groups" />
+      <End Role="sec_users_groups_rel" EntitySet="sec_users_groups_rel" />
+    </AssociationSet>
+    <FunctionImport Name="acc_employee_insert">
+      <Parameter Name="emp_id" Mode="In" Type="Int32" />
+      <Parameter Name="emp_role" Mode="In" Type="String" />
+      <Parameter Name="emp_username" Mode="In" Type="String" />
+      <Parameter Name="emp_password" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="check_employee_access" ReturnType="Collection(FollowupDBModel.check_employee_access_Result)">
+      <Parameter Name="username" Mode="In" Type="String" />
+      <Parameter Name="password" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CountDesignBalance">
+      <Parameter Name="reference" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CountsupervisionBalance">
+      <Parameter Name="reference" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Delete_proj_Conditions">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Delete_proj_permits">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Delete_proj_permits_Test">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Delete_proj_requirements">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Delete_proj_schedule">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="get_employee_accessinfo">
+      <Parameter Name="empid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="getPlanTimeByDate">
+      <Parameter Name="PlanDate" Mode="In" Type="DateTime" />
+      <Parameter Name="PlanUser" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetProjectsDevs" ReturnType="Collection(FollowupDBModel.GetProjectsDevs_Result)">
+      <Parameter Name="Client_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetProjectsPayments">
+      <Parameter Name="reference" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetProjectsPaymentsCollectedSu">
+      <Parameter Name="reference" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetProjectsPaymentsNew">
+      <Parameter Name="reference" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetProjectsPaymentsNewSu">
+      <Parameter Name="reference" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="insert_proj_designpayment">
+      <Parameter Name="proj_ref" Mode="In" Type="String" />
+      <Parameter Name="downpayment" Mode="In" Type="String" />
+      <Parameter Name="downpayment_cond" Mode="In" Type="String" />
+      <Parameter Name="firstpayment" Mode="In" Type="String" />
+      <Parameter Name="firstpayment_cond" Mode="In" Type="String" />
+      <Parameter Name="secondpayment" Mode="In" Type="String" />
+      <Parameter Name="secondpayment_cond" Mode="In" Type="String" />
+      <Parameter Name="thirdpayment" Mode="In" Type="String" />
+      <Parameter Name="thirdpayment_cond" Mode="In" Type="String" />
+      <Parameter Name="fourthpayment" Mode="In" Type="String" />
+      <Parameter Name="fourthpayment_cond" Mode="In" Type="String" />
+      <Parameter Name="fifthpayment" Mode="In" Type="String" />
+      <Parameter Name="fifthpayment_cond" Mode="In" Type="String" />
+      <Parameter Name="sixthpayment" Mode="In" Type="String" />
+      <Parameter Name="sixthpayment_cond" Mode="In" Type="String" />
+      <Parameter Name="sevenpayment" Mode="In" Type="String" />
+      <Parameter Name="sevenpayment_cond" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="insert_proj_desinvoice">
+      <Parameter Name="proj_ref" Mode="In" Type="String" />
+      <Parameter Name="invoice_number" Mode="In" Type="String" />
+      <Parameter Name="invoice_amount" Mode="In" Type="String" />
+      <Parameter Name="invoice_date" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="insert_proj_fees">
+      <Parameter Name="proj_ref" Mode="In" Type="String" />
+      <Parameter Name="proj_design_fees" Mode="In" Type="String" />
+      <Parameter Name="proj_supervs_fees" Mode="In" Type="String" />
+      <Parameter Name="proj_study_fees" Mode="In" Type="String" />
+      <Parameter Name="pro_total" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="insert_proj_instsuppayment">
+      <Parameter Name="proj_ref" Mode="In" Type="String" />
+      <Parameter Name="downpayment" Mode="In" Type="String" />
+      <Parameter Name="downpayment_cond" Mode="In" Type="String" />
+      <Parameter Name="firstpayment" Mode="In" Type="String" />
+      <Parameter Name="firstpayment_cond" Mode="In" Type="String" />
+      <Parameter Name="secondpayment" Mode="In" Type="String" />
+      <Parameter Name="secondpayment_cond" Mode="In" Type="String" />
+      <Parameter Name="thirdpayment" Mode="In" Type="String" />
+      <Parameter Name="thirdpayment_cond" Mode="In" Type="String" />
+      <Parameter Name="fourthpayment" Mode="In" Type="String" />
+      <Parameter Name="fourthpayment_cond" Mode="In" Type="String" />
+      <Parameter Name="fifthpayment" Mode="In" Type="String" />
+      <Parameter Name="fifthpayment_cond" Mode="In" Type="String" />
+      <Parameter Name="sixthpayment" Mode="In" Type="String" />
+      <Parameter Name="sixthpayment_cond" Mode="In" Type="String" />
+      <Parameter Name="sevenpayment" Mode="In" Type="String" />
+      <Parameter Name="sevenpayment_cond" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="insert_proj_requirements">
+      <Parameter Name="proj_ref" Mode="In" Type="String" />
+      <Parameter Name="permit_type" Mode="In" Type="String" />
+      <Parameter Name="proj_req" Mode="In" Type="String" />
+      <Parameter Name="req_status" Mode="In" Type="String" />
+      <Parameter Name="requested_date" Mode="In" Type="String" />
+      <Parameter Name="collected_date" Mode="In" Type="String" />
+      <Parameter Name="req_comments" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="insert_proj_studyinvoice">
+      <Parameter Name="proj_ref" Mode="In" Type="String" />
+      <Parameter Name="invoice_number" Mode="In" Type="String" />
+      <Parameter Name="invoice_amount" Mode="In" Type="String" />
+      <Parameter Name="invoice_date" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="insert_proj_studynewinvoice">
+      <Parameter Name="proj_ref" Mode="In" Type="String" />
+      <Parameter Name="invoice_number" Mode="In" Type="String" />
+      <Parameter Name="invoice_amount" Mode="In" Type="String" />
+      <Parameter Name="invoice_date" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="insert_proj_studypayment">
+      <Parameter Name="proj_ref" Mode="In" Type="String" />
+      <Parameter Name="downpayment" Mode="In" Type="String" />
+      <Parameter Name="downpayment_cond" Mode="In" Type="String" />
+      <Parameter Name="firstpayment" Mode="In" Type="String" />
+      <Parameter Name="firstpayment_cond" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="insert_proj_supercolcinvoice">
+      <Parameter Name="proj_ref" Mode="In" Type="String" />
+      <Parameter Name="supervision_type" Mode="In" Type="String" />
+      <Parameter Name="invoice_number" Mode="In" Type="String" />
+      <Parameter Name="invoice_amount" Mode="In" Type="String" />
+      <Parameter Name="invoice_date" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="insert_proj_superinvoice">
+      <Parameter Name="proj_ref" Mode="In" Type="String" />
+      <Parameter Name="supinvoice_method" Mode="In" Type="String" />
+      <Parameter Name="invoice_number" Mode="In" Type="String" />
+      <Parameter Name="invoice_amount" Mode="In" Type="String" />
+      <Parameter Name="invoice_date" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="insert_proj_supinvoice">
+      <Parameter Name="proj_ref" Mode="In" Type="String" />
+      <Parameter Name="supinvoice_method" Mode="In" Type="String" />
+      <Parameter Name="invoice_number" Mode="In" Type="String" />
+      <Parameter Name="invoice_amount" Mode="In" Type="String" />
+      <Parameter Name="invoice_date" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="insert_proj_suppayment">
+      <Parameter Name="proj_ref" Mode="In" Type="String" />
+      <Parameter Name="suppayment_method" Mode="In" Type="String" />
+      <Parameter Name="fees_sup" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="new_client_insert">
+      <Parameter Name="clientname" Mode="In" Type="String" />
+      <Parameter Name="client_id" Mode="In" Type="String" />
+      <Parameter Name="client_nationality" Mode="In" Type="String" />
+      <Parameter Name="email" Mode="In" Type="String" />
+      <Parameter Name="phone" Mode="In" Type="String" />
+      <Parameter Name="company_name" Mode="In" Type="String" />
+      <Parameter Name="comp_phone" Mode="In" Type="String" />
+      <Parameter Name="comp_bbox" Mode="In" Type="String" />
+      <Parameter Name="comp_website" Mode="In" Type="String" />
+      <Parameter Name="client_representative" Mode="In" Type="String" />
+      <Parameter Name="rep_nationality" Mode="In" Type="String" />
+      <Parameter Name="rep_phone" Mode="In" Type="String" />
+      <Parameter Name="rep_email" Mode="In" Type="String" />
+      <Parameter Name="mailing_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="new_employee_insert">
+      <Parameter Name="employee_name" Mode="In" Type="String" />
+      <Parameter Name="employee_id" Mode="In" Type="String" />
+      <Parameter Name="emp_dept" Mode="In" Type="String" />
+      <Parameter Name="email" Mode="In" Type="String" />
+      <Parameter Name="phone" Mode="In" Type="String" />
+      <Parameter Name="nationality" Mode="In" Type="String" />
+      <Parameter Name="job" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PERMITSUPDATE">
+      <Parameter Name="IncrementValue" Mode="In" Type="Int32" />
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SelectProjectInfo">
+      <Parameter Name="proj_ref" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="select_project_payment">
+      <Parameter Name="reference" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="select_projects_payments">
+      <Parameter Name="reference" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="select_project_status">
+      <Parameter Name="reference" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(FollowupDBModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(FollowupDBModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <FunctionImport Name="spClientMailngTo">
+      <Parameter Name="companyid" Mode="In" Type="Int32" />
+      <Parameter Name="projectid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="update_proj_permits_New">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="proj_ref" Mode="In" Type="String" />
+      <Parameter Name="permit_type" Mode="In" Type="String" />
+      <Parameter Name="permit_scope" Mode="In" Type="String" />
+      <Parameter Name="addressee" Mode="In" Type="String" />
+      <Parameter Name="permit_id" Mode="In" Type="String" />
+      <Parameter Name="issue_date" Mode="In" Type="String" />
+      <Parameter Name="response_date" Mode="In" Type="String" />
+      <Parameter Name="approve_date" Mode="In" Type="String" />
+      <Parameter Name="permit_status" Mode="In" Type="String" />
+      <Parameter Name="kashaf_comments" Mode="In" Type="String" />
+      <Parameter Name="client_comments" Mode="In" Type="String" />
+      <Parameter Name="iss" Mode="In" Type="Int32" />
+      <Parameter Name="rej" Mode="In" Type="Int32" />
+      <Parameter Name="reiss" Mode="In" Type="Int32" />
+      <Parameter Name="preacc" Mode="In" Type="Int32" />
+      <Parameter Name="acc" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="update_proj_permits_NewTT">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="proj_ref" Mode="In" Type="String" />
+      <Parameter Name="permit_type" Mode="In" Type="String" />
+      <Parameter Name="permit_scope" Mode="In" Type="String" />
+      <Parameter Name="addressee" Mode="In" Type="String" />
+      <Parameter Name="permit_id" Mode="In" Type="String" />
+      <Parameter Name="issue_date" Mode="In" Type="String" />
+      <Parameter Name="response_date" Mode="In" Type="String" />
+      <Parameter Name="approve_date" Mode="In" Type="String" />
+      <Parameter Name="permit_status" Mode="In" Type="String" />
+      <Parameter Name="kashaf_comments" Mode="In" Type="String" />
+      <Parameter Name="client_comments" Mode="In" Type="String" />
+      <Parameter Name="iss" Mode="In" Type="Int32" />
+      <Parameter Name="rej" Mode="In" Type="Int32" />
+      <Parameter Name="reiss" Mode="In" Type="Int32" />
+      <Parameter Name="preacc" Mode="In" Type="Int32" />
+      <Parameter Name="acc" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="update_proj_permits_test">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="proj_ref" Mode="In" Type="String" />
+      <Parameter Name="permit_type" Mode="In" Type="String" />
+      <Parameter Name="permit_scope" Mode="In" Type="String" />
+      <Parameter Name="addressee" Mode="In" Type="String" />
+      <Parameter Name="permit_id" Mode="In" Type="String" />
+      <Parameter Name="issue_date" Mode="In" Type="String" />
+      <Parameter Name="response_date" Mode="In" Type="String" />
+      <Parameter Name="approve_date" Mode="In" Type="String" />
+      <Parameter Name="permit_status" Mode="In" Type="String" />
+      <Parameter Name="kashaf_comments" Mode="In" Type="String" />
+      <Parameter Name="client_comments" Mode="In" Type="String" />
+      <Parameter Name="iss" Mode="In" Type="Int32" />
+      <Parameter Name="rej" Mode="In" Type="Int32" />
+      <Parameter Name="reiss" Mode="In" Type="Int32" />
+      <Parameter Name="preacc" Mode="In" Type="Int32" />
+      <Parameter Name="acc" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="updatepermitstatus">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="check_employee_access_Result">
+    <Property Type="Int32" Name="emp_id" Nullable="false" />
+    <Property Type="String" Name="emp_role" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="emp_username" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="emp_password" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="GetProjectsDevs_Result">
+    <Property Type="String" Name="proj_name" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="proj_ref" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>

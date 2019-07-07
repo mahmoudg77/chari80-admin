@@ -1,0 +1,105 @@
+﻿@model IEnumerable<Chair80CP.Models.tbl_setting>
+@using Chair80CP.Libs
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    @ViewBag.Title
+                </h2>
+                <u class="header-dropdown m-r--5">
+                    <li>
+                        @Html.ActionLink("Create New", "Create", new { }, new { @class = "btn btn-primary btn-md addnew " })
+                    </li>
+                </u>
+
+            </div>
+            <div class="body">
+                <div class="table-responsive">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover js-basic-example dataTable">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.setting_key)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.setting_name)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.setting_value)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.setting_type)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.datasource_url)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.datasource_json)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.setting_group)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.display)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.sequance)
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.setting_key)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.setting_name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.setting_value)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.setting_type)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.datasource_url)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.datasource_json)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.setting_group)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.display)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.sequance)
+                                    </td>
+
+                                    <td>
+                                        @Html.ActionLink("edit", "Edit", new { id = item.id }, new { @class = "btn text-success material-icons edit" })
+                                        @Html.ActionLink("remove_red_eye", "Details", new { id = item.id }, new { @class = "btn material-icons details" })
+                                        @Html.ActionLink("delete", "Delete", new { id = item.id }, new { @class = "btn text-danger material-icons delete" })
+                                    </td>
+
+                                </tr>
+                            }
+
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>

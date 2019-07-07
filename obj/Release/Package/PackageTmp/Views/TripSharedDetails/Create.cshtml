@@ -1,0 +1,175 @@
+﻿@model Chair80CP.Models.trip_share_details
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    @ViewBag.Title
+                </h2>
+                <ul class="header-dropdown m-r--5">
+                    <li>
+
+                    </li>
+                </ul>
+            </div>
+            <div class="body">
+                <h2 class="card-inside-title">Create</h2>
+                <div class="row clearfix">
+                    <div class="col-sm-12">
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+		<label for="trip_share_id">trip_share_id</label>
+        <div class="form-group">
+			<div class="form-line">
+
+                @Html.DropDownList("trip_share_id", null, htmlAttributes: new { @class = "form-control show-tick" ,placeholder="trip_share_id" })
+ 
+            </div>
+        </div>
+
+		<label for="seats">seats</label>
+        <div class="form-group">
+			<div class="form-line">
+
+                @Html.EditorFor(model => model.seats, new { htmlAttributes = new { @class = "form-control",placeholder="seats" } })
+ 
+            </div>
+        </div>
+
+		<label for="start_at_date">start_at_date</label>
+        <div class="form-group">
+			<div class="form-line">
+
+                @Html.EditorFor(model => model.start_at_date, new { htmlAttributes = new { @class = "form-control",placeholder="start_at_date" } })
+ 
+            </div>
+        </div>
+
+		<label for="start_at_time">start_at_time</label>
+        <div class="form-group">
+			<div class="form-line">
+
+                @Html.EditorFor(model => model.start_at_time, new { htmlAttributes = new { @class = "form-control",placeholder="start_at_time" } })
+ 
+            </div>
+        </div>
+
+		<label for="from_lat">from_lat</label>
+        <div class="form-group">
+			<div class="form-line">
+
+                @Html.EditorFor(model => model.from_lat, new { htmlAttributes = new { @class = "form-control",placeholder="from_lat" } })
+ 
+            </div>
+        </div>
+
+		<label for="from_lng">from_lng</label>
+        <div class="form-group">
+			<div class="form-line">
+
+                @Html.EditorFor(model => model.from_lng, new { htmlAttributes = new { @class = "form-control",placeholder="from_lng" } })
+ 
+            </div>
+        </div>
+
+		<label for="from_plc">from_plc</label>
+        <div class="form-group">
+			<div class="form-line">
+
+                @Html.EditorFor(model => model.from_plc, new { htmlAttributes = new { @class = "form-control",placeholder="from_plc" } })
+ 
+            </div>
+        </div>
+
+		<label for="to_lat">to_lat</label>
+        <div class="form-group">
+			<div class="form-line">
+
+                @Html.EditorFor(model => model.to_lat, new { htmlAttributes = new { @class = "form-control",placeholder="to_lat" } })
+ 
+            </div>
+        </div>
+
+		<label for="to_lng">to_lng</label>
+        <div class="form-group">
+			<div class="form-line">
+
+                @Html.EditorFor(model => model.to_lng, new { htmlAttributes = new { @class = "form-control",placeholder="to_lng" } })
+ 
+            </div>
+        </div>
+
+		<label for="to_plc">to_plc</label>
+        <div class="form-group">
+			<div class="form-line">
+
+                @Html.EditorFor(model => model.to_plc, new { htmlAttributes = new { @class = "form-control",placeholder="to_plc" } })
+ 
+            </div>
+        </div>
+
+		<label for="gender_id">gender_id</label>
+        <div class="form-group">
+			<div class="form-line">
+
+                @Html.EditorFor(model => model.gender_id, new { htmlAttributes = new { @class = "form-control",placeholder="gender_id" } })
+ 
+            </div>
+        </div>
+
+		<label for="booked_seats">booked_seats</label>
+        <div class="form-group">
+			<div class="form-line">
+
+                @Html.EditorFor(model => model.booked_seats, new { htmlAttributes = new { @class = "form-control",placeholder="booked_seats" } })
+ 
+            </div>
+        </div>
+
+		<label for="seat_cost">seat_cost</label>
+        <div class="form-group">
+			<div class="form-line">
+
+                @Html.EditorFor(model => model.seat_cost, new { htmlAttributes = new { @class = "form-control",placeholder="seat_cost" } })
+ 
+            </div>
+        </div>
+
+		<label for="trip_direction">trip_direction</label>
+        <div class="form-group">
+			<div class="form-line">
+
+                @Html.EditorFor(model => model.trip_direction, new { htmlAttributes = new { @class = "form-control",placeholder="trip_direction" } })
+ 
+            </div>
+        </div>
+
+		<label for="is_active">is_active</label>
+        <div class="form-group">
+			<div class="form-line">
+
+				<input type="checkbox" id="is_active" name="is_active" class="filled-in">
+				<label for="is_active">is_active</label>
+               
+ 
+            </div>
+        </div>
+
+         <div class="form-action">
+                <button type="submit" class="btn btn-success create">Create</button>
+				@Html.ActionLink("Back to List", "Index", new { }, new { @class = "btn btn-primary back" })
+        </div>
+}
+</div>
+</div>
+</div>
+</div>
+</div>
+

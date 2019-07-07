@@ -1,0 +1,1009 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MainModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="sec_access_right">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="role_id" Type="Int32" Nullable="false" />
+    <Property Name="model_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="method_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="force_filter" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="sec_roles" Relationship="Self.FK_sec_access_right_sec_roles" FromRole="sec_access_right" ToRole="sec_roles" />
+  </EntityType>
+  <EntityType Name="sec_mobile_verify">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <Property Name="mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="is_used" Type="Boolean" />
+    <Property Name="created_at" Type="DateTime" Precision="3" />
+    <Property Name="verification_id" Type="Guid" />
+  </EntityType>
+  <EntityType Name="sec_roles">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="role_key" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="sec_access_right" Relationship="Self.FK_sec_access_right_sec_roles" FromRole="sec_roles" ToRole="sec_access_right" />
+    <NavigationProperty Name="sec_users_roles" Relationship="Self.FK_sec_users_roles_sec_roles" FromRole="sec_roles" ToRole="sec_users_roles" />
+  </EntityType>
+  <EntityType Name="sec_sessions">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Guid" Nullable="false" />
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <Property Name="start_time" Type="DateTime" Precision="3" />
+    <Property Name="end_time" Type="DateTime" Precision="3" />
+    <Property Name="ip" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="agent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="browser" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="city" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="country_code" Type="String" MaxLength="6" FixedLength="false" Unicode="true" />
+    <Property Name="isp" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="lat" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="lon" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="timezone" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="paltform" Type="Int32" />
+    <Property Name="device_id" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="sec_users" Relationship="Self.FK_sec_sessions_sec_users" FromRole="sec_sessions" ToRole="sec_users" />
+  </EntityType>
+  <EntityType Name="sec_users">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="pwd" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="reset_pwd_token" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="facebook_token" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="twitter_token" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="google_token" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="instagram_token" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="confirm_mail_token" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="mail_verified" Type="Boolean" />
+    <Property Name="phone_verified" Type="Boolean" />
+    <Property Name="firebase_uid" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="sec_sessions" Relationship="Self.FK_sec_sessions_sec_users" FromRole="sec_users" ToRole="sec_sessions" />
+    <NavigationProperty Name="sec_users_roles" Relationship="Self.FK_sec_users_roles_sec_users" FromRole="sec_users" ToRole="sec_users_roles" />
+    <NavigationProperty Name="tbl_accounts" Relationship="Self.FK_sec_users_tbl_accounts" FromRole="sec_users" ToRole="tbl_accounts" />
+  </EntityType>
+  <EntityType Name="sec_users_roles">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <Property Name="role_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="sec_roles" Relationship="Self.FK_sec_users_roles_sec_roles" FromRole="sec_users_roles" ToRole="sec_roles" />
+    <NavigationProperty Name="sec_users" Relationship="Self.FK_sec_users_roles_sec_users" FromRole="sec_users_roles" ToRole="sec_users" />
+  </EntityType>
+  <EntityType Name="tbl_accounts">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="first_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="last_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="date_of_birth" Type="DateTime" Precision="0" />
+    <Property Name="mobile" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="register_time" Type="DateTime" Precision="3" />
+    <Property Name="is_deleted" Type="Boolean" />
+    <Property Name="gender_id" Type="Int32" />
+    <Property Name="id_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="driver_license_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="city_id" Type="Int32" />
+    <Property Name="country_id" Type="Int32" />
+    <NavigationProperty Name="sec_users" Relationship="Self.FK_sec_users_tbl_accounts" FromRole="tbl_accounts" ToRole="sec_users" />
+    <NavigationProperty Name="tbl_cities" Relationship="Self.FK_tbl_accounts_tbl_cities" FromRole="tbl_accounts" ToRole="tbl_cities" />
+    <NavigationProperty Name="tbl_countries" Relationship="Self.FK_tbl_accounts_tbl_countries" FromRole="tbl_accounts" ToRole="tbl_countries" />
+    <NavigationProperty Name="tbl_genders" Relationship="Self.FK_tbl_accounts_tbl_genders" FromRole="tbl_accounts" ToRole="tbl_genders" />
+    <NavigationProperty Name="tbl_vehicles" Relationship="Self.FK_tbl_vehicles_tbl_accounts" FromRole="tbl_accounts" ToRole="tbl_vehicles" />
+    <NavigationProperty Name="trip_share" Relationship="Self.FK_trip_share_tbl_accounts" FromRole="tbl_accounts" ToRole="trip_share" />
+    <Property Name="active" Type="Boolean" />
+    <NavigationProperty Name="tbl_drivers_vehicles_rel" Relationship="MainModel.FK_tbl_drivers_vehicles_rel_driver" FromRole="tbl_accounts" ToRole="tbl_drivers_vehicles_rel" />
+    <NavigationProperty Name="trip_request" Relationship="MainModel.FK_trip_request_tbl_accounts" FromRole="tbl_accounts" ToRole="trip_request" />
+  </EntityType>
+  <EntityType Name="tbl_cities">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="country_id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="tbl_accounts" Relationship="Self.FK_tbl_accounts_tbl_cities" FromRole="tbl_cities" ToRole="tbl_accounts" />
+    <NavigationProperty Name="tbl_countries" Relationship="Self.FK_tbl_cities_tbl_countries" FromRole="tbl_cities" ToRole="tbl_countries" />
+  </EntityType>
+  <EntityType Name="tbl_countries">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tbl_accounts" Relationship="Self.FK_tbl_accounts_tbl_countries" FromRole="tbl_countries" ToRole="tbl_accounts" />
+    <NavigationProperty Name="tbl_cities" Relationship="Self.FK_tbl_cities_tbl_countries" FromRole="tbl_countries" ToRole="tbl_cities" />
+  </EntityType>
+  <EntityType Name="tbl_genders">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="tbl_accounts" Relationship="Self.FK_tbl_accounts_tbl_genders" FromRole="tbl_genders" ToRole="tbl_accounts" />
+    <NavigationProperty Name="trip_request_details" Relationship="MainModel.FK_trip_request_details_tbl_genders" FromRole="tbl_genders" ToRole="trip_request_details" />
+    <NavigationProperty Name="trip_share_details" Relationship="MainModel.FK_trip_share_details_tbl_genders" FromRole="tbl_genders" ToRole="trip_share_details" />
+  </EntityType>
+  <EntityType Name="tbl_images">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="model_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="model_id" Type="Int32" Nullable="false" />
+    <Property Name="model_tag" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="thumb" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="meduim" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="large" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="original" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="created_at" Type="DateTime" Precision="3" />
+    <Property Name="created_by" Type="Int32" />
+  </EntityType>
+  <EntityType Name="tbl_setting">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="setting_key" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="setting_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="setting_value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="setting_type" Type="Int32" Nullable="false" />
+    <Property Name="datasource_url" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="datasource_json" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="setting_group" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="display" Type="Boolean" />
+    <Property Name="sequance" Type="Int32" />
+  </EntityType>
+  <EntityType Name="tbl_setting_types">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_vehicles">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="model" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="color" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="capacity" Type="Int32" Nullable="false" />
+    <Property Name="owner_id" Type="Int32" Nullable="false" />
+    <Property Name="created_at" Type="DateTime" Precision="3" />
+    <Property Name="created_by" Type="Int32" Nullable="false" />
+    <Property Name="license_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="tbl_accounts" Relationship="Self.FK_tbl_vehicles_tbl_accounts" FromRole="tbl_vehicles" ToRole="tbl_accounts" />
+    <NavigationProperty Name="trip_share" Relationship="Self.FK_trip_share_tbl_vehicles" FromRole="tbl_vehicles" ToRole="trip_share" />
+    <Property Name="is_delete" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="tbl_drivers_vehicles_rel" Relationship="MainModel.FK_tbl_drivers_vechiles_rel_vechile" FromRole="tbl_vehicles" ToRole="tbl_drivers_vehicles_rel" />
+  </EntityType>
+  <EntityType Name="trip_book">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="trip_share_details_id" Type="Int32" Nullable="false" />
+    <Property Name="trip_request_details_id" Type="Int32" Nullable="false" />
+    <Property Name="booked_at" Type="DateTime" Precision="3" />
+    <Property Name="start_at" Type="DateTime" Precision="3" />
+    <Property Name="end_at" Type="DateTime" Precision="3" />
+    <Property Name="driver_rate" Type="Int32" />
+    <Property Name="rider_rate" Type="Int32" />
+    <Property Name="trip_token" Type="Guid" />
+    <Property Name="seats" Type="Int32" />
+    <Property Name="reached_at" Type="DateTime" Precision="3" />
+    <Property Name="canceled_at" Type="DateTime" Precision="3" />
+    <Property Name="canceled_by" Type="Int32" />
+    <NavigationProperty Name="trip_request_details" Relationship="Self.FK_trip_book_trip_request_details" FromRole="trip_book" ToRole="trip_request_details" />
+    <NavigationProperty Name="trip_share_details" Relationship="Self.FK_trip_book_trip_share_details" FromRole="trip_book" ToRole="trip_share_details" />
+    <Property Name="accepted_at" Type="DateTime" Precision="3" />
+    <Property Name="accepted_by" Type="Int32" />
+    <Property Name="rate_reason_id" Type="Int32" />
+    <Property Name="rate_comment" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="trip_request">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="rider_id" Type="Int32" Nullable="false" />
+    <Property Name="seats" Type="Int32" />
+    <Property Name="start_at_date" Type="DateTime" Precision="0" />
+    <Property Name="end_at_date" Type="DateTime" Precision="0" />
+    <Property Name="trip_type_id" Type="Int32" />
+    <Property Name="created_at" Type="DateTime" Precision="3" />
+    <Property Name="created_by" Type="Int32" />
+    <NavigationProperty Name="trip_request_details" Relationship="Self.FK_trip_request_details_trip_request" FromRole="trip_request" ToRole="trip_request_details" />
+    <NavigationProperty Name="trip_types" Relationship="Self.FK_trip_request_trip_types" FromRole="trip_request" ToRole="trip_types" />
+    <NavigationProperty Name="tbl_accounts" Relationship="MainModel.FK_trip_request_tbl_accounts" FromRole="trip_request" ToRole="tbl_accounts" />
+  </EntityType>
+  <EntityType Name="trip_request_details">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="trip_request_id" Type="Int32" Nullable="false" />
+    <Property Name="seats" Type="Int32" />
+    <Property Name="start_at_date" Type="DateTime" Precision="3" />
+    <Property Name="start_at_time" Type="Time" Precision="7" />
+    <Property Name="from_lat" Type="Decimal" Precision="18" Scale="6" />
+    <Property Name="from_lng" Type="Decimal" Precision="18" Scale="6" />
+    <Property Name="from_plc" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="to_lat" Type="Decimal" Precision="18" Scale="6" />
+    <Property Name="to_lng" Type="Decimal" Precision="18" Scale="6" />
+    <Property Name="to_plc" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="gender_id" Type="Int32" />
+    <Property Name="seat_cost_from" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="seat_cost_to" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="trip_direction" Type="Int32" />
+    <Property Name="is_active" Type="Boolean" />
+    <NavigationProperty Name="trip_book" Relationship="Self.FK_trip_book_trip_request_details" FromRole="trip_request_details" ToRole="trip_book" />
+    <NavigationProperty Name="trip_request" Relationship="Self.FK_trip_request_details_trip_request" FromRole="trip_request_details" ToRole="trip_request" />
+    <Property Name="booked" Type="Boolean" />
+    <NavigationProperty Name="tbl_genders" Relationship="MainModel.FK_trip_request_details_tbl_genders" FromRole="trip_request_details" ToRole="tbl_genders" />
+  </EntityType>
+  <EntityType Name="trip_share">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="driver_id" Type="Int32" Nullable="false" />
+    <Property Name="start_at_date" Type="DateTime" Precision="0" />
+    <Property Name="end_at_date" Type="DateTime" Precision="0" />
+    <Property Name="vehicle_id" Type="Int32" />
+    <Property Name="created_at" Type="DateTime" Precision="3" />
+    <Property Name="created_by" Type="Int32" />
+    <Property Name="trip_type_id" Type="Int32" />
+    <NavigationProperty Name="tbl_accounts" Relationship="Self.FK_trip_share_tbl_accounts" FromRole="trip_share" ToRole="tbl_accounts" />
+    <NavigationProperty Name="tbl_vehicles" Relationship="Self.FK_trip_share_tbl_vehicles" FromRole="trip_share" ToRole="tbl_vehicles" />
+    <NavigationProperty Name="trip_share_details" Relationship="Self.FK_trip_share_details_trip_share" FromRole="trip_share" ToRole="trip_share_details" />
+    <NavigationProperty Name="trip_types" Relationship="Self.FK_trip_share_trip_types" FromRole="trip_share" ToRole="trip_types" />
+  </EntityType>
+  <EntityType Name="trip_share_details">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="trip_share_id" Type="Int32" Nullable="false" />
+    <Property Name="seats" Type="Int32" />
+    <Property Name="start_at_date" Type="DateTime" Precision="3" />
+    <Property Name="start_at_time" Type="Time" Precision="7" />
+    <Property Name="from_lat" Type="Decimal" Precision="18" Scale="6" />
+    <Property Name="from_lng" Type="Decimal" Precision="18" Scale="6" />
+    <Property Name="from_plc" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="to_lat" Type="Decimal" Precision="18" Scale="6" />
+    <Property Name="to_lng" Type="Decimal" Precision="18" Scale="6" />
+    <Property Name="to_plc" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="gender_id" Type="Int32" />
+    <Property Name="booked_seats" Type="Int32" />
+    <Property Name="seat_cost" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="trip_direction" Type="Int32" />
+    <Property Name="is_active" Type="Boolean" />
+    <NavigationProperty Name="trip_book" Relationship="Self.FK_trip_book_trip_share_details" FromRole="trip_share_details" ToRole="trip_book" />
+    <NavigationProperty Name="trip_share" Relationship="Self.FK_trip_share_details_trip_share" FromRole="trip_share_details" ToRole="trip_share" />
+    <NavigationProperty Name="tbl_genders" Relationship="MainModel.FK_trip_share_details_tbl_genders" FromRole="trip_share_details" ToRole="tbl_genders" />
+    <Property Name="guid" Type="Guid" />
+  </EntityType>
+  <EntityType Name="trip_types">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="trip_request" Relationship="Self.FK_trip_request_trip_types" FromRole="trip_types" ToRole="trip_request" />
+    <NavigationProperty Name="trip_share" Relationship="Self.FK_trip_share_trip_types" FromRole="trip_types" ToRole="trip_share" />
+  </EntityType>
+  <EntityType Name="vwProfile">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="first_name" />
+      <PropertyRef Name="last_name" />
+      <PropertyRef Name="email" />
+      <PropertyRef Name="is_owner" />
+      <PropertyRef Name="is_driver" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="first_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="last_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="date_of_birth" Type="DateTime" Precision="0" />
+    <Property Name="mobile" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="register_time" Type="DateTime" Precision="3" />
+    <Property Name="gender_id" Type="Int32" />
+    <Property Name="id_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="driver_license_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="city_id" Type="Int32" />
+    <Property Name="country_id" Type="Int32" />
+    <Property Name="gender_name" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="country_name" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="city_name" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="is_owner" Type="Int32" Nullable="false" />
+    <Property Name="is_driver" Type="Int32" Nullable="false" />
+    <Property Name="ID_Image" Type="String" MaxLength="55" FixedLength="false" Unicode="true" />
+    <Property Name="DL_Image" Type="String" MaxLength="55" FixedLength="false" Unicode="true" />
+    <Property Name="Profile_Image" Type="String" MaxLength="57" FixedLength="false" Unicode="true" />
+    <Property Name="firebase_uid" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="MyVehicles" Type="Int32" />
+    <Property Name="DriveVehicles" Type="Int32" />
+    <Property Name="MyDrivers" Type="Int32" />
+  </EntityType>
+  <EntityType Name="vwTripsDetails">
+    <Key>
+      <PropertyRef Name="trip_share_id" />
+      <PropertyRef Name="driver_id" />
+      <PropertyRef Name="car_model" />
+      <PropertyRef Name="car_capacity" />
+      <PropertyRef Name="car_license_no" />
+      <PropertyRef Name="acc_first_name" />
+      <PropertyRef Name="acc_last_name" />
+      <PropertyRef Name="acc_email" />
+      <PropertyRef Name="trip_id" />
+      <PropertyRef Name="trip_gender_name" />
+    </Key>
+    <Property Name="seats" Type="Int32" />
+    <Property Name="start_at_date" Type="DateTime" Precision="3" />
+    <Property Name="start_at_time" Type="Time" Precision="7" />
+    <Property Name="from_lat" Type="Decimal" Precision="18" Scale="6" />
+    <Property Name="from_lng" Type="Decimal" Precision="18" Scale="6" />
+    <Property Name="from_plc" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="to_lat" Type="Decimal" Precision="18" Scale="6" />
+    <Property Name="to_lng" Type="Decimal" Precision="18" Scale="6" />
+    <Property Name="to_plc" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="trip_gender_id" Type="Int32" />
+    <Property Name="booked_seats" Type="Int32" />
+    <Property Name="seat_cost" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="trip_direction" Type="Int32" />
+    <Property Name="is_active" Type="Boolean" />
+    <Property Name="trip_share_id" Type="Int32" Nullable="false" />
+    <Property Name="driver_id" Type="Int32" Nullable="false" />
+    <Property Name="trip_start_date" Type="DateTime" Precision="0" />
+    <Property Name="trip_end_date" Type="DateTime" Precision="0" />
+    <Property Name="car_id" Type="Int32" />
+    <Property Name="car_model" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="car_color" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="car_capacity" Type="Int32" Nullable="false" />
+    <Property Name="car_license_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="trip_type_id" Type="Int32" />
+    <Property Name="trip_type" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="acc_firebase_uid" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="acc_first_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="acc_last_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="acc_date_of_birth" Type="DateTime" Precision="0" />
+    <Property Name="acc_mobile" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="acc_email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="acc_register_time" Type="DateTime" Precision="3" />
+    <Property Name="acc_gender_id" Type="Int32" />
+    <Property Name="acc_id_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="acc_driver_license_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="acc_city_id" Type="Int32" />
+    <Property Name="acc_country_id" Type="Int32" />
+    <Property Name="acc_gender" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="acc_city" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="acc_country" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="trip_id" Type="Int32" Nullable="false" />
+    <Property Name="trip_gender_name" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="guid" Type="Guid" />
+  </EntityType>
+  <EntityType Name="vwTripSeatDetails">
+    <Key>
+      <PropertyRef Name="first_name" />
+      <PropertyRef Name="last_name" />
+      <PropertyRef Name="gender_name" />
+      <PropertyRef Name="trip_id" />
+      <PropertyRef Name="main_trip_id" />
+      <PropertyRef Name="id" />
+      <PropertyRef Name="driver_first_name" />
+      <PropertyRef Name="driver_last_name" />
+      <PropertyRef Name="rider_id" />
+      <PropertyRef Name="driver_id" />
+    </Key>
+    <Property Name="first_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="last_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="mobile" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="gender_id" Type="Int32" />
+    <Property Name="gender_name" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="seat_cost" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="from_lat" Type="Decimal" Precision="18" Scale="6" />
+    <Property Name="from_lng" Type="Decimal" Precision="18" Scale="6" />
+    <Property Name="from_plc" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="to_lat" Type="Decimal" Precision="18" Scale="6" />
+    <Property Name="to_lng" Type="Decimal" Precision="18" Scale="6" />
+    <Property Name="to_plc" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="booked_at" Type="DateTime" Precision="3" />
+    <Property Name="reached_at" Type="DateTime" Precision="3" />
+    <Property Name="start_at" Type="DateTime" Precision="3" />
+    <Property Name="end_at" Type="DateTime" Precision="3" />
+    <Property Name="trip_token" Type="Guid" />
+    <Property Name="trip_id" Type="Int32" Nullable="false" />
+    <Property Name="main_trip_id" Type="Int32" Nullable="false" />
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="canceled_at" Type="DateTime" Precision="3" />
+    <Property Name="canceled_by" Type="Int32" />
+    <Property Name="accepted_at" Type="DateTime" Precision="3" />
+    <Property Name="accepted_by" Type="Int32" />
+    <Property Name="rider_firebase_id" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="driver_firebase_id" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="driver_first_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="driver_last_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="driver_mobile" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="driver_gender_id" Type="Int32" />
+    <Property Name="rider_id" Type="Int32" Nullable="false" />
+    <Property Name="driver_id" Type="Int32" Nullable="false" />
+    <Property Name="guid" Type="Guid" />
+  </EntityType>
+  <Association Name="FK_sec_access_right_sec_roles">
+    <End Role="sec_roles" Type="Self.sec_roles" Multiplicity="1" />
+    <End Role="sec_access_right" Type="Self.sec_access_right" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sec_roles">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="sec_access_right">
+        <PropertyRef Name="role_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_sec_users_roles_sec_roles">
+    <End Role="sec_roles" Type="Self.sec_roles" Multiplicity="1" />
+    <End Role="sec_users_roles" Type="Self.sec_users_roles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sec_roles">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="sec_users_roles">
+        <PropertyRef Name="role_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_sec_sessions_sec_users">
+    <End Role="sec_users" Type="Self.sec_users" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="sec_sessions" Type="Self.sec_sessions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sec_users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="sec_sessions">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_sec_users_roles_sec_users">
+    <End Role="sec_users" Type="Self.sec_users" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="sec_users_roles" Type="Self.sec_users_roles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sec_users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="sec_users_roles">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_sec_users_tbl_accounts">
+    <End Role="tbl_accounts" Type="Self.tbl_accounts" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="sec_users" Type="Self.sec_users" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_accounts">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="sec_users">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_accounts_tbl_cities">
+    <End Role="tbl_cities" Type="Self.tbl_cities" Multiplicity="0..1" />
+    <End Role="tbl_accounts" Type="Self.tbl_accounts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_cities">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tbl_accounts">
+        <PropertyRef Name="city_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_accounts_tbl_countries">
+    <End Role="tbl_countries" Type="Self.tbl_countries" Multiplicity="0..1" />
+    <End Role="tbl_accounts" Type="Self.tbl_accounts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_countries">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tbl_accounts">
+        <PropertyRef Name="country_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_accounts_tbl_genders">
+    <End Role="tbl_genders" Type="Self.tbl_genders" Multiplicity="0..1" />
+    <End Role="tbl_accounts" Type="Self.tbl_accounts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_genders">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tbl_accounts">
+        <PropertyRef Name="gender_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_vehicles_tbl_accounts">
+    <End Role="tbl_accounts" Type="Self.tbl_accounts" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tbl_vehicles" Type="Self.tbl_vehicles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_accounts">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tbl_vehicles">
+        <PropertyRef Name="owner_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_trip_share_tbl_accounts">
+    <End Role="tbl_accounts" Type="Self.tbl_accounts" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="trip_share" Type="Self.trip_share" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_accounts">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="trip_share">
+        <PropertyRef Name="driver_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_cities_tbl_countries">
+    <End Role="tbl_countries" Type="Self.tbl_countries" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tbl_cities" Type="Self.tbl_cities" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_countries">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tbl_cities">
+        <PropertyRef Name="country_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_trip_share_tbl_vehicles">
+    <End Role="tbl_vehicles" Type="Self.tbl_vehicles" Multiplicity="0..1" />
+    <End Role="trip_share" Type="Self.trip_share" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_vehicles">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="trip_share">
+        <PropertyRef Name="vehicle_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_trip_book_trip_request_details">
+    <End Role="trip_request_details" Type="Self.trip_request_details" Multiplicity="1" />
+    <End Role="trip_book" Type="Self.trip_book" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="trip_request_details">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="trip_book">
+        <PropertyRef Name="trip_request_details_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_trip_book_trip_share_details">
+    <End Role="trip_share_details" Type="Self.trip_share_details" Multiplicity="1" />
+    <End Role="trip_book" Type="Self.trip_book" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="trip_share_details">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="trip_book">
+        <PropertyRef Name="trip_share_details_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_trip_request_details_trip_request">
+    <End Role="trip_request" Type="Self.trip_request" Multiplicity="1" />
+    <End Role="trip_request_details" Type="Self.trip_request_details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="trip_request">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="trip_request_details">
+        <PropertyRef Name="trip_request_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_trip_request_trip_types">
+    <End Role="trip_types" Type="Self.trip_types" Multiplicity="0..1" />
+    <End Role="trip_request" Type="Self.trip_request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="trip_types">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="trip_request">
+        <PropertyRef Name="trip_type_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_trip_share_details_trip_share">
+    <End Role="trip_share" Type="Self.trip_share" Multiplicity="1" />
+    <End Role="trip_share_details" Type="Self.trip_share_details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="trip_share">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="trip_share_details">
+        <PropertyRef Name="trip_share_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_trip_share_trip_types">
+    <End Role="trip_types" Type="Self.trip_types" Multiplicity="0..1" />
+    <End Role="trip_share" Type="Self.trip_share" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="trip_types">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="trip_share">
+        <PropertyRef Name="trip_type_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MainEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="sec_access_right" EntityType="Self.sec_access_right" />
+    <EntitySet Name="sec_mobile_verify" EntityType="Self.sec_mobile_verify" />
+    <EntitySet Name="sec_roles" EntityType="Self.sec_roles" />
+    <EntitySet Name="sec_sessions" EntityType="Self.sec_sessions" />
+    <EntitySet Name="sec_users" EntityType="Self.sec_users" />
+    <EntitySet Name="sec_users_roles" EntityType="Self.sec_users_roles" />
+    <EntitySet Name="tbl_accounts" EntityType="Self.tbl_accounts" />
+    <EntitySet Name="tbl_cities" EntityType="Self.tbl_cities" />
+    <EntitySet Name="tbl_countries" EntityType="Self.tbl_countries" />
+    <EntitySet Name="tbl_genders" EntityType="Self.tbl_genders" />
+    <EntitySet Name="tbl_images" EntityType="Self.tbl_images" />
+    <EntitySet Name="tbl_setting" EntityType="Self.tbl_setting" />
+    <EntitySet Name="tbl_setting_types" EntityType="Self.tbl_setting_types" />
+    <EntitySet Name="tbl_vehicles" EntityType="Self.tbl_vehicles" />
+    <EntitySet Name="trip_book" EntityType="Self.trip_book" />
+    <EntitySet Name="trip_request" EntityType="Self.trip_request" />
+    <EntitySet Name="trip_request_details" EntityType="Self.trip_request_details" />
+    <EntitySet Name="trip_share" EntityType="Self.trip_share" />
+    <EntitySet Name="trip_share_details" EntityType="Self.trip_share_details" />
+    <EntitySet Name="trip_types" EntityType="Self.trip_types" />
+    <EntitySet Name="vwProfile" EntityType="Self.vwProfile" />
+    <EntitySet Name="vwTripsDetails" EntityType="Self.vwTripsDetails" />
+    <EntitySet Name="vwTripSeatDetails" EntityType="Self.vwTripSeatDetails" />
+    <AssociationSet Name="FK_sec_access_right_sec_roles" Association="Self.FK_sec_access_right_sec_roles">
+      <End Role="sec_roles" EntitySet="sec_roles" />
+      <End Role="sec_access_right" EntitySet="sec_access_right" />
+    </AssociationSet>
+    <AssociationSet Name="FK_sec_users_roles_sec_roles" Association="Self.FK_sec_users_roles_sec_roles">
+      <End Role="sec_roles" EntitySet="sec_roles" />
+      <End Role="sec_users_roles" EntitySet="sec_users_roles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_sec_sessions_sec_users" Association="Self.FK_sec_sessions_sec_users">
+      <End Role="sec_users" EntitySet="sec_users" />
+      <End Role="sec_sessions" EntitySet="sec_sessions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_sec_users_roles_sec_users" Association="Self.FK_sec_users_roles_sec_users">
+      <End Role="sec_users" EntitySet="sec_users" />
+      <End Role="sec_users_roles" EntitySet="sec_users_roles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_sec_users_tbl_accounts" Association="Self.FK_sec_users_tbl_accounts">
+      <End Role="tbl_accounts" EntitySet="tbl_accounts" />
+      <End Role="sec_users" EntitySet="sec_users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_accounts_tbl_cities" Association="Self.FK_tbl_accounts_tbl_cities">
+      <End Role="tbl_cities" EntitySet="tbl_cities" />
+      <End Role="tbl_accounts" EntitySet="tbl_accounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_accounts_tbl_countries" Association="Self.FK_tbl_accounts_tbl_countries">
+      <End Role="tbl_countries" EntitySet="tbl_countries" />
+      <End Role="tbl_accounts" EntitySet="tbl_accounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_accounts_tbl_genders" Association="Self.FK_tbl_accounts_tbl_genders">
+      <End Role="tbl_genders" EntitySet="tbl_genders" />
+      <End Role="tbl_accounts" EntitySet="tbl_accounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_vehicles_tbl_accounts" Association="Self.FK_tbl_vehicles_tbl_accounts">
+      <End Role="tbl_accounts" EntitySet="tbl_accounts" />
+      <End Role="tbl_vehicles" EntitySet="tbl_vehicles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_trip_share_tbl_accounts" Association="Self.FK_trip_share_tbl_accounts">
+      <End Role="tbl_accounts" EntitySet="tbl_accounts" />
+      <End Role="trip_share" EntitySet="trip_share" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_cities_tbl_countries" Association="Self.FK_tbl_cities_tbl_countries">
+      <End Role="tbl_countries" EntitySet="tbl_countries" />
+      <End Role="tbl_cities" EntitySet="tbl_cities" />
+    </AssociationSet>
+    <AssociationSet Name="FK_trip_share_tbl_vehicles" Association="Self.FK_trip_share_tbl_vehicles">
+      <End Role="tbl_vehicles" EntitySet="tbl_vehicles" />
+      <End Role="trip_share" EntitySet="trip_share" />
+    </AssociationSet>
+    <AssociationSet Name="FK_trip_book_trip_request_details" Association="Self.FK_trip_book_trip_request_details">
+      <End Role="trip_request_details" EntitySet="trip_request_details" />
+      <End Role="trip_book" EntitySet="trip_book" />
+    </AssociationSet>
+    <AssociationSet Name="FK_trip_book_trip_share_details" Association="Self.FK_trip_book_trip_share_details">
+      <End Role="trip_share_details" EntitySet="trip_share_details" />
+      <End Role="trip_book" EntitySet="trip_book" />
+    </AssociationSet>
+    <AssociationSet Name="FK_trip_request_details_trip_request" Association="Self.FK_trip_request_details_trip_request">
+      <End Role="trip_request" EntitySet="trip_request" />
+      <End Role="trip_request_details" EntitySet="trip_request_details" />
+    </AssociationSet>
+    <AssociationSet Name="FK_trip_request_trip_types" Association="Self.FK_trip_request_trip_types">
+      <End Role="trip_types" EntitySet="trip_types" />
+      <End Role="trip_request" EntitySet="trip_request" />
+    </AssociationSet>
+    <AssociationSet Name="FK_trip_share_details_trip_share" Association="Self.FK_trip_share_details_trip_share">
+      <End Role="trip_share" EntitySet="trip_share" />
+      <End Role="trip_share_details" EntitySet="trip_share_details" />
+    </AssociationSet>
+    <AssociationSet Name="FK_trip_share_trip_types" Association="Self.FK_trip_share_trip_types">
+      <End Role="trip_types" EntitySet="trip_types" />
+      <End Role="trip_share" EntitySet="trip_share" />
+    </AssociationSet>
+    <EntitySet Name="tbl_drivers_vehicles_rel" EntityType="MainModel.tbl_drivers_vehicles_rel" />
+    <AssociationSet Name="FK_tbl_drivers_vehicles_rel_driver" Association="MainModel.FK_tbl_drivers_vehicles_rel_driver">
+      <End Role="tbl_accounts" EntitySet="tbl_accounts" />
+      <End Role="tbl_drivers_vehicles_rel" EntitySet="tbl_drivers_vehicles_rel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_drivers_vechiles_rel_vechile" Association="MainModel.FK_tbl_drivers_vechiles_rel_vechile">
+      <End Role="tbl_vehicles" EntitySet="tbl_vehicles" />
+      <End Role="tbl_drivers_vehicles_rel" EntitySet="tbl_drivers_vehicles_rel" />
+    </AssociationSet>
+    <EntitySet Name="tbl_rate_reasons" EntityType="MainModel.tbl_rate_reasons" />
+    <EntitySet Name="vwSeatsHistory" EntityType="MainModel.vwSeatsHistory" />
+    <EntitySet Name="vwSeatsPending" EntityType="MainModel.vwSeatsPending" />
+    <EntitySet Name="vwVehicles" EntityType="MainModel.vwVehicles" />
+    <AssociationSet Name="FK_trip_request_tbl_accounts" Association="MainModel.FK_trip_request_tbl_accounts">
+      <End Role="tbl_accounts" EntitySet="tbl_accounts" />
+      <End Role="trip_request" EntitySet="trip_request" />
+    </AssociationSet>
+    <AssociationSet Name="FK_trip_request_details_tbl_genders" Association="MainModel.FK_trip_request_details_tbl_genders">
+      <End Role="tbl_genders" EntitySet="tbl_genders" />
+      <End Role="trip_request_details" EntitySet="trip_request_details" />
+    </AssociationSet>
+    <AssociationSet Name="FK_trip_share_details_tbl_genders" Association="MainModel.FK_trip_share_details_tbl_genders">
+      <End Role="tbl_genders" EntitySet="tbl_genders" />
+      <End Role="trip_share_details" EntitySet="trip_share_details" />
+    </AssociationSet>
+    <EntitySet Name="rptBooking" EntityType="MainModel.rptBooking" />
+  </EntityContainer>
+  <EntityType Name="tbl_drivers_vehicles_rel">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="driver_id" Type="Int32" />
+    <Property Name="vehicle_id" Type="Int32" />
+    <Property Name="created_at" Type="DateTime" Precision="3" />
+    <Property Name="created_by" Type="Int32" />
+    <Property Name="status" Type="Int32" />
+    <NavigationProperty Name="tbl_accounts" Relationship="MainModel.FK_tbl_drivers_vehicles_rel_driver" FromRole="tbl_drivers_vehicles_rel" ToRole="tbl_accounts" />
+    <NavigationProperty Name="tbl_vehicles" Relationship="MainModel.FK_tbl_drivers_vechiles_rel_vechile" FromRole="tbl_drivers_vehicles_rel" ToRole="tbl_vehicles" />
+  </EntityType>
+  <Association Name="FK_tbl_drivers_vehicles_rel_driver">
+    <End Type="MainModel.tbl_accounts" Role="tbl_accounts" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="MainModel.tbl_drivers_vehicles_rel" Role="tbl_drivers_vehicles_rel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_accounts">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tbl_drivers_vehicles_rel">
+        <PropertyRef Name="driver_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_drivers_vechiles_rel_vechile">
+    <End Type="MainModel.tbl_vehicles" Role="tbl_vehicles" Multiplicity="0..1" />
+    <End Type="MainModel.tbl_drivers_vehicles_rel" Role="tbl_drivers_vehicles_rel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_vehicles">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tbl_drivers_vehicles_rel">
+        <PropertyRef Name="vehicle_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="tbl_rate_reasons">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="vwSeatsHistory">
+    <Key>
+      <PropertyRef Name="driver_name" />
+      <PropertyRef Name="rider_name" />
+      <PropertyRef Name="driver_id" />
+      <PropertyRef Name="rider_id" />
+      <PropertyRef Name="book_id" />
+    </Key>
+    <Property Name="driver_name" Type="String" Nullable="false" MaxLength="101" FixedLength="false" Unicode="true" />
+    <Property Name="rider_name" Type="String" Nullable="false" MaxLength="101" FixedLength="false" Unicode="true" />
+    <Property Name="driver_id" Type="Int32" Nullable="false" />
+    <Property Name="rider_id" Type="Int32" Nullable="false" />
+    <Property Name="started_at" Type="DateTime" Precision="3" />
+    <Property Name="ended_at" Type="DateTime" Precision="3" />
+    <Property Name="from_plc" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="from_lng" Type="Decimal" Precision="18" Scale="6" />
+    <Property Name="from_lat" Type="Decimal" Precision="18" Scale="6" />
+    <Property Name="to_plc" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="to_lng" Type="Decimal" Precision="18" Scale="6" />
+    <Property Name="to_lat" Type="Decimal" Precision="18" Scale="6" />
+    <Property Name="driver_rate" Type="Int32" />
+    <Property Name="rider_rate" Type="Int32" />
+    <Property Name="seats" Type="Int32" />
+    <Property Name="trip_type_id" Type="Int32" />
+    <Property Name="canceled_at" Type="DateTime" Precision="3" />
+    <Property Name="start_at_date" Type="DateTime" Precision="3" />
+    <Property Name="book_id" Type="Int32" Nullable="false" />
+    <Property Name="seat_cost" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="guid" Type="Guid" />
+  </EntityType>
+  <EntityType Name="vwSeatsPending">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="type" />
+      <PropertyRef Name="acc_id" />
+    </Key>
+    <Property Name="from_plc" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="from_lng" Type="Decimal" Precision="18" Scale="6" />
+    <Property Name="from_lat" Type="Decimal" Precision="18" Scale="6" />
+    <Property Name="to_plc" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="to_lng" Type="Decimal" Precision="18" Scale="6" />
+    <Property Name="to_lat" Type="Decimal" Precision="18" Scale="6" />
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="start_at_date" Type="DateTime" Precision="3" />
+    <Property Name="seats" Type="Int32" />
+    <Property Name="booked_seats" Type="Int32" />
+    <Property Name="type" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="acc_id" Type="Int32" Nullable="false" />
+    <Property Name="trip_type_id" Type="Int32" />
+    <Property Name="seat_cost_from" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="seat_cost_to" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="seat_cost" Type="Decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="vwVehicles">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="model" />
+      <PropertyRef Name="capacity" />
+      <PropertyRef Name="owner_id" />
+      <PropertyRef Name="created_by" />
+      <PropertyRef Name="license_no" />
+      <PropertyRef Name="is_delete" />
+      <PropertyRef Name="owner" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="model" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="color" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="capacity" Type="Int32" Nullable="false" />
+    <Property Name="owner_id" Type="Int32" Nullable="false" />
+    <Property Name="created_at" Type="DateTime" Precision="3" />
+    <Property Name="created_by" Type="Int32" Nullable="false" />
+    <Property Name="license_no" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="is_delete" Type="Boolean" Nullable="false" />
+    <Property Name="owner" Type="String" Nullable="false" MaxLength="101" FixedLength="false" Unicode="true" />
+    <Property Name="Drivers" Type="Int32" />
+    <Property Name="Trips" Type="Int32" />
+    <Property Name="Images" Type="Int32" />
+  </EntityType>
+  <Association Name="FK_trip_request_tbl_accounts">
+    <End Type="MainModel.tbl_accounts" Role="tbl_accounts" Multiplicity="1" />
+    <End Type="MainModel.trip_request" Role="trip_request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_accounts">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="trip_request">
+        <PropertyRef Name="rider_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_trip_request_details_tbl_genders">
+    <End Type="MainModel.tbl_genders" Role="tbl_genders" Multiplicity="0..1" />
+    <End Type="MainModel.trip_request_details" Role="trip_request_details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_genders">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="trip_request_details">
+        <PropertyRef Name="gender_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_trip_share_details_tbl_genders">
+    <End Type="MainModel.tbl_genders" Role="tbl_genders" Multiplicity="0..1" />
+    <End Type="MainModel.trip_share_details" Role="trip_share_details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_genders">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="trip_share_details">
+        <PropertyRef Name="gender_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="rptBooking">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="driver_name" />
+      <PropertyRef Name="driver_gender" />
+      <PropertyRef Name="rider_name" />
+      <PropertyRef Name="rider_gender" />
+      <PropertyRef Name="owner_id" />
+      <PropertyRef Name="driver_id" />
+      <PropertyRef Name="rider_id" />
+      <PropertyRef Name="trip_share_details_id" />
+      <PropertyRef Name="trip_request_details_id" />
+      <PropertyRef Name="driver_email" />
+      <PropertyRef Name="rider_email" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="driver_name" Type="String" Nullable="false" MaxLength="101" FixedLength="false" Unicode="true" />
+    <Property Name="driver_mobile" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="driver_gender" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="rider_name" Type="String" Nullable="false" MaxLength="101" FixedLength="false" Unicode="true" />
+    <Property Name="rider_mobile" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="rider_gender" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="booked_at" Type="DateTime" Precision="3" />
+    <Property Name="reached_at" Type="DateTime" Precision="3" />
+    <Property Name="start_at" Type="DateTime" Precision="3" />
+    <Property Name="end_at" Type="DateTime" Precision="3" />
+    <Property Name="canceled_at" Type="DateTime" Precision="3" />
+    <Property Name="accepted_at" Type="DateTime" Precision="3" />
+    <Property Name="driver_rate" Type="Int32" />
+    <Property Name="from_plc" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="to_plc" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="seat_cost" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="vehicle" Type="String" MaxLength="205" FixedLength="false" Unicode="true" />
+    <Property Name="driver_id_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="driver_license_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="owner_id" Type="Int32" Nullable="false" />
+    <Property Name="guid" Type="Guid" />
+    <Property Name="driver_id" Type="Int32" Nullable="false" />
+    <Property Name="rider_id" Type="Int32" Nullable="false" />
+    <Property Name="vehicle_id" Type="Int32" />
+    <Property Name="trip_share_details_id" Type="Int32" Nullable="false" />
+    <Property Name="trip_request_details_id" Type="Int32" Nullable="false" />
+    <Property Name="trip_type_id" Type="Int32" />
+    <Property Name="driver_email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="rider_email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+</Schema>

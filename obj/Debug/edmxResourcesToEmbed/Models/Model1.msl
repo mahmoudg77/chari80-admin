@@ -1,0 +1,1628 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FollowupDBModelStoreContainer" CdmEntityContainer="FollowupDBEntities">
+    <EntitySetMapping Name="clients">
+      <EntityTypeMapping TypeName="FollowupDBModel.clients">
+        <MappingFragment StoreEntitySet="clients">
+          <ScalarProperty Name="client_name" ColumnName="client_name" />
+          <ScalarProperty Name="client_id" ColumnName="client_id" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="client_representative" ColumnName="client_representative" />
+          <ScalarProperty Name="rep_phone" ColumnName="rep_phone" />
+          <ScalarProperty Name="rep_email" ColumnName="rep_email" />
+          <ScalarProperty Name="company_name" ColumnName="company_name" />
+          <ScalarProperty Name="comp_website" ColumnName="comp_website" />
+          <ScalarProperty Name="comp_bbox" ColumnName="comp_bbox" />
+          <ScalarProperty Name="comp_phone" ColumnName="comp_phone" />
+          <ScalarProperty Name="mailing_id" ColumnName="mailing_id" />
+          <ScalarProperty Name="client_nationalityid" ColumnName="client_nationalityid" />
+          <ScalarProperty Name="rep_nationalityid" ColumnName="rep_nationalityid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="clients_userpass">
+      <EntityTypeMapping TypeName="FollowupDBModel.clients_userpass">
+        <MappingFragment StoreEntitySet="clients_userpass">
+          <ScalarProperty Name="client_username" ColumnName="client_username" />
+          <ScalarProperty Name="client_password" ColumnName="client_password" />
+          <ScalarProperty Name="client_id" ColumnName="client_id" />
+          <ScalarProperty Name="group_id" ColumnName="group_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DailyPlan_Projects">
+      <EntityTypeMapping TypeName="FollowupDBModel.DailyPlan_Projects">
+        <MappingFragment StoreEntitySet="DailyPlan_Projects">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="PermitID" ColumnName="PermitID" />
+          <ScalarProperty Name="TaskTypeID" ColumnName="TaskTypeID" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="ProgressPerc" ColumnName="ProgressPerc" />
+          <ScalarProperty Name="userid" ColumnName="userid" />
+          <ScalarProperty Name="reg_date" ColumnName="reg_date" />
+          <ScalarProperty Name="notes" ColumnName="notes" />
+          <ScalarProperty Name="Periority" ColumnName="Periority" />
+          <ScalarProperty Name="TaskID" ColumnName="TaskID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DailyPlan_Tasks">
+      <EntityTypeMapping TypeName="FollowupDBModel.DailyPlan_Tasks">
+        <MappingFragment StoreEntitySet="DailyPlan_Tasks">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="PermitID" ColumnName="PermitID" />
+          <ScalarProperty Name="TaskTypeID" ColumnName="TaskTypeID" />
+          <ScalarProperty Name="PlanHours" ColumnName="PlanHours" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+          <ScalarProperty Name="FinishedTime" ColumnName="FinishedTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DailyPlan_Times">
+      <EntityTypeMapping TypeName="FollowupDBModel.DailyPlan_Times">
+        <MappingFragment StoreEntitySet="DailyPlan_Times">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="PermitID" ColumnName="PermitID" />
+          <ScalarProperty Name="TaskTypeID" ColumnName="TaskTypeID" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="FromTime" ColumnName="FromTime" />
+          <ScalarProperty Name="ToTime" ColumnName="ToTime" />
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="SubTaskTypeID" ColumnName="SubTaskTypeID" />
+          <ScalarProperty Name="Duration" ColumnName="Duration" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="TaskID" ColumnName="TaskID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employee_AdminAccess">
+      <EntityTypeMapping TypeName="FollowupDBModel.Employee_AdminAccess">
+        <MappingFragment StoreEntitySet="Employee_AdminAccess">
+          <ScalarProperty Name="emp_id" ColumnName="emp_id" />
+          <ScalarProperty Name="emp_role" ColumnName="emp_role" />
+          <ScalarProperty Name="emp_username" ColumnName="emp_username" />
+          <ScalarProperty Name="emp_password" ColumnName="emp_password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="employee_sysaccess">
+      <EntityTypeMapping TypeName="FollowupDBModel.employee_sysaccess">
+        <MappingFragment StoreEntitySet="employee_sysaccess">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="employee_name" ColumnName="employee_name" />
+          <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+          <ScalarProperty Name="emp_dept" ColumnName="emp_dept" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="nationality" ColumnName="nationality" />
+          <ScalarProperty Name="job" ColumnName="job" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="files">
+      <EntityTypeMapping TypeName="FollowupDBModel.files">
+        <MappingFragment StoreEntitySet="files">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="file_name" ColumnName="file_name" />
+          <ScalarProperty Name="file_path" ColumnName="file_path" />
+          <ScalarProperty Name="file_ext" ColumnName="file_ext" />
+          <ScalarProperty Name="upload_date" ColumnName="upload_date" />
+          <ScalarProperty Name="model_name" ColumnName="model_name" />
+          <ScalarProperty Name="model_id" ColumnName="model_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InvoicesD">
+      <EntityTypeMapping TypeName="FollowupDBModel.InvoicesD">
+        <MappingFragment StoreEntitySet="InvoicesD">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="invoice_number" ColumnName="invoice_number" />
+          <ScalarProperty Name="invoice_amount" ColumnName="invoice_amount" />
+          <ScalarProperty Name="invoice_date" ColumnName="invoice_date" />
+          <ScalarProperty Name="proj_id" ColumnName="proj_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InvoicesDesign">
+      <EntityTypeMapping TypeName="FollowupDBModel.InvoicesDesign">
+        <MappingFragment StoreEntitySet="InvoicesDesign">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="invoice_number" ColumnName="invoice_number" />
+          <ScalarProperty Name="invoice_amount" ColumnName="invoice_amount" />
+          <ScalarProperty Name="invoice_date" ColumnName="invoice_date" />
+          <ScalarProperty Name="proj_id" ColumnName="proj_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InvoicesS">
+      <EntityTypeMapping TypeName="FollowupDBModel.InvoicesS">
+        <MappingFragment StoreEntitySet="InvoicesS">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="invoice_number" ColumnName="invoice_number" />
+          <ScalarProperty Name="invoice_amount" ColumnName="invoice_amount" />
+          <ScalarProperty Name="invoice_date" ColumnName="invoice_date" />
+          <ScalarProperty Name="proj_id" ColumnName="proj_id" />
+          <ScalarProperty Name="method_id" ColumnName="method_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InvoicesSupervision">
+      <EntityTypeMapping TypeName="FollowupDBModel.InvoicesSupervision">
+        <MappingFragment StoreEntitySet="InvoicesSupervision">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="invoice_number" ColumnName="invoice_number" />
+          <ScalarProperty Name="invoice_amount" ColumnName="invoice_amount" />
+          <ScalarProperty Name="invoice_date" ColumnName="invoice_date" />
+          <ScalarProperty Name="proj_id" ColumnName="proj_id" />
+          <ScalarProperty Name="method_id" ColumnName="method_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="nationalities_list">
+      <EntityTypeMapping TypeName="FollowupDBModel.nationalities_list">
+        <MappingFragment StoreEntitySet="nationalities_list">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NewPermLog">
+      <EntityTypeMapping TypeName="FollowupDBModel.NewPermLog">
+        <MappingFragment StoreEntitySet="NewPermLog">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="permit_id" ColumnName="permit_id" />
+          <ScalarProperty Name="status_id" ColumnName="status_id" />
+          <ScalarProperty Name="action_date" ColumnName="action_date" />
+          <ScalarProperty Name="comment" ColumnName="comment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NewSchedule">
+      <EntityTypeMapping TypeName="FollowupDBModel.NewSchedule">
+        <MappingFragment StoreEntitySet="NewSchedule">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="proj_ref" ColumnName="proj_ref" />
+          <ScalarProperty Name="contract_date" ColumnName="contract_date" />
+          <ScalarProperty Name="cont_Expctd_date" ColumnName="cont_Expctd_date" />
+          <ScalarProperty Name="document_recv_date" ColumnName="document_recv_date" />
+          <ScalarProperty Name="down_recv_date" ColumnName="down_recv_date" />
+          <ScalarProperty Name="progstart_date" ColumnName="progstart_date" />
+          <ScalarProperty Name="planed_date" ColumnName="planed_date" />
+          <ScalarProperty Name="actual_finish_date" ColumnName="actual_finish_date" />
+          <ScalarProperty Name="dev_days" ColumnName="dev_days" />
+          <ScalarProperty Name="proj_id" ColumnName="proj_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NewScope">
+      <EntityTypeMapping TypeName="FollowupDBModel.NewScope">
+        <MappingFragment StoreEntitySet="NewScope">
+          <ScalarProperty Name="scope" ColumnName="scope" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="notify">
+      <EntityTypeMapping TypeName="FollowupDBModel.notify">
+        <MappingFragment StoreEntitySet="notify">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="fromid" ColumnName="fromid" />
+          <ScalarProperty Name="toid" ColumnName="toid" />
+          <ScalarProperty Name="subject" ColumnName="subject" />
+          <ScalarProperty Name="body" ColumnName="body" />
+          <ScalarProperty Name="related_controller" ColumnName="related_controller" />
+          <ScalarProperty Name="related_method" ColumnName="related_method" />
+          <ScalarProperty Name="related_id" ColumnName="related_id" />
+          <ScalarProperty Name="sent_time" ColumnName="sent_time" />
+          <ScalarProperty Name="notified_time" ColumnName="notified_time" />
+          <ScalarProperty Name="received_time" ColumnName="received_time" />
+          <ScalarProperty Name="parent_id" ColumnName="parent_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="payment_type_list">
+      <EntityTypeMapping TypeName="FollowupDBModel.payment_type_list">
+        <MappingFragment StoreEntitySet="payment_type_list">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Payments_Scope_list">
+      <EntityTypeMapping TypeName="FollowupDBModel.Payments_Scope_list">
+        <MappingFragment StoreEntitySet="Payments_Scope_list">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="permits_addreesees">
+      <EntityTypeMapping TypeName="FollowupDBModel.permits_addreesees">
+        <MappingFragment StoreEntitySet="permits_addreesees">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Permits_ProjectsNew">
+      <EntityTypeMapping TypeName="FollowupDBModel.Permits_ProjectsNew">
+        <MappingFragment StoreEntitySet="Permits_ProjectsNew">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="permit_id" ColumnName="permit_id" />
+          <ScalarProperty Name="issue_date" ColumnName="issue_date" />
+          <ScalarProperty Name="response_date" ColumnName="response_date" />
+          <ScalarProperty Name="approve_date" ColumnName="approve_date" />
+          <ScalarProperty Name="kashaf_comments" ColumnName="kashaf_comments" />
+          <ScalarProperty Name="client_comments" ColumnName="client_comments" />
+          <ScalarProperty Name="proj_id" ColumnName="proj_id" />
+          <ScalarProperty Name="permit_type_id" ColumnName="permit_type_id" />
+          <ScalarProperty Name="permit_scope_id" ColumnName="permit_scope_id" />
+          <ScalarProperty Name="addressee_id" ColumnName="addressee_id" />
+          <ScalarProperty Name="permit_status_id" ColumnName="permit_status_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="permits_status">
+      <EntityTypeMapping TypeName="FollowupDBModel.permits_status">
+        <MappingFragment StoreEntitySet="permits_status">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="css_style" ColumnName="css_style" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="permits_status_log">
+      <EntityTypeMapping TypeName="FollowupDBModel.permits_status_log">
+        <MappingFragment StoreEntitySet="permits_status_log">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="permit_id" ColumnName="permit_id" />
+          <ScalarProperty Name="status_id" ColumnName="status_id" />
+          <ScalarProperty Name="action_date" ColumnName="action_date" />
+          <ScalarProperty Name="comment" ColumnName="comment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PerTB">
+      <EntityTypeMapping TypeName="FollowupDBModel.PerTB">
+        <MappingFragment StoreEntitySet="PerTB">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="proj_ref" ColumnName="proj_ref" />
+          <ScalarProperty Name="permit_type" ColumnName="permit_type" />
+          <ScalarProperty Name="permit_scope" ColumnName="permit_scope" />
+          <ScalarProperty Name="addressee" ColumnName="addressee" />
+          <ScalarProperty Name="permit_id" ColumnName="permit_id" />
+          <ScalarProperty Name="issue_date" ColumnName="issue_date" />
+          <ScalarProperty Name="response_date" ColumnName="response_date" />
+          <ScalarProperty Name="approve_date" ColumnName="approve_date" />
+          <ScalarProperty Name="permit_status" ColumnName="permit_status" />
+          <ScalarProperty Name="kashaf_comments" ColumnName="kashaf_comments" />
+          <ScalarProperty Name="client_comments" ColumnName="client_comments" />
+          <ScalarProperty Name="iss" ColumnName="iss" />
+          <ScalarProperty Name="rej" ColumnName="rej" />
+          <ScalarProperty Name="reiss" ColumnName="reiss" />
+          <ScalarProperty Name="preacc" ColumnName="preacc" />
+          <ScalarProperty Name="acc" ColumnName="acc" />
+          <ScalarProperty Name="F18" ColumnName="F18" />
+          <ScalarProperty Name="F19" ColumnName="F19" />
+          <ScalarProperty Name="proj_id" ColumnName="proj_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="proj_conditions_list">
+      <EntityTypeMapping TypeName="FollowupDBModel.proj_conditions_list">
+        <MappingFragment StoreEntitySet="proj_conditions_list">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="proj_delivers_list">
+      <EntityTypeMapping TypeName="FollowupDBModel.proj_delivers_list">
+        <MappingFragment StoreEntitySet="proj_delivers_list">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="proj_disciplines_list">
+      <EntityTypeMapping TypeName="FollowupDBModel.proj_disciplines_list">
+        <MappingFragment StoreEntitySet="proj_disciplines_list">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="division_id" ColumnName="division_id" />
+          <ScalarProperty Name="ShortCut" ColumnName="ShortCut" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="proj_req_list">
+      <EntityTypeMapping TypeName="FollowupDBModel.proj_req_list">
+        <MappingFragment StoreEntitySet="proj_req_list">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="proj_req_status_log">
+      <EntityTypeMapping TypeName="FollowupDBModel.proj_req_status_log">
+        <MappingFragment StoreEntitySet="proj_req_status_log">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="proj_req_id" ColumnName="proj_req_id" />
+          <ScalarProperty Name="status_id" ColumnName="status_id" />
+          <ScalarProperty Name="action_date" ColumnName="action_date" />
+          <ScalarProperty Name="next_followup_date" ColumnName="next_followup_date" />
+          <ScalarProperty Name="comment" ColumnName="comment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="proj_stages_list">
+      <EntityTypeMapping TypeName="FollowupDBModel.proj_stages_list">
+        <MappingFragment StoreEntitySet="proj_stages_list">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="proj_status_list">
+      <EntityTypeMapping TypeName="FollowupDBModel.proj_status_list">
+        <MappingFragment StoreEntitySet="proj_status_list">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="proj_types_list">
+      <EntityTypeMapping TypeName="FollowupDBModel.proj_types_list">
+        <MappingFragment StoreEntitySet="proj_types_list">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="proj_workscope_list">
+      <EntityTypeMapping TypeName="FollowupDBModel.proj_workscope_list">
+        <MappingFragment StoreEntitySet="proj_workscope_list">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="project_category_list">
+      <EntityTypeMapping TypeName="FollowupDBModel.project_category_list">
+        <MappingFragment StoreEntitySet="project_category_list">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="project_collecte_details">
+      <EntityTypeMapping TypeName="FollowupDBModel.project_collecte_details">
+        <MappingFragment StoreEntitySet="project_collecte_details">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CollectID" ColumnName="CollectID" />
+          <ScalarProperty Name="ScopeID" ColumnName="ScopeID" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="project_collectes">
+      <EntityTypeMapping TypeName="FollowupDBModel.project_collectes">
+        <MappingFragment StoreEntitySet="project_collectes">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="proj_id" ColumnName="proj_id" />
+          <ScalarProperty Name="invoice_number" ColumnName="invoice_number" />
+          <ScalarProperty Name="invoice_amount" ColumnName="invoice_amount" />
+          <ScalarProperty Name="invoice_date" ColumnName="invoice_date" />
+          <ScalarProperty Name="ChequeNo" ColumnName="ChequeNo" />
+          <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="ApprovedAt" ColumnName="ApprovedAt" />
+          <ScalarProperty Name="ApprovedBy" ColumnName="ApprovedBy" />
+          <ScalarProperty Name="PaymentTypeID" ColumnName="PaymentTypeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="project_fees">
+      <EntityTypeMapping TypeName="FollowupDBModel.project_fees">
+        <MappingFragment StoreEntitySet="project_fees">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="proj_id" ColumnName="proj_id" />
+          <ScalarProperty Name="ScopeID" ColumnName="ScopeID" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="ApprovedAt" ColumnName="ApprovedAt" />
+          <ScalarProperty Name="ApprovedBy" ColumnName="ApprovedBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="project_invoice_details">
+      <EntityTypeMapping TypeName="FollowupDBModel.project_invoice_details">
+        <MappingFragment StoreEntitySet="project_invoice_details">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+          <ScalarProperty Name="ScopeID" ColumnName="ScopeID" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="project_invoices">
+      <EntityTypeMapping TypeName="FollowupDBModel.project_invoices">
+        <MappingFragment StoreEntitySet="project_invoices">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="proj_id" ColumnName="proj_id" />
+          <ScalarProperty Name="invoice_number" ColumnName="invoice_number" />
+          <ScalarProperty Name="invoice_amount" ColumnName="invoice_amount" />
+          <ScalarProperty Name="invoice_date" ColumnName="invoice_date" />
+          <ScalarProperty Name="method_id" ColumnName="method_id" />
+          <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
+          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="ApprovedAt" ColumnName="ApprovedAt" />
+          <ScalarProperty Name="ApprovedBy" ColumnName="ApprovedBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="project_payment_config">
+      <EntityTypeMapping TypeName="FollowupDBModel.project_payment_config">
+        <MappingFragment StoreEntitySet="project_payment_config">
+          <ScalarProperty Name="proj_id" ColumnName="proj_id" />
+          <ScalarProperty Name="VisitCost" ColumnName="VisitCost" />
+          <ScalarProperty Name="TimeIntervalID" ColumnName="TimeIntervalID" />
+          <ScalarProperty Name="Target" ColumnName="Target" />
+          <ScalarProperty Name="DueDayInMounth" ColumnName="DueDayInMounth" />
+          <ScalarProperty Name="DueDayInWeek" ColumnName="DueDayInWeek" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="project_payment_details">
+      <EntityTypeMapping TypeName="FollowupDBModel.project_payment_details">
+        <MappingFragment StoreEntitySet="project_payment_details">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
+          <ScalarProperty Name="ScopeID" ColumnName="ScopeID" />
+          <ScalarProperty Name="Perc" ColumnName="Perc" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="project_payments">
+      <EntityTypeMapping TypeName="FollowupDBModel.project_payments">
+        <MappingFragment StoreEntitySet="project_payments">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="proj_id" ColumnName="proj_id" />
+          <ScalarProperty Name="PaymentTypeID" ColumnName="PaymentTypeID" />
+          <ScalarProperty Name="PaymentIndex" ColumnName="PaymentIndex" />
+          <ScalarProperty Name="Perc" ColumnName="Perc" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="DueAt" ColumnName="DueAt" />
+          <ScalarProperty Name="Conditions" ColumnName="Conditions" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="ApprovedAt" ColumnName="ApprovedAt" />
+          <ScalarProperty Name="ApprovedBy" ColumnName="ApprovedBy" />
+          <ScalarProperty Name="ConditionTypeID" ColumnName="ConditionTypeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="project_services_list">
+      <EntityTypeMapping TypeName="FollowupDBModel.project_services_list">
+        <MappingFragment StoreEntitySet="project_services_list">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="project_usage_list">
+      <EntityTypeMapping TypeName="FollowupDBModel.project_usage_list">
+        <MappingFragment StoreEntitySet="project_usage_list">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="project_visits">
+      <EntityTypeMapping TypeName="FollowupDBModel.project_visits">
+        <MappingFragment StoreEntitySet="project_visits">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="VisitDate" ColumnName="VisitDate" />
+          <ScalarProperty Name="proj_id" ColumnName="proj_id" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="VisitCost" ColumnName="VisitCost" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="project_visits_contract">
+      <EntityTypeMapping TypeName="FollowupDBModel.project_visits_contract">
+        <MappingFragment StoreEntitySet="project_visits_contract">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="proj_id" ColumnName="proj_id" />
+          <ScalarProperty Name="DivisionID" ColumnName="DivisionID" />
+          <ScalarProperty Name="Visits" ColumnName="Visits" />
+          <ScalarProperty Name="ExtraVisitCost" ColumnName="ExtraVisitCost" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="projects">
+      <EntityTypeMapping TypeName="FollowupDBModel.projects">
+        <MappingFragment StoreEntitySet="projects">
+          <ScalarProperty Name="sn" ColumnName="sn" />
+          <ScalarProperty Name="proj_client_id" ColumnName="proj_client_id" />
+          <ScalarProperty Name="proj_name" ColumnName="proj_name" />
+          <ScalarProperty Name="proj_ref" ColumnName="proj_ref" />
+          <ScalarProperty Name="building_name" ColumnName="building_name" />
+          <ScalarProperty Name="proj_area" ColumnName="proj_area" />
+          <ScalarProperty Name="proj_floors" ColumnName="proj_floors" />
+          <ScalarProperty Name="discplns_list" ColumnName="discplns_list" />
+          <ScalarProperty Name="progress_stage" ColumnName="progress_stage" />
+          <ScalarProperty Name="proj_deliverable" ColumnName="proj_deliverable" />
+          <ScalarProperty Name="dpme_projid" ColumnName="dpme_projid" />
+          <ScalarProperty Name="location_id" ColumnName="location_id" />
+          <ScalarProperty Name="usag_id" ColumnName="usag_id" />
+          <ScalarProperty Name="category_id" ColumnName="category_id" />
+          <ScalarProperty Name="type_id" ColumnName="type_id" />
+          <ScalarProperty Name="scope_id" ColumnName="scope_id" />
+          <ScalarProperty Name="status_id" ColumnName="status_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="projects_balance">
+      <EntityTypeMapping TypeName="FollowupDBModel.projects_balance">
+        <MappingFragment StoreEntitySet="projects_balance">
+          <ScalarProperty Name="projdesign_balance" ColumnName="projdesign_balance" />
+          <ScalarProperty Name="projstudy_balance" ColumnName="projstudy_balance" />
+          <ScalarProperty Name="projsup_balance" ColumnName="projsup_balance" />
+          <ScalarProperty Name="proj_totalbalance" ColumnName="proj_totalbalance" />
+          <ScalarProperty Name="proj_id" ColumnName="proj_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Projects_BuildingList">
+      <EntityTypeMapping TypeName="FollowupDBModel.Projects_BuildingList">
+        <MappingFragment StoreEntitySet="Projects_BuildingList">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="building_typeid" ColumnName="building_typeid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="projects_collectedfees_design">
+      <EntityTypeMapping TypeName="FollowupDBModel.projects_collectedfees_design">
+        <MappingFragment StoreEntitySet="projects_collectedfees_design">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="invoice_number" ColumnName="invoice_number" />
+          <ScalarProperty Name="invoice_amount" ColumnName="invoice_amount" />
+          <ScalarProperty Name="invoice_date" ColumnName="invoice_date" />
+          <ScalarProperty Name="proj_id" ColumnName="proj_id" />
+          <ScalarProperty Name="ChequeNo" ColumnName="ChequeNo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="projects_collectedfees_study">
+      <EntityTypeMapping TypeName="FollowupDBModel.projects_collectedfees_study">
+        <MappingFragment StoreEntitySet="projects_collectedfees_study">
+          <ScalarProperty Name="invoice_number" ColumnName="invoice_number" />
+          <ScalarProperty Name="invoice_amount" ColumnName="invoice_amount" />
+          <ScalarProperty Name="invoice_date" ColumnName="invoice_date" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="proj_id" ColumnName="proj_id" />
+          <ScalarProperty Name="ChequeNo" ColumnName="ChequeNo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="projects_collectedfees_supervision">
+      <EntityTypeMapping TypeName="FollowupDBModel.projects_collectedfees_supervision">
+        <MappingFragment StoreEntitySet="projects_collectedfees_supervision">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="supervision_type" ColumnName="supervision_type" />
+          <ScalarProperty Name="invoice_number" ColumnName="invoice_number" />
+          <ScalarProperty Name="invoice_amount" ColumnName="invoice_amount" />
+          <ScalarProperty Name="invoice_date" ColumnName="invoice_date" />
+          <ScalarProperty Name="proj_id" ColumnName="proj_id" />
+          <ScalarProperty Name="ChequeNo" ColumnName="ChequeNo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="projects_conditions">
+      <EntityTypeMapping TypeName="FollowupDBModel.projects_conditions">
+        <MappingFragment StoreEntitySet="projects_conditions">
+          <ScalarProperty Name="SN" ColumnName="SN" />
+          <ScalarProperty Name="condition_category" ColumnName="condition_category" />
+          <ScalarProperty Name="proj_condition" ColumnName="proj_condition" />
+          <ScalarProperty Name="proj_id" ColumnName="proj_id" />
+          <ScalarProperty Name="category_id" ColumnName="category_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="projects_fees">
+      <EntityTypeMapping TypeName="FollowupDBModel.projects_fees">
+        <MappingFragment StoreEntitySet="projects_fees">
+          <ScalarProperty Name="proj_design_fees" ColumnName="proj_design_fees" />
+          <ScalarProperty Name="proj_supervs_fees" ColumnName="proj_supervs_fees" />
+          <ScalarProperty Name="proj_study_fees" ColumnName="proj_study_fees" />
+          <ScalarProperty Name="pro_total" ColumnName="pro_total" />
+          <ScalarProperty Name="proj_id" ColumnName="proj_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="projects_invoicefees_design">
+      <EntityTypeMapping TypeName="FollowupDBModel.projects_invoicefees_design">
+        <MappingFragment StoreEntitySet="projects_invoicefees_design">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="invoice_number" ColumnName="invoice_number" />
+          <ScalarProperty Name="invoice_amount" ColumnName="invoice_amount" />
+          <ScalarProperty Name="invoice_date" ColumnName="invoice_date" />
+          <ScalarProperty Name="proj_id" ColumnName="proj_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="projects_invoicefees_study">
+      <EntityTypeMapping TypeName="FollowupDBModel.projects_invoicefees_study">
+        <MappingFragment StoreEntitySet="projects_invoicefees_study">
+          <ScalarProperty Name="invoive_number" ColumnName="invoive_number" />
+          <ScalarProperty Name="invoice_amount" ColumnName="invoice_amount" />
+          <ScalarProperty Name="invoice_date" ColumnName="invoice_date" />
+          <ScalarProperty Name="proj_id" ColumnName="proj_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="projects_invoicefees_supervision">
+      <EntityTypeMapping TypeName="FollowupDBModel.projects_invoicefees_supervision">
+        <MappingFragment StoreEntitySet="projects_invoicefees_supervision">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="invoice_number" ColumnName="invoice_number" />
+          <ScalarProperty Name="invoice_amount" ColumnName="invoice_amount" />
+          <ScalarProperty Name="invoice_date" ColumnName="invoice_date" />
+          <ScalarProperty Name="proj_id" ColumnName="proj_id" />
+          <ScalarProperty Name="method_id" ColumnName="method_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="projects_payment_design">
+      <EntityTypeMapping TypeName="FollowupDBModel.projects_payment_design">
+        <MappingFragment StoreEntitySet="projects_payment_design">
+          <ScalarProperty Name="downpayment" ColumnName="downpayment" />
+          <ScalarProperty Name="downpayment_cond" ColumnName="downpayment_cond" />
+          <ScalarProperty Name="firstpayment" ColumnName="firstpayment" />
+          <ScalarProperty Name="firstpayment_cond" ColumnName="firstpayment_cond" />
+          <ScalarProperty Name="secondpayment" ColumnName="secondpayment" />
+          <ScalarProperty Name="secondpayment_cond" ColumnName="secondpayment_cond" />
+          <ScalarProperty Name="thirdpayment" ColumnName="thirdpayment" />
+          <ScalarProperty Name="thirdpayment_cond" ColumnName="thirdpayment_cond" />
+          <ScalarProperty Name="fourthpayment" ColumnName="fourthpayment" />
+          <ScalarProperty Name="fourthpayment_cond" ColumnName="fourthpayment_cond" />
+          <ScalarProperty Name="fifthpayment" ColumnName="fifthpayment" />
+          <ScalarProperty Name="fifthpayment_cond" ColumnName="fifthpayment_cond" />
+          <ScalarProperty Name="sixthpayment" ColumnName="sixthpayment" />
+          <ScalarProperty Name="sixthpayment_cond" ColumnName="sixthpayment_cond" />
+          <ScalarProperty Name="sevenpayment" ColumnName="sevenpayment" />
+          <ScalarProperty Name="sevenpayment_cond" ColumnName="sevenpayment_cond" />
+          <ScalarProperty Name="proj_id" ColumnName="proj_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="projects_payment_instsupvs">
+      <EntityTypeMapping TypeName="FollowupDBModel.projects_payment_instsupvs">
+        <MappingFragment StoreEntitySet="projects_payment_instsupvs">
+          <ScalarProperty Name="downpayment" ColumnName="downpayment" />
+          <ScalarProperty Name="downpayment_cond" ColumnName="downpayment_cond" />
+          <ScalarProperty Name="firstpayment" ColumnName="firstpayment" />
+          <ScalarProperty Name="firstpayment_cond" ColumnName="firstpayment_cond" />
+          <ScalarProperty Name="secondpayment" ColumnName="secondpayment" />
+          <ScalarProperty Name="secondpayment_cond" ColumnName="secondpayment_cond" />
+          <ScalarProperty Name="thirdpayment" ColumnName="thirdpayment" />
+          <ScalarProperty Name="thirdpayment_cond" ColumnName="thirdpayment_cond" />
+          <ScalarProperty Name="fourthpayment" ColumnName="fourthpayment" />
+          <ScalarProperty Name="fourthpayment_cond" ColumnName="fourthpayment_cond" />
+          <ScalarProperty Name="fifthpayment" ColumnName="fifthpayment" />
+          <ScalarProperty Name="fifthpayment_cond" ColumnName="fifthpayment_cond" />
+          <ScalarProperty Name="sixthpayment" ColumnName="sixthpayment" />
+          <ScalarProperty Name="sixthpayment_cond" ColumnName="sixthpayment_cond" />
+          <ScalarProperty Name="sevenpayment" ColumnName="sevenpayment" />
+          <ScalarProperty Name="sevenpayment_cond" ColumnName="sevenpayment_cond" />
+          <ScalarProperty Name="proj_id" ColumnName="proj_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="projects_payment_study">
+      <EntityTypeMapping TypeName="FollowupDBModel.projects_payment_study">
+        <MappingFragment StoreEntitySet="projects_payment_study">
+          <ScalarProperty Name="downpayment" ColumnName="downpayment" />
+          <ScalarProperty Name="downpayment_cond" ColumnName="downpayment_cond" />
+          <ScalarProperty Name="firstpayment" ColumnName="firstpayment" />
+          <ScalarProperty Name="firstpayment_cond" ColumnName="firstpayment_cond" />
+          <ScalarProperty Name="proj_id" ColumnName="proj_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="projects_payment_sup">
+      <EntityTypeMapping TypeName="FollowupDBModel.projects_payment_sup">
+        <MappingFragment StoreEntitySet="projects_payment_sup">
+          <ScalarProperty Name="fees_sup" ColumnName="fees_sup" />
+          <ScalarProperty Name="proj_id" ColumnName="proj_id" />
+          <ScalarProperty Name="payment_typeid" ColumnName="payment_typeid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="projects_permits">
+      <EntityTypeMapping TypeName="FollowupDBModel.projects_permits">
+        <MappingFragment StoreEntitySet="projects_permits">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="permit_id" ColumnName="permit_id" />
+          <ScalarProperty Name="client_comments" ColumnName="client_comments" />
+          <ScalarProperty Name="proj_id" ColumnName="proj_id" />
+          <ScalarProperty Name="permit_type_id" ColumnName="permit_type_id" />
+          <ScalarProperty Name="permit_scope_id" ColumnName="permit_scope_id" />
+          <ScalarProperty Name="addressee_id" ColumnName="addressee_id" />
+          <ScalarProperty Name="uploadsys" ColumnName="uploadsys" />
+          <ScalarProperty Name="branch_id" ColumnName="branch_id" />
+          <ScalarProperty Name="contract_design_time" ColumnName="contract_design_time" />
+          <ScalarProperty Name="contract_approve_time" ColumnName="contract_approve_time" />
+          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="projects_requirements">
+      <EntityTypeMapping TypeName="FollowupDBModel.projects_requirements">
+        <MappingFragment StoreEntitySet="projects_requirements">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="requested_date" ColumnName="requested_date" />
+          <ScalarProperty Name="collected_date" ColumnName="collected_date" />
+          <ScalarProperty Name="req_comments" ColumnName="req_comments" />
+          <ScalarProperty Name="proj_id" ColumnName="proj_id" />
+          <ScalarProperty Name="permit_typeid" ColumnName="permit_typeid" />
+          <ScalarProperty Name="req_id" ColumnName="req_id" />
+          <ScalarProperty Name="status_id" ColumnName="status_id" />
+          <ScalarProperty Name="ScopeID" ColumnName="ScopeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="projects_schedule">
+      <EntityTypeMapping TypeName="FollowupDBModel.projects_schedule">
+        <MappingFragment StoreEntitySet="projects_schedule">
+          <ScalarProperty Name="contract_date" ColumnName="contract_date" />
+          <ScalarProperty Name="cont_Expctd_date" ColumnName="cont_Expctd_date" />
+          <ScalarProperty Name="Sup_Expctd_date" ColumnName="Sup_Expctd_date" />
+          <ScalarProperty Name="document_recv_date" ColumnName="document_recv_date" />
+          <ScalarProperty Name="down_recv_date" ColumnName="down_recv_date" />
+          <ScalarProperty Name="progstart_date" ColumnName="progstart_date" />
+          <ScalarProperty Name="planed_date" ColumnName="planed_date" />
+          <ScalarProperty Name="actual_finish_date" ColumnName="actual_finish_date" />
+          <ScalarProperty Name="dev_days" ColumnName="dev_days" />
+          <ScalarProperty Name="proj_id" ColumnName="proj_id" />
+          <ScalarProperty Name="ExpectedDesignDuration" ColumnName="ExpectedDesignDuration" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="projects_schedule_tb">
+      <EntityTypeMapping TypeName="FollowupDBModel.projects_schedule_tb">
+        <MappingFragment StoreEntitySet="projects_schedule_tb">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="contract_date" ColumnName="contract_date" />
+          <ScalarProperty Name="cont_Expctd_date" ColumnName="cont_Expctd_date" />
+          <ScalarProperty Name="document_recv_date" ColumnName="document_recv_date" />
+          <ScalarProperty Name="down_recv_date" ColumnName="down_recv_date" />
+          <ScalarProperty Name="progstart_date" ColumnName="progstart_date" />
+          <ScalarProperty Name="planed_date" ColumnName="planed_date" />
+          <ScalarProperty Name="actual_finish_date" ColumnName="actual_finish_date" />
+          <ScalarProperty Name="dev_days" ColumnName="dev_days" />
+          <ScalarProperty Name="proj_id" ColumnName="proj_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="projects_status_log">
+      <EntityTypeMapping TypeName="FollowupDBModel.projects_status_log">
+        <MappingFragment StoreEntitySet="projects_status_log">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="proj_id" ColumnName="proj_id" />
+          <ScalarProperty Name="status_id" ColumnName="status_id" />
+          <ScalarProperty Name="action_date" ColumnName="action_date" />
+          <ScalarProperty Name="planned_date" ColumnName="planned_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="projects_types_list">
+      <EntityTypeMapping TypeName="FollowupDBModel.projects_types_list">
+        <MappingFragment StoreEntitySet="projects_types_list">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="type" ColumnName="type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProjectSchedule">
+      <EntityTypeMapping TypeName="FollowupDBModel.ProjectSchedule">
+        <MappingFragment StoreEntitySet="ProjectSchedule">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="contract_date" ColumnName="contract_date" />
+          <ScalarProperty Name="cont_Expctd_date" ColumnName="cont_Expctd_date" />
+          <ScalarProperty Name="document_recv_date" ColumnName="document_recv_date" />
+          <ScalarProperty Name="down_recv_date" ColumnName="down_recv_date" />
+          <ScalarProperty Name="progstart_date" ColumnName="progstart_date" />
+          <ScalarProperty Name="planed_date" ColumnName="planed_date" />
+          <ScalarProperty Name="actual_finish_date" ColumnName="actual_finish_date" />
+          <ScalarProperty Name="dev_days" ColumnName="dev_days" />
+          <ScalarProperty Name="newcontr" ColumnName="newcontr" />
+          <ScalarProperty Name="proj_id" ColumnName="proj_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="qat_cities_list">
+      <EntityTypeMapping TypeName="FollowupDBModel.qat_cities_list">
+        <MappingFragment StoreEntitySet="qat_cities_list">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="req_status_list">
+      <EntityTypeMapping TypeName="FollowupDBModel.req_status_list">
+        <MappingFragment StoreEntitySet="req_status_list">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ScheduleTest">
+      <EntityTypeMapping TypeName="FollowupDBModel.ScheduleTest">
+        <MappingFragment StoreEntitySet="ScheduleTest">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="proj_ref" ColumnName="proj_ref" />
+          <ScalarProperty Name="contract_date" ColumnName="contract_date" />
+          <ScalarProperty Name="cont_Expctd_date" ColumnName="cont_Expctd_date" />
+          <ScalarProperty Name="document_recv_date" ColumnName="document_recv_date" />
+          <ScalarProperty Name="down_recv_date" ColumnName="down_recv_date" />
+          <ScalarProperty Name="progstart_date" ColumnName="progstart_date" />
+          <ScalarProperty Name="planed_date" ColumnName="planed_date" />
+          <ScalarProperty Name="actual_finish_date" ColumnName="actual_finish_date" />
+          <ScalarProperty Name="dev_days" ColumnName="dev_days" />
+          <ScalarProperty Name="proj_id" ColumnName="proj_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sec_group_permissions">
+      <EntityTypeMapping TypeName="FollowupDBModel.sec_group_permissions">
+        <MappingFragment StoreEntitySet="sec_group_permissions">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="controller_name" ColumnName="controller_name" />
+          <ScalarProperty Name="action_name" ColumnName="action_name" />
+          <ScalarProperty Name="group_id" ColumnName="group_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sec_groups">
+      <EntityTypeMapping TypeName="FollowupDBModel.sec_groups">
+        <MappingFragment StoreEntitySet="sec_groups">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sec_users_groups_rel">
+      <EntityTypeMapping TypeName="FollowupDBModel.sec_users_groups_rel">
+        <MappingFragment StoreEntitySet="sec_users_groups_rel">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sheet1schedule">
+      <EntityTypeMapping TypeName="FollowupDBModel.Sheet1schedule">
+        <MappingFragment StoreEntitySet="Sheet1schedule">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="proj_ref" ColumnName="proj_ref" />
+          <ScalarProperty Name="contract_date" ColumnName="contract_date" />
+          <ScalarProperty Name="cont_Expctd_date" ColumnName="cont_Expctd_date" />
+          <ScalarProperty Name="document_recv_date" ColumnName="document_recv_date" />
+          <ScalarProperty Name="down_recv_date" ColumnName="down_recv_date" />
+          <ScalarProperty Name="progstart_date" ColumnName="progstart_date" />
+          <ScalarProperty Name="planed_date" ColumnName="planed_date" />
+          <ScalarProperty Name="actual_finish_date" ColumnName="actual_finish_date" />
+          <ScalarProperty Name="dev_days" ColumnName="dev_days" />
+          <ScalarProperty Name="proj_id" ColumnName="proj_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="FollowupDBModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TaskTypes">
+      <EntityTypeMapping TypeName="FollowupDBModel.TaskTypes">
+        <MappingFragment StoreEntitySet="TaskTypes">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="OnPermit" ColumnName="OnPermit" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TimeIntervals">
+      <EntityTypeMapping TypeName="FollowupDBModel.TimeIntervals">
+        <MappingFragment StoreEntitySet="TimeIntervals">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UploadSystems">
+      <EntityTypeMapping TypeName="FollowupDBModel.UploadSystems">
+        <MappingFragment StoreEntitySet="UploadSystems">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Shortcut" ColumnName="Shortcut" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NewPermits">
+      <EntityTypeMapping TypeName="FollowupDBModel.NewPermits">
+        <MappingFragment StoreEntitySet="NewPermits">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="proj_ref" ColumnName="proj_ref" />
+          <ScalarProperty Name="permit_type" ColumnName="permit_type" />
+          <ScalarProperty Name="permit_scope" ColumnName="permit_scope" />
+          <ScalarProperty Name="addressee" ColumnName="addressee" />
+          <ScalarProperty Name="permit_id" ColumnName="permit_id" />
+          <ScalarProperty Name="issue_date" ColumnName="issue_date" />
+          <ScalarProperty Name="response_date" ColumnName="response_date" />
+          <ScalarProperty Name="approve_date" ColumnName="approve_date" />
+          <ScalarProperty Name="permit_status" ColumnName="permit_status" />
+          <ScalarProperty Name="kashaf_comments" ColumnName="kashaf_comments" />
+          <ScalarProperty Name="client_comments" ColumnName="client_comments" />
+          <ScalarProperty Name="iss" ColumnName="iss" />
+          <ScalarProperty Name="rej" ColumnName="rej" />
+          <ScalarProperty Name="reiss" ColumnName="reiss" />
+          <ScalarProperty Name="preacc" ColumnName="preacc" />
+          <ScalarProperty Name="acc" ColumnName="acc" />
+          <ScalarProperty Name="proj_id" ColumnName="proj_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NewPermitTable">
+      <EntityTypeMapping TypeName="FollowupDBModel.NewPermitTable">
+        <MappingFragment StoreEntitySet="NewPermitTable">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="permit_id" ColumnName="permit_id" />
+          <ScalarProperty Name="issue_date" ColumnName="issue_date" />
+          <ScalarProperty Name="response_date" ColumnName="response_date" />
+          <ScalarProperty Name="approve_date" ColumnName="approve_date" />
+          <ScalarProperty Name="kashaf_comments" ColumnName="kashaf_comments" />
+          <ScalarProperty Name="client_comments" ColumnName="client_comments" />
+          <ScalarProperty Name="proj_id" ColumnName="proj_id" />
+          <ScalarProperty Name="permit_type_id" ColumnName="permit_type_id" />
+          <ScalarProperty Name="permit_scope_id" ColumnName="permit_scope_id" />
+          <ScalarProperty Name="addressee_id" ColumnName="addressee_id" />
+          <ScalarProperty Name="permit_status_id" ColumnName="permit_status_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ST_IDTime">
+      <EntityTypeMapping TypeName="FollowupDBModel.ST_IDTime">
+        <MappingFragment StoreEntitySet="ST-IDTime">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="date" ColumnName="date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="dpme_clients">
+      <EntityTypeMapping TypeName="FollowupDBModel.dpme_clients">
+        <MappingFragment StoreEntitySet="dpme_clients">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="company_name" ColumnName="company_name" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="tel" ColumnName="tel" />
+          <ScalarProperty Name="fax" ColumnName="fax" />
+          <ScalarProperty Name="mobile" ColumnName="mobile" />
+          <ScalarProperty Name="web" ColumnName="web" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="cat" ColumnName="cat" />
+          <ScalarProperty Name="notes" ColumnName="notes" />
+          <ScalarProperty Name="lastupdate" ColumnName="lastupdate" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="WorkedWith" ColumnName="WorkedWith" />
+          <ScalarProperty Name="Competitors" ColumnName="Competitors" />
+          <ScalarProperty Name="Importance_ID" ColumnName="Importance_ID" />
+          <ScalarProperty Name="CityID" ColumnName="CityID" />
+          <ScalarProperty Name="ClassID" ColumnName="ClassID" />
+          <ScalarProperty Name="isdeleted" ColumnName="isdeleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="dpme_projects">
+      <EntityTypeMapping TypeName="FollowupDBModel.dpme_projects">
+        <MappingFragment StoreEntitySet="dpme_projects">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="country" ColumnName="country" />
+          <ScalarProperty Name="location" ColumnName="location" />
+          <ScalarProperty Name="client" ColumnName="client" />
+          <ScalarProperty Name="client_contact" ColumnName="client_contact" />
+          <ScalarProperty Name="client_what" ColumnName="client_what" />
+          <ScalarProperty Name="owner" ColumnName="owner" />
+          <ScalarProperty Name="owner_contact" ColumnName="owner_contact" />
+          <ScalarProperty Name="conslt" ColumnName="conslt" />
+          <ScalarProperty Name="conslt_contact" ColumnName="conslt_contact" />
+          <ScalarProperty Name="planguage" ColumnName="planguage" />
+          <ScalarProperty Name="plevel" ColumnName="plevel" />
+          <ScalarProperty Name="draw_scale" ColumnName="draw_scale" />
+          <ScalarProperty Name="scale" ColumnName="scale" />
+          <ScalarProperty Name="DrawingsSizeID" ColumnName="DrawingsSizeID" />
+          <ScalarProperty Name="similars" ColumnName="similars" />
+          <ScalarProperty Name="stage" ColumnName="stage" />
+          <ScalarProperty Name="date_Entering" ColumnName="date_Entering" />
+          <ScalarProperty Name="date_in" ColumnName="date_in" />
+          <ScalarProperty Name="StartingDate" ColumnName="StartingDate" />
+          <ScalarProperty Name="date_due" ColumnName="date_due" />
+          <ScalarProperty Name="ExpectedFinishingDate" ColumnName="ExpectedFinishingDate" />
+          <ScalarProperty Name="manager" ColumnName="manager" />
+          <ScalarProperty Name="secr" ColumnName="secr" />
+          <ScalarProperty Name="coord" ColumnName="coord" />
+          <ScalarProperty Name="branch" ColumnName="branch" />
+          <ScalarProperty Name="lastupdate" ColumnName="lastupdate" />
+          <ScalarProperty Name="ContractValue" ColumnName="ContractValue" />
+          <ScalarProperty Name="ActualFinishingDate" ColumnName="ActualFinishingDate" />
+          <ScalarProperty Name="IsOldProject" ColumnName="IsOldProject" />
+          <ScalarProperty Name="EmployeeMasterWorkingGroupID" ColumnName="EmployeeMasterWorkingGroupID" />
+          <ScalarProperty Name="ConsultationServices" ColumnName="ConsultationServices" />
+          <ScalarProperty Name="ReceivedClientDocument" ColumnName="ReceivedClientDocument" />
+          <ScalarProperty Name="ClientDocumentReceivedDate" ColumnName="ClientDocumentReceivedDate" />
+          <ScalarProperty Name="ClientDocumentServerPath" ColumnName="ClientDocumentServerPath" />
+          <ScalarProperty Name="ClientRequest" ColumnName="ClientRequest" />
+          <ScalarProperty Name="Payment" ColumnName="Payment" />
+          <ScalarProperty Name="ContractCondition" ColumnName="ContractCondition" />
+          <ScalarProperty Name="MainOfficeContractPercentage" ColumnName="MainOfficeContractPercentage" />
+          <ScalarProperty Name="DesignDepartmentContractPercentage" ColumnName="DesignDepartmentContractPercentage" />
+          <ScalarProperty Name="BranchContractPercentage" ColumnName="BranchContractPercentage" />
+          <ScalarProperty Name="BranchID" ColumnName="BranchID" />
+          <ScalarProperty Name="CurrencyID" ColumnName="CurrencyID" />
+          <ScalarProperty Name="EquvWorkTypeID" ColumnName="EquvWorkTypeID" />
+          <ScalarProperty Name="ElectricEquivalentDrawingFee" ColumnName="ElectricEquivalentDrawingFee" />
+          <ScalarProperty Name="HvacEquivalentDrawingFee" ColumnName="HvacEquivalentDrawingFee" />
+          <ScalarProperty Name="PlumbingEquivalentDrawingFee" ColumnName="PlumbingEquivalentDrawingFee" />
+          <ScalarProperty Name="ContractDate" ColumnName="ContractDate" />
+          <ScalarProperty Name="DesignDepartmentReceivingDate" ColumnName="DesignDepartmentReceivingDate" />
+          <ScalarProperty Name="CurrencyExchangeRate" ColumnName="CurrencyExchangeRate" />
+          <ScalarProperty Name="Parent" ColumnName="Parent" />
+          <ScalarProperty Name="FieldOfWork" ColumnName="FieldOfWork" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Area" ColumnName="Area" />
+          <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+          <ScalarProperty Name="PinNo" ColumnName="PinNo" />
+          <ScalarProperty Name="Fees" ColumnName="Fees" />
+          <ScalarProperty Name="Due" ColumnName="Due" />
+          <ScalarProperty Name="RollID" ColumnName="RollID" />
+          <ScalarProperty Name="Serial" ColumnName="Serial" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="repPermitsLastStatus">
+      <EntityTypeMapping TypeName="FollowupDBModel.repPermitsLastStatus">
+        <MappingFragment StoreEntitySet="repPermitsLastStatus">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="permit_id" ColumnName="permit_id" />
+          <ScalarProperty Name="client_comments" ColumnName="client_comments" />
+          <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+          <ScalarProperty Name="PermitType" ColumnName="PermitType" />
+          <ScalarProperty Name="Scope" ColumnName="Scope" />
+          <ScalarProperty Name="Addreessee" ColumnName="Addreessee" />
+          <ScalarProperty Name="proj_ref" ColumnName="proj_ref" />
+          <ScalarProperty Name="proj_id" ColumnName="proj_id" />
+          <ScalarProperty Name="permit_type_id" ColumnName="permit_type_id" />
+          <ScalarProperty Name="permit_scope_id" ColumnName="permit_scope_id" />
+          <ScalarProperty Name="addressee_id" ColumnName="addressee_id" />
+          <ScalarProperty Name="contract_date" ColumnName="contract_date" />
+          <ScalarProperty Name="client_name" ColumnName="client_name" />
+          <ScalarProperty Name="progstart_date" ColumnName="progstart_date" />
+          <ScalarProperty Name="Last_Status" ColumnName="Last_Status" />
+          <ScalarProperty Name="Last_Status_Name" ColumnName="Last_Status_Name" />
+          <ScalarProperty Name="Last_Date" ColumnName="Last_Date" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="project_status" ColumnName="project_status" />
+          <ScalarProperty Name="project_status_name" ColumnName="project_status_name" />
+          <ScalarProperty Name="Last_Comment" ColumnName="Last_Comment" />
+          <ScalarProperty Name="building_name" ColumnName="building_name" />
+          <ScalarProperty Name="actual_finish_date" ColumnName="actual_finish_date" />
+          <ScalarProperty Name="css_style" ColumnName="css_style" />
+          <ScalarProperty Name="client_id" ColumnName="client_id" />
+          <ScalarProperty Name="Balance" ColumnName="Balance" />
+          <ScalarProperty Name="AllPermits" ColumnName="AllPermits" />
+          <ScalarProperty Name="AcceptedPermits" ColumnName="AcceptedPermits" />
+          <ScalarProperty Name="PermitTypeShortcut" ColumnName="PermitTypeShortcut" />
+          <ScalarProperty Name="division_id" ColumnName="division_id" />
+          <ScalarProperty Name="proj_area" ColumnName="proj_area" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sample_permitsstatus_subquery">
+      <EntityTypeMapping TypeName="FollowupDBModel.sample_permitsstatus_subquery">
+        <MappingFragment StoreEntitySet="sample_permitsstatus_subquery">
+          <ScalarProperty Name="permit_id" ColumnName="permit_id" />
+          <ScalarProperty Name="client_comments" ColumnName="client_comments" />
+          <ScalarProperty Name="proj_id" ColumnName="proj_id" />
+          <ScalarProperty Name="permit_type_id" ColumnName="permit_type_id" />
+          <ScalarProperty Name="permit_scope_id" ColumnName="permit_scope_id" />
+          <ScalarProperty Name="addressee_id" ColumnName="addressee_id" />
+          <ScalarProperty Name="status_id" ColumnName="status_id" />
+          <ScalarProperty Name="action_date" ColumnName="action_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_OurCompany">
+      <EntityTypeMapping TypeName="FollowupDBModel.vw_OurCompany">
+        <MappingFragment StoreEntitySet="vw_OurCompany">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Ar_CompnyName" ColumnName="Ar_CompnyName" />
+          <ScalarProperty Name="En_CompnyName" ColumnName="En_CompnyName" />
+          <ScalarProperty Name="NationalitiesID" ColumnName="NationalitiesID" />
+          <ScalarProperty Name="CompanyAddress" ColumnName="CompanyAddress" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="fax" ColumnName="fax" />
+          <ScalarProperty Name="Logo" ColumnName="Logo" />
+          <ScalarProperty Name="DPMEIsEncrypted" ColumnName="DPMEIsEncrypted" />
+          <ScalarProperty Name="DPMEAllowUpdate" ColumnName="DPMEAllowUpdate" />
+          <ScalarProperty Name="MaxUploadSize" ColumnName="MaxUploadSize" />
+          <ScalarProperty Name="MaxMessagesCount" ColumnName="MaxMessagesCount" />
+          <ScalarProperty Name="MsgTimerInterval" ColumnName="MsgTimerInterval" />
+          <ScalarProperty Name="FileServerPath" ColumnName="FileServerPath" />
+          <ScalarProperty Name="WebSite" ColumnName="WebSite" />
+          <ScalarProperty Name="Mail_Sign_En" ColumnName="Mail_Sign_En" />
+          <ScalarProperty Name="Mail_Sign_Ar" ColumnName="Mail_Sign_Ar" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vwAllCollected">
+      <EntityTypeMapping TypeName="FollowupDBModel.vwAllCollected">
+        <MappingFragment StoreEntitySet="vwAllCollected">
+          <ScalarProperty Name="proj_id" ColumnName="proj_id" />
+          <ScalarProperty Name="invoice_amount" ColumnName="invoice_amount" />
+          <ScalarProperty Name="invoice_date" ColumnName="invoice_date" />
+          <ScalarProperty Name="invoice_number" ColumnName="invoice_number" />
+          <ScalarProperty Name="worktype" ColumnName="worktype" />
+          <ScalarProperty Name="scope" ColumnName="scope" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vwClientMailling">
+      <EntityTypeMapping TypeName="FollowupDBModel.vwClientMailling">
+        <MappingFragment StoreEntitySet="vwClientMailling">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+          <ScalarProperty Name="Subject" ColumnName="Subject" />
+          <ScalarProperty Name="Purpose" ColumnName="Purpose" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="FromPerson" ColumnName="FromPerson" />
+          <ScalarProperty Name="FromCompany" ColumnName="FromCompany" />
+          <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+          <ScalarProperty Name="IsEmployee" ColumnName="IsEmployee" />
+          <ScalarProperty Name="ToDivision" ColumnName="ToDivision" />
+          <ScalarProperty Name="ToEmployee" ColumnName="ToEmployee" />
+          <ScalarProperty Name="ToBranch" ColumnName="ToBranch" />
+          <ScalarProperty Name="FromCompanyID" ColumnName="FromCompanyID" />
+          <ScalarProperty Name="FromPersonID" ColumnName="FromPersonID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vwDivisions">
+      <EntityTypeMapping TypeName="FollowupDBModel.vwDivisions">
+        <MappingFragment StoreEntitySet="vwDivisions">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="DivisionName" ColumnName="DivisionName" />
+          <ScalarProperty Name="DivisionTypeID" ColumnName="DivisionTypeID" />
+          <ScalarProperty Name="DivisionShortcutName" ColumnName="DivisionShortcutName" />
+          <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vwEmployees">
+      <EntityTypeMapping TypeName="FollowupDBModel.vwEmployees">
+        <MappingFragment StoreEntitySet="vwEmployees">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="Salary" ColumnName="Salary" />
+          <ScalarProperty Name="name_e" ColumnName="name_e" />
+          <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+          <ScalarProperty Name="DepartmentManager" ColumnName="DepartmentManager" />
+          <ScalarProperty Name="Division" ColumnName="Division" />
+          <ScalarProperty Name="DivisionManager" ColumnName="DivisionManager" />
+          <ScalarProperty Name="nationality" ColumnName="nationality" />
+          <ScalarProperty Name="SalaryGroupID" ColumnName="SalaryGroupID" />
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+          <ScalarProperty Name="EmploymentDate" ColumnName="EmploymentDate" />
+          <ScalarProperty Name="DateOfDeparture" ColumnName="DateOfDeparture" />
+          <ScalarProperty Name="FunctionalNamesID" ColumnName="FunctionalNamesID" />
+          <ScalarProperty Name="SpecializationsID" ColumnName="SpecializationsID" />
+          <ScalarProperty Name="EmployeesWorkingGroupsID" ColumnName="EmployeesWorkingGroupsID" />
+          <ScalarProperty Name="EmployeesWorkingGroupsManagerID" ColumnName="EmployeesWorkingGroupsManagerID" />
+          <ScalarProperty Name="EmployeeMasterWorkingGroupsID" ColumnName="EmployeeMasterWorkingGroupsID" />
+          <ScalarProperty Name="EmployeeMasterWorkingGroupsManagerID" ColumnName="EmployeeMasterWorkingGroupsManagerID" />
+          <ScalarProperty Name="EmployeeStatusID" ColumnName="EmployeeStatusID" />
+          <ScalarProperty Name="PersonalPhoto" ColumnName="PersonalPhoto" />
+          <ScalarProperty Name="OurCompanyID" ColumnName="OurCompanyID" />
+          <ScalarProperty Name="BranchManagerID" ColumnName="BranchManagerID" />
+          <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Signature" ColumnName="Signature" />
+          <ScalarProperty Name="SignaturePass" ColumnName="SignaturePass" />
+          <ScalarProperty Name="NameVoice" ColumnName="NameVoice" />
+          <ScalarProperty Name="SalaryDescription" ColumnName="SalaryDescription" />
+          <ScalarProperty Name="AccID" ColumnName="AccID" />
+          <ScalarProperty Name="Token" ColumnName="Token" />
+          <ScalarProperty Name="SignatureHTML" ColumnName="SignatureHTML" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vwLastActionLog">
+      <EntityTypeMapping TypeName="FollowupDBModel.vwLastActionLog">
+        <MappingFragment StoreEntitySet="vwLastActionLog">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="permit_id" ColumnName="permit_id" />
+          <ScalarProperty Name="status_id" ColumnName="status_id" />
+          <ScalarProperty Name="action_date" ColumnName="action_date" />
+          <ScalarProperty Name="comment" ColumnName="comment" />
+          <ScalarProperty Name="proj_id" ColumnName="proj_id" />
+          <ScalarProperty Name="DurDays" ColumnName="DurDays" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vwLastPlan">
+      <EntityTypeMapping TypeName="FollowupDBModel.vwLastPlan">
+        <MappingFragment StoreEntitySet="vwLastPlan">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="TaskTypeID" ColumnName="TaskTypeID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="LastPlan_ProgressPerc" ColumnName="LastPlan_ProgressPerc" />
+          <ScalarProperty Name="LastPlan_Date" ColumnName="LastPlan_Date" />
+          <ScalarProperty Name="LastPlan_ID" ColumnName="LastPlan_ID" />
+          <ScalarProperty Name="LastPlan_TaskID" ColumnName="LastPlan_TaskID" />
+          <ScalarProperty Name="LastPlan_Periority" ColumnName="LastPlan_Periority" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vwNextPlan">
+      <EntityTypeMapping TypeName="FollowupDBModel.vwNextPlan">
+        <MappingFragment StoreEntitySet="vwNextPlan">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="TaskTypeID" ColumnName="TaskTypeID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="NextPlan_ProgressPerc" ColumnName="NextPlan_ProgressPerc" />
+          <ScalarProperty Name="NextPlan_Date" ColumnName="NextPlan_Date" />
+          <ScalarProperty Name="NextPlan_ID" ColumnName="NextPlan_ID" />
+          <ScalarProperty Name="NextPlan_TaskID" ColumnName="NextPlan_TaskID" />
+          <ScalarProperty Name="NextPlan_Periority" ColumnName="NextPlan_Periority" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vwPermitsByStatus">
+      <EntityTypeMapping TypeName="FollowupDBModel.vwPermitsByStatus">
+        <MappingFragment StoreEntitySet="vwPermitsByStatus">
+          <ScalarProperty Name="proj_id" ColumnName="proj_id" />
+          <ScalarProperty Name="status_id" ColumnName="status_id" />
+          <ScalarProperty Name="CountPermit" ColumnName="CountPermit" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vwPermitsLastStatus">
+      <EntityTypeMapping TypeName="FollowupDBModel.vwPermitsLastStatus">
+        <MappingFragment StoreEntitySet="vwPermitsLastStatus">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="permit_id" ColumnName="permit_id" />
+          <ScalarProperty Name="client_comments" ColumnName="client_comments" />
+          <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+          <ScalarProperty Name="PermitType" ColumnName="PermitType" />
+          <ScalarProperty Name="Scope" ColumnName="Scope" />
+          <ScalarProperty Name="Addreessee" ColumnName="Addreessee" />
+          <ScalarProperty Name="proj_ref" ColumnName="proj_ref" />
+          <ScalarProperty Name="proj_id" ColumnName="proj_id" />
+          <ScalarProperty Name="permit_type_id" ColumnName="permit_type_id" />
+          <ScalarProperty Name="permit_scope_id" ColumnName="permit_scope_id" />
+          <ScalarProperty Name="addressee_id" ColumnName="addressee_id" />
+          <ScalarProperty Name="contract_date" ColumnName="contract_date" />
+          <ScalarProperty Name="client_name" ColumnName="client_name" />
+          <ScalarProperty Name="progstart_date" ColumnName="progstart_date" />
+          <ScalarProperty Name="Last_Status" ColumnName="Last_Status" />
+          <ScalarProperty Name="Last_Status_Name" ColumnName="Last_Status_Name" />
+          <ScalarProperty Name="Last_Date" ColumnName="Last_Date" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="comment" ColumnName="comment" />
+          <ScalarProperty Name="building_name" ColumnName="building_name" />
+          <ScalarProperty Name="DurDays" ColumnName="DurDays" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vwPlanDatasource">
+      <EntityTypeMapping TypeName="FollowupDBModel.vwPlanDatasource">
+        <MappingFragment StoreEntitySet="vwPlanDatasource">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="permit_id" ColumnName="permit_id" />
+          <ScalarProperty Name="client_comments" ColumnName="client_comments" />
+          <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+          <ScalarProperty Name="PermitType" ColumnName="PermitType" />
+          <ScalarProperty Name="Scope" ColumnName="Scope" />
+          <ScalarProperty Name="Addreessee" ColumnName="Addreessee" />
+          <ScalarProperty Name="proj_ref" ColumnName="proj_ref" />
+          <ScalarProperty Name="proj_id" ColumnName="proj_id" />
+          <ScalarProperty Name="permit_type_id" ColumnName="permit_type_id" />
+          <ScalarProperty Name="permit_scope_id" ColumnName="permit_scope_id" />
+          <ScalarProperty Name="addressee_id" ColumnName="addressee_id" />
+          <ScalarProperty Name="contract_date" ColumnName="contract_date" />
+          <ScalarProperty Name="client_name" ColumnName="client_name" />
+          <ScalarProperty Name="progstart_date" ColumnName="progstart_date" />
+          <ScalarProperty Name="Last_Status" ColumnName="Last_Status" />
+          <ScalarProperty Name="Last_Status_Name" ColumnName="Last_Status_Name" />
+          <ScalarProperty Name="Last_Date" ColumnName="Last_Date" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="project_status" ColumnName="project_status" />
+          <ScalarProperty Name="project_status_name" ColumnName="project_status_name" />
+          <ScalarProperty Name="Last_Comment" ColumnName="Last_Comment" />
+          <ScalarProperty Name="building_name" ColumnName="building_name" />
+          <ScalarProperty Name="actual_finish_date" ColumnName="actual_finish_date" />
+          <ScalarProperty Name="css_style" ColumnName="css_style" />
+          <ScalarProperty Name="client_id" ColumnName="client_id" />
+          <ScalarProperty Name="PermitTypeShortcut" ColumnName="PermitTypeShortcut" />
+          <ScalarProperty Name="division_id" ColumnName="division_id" />
+          <ScalarProperty Name="LastPlan_TaskName" ColumnName="LastPlan_TaskName" />
+          <ScalarProperty Name="LastPlan_ProgressPerc" ColumnName="LastPlan_ProgressPerc" />
+          <ScalarProperty Name="LastPlan_Date" ColumnName="LastPlan_Date" />
+          <ScalarProperty Name="TaskTypeID" ColumnName="TaskTypeID" />
+          <ScalarProperty Name="NextPlan_TaskName" ColumnName="NextPlan_TaskName" />
+          <ScalarProperty Name="NextPlan_ProgressPerc" ColumnName="NextPlan_ProgressPerc" />
+          <ScalarProperty Name="NextPlan_Date" ColumnName="NextPlan_Date" />
+          <ScalarProperty Name="NextPlan_ID" ColumnName="NextPlan_ID" />
+          <ScalarProperty Name="LastPlan_ID" ColumnName="LastPlan_ID" />
+          <ScalarProperty Name="LastPlan_TaskID" ColumnName="LastPlan_TaskID" />
+          <ScalarProperty Name="NextPlan_TaskID" ColumnName="NextPlan_TaskID" />
+          <ScalarProperty Name="LastPlan_PlanHours" ColumnName="LastPlan_PlanHours" />
+          <ScalarProperty Name="NextPlan_PlanHours" ColumnName="NextPlan_PlanHours" />
+          <ScalarProperty Name="NextPlan_Periority" ColumnName="NextPlan_Periority" />
+          <ScalarProperty Name="LastPlan_Periority" ColumnName="LastPlan_Periority" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vwProjectBalance">
+      <EntityTypeMapping TypeName="FollowupDBModel.vwProjectBalance">
+        <MappingFragment StoreEntitySet="vwProjectBalance">
+          <ScalarProperty Name="sn" ColumnName="sn" />
+          <ScalarProperty Name="TotalCollected" ColumnName="TotalCollected" />
+          <ScalarProperty Name="ToTalFees" ColumnName="ToTalFees" />
+          <ScalarProperty Name="Balance" ColumnName="Balance" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vwProjectRequirements">
+      <EntityTypeMapping TypeName="FollowupDBModel.vwProjectRequirements">
+        <MappingFragment StoreEntitySet="vwProjectRequirements">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="RequuirementName" ColumnName="RequuirementName" />
+          <ScalarProperty Name="PermitName" ColumnName="PermitName" />
+          <ScalarProperty Name="Scope" ColumnName="Scope" />
+          <ScalarProperty Name="proj_id" ColumnName="proj_id" />
+          <ScalarProperty Name="proj_ref" ColumnName="proj_ref" />
+          <ScalarProperty Name="proj_name" ColumnName="proj_name" />
+          <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+          <ScalarProperty Name="action_date" ColumnName="action_date" />
+          <ScalarProperty Name="LastComment" ColumnName="LastComment" />
+          <ScalarProperty Name="next_followup_date" ColumnName="next_followup_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vwProjectsView">
+      <EntityTypeMapping TypeName="FollowupDBModel.vwProjectsView">
+        <MappingFragment StoreEntitySet="vwProjectsView">
+          <ScalarProperty Name="sn" ColumnName="sn" />
+          <ScalarProperty Name="proj_name" ColumnName="proj_name" />
+          <ScalarProperty Name="proj_ref" ColumnName="proj_ref" />
+          <ScalarProperty Name="building_name" ColumnName="building_name" />
+          <ScalarProperty Name="proj_area" ColumnName="proj_area" />
+          <ScalarProperty Name="proj_floors" ColumnName="proj_floors" />
+          <ScalarProperty Name="discplns_list" ColumnName="discplns_list" />
+          <ScalarProperty Name="progress_stage" ColumnName="progress_stage" />
+          <ScalarProperty Name="proj_deliverable" ColumnName="proj_deliverable" />
+          <ScalarProperty Name="dpme_projid" ColumnName="dpme_projid" />
+          <ScalarProperty Name="location_id" ColumnName="location_id" />
+          <ScalarProperty Name="usag_id" ColumnName="usag_id" />
+          <ScalarProperty Name="category_id" ColumnName="category_id" />
+          <ScalarProperty Name="type_id" ColumnName="type_id" />
+          <ScalarProperty Name="scope_id" ColumnName="scope_id" />
+          <ScalarProperty Name="status_id" ColumnName="status_id" />
+          <ScalarProperty Name="proj_client_id" ColumnName="proj_client_id" />
+          <ScalarProperty Name="AllPermitsCount" ColumnName="AllPermitsCount" />
+          <ScalarProperty Name="AcceptedPermits" ColumnName="AcceptedPermits" />
+          <ScalarProperty Name="client_name" ColumnName="client_name" />
+          <ScalarProperty Name="qat_cities_list" ColumnName="qat_cities_list" />
+          <ScalarProperty Name="project_usage_list" ColumnName="project_usage_list" />
+          <ScalarProperty Name="project_category_list" ColumnName="project_category_list" />
+          <ScalarProperty Name="proj_types_list" ColumnName="proj_types_list" />
+          <ScalarProperty Name="proj_workscope_list" ColumnName="proj_workscope_list" />
+          <ScalarProperty Name="proj_workscope_list_1" ColumnName="proj_workscope_list_1" />
+          <ScalarProperty Name="proj_status_list" ColumnName="proj_status_list" />
+          <ScalarProperty Name="InBrogressPermits" ColumnName="InBrogressPermits" />
+          <ScalarProperty Name="DaysFromExpDes" ColumnName="DaysFromExpDes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vwPVPermits">
+      <EntityTypeMapping TypeName="FollowupDBModel.vwPVPermits">
+        <MappingFragment StoreEntitySet="vwPVPermits">
+          <ScalarProperty Name="log_status" ColumnName="log_status" />
+          <ScalarProperty Name="log_date" ColumnName="log_date" />
+          <ScalarProperty Name="log_comment" ColumnName="log_comment" />
+          <ScalarProperty Name="permit_id" ColumnName="permit_id" />
+          <ScalarProperty Name="permit_client_comment" ColumnName="permit_client_comment" />
+          <ScalarProperty Name="addressee" ColumnName="addressee" />
+          <ScalarProperty Name="permit_type" ColumnName="permit_type" />
+          <ScalarProperty Name="permit_scope" ColumnName="permit_scope" />
+          <ScalarProperty Name="project_name" ColumnName="project_name" />
+          <ScalarProperty Name="project_ref" ColumnName="project_ref" />
+          <ScalarProperty Name="project_category" ColumnName="project_category" />
+          <ScalarProperty Name="client_name" ColumnName="client_name" />
+          <ScalarProperty Name="client_id" ColumnName="client_id" />
+          <ScalarProperty Name="fees_design" ColumnName="fees_design" />
+          <ScalarProperty Name="fees_supervs" ColumnName="fees_supervs" />
+          <ScalarProperty Name="fees_study" ColumnName="fees_study" />
+          <ScalarProperty Name="fees_total" ColumnName="fees_total" />
+          <ScalarProperty Name="balance_design" ColumnName="balance_design" />
+          <ScalarProperty Name="balance_study" ColumnName="balance_study" />
+          <ScalarProperty Name="balance_sup" ColumnName="balance_sup" />
+          <ScalarProperty Name="balance_total" ColumnName="balance_total" />
+          <ScalarProperty Name="payment_sup_fees" ColumnName="payment_sup_fees" />
+          <ScalarProperty Name="payment_sup_type" ColumnName="payment_sup_type" />
+          <ScalarProperty Name="payment_study_down" ColumnName="payment_study_down" />
+          <ScalarProperty Name="payment_study_down_cond" ColumnName="payment_study_down_cond" />
+          <ScalarProperty Name="payment_study_first" ColumnName="payment_study_first" />
+          <ScalarProperty Name="payment_study_first_cond" ColumnName="payment_study_first_cond" />
+          <ScalarProperty Name="payment_design_down" ColumnName="payment_design_down" />
+          <ScalarProperty Name="payment_design_down_cond" ColumnName="payment_design_down_cond" />
+          <ScalarProperty Name="payment_design_first" ColumnName="payment_design_first" />
+          <ScalarProperty Name="payment_design_first_cond" ColumnName="payment_design_first_cond" />
+          <ScalarProperty Name="payment_design_second" ColumnName="payment_design_second" />
+          <ScalarProperty Name="payment_design_second_cond" ColumnName="payment_design_second_cond" />
+          <ScalarProperty Name="payment_design_third" ColumnName="payment_design_third" />
+          <ScalarProperty Name="payment_design_third_cond" ColumnName="payment_design_third_cond" />
+          <ScalarProperty Name="payment_design_fourth" ColumnName="payment_design_fourth" />
+          <ScalarProperty Name="payment_design_fourth_cond" ColumnName="payment_design_fourth_cond" />
+          <ScalarProperty Name="payment_design_fifth" ColumnName="payment_design_fifth" />
+          <ScalarProperty Name="payment_design_fifth_cond" ColumnName="payment_design_fifth_cond" />
+          <ScalarProperty Name="payment_design_sixth" ColumnName="payment_design_sixth" />
+          <ScalarProperty Name="payment_design_sixth_cond" ColumnName="payment_design_sixth_cond" />
+          <ScalarProperty Name="payment_design_seven" ColumnName="payment_design_seven" />
+          <ScalarProperty Name="payment_design_seven_cond" ColumnName="payment_design_seven_cond" />
+          <ScalarProperty Name="payment_instsupvs_down" ColumnName="payment_instsupvs_down" />
+          <ScalarProperty Name="payment_instsupvs_down_cond" ColumnName="payment_instsupvs_down_cond" />
+          <ScalarProperty Name="payment_instsupvs_first" ColumnName="payment_instsupvs_first" />
+          <ScalarProperty Name="payment_instsupvs_first_cond" ColumnName="payment_instsupvs_first_cond" />
+          <ScalarProperty Name="payment_instsupvs_second" ColumnName="payment_instsupvs_second" />
+          <ScalarProperty Name="payment_instsupvs_second_cond" ColumnName="payment_instsupvs_second_cond" />
+          <ScalarProperty Name="payment_instsupvs_third" ColumnName="payment_instsupvs_third" />
+          <ScalarProperty Name="payment_instsupvs_third_cond" ColumnName="payment_instsupvs_third_cond" />
+          <ScalarProperty Name="payment_instsupvs_fourth" ColumnName="payment_instsupvs_fourth" />
+          <ScalarProperty Name="payment_instsupvs_fourth_cond" ColumnName="payment_instsupvs_fourth_cond" />
+          <ScalarProperty Name="payment_instsupvs_fifth" ColumnName="payment_instsupvs_fifth" />
+          <ScalarProperty Name="payment_instsupvs_fifth_cond" ColumnName="payment_instsupvs_fifth_cond" />
+          <ScalarProperty Name="payment_instsupvs_sixth" ColumnName="payment_instsupvs_sixth" />
+          <ScalarProperty Name="payment_instsupvs_sixth_cond" ColumnName="payment_instsupvs_sixth_cond" />
+          <ScalarProperty Name="payment_instsupvs_seven" ColumnName="payment_instsupvs_seven" />
+          <ScalarProperty Name="payment_instsupvs_seven_cond" ColumnName="payment_instsupvs_seven_cond" />
+          <ScalarProperty Name="schedule_contract_date" ColumnName="schedule_contract_date" />
+          <ScalarProperty Name="schedule_cont_Expctd_date" ColumnName="schedule_cont_Expctd_date" />
+          <ScalarProperty Name="schedule_document_recv_date" ColumnName="schedule_document_recv_date" />
+          <ScalarProperty Name="schedule_down_recv_date" ColumnName="schedule_down_recv_date" />
+          <ScalarProperty Name="schedule_progstart_date" ColumnName="schedule_progstart_date" />
+          <ScalarProperty Name="schedule_planed_date" ColumnName="schedule_planed_date" />
+          <ScalarProperty Name="schedule_actual_finish_date" ColumnName="schedule_actual_finish_date" />
+          <ScalarProperty Name="schedule_dev_days" ColumnName="schedule_dev_days" />
+          <ScalarProperty Name="project_scope" ColumnName="project_scope" />
+          <ScalarProperty Name="project_usage" ColumnName="project_usage" />
+          <ScalarProperty Name="project_type" ColumnName="project_type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="acc_employee_insert" FunctionName="FollowupDBModel.Store.acc_employee_insert" />
+    <FunctionImportMapping FunctionImportName="check_employee_access" FunctionName="FollowupDBModel.Store.check_employee_access">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FollowupDBModel.check_employee_access_Result">
+          <ScalarProperty Name="emp_id" ColumnName="emp_id" />
+          <ScalarProperty Name="emp_role" ColumnName="emp_role" />
+          <ScalarProperty Name="emp_username" ColumnName="emp_username" />
+          <ScalarProperty Name="emp_password" ColumnName="emp_password" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CountDesignBalance" FunctionName="FollowupDBModel.Store.CountDesignBalance" />
+    <FunctionImportMapping FunctionImportName="CountsupervisionBalance" FunctionName="FollowupDBModel.Store.CountsupervisionBalance" />
+    <FunctionImportMapping FunctionImportName="Delete_proj_Conditions" FunctionName="FollowupDBModel.Store.Delete_proj_Conditions" />
+    <FunctionImportMapping FunctionImportName="Delete_proj_permits" FunctionName="FollowupDBModel.Store.Delete_proj_permits" />
+    <FunctionImportMapping FunctionImportName="Delete_proj_permits_Test" FunctionName="FollowupDBModel.Store.Delete_proj_permits_Test" />
+    <FunctionImportMapping FunctionImportName="Delete_proj_requirements" FunctionName="FollowupDBModel.Store.Delete_proj_requirements" />
+    <FunctionImportMapping FunctionImportName="Delete_proj_schedule" FunctionName="FollowupDBModel.Store.Delete_proj_schedule" />
+    <FunctionImportMapping FunctionImportName="get_employee_accessinfo" FunctionName="FollowupDBModel.Store.get_employee_accessinfo" />
+    <FunctionImportMapping FunctionImportName="getPlanTimeByDate" FunctionName="FollowupDBModel.Store.getPlanTimeByDate" />
+    <FunctionImportMapping FunctionImportName="GetProjectsDevs" FunctionName="FollowupDBModel.Store.GetProjectsDevs">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FollowupDBModel.GetProjectsDevs_Result">
+          <ScalarProperty Name="proj_name" ColumnName="proj_name" />
+          <ScalarProperty Name="proj_ref" ColumnName="proj_ref" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetProjectsPayments" FunctionName="FollowupDBModel.Store.GetProjectsPayments" />
+    <FunctionImportMapping FunctionImportName="GetProjectsPaymentsCollectedSu" FunctionName="FollowupDBModel.Store.GetProjectsPaymentsCollectedSu" />
+    <FunctionImportMapping FunctionImportName="GetProjectsPaymentsNew" FunctionName="FollowupDBModel.Store.GetProjectsPaymentsNew" />
+    <FunctionImportMapping FunctionImportName="GetProjectsPaymentsNewSu" FunctionName="FollowupDBModel.Store.GetProjectsPaymentsNewSu" />
+    <FunctionImportMapping FunctionImportName="insert_proj_designpayment" FunctionName="FollowupDBModel.Store.insert_proj_designpayment" />
+    <FunctionImportMapping FunctionImportName="insert_proj_desinvoice" FunctionName="FollowupDBModel.Store.insert_proj_desinvoice" />
+    <FunctionImportMapping FunctionImportName="insert_proj_fees" FunctionName="FollowupDBModel.Store.insert_proj_fees" />
+    <FunctionImportMapping FunctionImportName="insert_proj_instsuppayment" FunctionName="FollowupDBModel.Store.insert_proj_instsuppayment" />
+    <FunctionImportMapping FunctionImportName="insert_proj_requirements" FunctionName="FollowupDBModel.Store.insert_proj_requirements" />
+    <FunctionImportMapping FunctionImportName="insert_proj_studyinvoice" FunctionName="FollowupDBModel.Store.insert_proj_studyinvoice" />
+    <FunctionImportMapping FunctionImportName="insert_proj_studynewinvoice" FunctionName="FollowupDBModel.Store.insert_proj_studynewinvoice" />
+    <FunctionImportMapping FunctionImportName="insert_proj_studypayment" FunctionName="FollowupDBModel.Store.insert_proj_studypayment" />
+    <FunctionImportMapping FunctionImportName="insert_proj_supercolcinvoice" FunctionName="FollowupDBModel.Store.insert_proj_supercolcinvoice" />
+    <FunctionImportMapping FunctionImportName="insert_proj_superinvoice" FunctionName="FollowupDBModel.Store.insert_proj_superinvoice" />
+    <FunctionImportMapping FunctionImportName="insert_proj_supinvoice" FunctionName="FollowupDBModel.Store.insert_proj_supinvoice" />
+    <FunctionImportMapping FunctionImportName="insert_proj_suppayment" FunctionName="FollowupDBModel.Store.insert_proj_suppayment" />
+    <FunctionImportMapping FunctionImportName="new_client_insert" FunctionName="FollowupDBModel.Store.new_client_insert" />
+    <FunctionImportMapping FunctionImportName="new_employee_insert" FunctionName="FollowupDBModel.Store.new_employee_insert" />
+    <FunctionImportMapping FunctionImportName="PERMITSUPDATE" FunctionName="FollowupDBModel.Store.PERMITSUPDATE" />
+    <FunctionImportMapping FunctionImportName="SelectProjectInfo" FunctionName="FollowupDBModel.Store.SelectProjectInfo" />
+    <FunctionImportMapping FunctionImportName="select_project_payment" FunctionName="FollowupDBModel.Store.select_project_payment" />
+    <FunctionImportMapping FunctionImportName="select_projects_payments" FunctionName="FollowupDBModel.Store.select_projects_payments" />
+    <FunctionImportMapping FunctionImportName="select_project_status" FunctionName="FollowupDBModel.Store.select_project_status" />
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="FollowupDBModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="FollowupDBModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="FollowupDBModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="FollowupDBModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FollowupDBModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="FollowupDBModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FollowupDBModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="FollowupDBModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="FollowupDBModel.Store.sp_upgraddiagrams" />
+    <FunctionImportMapping FunctionImportName="spClientMailngTo" FunctionName="FollowupDBModel.Store.spClientMailngTo" />
+    <FunctionImportMapping FunctionImportName="update_proj_permits_New" FunctionName="FollowupDBModel.Store.update_proj_permits_New" />
+    <FunctionImportMapping FunctionImportName="update_proj_permits_NewTT" FunctionName="FollowupDBModel.Store.update_proj_permits_NewTT" />
+    <FunctionImportMapping FunctionImportName="update_proj_permits_test" FunctionName="FollowupDBModel.Store.update_proj_permits_test" />
+    <FunctionImportMapping FunctionImportName="updatepermitstatus" FunctionName="FollowupDBModel.Store.updatepermitstatus" />
+  </EntityContainerMapping>
+</Mapping>

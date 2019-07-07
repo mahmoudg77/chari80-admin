@@ -1,0 +1,52 @@
+﻿@model Chair80CP.Models.sec_users_roles
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    @ViewBag.Title
+                </h2>
+                <u class="header-dropdown m-r--5">
+                     
+                </u>
+
+            </div>
+            <div class="body">
+
+<div>
+    
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.sec_roles.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sec_roles.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sec_users.pwd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sec_users.pwd)
+        </dd>
+
+    </dl>
+</div>
+     <p>
+        @Html.ActionLink("Edit", "Edit", "UserRoles", new { id = Model.id }, new { @class = "btn btn-success btn-md edit" })
+        @Html.ActionLink("Back to List", "Index", "UserRoles", new { }, new { @class = "btn btn-primary btn-md back" })
+    </p>
+
+</div>
+
+</div>
+</div>
+
+ 

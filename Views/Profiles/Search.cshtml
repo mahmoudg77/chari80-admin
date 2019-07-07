@@ -1,0 +1,26 @@
+﻿ @model List<Chair80CP.Models.vwProfile>
+
+@using Chair80CP.Libs
+
+<div class="account-select">
+
+<input type="hidden" name="account_id" value="" />
+
+@foreach(var itm in Model)
+{
+    <div class="info-box select-account" data-id="@itm.id">
+        <div class="icon bg-indigo">
+            
+                <img src="@Settings.Get("api_url")@itm.Profile_Image" style="width:100%;height:100%" />
+            
+        </div>
+        <div class="content">
+            <div class="text"><strong>@itm.first_name  @itm.last_name</strong></div>
+            <div class="text">Cars: @itm.DriveVehicles</div>
+        </div>
+    </div>
+ 
+}
+
+</div>
+

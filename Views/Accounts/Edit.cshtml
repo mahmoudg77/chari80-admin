@@ -1,0 +1,169 @@
+﻿@model Chair80CP.Models.tbl_accounts
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    @ViewBag.Title
+                </h2>
+                <ul class="header-dropdown m-r--5">
+                    <li>
+
+                    </li>
+                </ul>
+            </div>
+            <div class="body">
+                <h2 class="card-inside-title">@ViewBag.Title</h2>
+                <div class="row clearfix">
+                    <div class="col-sm-12">
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.id)
+
+		<label for="first_name">first_name</label>
+        <div class="form-group">
+			<div class="form-line">
+
+ 
+                @Html.EditorFor(model => model.first_name, new { htmlAttributes = new { @class = "form-control",placeholder="first_name" } })
+                @Html.ValidationMessageFor(model => model.first_name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+		<label for="last_name">last_name</label>
+        <div class="form-group">
+			<div class="form-line">
+
+ 
+                @Html.EditorFor(model => model.last_name, new { htmlAttributes = new { @class = "form-control",placeholder="last_name" } })
+                @Html.ValidationMessageFor(model => model.last_name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+		<label for="date_of_birth">date_of_birth</label>
+        <div class="form-group">
+			<div class="form-line">
+
+ 
+                @Html.EditorFor(model => model.date_of_birth, new { htmlAttributes = new { @class = "form-control",placeholder="date_of_birth" } })
+                @Html.ValidationMessageFor(model => model.date_of_birth, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+		<label for="mobile">mobile</label>
+        <div class="form-group">
+			<div class="form-line">
+
+ 
+                @Html.EditorFor(model => model.mobile, new { htmlAttributes = new { @class = "form-control",placeholder="mobile" } })
+                @Html.ValidationMessageFor(model => model.mobile, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+		<label for="email">email</label>
+        <div class="form-group">
+			<div class="form-line">
+
+ 
+                @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control",placeholder="email" } })
+                @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+		<label for="register_time">register_time</label>
+        <div class="form-group">
+			<div class="form-line">
+
+ 
+                @Html.EditorFor(model => model.register_time, new { htmlAttributes = new { @class = "form-control",placeholder="register_time" } })
+                @Html.ValidationMessageFor(model => model.register_time, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+		<label for="is_deleted">is_deleted</label>
+        <div class="form-group">
+			<div class="form-line">
+
+ 
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.is_deleted)
+                    @Html.ValidationMessageFor(model => model.is_deleted, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+		<label for="gender_id">gender_id</label>
+        <div class="form-group">
+			<div class="form-line">
+
+ 
+                @Html.DropDownList("gender_id", null, htmlAttributes: new {@class = "form-control show-tick" ,placeholder="gender_id" })
+                @Html.ValidationMessageFor(model => model.gender_id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+		<label for="id_no">id_no</label>
+        <div class="form-group">
+			<div class="form-line">
+
+ 
+                @Html.EditorFor(model => model.id_no, new { htmlAttributes = new { @class = "form-control",placeholder="id_no" } })
+                @Html.ValidationMessageFor(model => model.id_no, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+		<label for="driver_license_no">driver_license_no</label>
+        <div class="form-group">
+			<div class="form-line">
+
+ 
+                @Html.EditorFor(model => model.driver_license_no, new { htmlAttributes = new { @class = "form-control",placeholder="driver_license_no" } })
+                @Html.ValidationMessageFor(model => model.driver_license_no, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+		<label for="city_id">city_id</label>
+        <div class="form-group">
+			<div class="form-line">
+
+ 
+                @Html.DropDownList("city_id", null, htmlAttributes: new {@class = "form-control show-tick" ,placeholder="city_id" })
+                @Html.ValidationMessageFor(model => model.city_id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+		<label for="country_id">country_id</label>
+        <div class="form-group">
+			<div class="form-line">
+
+ 
+                @Html.DropDownList("country_id", null, htmlAttributes: new {@class = "form-control show-tick" ,placeholder="country_id" })
+                @Html.ValidationMessageFor(model => model.country_id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-actions no-color">
+            <button type="submit" class="btn btn-success save">Save</button>
+            @Html.ActionLink("Back to List", "Index", new { }, new { @class = "btn btn-primary back" })
+        </div>
+   
+}
+
+   </div>
+                </div>
+
+
+
+              
+                   </div>
+</div>
+</div>
+</div>

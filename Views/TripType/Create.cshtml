@@ -1,0 +1,56 @@
+﻿@model Chair80CP.Models.trip_types
+
+@{
+    ViewBag.Title = "Create/Trip Type";
+}
+
+
+
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    @ViewBag.Title
+                </h2>
+                <ul class="header-dropdown m-r--5">
+                    <li>
+
+                    </li>
+                </ul>
+            </div>
+            <div class="body">
+                <h2 class="card-inside-title">@ViewBag.Title</h2>
+                <div class="row clearfix">
+                    <div class="col-sm-12">
+
+
+                        @using (Html.BeginForm("Create", "TripType", FormMethod.Post, new { @class = "ajaxform" }))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            foreach (string lang in Chair80CP.BLL.GlobalData.Languages)
+                            {
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input type="text" class="form-control" name="name[@lang]" value="" placeholder="Name (@lang)" />
+                                    </div>
+                                </div>
+                            }
+
+                            <div class="form-action">
+                                    <button type="submit" class="btn btn-success create">Create</button>
+                                @Html.ActionLink("Back to List", "Index", "TripType", new { }, new { @class = "btn btn-primary back" })
+                            </div>
+                        }
+
+                        <div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

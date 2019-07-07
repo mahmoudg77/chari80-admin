@@ -1,0 +1,211 @@
+﻿@model Chair80CP.Models.trip_request_details
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    @ViewBag.Title
+                </h2>
+                <ul class="header-dropdown m-r--5">
+                    <li>
+
+                    </li>
+                </ul>
+            </div>
+            <div class="body">
+                <h2 class="card-inside-title">@ViewBag.Title</h2>
+                <div class="row clearfix">
+                    <div class="col-sm-12">
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.id)
+
+		<label for="trip_request_id">trip_request_id</label>
+        <div class="form-group">
+			<div class="form-line">
+
+ 
+                @Html.DropDownList("trip_request_id", null, htmlAttributes: new {@class = "form-control show-tick" ,placeholder="trip_request_id" })
+                @Html.ValidationMessageFor(model => model.trip_request_id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+		<label for="seats">seats</label>
+        <div class="form-group">
+			<div class="form-line">
+
+ 
+                @Html.EditorFor(model => model.seats, new { htmlAttributes = new { @class = "form-control",placeholder="seats" } })
+                @Html.ValidationMessageFor(model => model.seats, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+		<label for="start_at_date">start_at_date</label>
+        <div class="form-group">
+			<div class="form-line">
+
+ 
+                @Html.EditorFor(model => model.start_at_date, new { htmlAttributes = new { @class = "form-control",placeholder="start_at_date" } })
+                @Html.ValidationMessageFor(model => model.start_at_date, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+		<label for="start_at_time">start_at_time</label>
+        <div class="form-group">
+			<div class="form-line">
+
+ 
+                @Html.EditorFor(model => model.start_at_time, new { htmlAttributes = new { @class = "form-control",placeholder="start_at_time" } })
+                @Html.ValidationMessageFor(model => model.start_at_time, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+		<label for="from_lat">from_lat</label>
+        <div class="form-group">
+			<div class="form-line">
+
+ 
+                @Html.EditorFor(model => model.from_lat, new { htmlAttributes = new { @class = "form-control",placeholder="from_lat" } })
+                @Html.ValidationMessageFor(model => model.from_lat, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+		<label for="from_lng">from_lng</label>
+        <div class="form-group">
+			<div class="form-line">
+
+ 
+                @Html.EditorFor(model => model.from_lng, new { htmlAttributes = new { @class = "form-control",placeholder="from_lng" } })
+                @Html.ValidationMessageFor(model => model.from_lng, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+		<label for="from_plc">from_plc</label>
+        <div class="form-group">
+			<div class="form-line">
+
+ 
+                @Html.EditorFor(model => model.from_plc, new { htmlAttributes = new { @class = "form-control",placeholder="from_plc" } })
+                @Html.ValidationMessageFor(model => model.from_plc, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+		<label for="to_lat">to_lat</label>
+        <div class="form-group">
+			<div class="form-line">
+
+ 
+                @Html.EditorFor(model => model.to_lat, new { htmlAttributes = new { @class = "form-control",placeholder="to_lat" } })
+                @Html.ValidationMessageFor(model => model.to_lat, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+		<label for="to_lng">to_lng</label>
+        <div class="form-group">
+			<div class="form-line">
+
+ 
+                @Html.EditorFor(model => model.to_lng, new { htmlAttributes = new { @class = "form-control",placeholder="to_lng" } })
+                @Html.ValidationMessageFor(model => model.to_lng, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+		<label for="to_plc">to_plc</label>
+        <div class="form-group">
+			<div class="form-line">
+
+ 
+                @Html.EditorFor(model => model.to_plc, new { htmlAttributes = new { @class = "form-control",placeholder="to_plc" } })
+                @Html.ValidationMessageFor(model => model.to_plc, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+		<label for="gender_id">gender_id</label>
+        <div class="form-group">
+			<div class="form-line">
+
+ 
+                @Html.EditorFor(model => model.gender_id, new { htmlAttributes = new { @class = "form-control",placeholder="gender_id" } })
+                @Html.ValidationMessageFor(model => model.gender_id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+		<label for="seat_cost_from">seat_cost_from</label>
+        <div class="form-group">
+			<div class="form-line">
+
+ 
+                @Html.EditorFor(model => model.seat_cost_from, new { htmlAttributes = new { @class = "form-control",placeholder="seat_cost_from" } })
+                @Html.ValidationMessageFor(model => model.seat_cost_from, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+		<label for="seat_cost_to">seat_cost_to</label>
+        <div class="form-group">
+			<div class="form-line">
+
+ 
+                @Html.EditorFor(model => model.seat_cost_to, new { htmlAttributes = new { @class = "form-control",placeholder="seat_cost_to" } })
+                @Html.ValidationMessageFor(model => model.seat_cost_to, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+		<label for="trip_direction">trip_direction</label>
+        <div class="form-group">
+			<div class="form-line">
+
+ 
+                @Html.EditorFor(model => model.trip_direction, new { htmlAttributes = new { @class = "form-control",placeholder="trip_direction" } })
+                @Html.ValidationMessageFor(model => model.trip_direction, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+		<label for="is_active">is_active</label>
+        <div class="form-group">
+			<div class="form-line">
+
+ 
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.is_active)
+                    @Html.ValidationMessageFor(model => model.is_active, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+		<label for="booked">booked</label>
+        <div class="form-group">
+			<div class="form-line">
+
+ 
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.booked)
+                    @Html.ValidationMessageFor(model => model.booked, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-actions no-color">
+            <button type="submit" class="btn btn-success save">Save</button>
+            @Html.ActionLink("Back to List", "Index", new { }, new { @class = "btn btn-primary back" })
+        </div>
+   
+}
+
+   </div>
+                </div>
+
+
+
+              
+                   </div>
+</div>
+</div>
+</div>

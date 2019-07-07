@@ -1,0 +1,167 @@
+﻿@model IEnumerable<Chair80CP.Models.rptBooking>
+@using Chair80CP.Libs
+@{
+    ViewBag.Title = "Trip - Booking";
+}
+
+
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    @ViewBag.Title
+                </h2>
+            </div>
+            <div class="body">
+                <div class="table-responsive">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover js-basic-example dataTable">
+                            <thead>
+                                <tr>
+                                    @if (!ViewBag.SearchBy.Contains("id"))
+                                    {
+                                        <th>
+                                            Driver
+                                        </th>
+                                    }
+                                    <th>
+                                        Rider
+                                    </th>
+                                    <th>
+                                        Location
+                                    </th>
+                                    @if (!ViewBag.SearchBy.Contains("status"))
+                                    {
+
+                                        <th>
+                                            Status
+                                        </th>
+                                    }
+
+                                        <th>
+                                            Seat Cost
+                                        </th>
+
+
+                                        <th></th>
+                                    </tr>
+                            </thead>
+                            @foreach (var item in Model)
+                            {
+                            <tr>
+                                @if (!ViewBag.SearchBy.Contains("id"))
+                                {
+                                    <td>
+                                        <div class="info-box">
+                                            <div class="icon bg-green">
+                                                <img src="@Settings.Get("api_url")/img/crope/tbl_accounts/@item.rider_id/80x80/main-last.gif" class="img-circle img-profile">
+                                            </div>
+                                            <div class="content">
+                                                <div class="text">
+                                                    <a href="/Profiles/Details/@item.rider_id">
+                                                        @item.rider_name
+                                                    </a>
+                                                </div>
+                                                <div class="text">
+                                                <a href="tel:@item.rider_mobile"><i class="material-icons pull-left">call</i></a>
+                                                <a href="mailto:@item.rider_email"><i class="material-icons">email</i></a></div>
+                                            </div>
+                                        </div>
+
+                                    </td>
+                                }
+                                <td>
+                                    <div class="info-box">
+                                        <div class="icon bg-green">
+                                            <img src="@Settings.Get("api_url")/img/crope/tbl_accounts/@item.driver_id/80x80/main-last.gif" class="img-circle img-profile">
+                                        </div>
+                                        <div class="content">
+                                            <div class="text">
+                                                <a href="/Profiles/Details/@item.driver_id">
+                                                    @item.driver_name
+                                                </a>
+                                            </div>
+                                            <div class="text">
+                                                <a href="tel:@item.driver_mobile"><i class="material-icons">call</i></a>
+                                                <a href="mailto:@item.driver_email"><i class="material-icons">email</i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+
+
+
+                                    <a data-type="popup" class="modal-link" href="http://www.google.com/maps/dir/?api=1&origin=@item.from_plc&destination=@item.to_plc&travelmode=drive">View In Map</a>
+                                </td>
+                                @if (!ViewBag.SearchBy.Contains("status"))
+                                {
+                                    <td>
+                                        <div class="btn-group btn-group-xs trip-status">
+                                            <a href="#" class="btn btn-@(item.booked_at != null ? "success" : "defualt")">
+                                            Booked
+                                                <br/><span>@item.booked_at.Value.ToString("dd-MM HH:mm")</span>
+                                            </a>
+                                            @if (item.canceled_at != null)
+                                            {
+                                            <a href="#" class="btn btn-danger">
+                                                Rejected
+                                                <br /><span>@item.canceled_at.Value.ToString("dd-MM HH:mm")</span>
+                                            </a>
+                                            }
+                                            else
+                                            {
+                                            <a href="#" class="btn btn-@(item.reached_at != null ? "success" : "defualt")">
+                                                Reached
+                                                    <br /><span>@(item.reached_at != null? item.reached_at.Value.ToString("dd-MM HH:mm"): "-------")</span>
+                                                 
+                                            </a>
+                                                <a href="#" class="btn btn-@(item.start_at != null ? "success" : "defualt")">
+                                                    Started
+                                                    
+                                                        <br /><span>@(item.start_at != null?item.start_at.Value.ToString("dd-MM HH:mm"): "-------")</span>
+                                                    
+                                                </a>
+                                                <a href="#" class="btn btn-@(item.end_at != null ? "success" : "defualt")">
+                                                    Ended
+                                                  
+                                                        <br /><span>@(item.end_at != null?item.end_at.Value.ToString("dd-MM HH:mm"):"-------")</span>
+                                                     
+                                                </a>
+                                            }
+
+                                        </div>
+
+                                    </td>
+                                }
+
+                                    @*<td>
+                @item.to_plc
+            </td>*@
+                                    <td>
+                                        @item.seat_cost
+                                    </td>
+                                    @*<td>
+                <a href="/Vehicles/Details/@item.vehicle_id">
+                    <img src="@Settings.Get("api_url")/img/crope/tbl_vehicles/@item.vehicle_id/30x30/main-last.gif" class="img-circle img-profile">
+                    @item.vehicle
+                </a>
+            </td>*@
+
+                                    <td>
+                                        @Html.ActionLink("remove_red_eye", "Details", new { id = item.id }, new { @class = "btn material-icons details" })
+                                        @Html.ActionLink("delete", "Delete", new { id = item.id }, new { @class = "btn text-danger material-icons delete" })
+                                    </td>
+
+                                </tr>
+                            }
+
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

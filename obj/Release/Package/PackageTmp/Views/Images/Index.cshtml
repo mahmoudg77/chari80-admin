@@ -1,0 +1,18 @@
+﻿@model IEnumerable<Chair80CP.Models.tbl_images>
+@using Chair80CP.Libs
+
+<div class="row">
+    @{ 
+        var x = 0;
+    }
+    @foreach (var i in Model)
+    {
+
+        <a data-type="image" title="Vehicle Image" class="modal-link" href="@Settings.Get("api_url")/img/@ViewBag.style/@i.model_name/@i.model_id/original/main-@{@x}.gif">
+
+            <img class="img-thumbnail" src="@Settings.Get("api_url")/img/@ViewBag.style/@i.model_name/@i.model_id/@ViewBag.size/main-@{@x}.gif">
+        
+        </a>
+        x++;
+    }
+</div>

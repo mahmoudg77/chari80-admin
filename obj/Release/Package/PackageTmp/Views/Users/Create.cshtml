@@ -1,0 +1,141 @@
+﻿@model Chair80CP.Models.sec_users
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    @ViewBag.Title
+                </h2>
+                <ul class="header-dropdown m-r--5">
+                    <li>
+
+                    </li>
+                </ul>
+            </div>
+            <div class="body">
+                <h2 class="card-inside-title">Create</h2>
+                <div class="row clearfix">
+                    <div class="col-sm-12">
+                        @using (Html.BeginForm("Create", "Users", FormMethod.Post, new { @class = "ajaxform" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <label for="id">id</label>
+                            <div class="form-group">
+                                <div class="form-line">
+
+                                    @Html.DropDownList("id", null, htmlAttributes: new { @class = "form-control show-tick", placeholder = "id" })
+
+                                </div>
+                            </div>
+
+                            <label for="pwd">pwd</label>
+                            <div class="form-group">
+                                <div class="form-line">
+
+                                    @Html.EditorFor(model => model.pwd, new { htmlAttributes = new { @class = "form-control", placeholder = "pwd" } })
+
+                                </div>
+                            </div>
+
+                            <label for="reset_pwd_token">reset_pwd_token</label>
+                            <div class="form-group">
+                                <div class="form-line">
+
+                                    @Html.EditorFor(model => model.reset_pwd_token, new { htmlAttributes = new { @class = "form-control", placeholder = "reset_pwd_token" } })
+
+                                </div>
+                            </div>
+
+                            <label for="facebook_token">facebook_token</label>
+                            <div class="form-group">
+                                <div class="form-line">
+
+                                    @Html.EditorFor(model => model.facebook_token, new { htmlAttributes = new { @class = "form-control", placeholder = "facebook_token" } })
+
+                                </div>
+                            </div>
+
+                            <label for="twitter_token">twitter_token</label>
+                            <div class="form-group">
+                                <div class="form-line">
+
+                                    @Html.EditorFor(model => model.twitter_token, new { htmlAttributes = new { @class = "form-control", placeholder = "twitter_token" } })
+
+                                </div>
+                            </div>
+
+                            <label for="google_token">google_token</label>
+                            <div class="form-group">
+                                <div class="form-line">
+
+                                    @Html.EditorFor(model => model.google_token, new { htmlAttributes = new { @class = "form-control", placeholder = "google_token" } })
+
+                                </div>
+                            </div>
+
+                            <label for="instagram_token">instagram_token</label>
+                            <div class="form-group">
+                                <div class="form-line">
+
+                                    @Html.EditorFor(model => model.instagram_token, new { htmlAttributes = new { @class = "form-control", placeholder = "instagram_token" } })
+
+                                </div>
+                            </div>
+
+                            <label for="confirm_mail_token">confirm_mail_token</label>
+                            <div class="form-group">
+                                <div class="form-line">
+
+                                    @Html.EditorFor(model => model.confirm_mail_token, new { htmlAttributes = new { @class = "form-control", placeholder = "confirm_mail_token" } })
+
+                                </div>
+                            </div>
+
+                            <label for="mail_verified">mail_verified</label>
+                            <div class="form-group">
+                                <div class="form-line">
+
+                                    <input type="checkbox" id="mail_verified" name="mail_verified" class="filled-in">
+                                    <label for="mail_verified">mail_verified</label>
+
+
+                                </div>
+                            </div>
+
+                            <label for="phone_verified">phone_verified</label>
+                            <div class="form-group">
+                                <div class="form-line">
+
+                                    <input type="checkbox" id="phone_verified" name="phone_verified" class="filled-in">
+                                    <label for="phone_verified">phone_verified</label>
+
+
+                                </div>
+                            </div>
+
+                            <label for="firebase_uid">firebase_uid</label>
+                            <div class="form-group">
+                                <div class="form-line">
+
+                                    @Html.EditorFor(model => model.firebase_uid, new { htmlAttributes = new { @class = "form-control", placeholder = "firebase_uid" } })
+
+                                </div>
+                            </div>
+
+                            <div class="form-action">
+                                <button type="submit" class="btn btn-success create">Create</button>
+                                @Html.ActionLink("Back to List", "Index","Users", new { }, new { @class = "btn btn-primary back" })
+                            </div>
+                        }
+                    </div>
+</div>
+</div>
+</div>
+</div>
+

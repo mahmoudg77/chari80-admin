@@ -1,0 +1,23 @@
+﻿@model Chair80CP.Models.vwProfile
+@using Chair80CP.Libs
+@{
+    ViewBag.Title = "docs";
+}
+
+<div class="post">
+    <div class="post-heading">
+        <p>ID Scan Image </p>
+    </div>
+    <div class="post-content">
+        <img src="@Settings.Get("api_url")/img/crope/tbl_accounts/@Model.id/600x400/ID-last.gif" class="img-responsive">
+    </div>
+</div>
+
+<div class="post">
+    <div class="post-heading">
+        <p>Driver License Scan Image </p>
+    </div>
+    <div class="post-content">
+        <img src="@Settings.Get("api_url")/img/crope/tbl_accounts/@Model.id/600x400/DL-last.gif" class="img-responsive">
+    </div>
+</div>

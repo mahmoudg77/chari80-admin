@@ -1,0 +1,52 @@
+﻿body {
+    /**/
+}
+
+.profile-card .profile-header {
+    background-color: #3a6b01;
+}
+
+.profile-card .profile-body .image-area img {
+    border-color: #3a6b01;
+}
+.login-page {
+    background-color: #51a538;
+    max-width: 420px;
+}
+
+.modal .modal-header {
+    padding-bottom: 5px;
+    background-color: #58aa58;
+    padding-bottom: 20px;
+    color: #fff;
+}
+.modal .card .header {
+    display:none 
+}
+.modal .card {
+    border-radius: 14px;
+    border: 1px solid #efefef;
+    box-shadow:none !important;
+}
+.info-box.active {
+    background-color: #d3e9ca;
+}
+
+.img-buttons{
+    position:absolute;
+    padding:2px;
+}
+.btn-group.trip-status {
+    width:220px;
+}
+.btn-group.trip-status .btn-defualt {
+    color: #c6c6c6;
+}
+.btn-group.trip-status .btn span {
+    font-size: 9px;
+}
+.info-box .text {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}

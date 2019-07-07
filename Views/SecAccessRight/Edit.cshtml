@@ -1,0 +1,88 @@
+﻿@model Chair80CP.Models.sec_access_right
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    @ViewBag.Title
+                </h2>
+                <ul class="header-dropdown m-r--5">
+                    <li>
+
+                    </li>
+                </ul>
+            </div>
+            <div class="body">
+                <h2 class="card-inside-title">@ViewBag.Title</h2>
+                <div class="row clearfix">
+                    <div class="col-sm-12">
+                        @using (Html.BeginForm("Edit", "SecAccessRight", FormMethod.Post, new { @class = "ajaxform" }))
+
+                        {
+                            @Html.AntiForgeryToken()
+
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.id)
+
+                            <label for="role_id">role_id</label>
+                            <div class="form-group">
+                                <div class="form-line">
+
+
+                                    @Html.DropDownList("role_id", null, htmlAttributes: new { @class = "form-control show-tick", placeholder = "role_id" })
+                                    @Html.ValidationMessageFor(model => model.role_id, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <label for="model_name">model_name</label>
+                            <div class="form-group">
+                                <div class="form-line">
+
+
+                                    @Html.EditorFor(model => model.model_name, new { htmlAttributes = new { @class = "form-control", placeholder = "model_name" } })
+                                    @Html.ValidationMessageFor(model => model.model_name, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <label for="method_name">method_name</label>
+                            <div class="form-group">
+                                <div class="form-line">
+
+
+                                    @Html.EditorFor(model => model.method_name, new { htmlAttributes = new { @class = "form-control", placeholder = "method_name" } })
+                                    @Html.ValidationMessageFor(model => model.method_name, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <label for="force_filter">force_filter</label>
+                            <div class="form-group">
+                                <div class="form-line">
+
+
+                                    @Html.EditorFor(model => model.force_filter, new { htmlAttributes = new { @class = "form-control", placeholder = "force_filter" } })
+                                    @Html.ValidationMessageFor(model => model.force_filter, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-actions no-color">
+                                <button type="submit" class="btn btn-success save">Save</button>
+                                @Html.ActionLink("Back to List", "Index", "SecAccessRight", new { }, new { @class = "btn btn-primary back" })
+                            </div>
+
+                        }
+
+                    </div>
+                </div>
+
+
+
+              
+                   </div>
+</div>
+</div>
+</div>

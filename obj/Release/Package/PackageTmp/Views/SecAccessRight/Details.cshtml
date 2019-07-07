@@ -1,0 +1,68 @@
+﻿@model Chair80CP.Models.sec_access_right
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    @ViewBag.Title
+                </h2>
+                <u class="header-dropdown m-r--5">
+                     
+                </u>
+
+            </div>
+            <div class="body">
+
+<div>
+    
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.model_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.model_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.method_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.method_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.force_filter)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.force_filter)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sec_roles.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sec_roles.name)
+        </dd>
+
+    </dl>
+</div>
+     <p>
+        @Html.ActionLink("Edit", "Edit", "SecAccessRight", new { id = Model.id }, new { @class = "btn btn-success btn-md edit" })
+        @Html.ActionLink("Back to List", "Index", "SecAccessRight", new { }, new { @class = "btn btn-primary btn-md back" })
+    </p>
+
+</div>
+
+</div>
+</div>
+
+ 

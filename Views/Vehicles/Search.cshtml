@@ -1,0 +1,24 @@
+﻿@model List<Chair80CP.Models.tbl_vehicles>
+
+@using Chair80CP.Libs
+
+<div class="vehicle-select">
+
+<input type="hidden" name="vehicle_id" value="" />
+
+@foreach (var itm in Model)
+{
+    <div class="info-box select-vehicle" data-id="@itm.id">
+        <div class="icon bg-indigo">
+            <img src="@Settings.Get("api_url")/img/scale/tbl_vehicles/@itm.id/50x50/main-last.gif" style="width:100%;height:100%" />
+        </div>
+        <div class="content">
+            <div class="text"><strong>@itm.model, @itm.color (@itm.license_no)</strong> </div>
+            <div class="text">Capacity: @itm.capacity</div>
+        </div>
+    </div>
+}
+
+</div>
+
+

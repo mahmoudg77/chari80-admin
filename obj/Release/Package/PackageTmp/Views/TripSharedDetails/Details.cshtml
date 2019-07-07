@@ -1,0 +1,156 @@
+﻿@model Chair80CP.Models.trip_share_details
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    @ViewBag.Title
+                </h2>
+                <u class="header-dropdown m-r--5">
+                     
+                </u>
+
+            </div>
+            <div class="body">
+
+<div>
+    
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.seats)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.seats)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.start_at_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.start_at_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.start_at_time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.start_at_time)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.from_lat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.from_lat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.from_lng)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.from_lng)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.from_plc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.from_plc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.to_lat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.to_lat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.to_lng)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.to_lng)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.to_plc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.to_plc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.gender_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gender_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.booked_seats)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.booked_seats)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.seat_cost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.seat_cost)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.trip_direction)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.trip_direction)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.is_active)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.is_active)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.trip_share.id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.trip_share.id)
+        </dd>
+
+    </dl>
+</div>
+     <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.id }, new { @class = "btn btn-success btn-md edit" })
+        @Html.ActionLink("Back to List", "Index", new { }, new { @class = "btn btn-primary btn-md back" })
+    </p>
+
+</div>
+
+</div>
+</div>
+
+ 

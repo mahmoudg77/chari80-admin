@@ -1,0 +1,117 @@
+﻿@model Chair80CP.Models.trip_request
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    @ViewBag.Title
+                </h2>
+                <ul class="header-dropdown m-r--5">
+                    <li>
+
+                    </li>
+                </ul>
+            </div>
+            <div class="body">
+                <h2 class="card-inside-title">@ViewBag.Title</h2>
+                <div class="row clearfix">
+                    <div class="col-sm-12">
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.id)
+
+		<label for="rider_id">rider_id</label>
+        <div class="form-group">
+			<div class="form-line">
+
+ 
+                @Html.EditorFor(model => model.rider_id, new { htmlAttributes = new { @class = "form-control",placeholder="rider_id" } })
+                @Html.ValidationMessageFor(model => model.rider_id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+		<label for="seats">seats</label>
+        <div class="form-group">
+			<div class="form-line">
+
+ 
+                @Html.EditorFor(model => model.seats, new { htmlAttributes = new { @class = "form-control",placeholder="seats" } })
+                @Html.ValidationMessageFor(model => model.seats, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+		<label for="start_at_date">start_at_date</label>
+        <div class="form-group">
+			<div class="form-line">
+
+ 
+                @Html.EditorFor(model => model.start_at_date, new { htmlAttributes = new { @class = "form-control",placeholder="start_at_date" } })
+                @Html.ValidationMessageFor(model => model.start_at_date, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+		<label for="end_at_date">end_at_date</label>
+        <div class="form-group">
+			<div class="form-line">
+
+ 
+                @Html.EditorFor(model => model.end_at_date, new { htmlAttributes = new { @class = "form-control",placeholder="end_at_date" } })
+                @Html.ValidationMessageFor(model => model.end_at_date, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+		<label for="trip_type_id">trip_type_id</label>
+        <div class="form-group">
+			<div class="form-line">
+
+ 
+                @Html.DropDownList("trip_type_id", null, htmlAttributes: new {@class = "form-control show-tick" ,placeholder="trip_type_id" })
+                @Html.ValidationMessageFor(model => model.trip_type_id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+		<label for="created_at">created_at</label>
+        <div class="form-group">
+			<div class="form-line">
+
+ 
+                @Html.EditorFor(model => model.created_at, new { htmlAttributes = new { @class = "form-control",placeholder="created_at" } })
+                @Html.ValidationMessageFor(model => model.created_at, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+		<label for="created_by">created_by</label>
+        <div class="form-group">
+			<div class="form-line">
+
+ 
+                @Html.EditorFor(model => model.created_by, new { htmlAttributes = new { @class = "form-control",placeholder="created_by" } })
+                @Html.ValidationMessageFor(model => model.created_by, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-actions no-color">
+            <button type="submit" class="btn btn-success save">Save</button>
+            @Html.ActionLink("Back to List", "Index", new { }, new { @class = "btn btn-primary back" })
+        </div>
+   
+}
+
+   </div>
+                </div>
+
+
+
+              
+                   </div>
+</div>
+</div>
+</div>

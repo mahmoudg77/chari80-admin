@@ -1,0 +1,148 @@
+﻿@model Chair80CP.Models.tbl_accounts
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    @ViewBag.Title
+                </h2>
+                <ul class="header-dropdown m-r--5">
+                    <li>
+
+                    </li>
+                </ul>
+            </div>
+            <div class="body">
+                <h2 class="card-inside-title">Create</h2>
+                <div class="row clearfix">
+                    <div class="col-sm-12">
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+		<label for="first_name">first_name</label>
+        <div class="form-group">
+			<div class="form-line">
+
+                @Html.EditorFor(model => model.first_name, new { htmlAttributes = new { @class = "form-control",placeholder="first_name" } })
+ 
+            </div>
+        </div>
+
+		<label for="last_name">last_name</label>
+        <div class="form-group">
+			<div class="form-line">
+
+                @Html.EditorFor(model => model.last_name, new { htmlAttributes = new { @class = "form-control",placeholder="last_name" } })
+ 
+            </div>
+        </div>
+
+		<label for="date_of_birth">date_of_birth</label>
+        <div class="form-group">
+			<div class="form-line">
+
+                @Html.EditorFor(model => model.date_of_birth, new { htmlAttributes = new { @class = "form-control",placeholder="date_of_birth" } })
+ 
+            </div>
+        </div>
+
+		<label for="mobile">mobile</label>
+        <div class="form-group">
+			<div class="form-line">
+
+                @Html.EditorFor(model => model.mobile, new { htmlAttributes = new { @class = "form-control",placeholder="mobile" } })
+ 
+            </div>
+        </div>
+
+		<label for="email">email</label>
+        <div class="form-group">
+			<div class="form-line">
+
+                @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control",placeholder="email" } })
+ 
+            </div>
+        </div>
+
+		<label for="register_time">register_time</label>
+        <div class="form-group">
+			<div class="form-line">
+
+                @Html.EditorFor(model => model.register_time, new { htmlAttributes = new { @class = "form-control",placeholder="register_time" } })
+ 
+            </div>
+        </div>
+
+		<label for="is_deleted">is_deleted</label>
+        <div class="form-group">
+			<div class="form-line">
+
+				<input type="checkbox" id="is_deleted" name="is_deleted" class="filled-in">
+				<label for="is_deleted">is_deleted</label>
+               
+ 
+            </div>
+        </div>
+
+		<label for="gender_id">gender_id</label>
+        <div class="form-group">
+			<div class="form-line">
+
+                @Html.DropDownList("gender_id", null, htmlAttributes: new { @class = "form-control show-tick" ,placeholder="gender_id" })
+ 
+            </div>
+        </div>
+
+		<label for="id_no">id_no</label>
+        <div class="form-group">
+			<div class="form-line">
+
+                @Html.EditorFor(model => model.id_no, new { htmlAttributes = new { @class = "form-control",placeholder="id_no" } })
+ 
+            </div>
+        </div>
+
+		<label for="driver_license_no">driver_license_no</label>
+        <div class="form-group">
+			<div class="form-line">
+
+                @Html.EditorFor(model => model.driver_license_no, new { htmlAttributes = new { @class = "form-control",placeholder="driver_license_no" } })
+ 
+            </div>
+        </div>
+
+		<label for="city_id">city_id</label>
+        <div class="form-group">
+			<div class="form-line">
+
+                @Html.DropDownList("city_id", null, htmlAttributes: new { @class = "form-control show-tick" ,placeholder="city_id" })
+ 
+            </div>
+        </div>
+
+		<label for="country_id">country_id</label>
+        <div class="form-group">
+			<div class="form-line">
+
+                @Html.DropDownList("country_id", null, htmlAttributes: new { @class = "form-control show-tick" ,placeholder="country_id" })
+ 
+            </div>
+        </div>
+
+         <div class="form-action">
+                <button type="submit" class="btn btn-success create">Create</button>
+				@Html.ActionLink("Back to List", "Index", new { }, new { @class = "btn btn-primary back" })
+        </div>
+}
+</div>
+</div>
+</div>
+</div>
+</div>
+

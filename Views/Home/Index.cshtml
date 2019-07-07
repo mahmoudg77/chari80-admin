@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Chair80CP.Models.spWebCounters_Result>
+@{
+    ViewBag.Title = "Dashboard";
+}
+
+ 
+@foreach (var box in Model.GroupBy(group=>new { group.section,group.section_id }))
+{
+
+    <div class="block-header">
+        <h2>@box.Key.section</h2>
+    </div>
+        <div class="row clearfix">
+    @foreach (var itm in box)
+    {
+            <a href="@(itm.url==""?"#":itm.url)">
+                <div class="col-lg-@(12/box.Count()) col-md-@(12/box.Count()) col-sm-@(12*2/box.Count()) col-xs-12">
+                    <div class="@itm.style">
+                        <div class="icon @itm.color">
+                            <i class="material-icons">@itm.icon</i>
+                        </div>
+                        <div class="content">
+                            <div class="text">@itm.title</div>
+                            <div class="number">@itm.count</div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+    }
+            </div>
+}

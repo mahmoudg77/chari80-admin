@@ -1,0 +1,151 @@
+﻿<#@ template language="C#" HostSpecific="True" #>
+<#@ output extension=".cshtml" #>
+<#@ include file="Imports.include.t4" #>
+@model IEnumerable<#= "<" + ViewDataTypeName + ">" #>
+<#
+// The following chained if-statement outputs the file header code and markup for a partial view, a view using a layout page, or a regular view.
+if(IsPartialView) {
+#>
+
+<#
+} else if(IsLayoutPageSelected) {
+#>
+
+@{
+    ViewBag.Title = "<#= ViewName#>";
+<#
+if (!String.IsNullOrEmpty(LayoutPageFile)) {
+#>
+    Layout = "<#= LayoutPageFile#>";
+<#
+}
+#>
+}
+
+
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    @ViewBag.Title
+                </h2>
+                <u class="header-dropdown m-r--5">
+                    <li>
+                        @Html.ActionLink("Create New", "Create", new { }, new { @class = "btn btn-primary btn-md addnew " })
+                    </li>
+                </u>
+
+            </div>
+            <div class="body">
+                <div class="table-responsive">
+<#
+} else {
+#>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title><#= ViewName #></title>
+</head>
+<body>
+<#
+    PushIndent("    ");
+}
+#>
+    <div class="table-responsive">
+        <table class="table table-striped table-hover js-basic-example dataTable">
+            <thead>
+                <tr>
+<#
+IEnumerable<PropertyMetadata> properties = ModelMetadata.Properties;
+foreach (PropertyMetadata property in properties) {
+    if (property.Scaffold && !property.IsPrimaryKey && !property.IsForeignKey) {
+#>
+<#
+        // We do not want to show any association properties for which there is
+        // no associated foreign key.
+        if (property.IsAssociation && GetRelatedModelMetadata(property) == null) {
+            continue;
+        }
+#>
+        <th>
+            @Html.DisplayNameFor(model => model.<#= GetValueExpression(property) #>)
+        </th>
+<#
+    }
+}
+#>
+        <th></th>
+    </tr>
+	</thead>
+@foreach (var item in Model) {
+    <tr>
+<#
+foreach (PropertyMetadata property in properties) {
+    if (property.Scaffold && !property.IsPrimaryKey && !property.IsForeignKey) {
+#>
+<#
+        // We do not want to show any association properties for which there is
+        // no associated foreign key.
+        if (property.IsAssociation && GetRelatedModelMetadata(property) == null) {
+            continue;
+        }
+#>
+        <td>
+            @Html.DisplayFor(modelItem => <#= "item." + GetValueExpression(property) #>)
+        </td>
+<#
+    }
+}
+
+string pkName = GetPrimaryKeyName();
+if (pkName != null) {
+#>
+        
+		<td>
+            @Html.ActionLink("edit", "Edit", new { id = item.<#= pkName #> }, new { @class = "btn text-success material-icons edit" })
+            @Html.ActionLink("remove_red_eye", "Details", new { id = item.<#= pkName #> }, new { @class = "btn material-icons details" })
+            @Html.ActionLink("delete", "Delete", new { id = item.<#= pkName #>}, new { @class = "btn text-danger material-icons delete" })
+        </td>
+			
+<#
+} else {
+#>
+       <td class="text-center">
+            @Html.ActionLink("edit", "Edit", new {/* id = item.<#= pkName #>*/ }, new { @class = "btn text-success material-icons edit" })
+            @Html.ActionLink("remove_red_eye", "Details", new { /* id = item.<#= pkName #>*/ }, new { @class = "btn material-icons details" })
+            @Html.ActionLink("delete", "Delete", new { /* id = item.<#= pkName #>*/}, new { @class = "btn text-danger material-icons delete" })
+		</td>
+<#
+}
+#>
+    </tr>
+}
+
+</table>
+</div>
+
+                </div>            
+            </div>
+</div>
+</div>
+<#
+// The following code closes the tag used in the case of a view using a layout page and the body and html tags in the case of a regular view page
+#>
+<#
+if(!IsPartialView && !IsLayoutPageSelected) {
+    ClearIndent();
+#>
+</body>
+</html>
+<#
+}
+#>
+<#@ include file="ModelMetadataFunctions.cs.include.t4" #>

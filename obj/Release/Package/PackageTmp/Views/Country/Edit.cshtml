@@ -1,0 +1,80 @@
+﻿@model Chair80CP.Models.tbl_countries
+
+@using Newtonsoft.Json;
+
+@{
+    ViewBag.Title = "Edit/Country";
+}
+
+
+
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    @ViewBag.Title
+                </h2>
+                <ul class="header-dropdown m-r--5">
+                    <li>
+
+                    </li>
+                </ul>
+            </div>
+            <div class="body">
+                <div class="row clearfix">
+                    <div class="col-sm-12">
+                        @using (Html.BeginForm("Edit", "Country", FormMethod.Post, new { @class = "ajaxform" }))
+                        {
+                            @Html.AntiForgeryToken()
+
+
+
+                            foreach (var item in Chair80CP.Libs.General.getLangData(Model.name))
+                            {
+                                try
+                                {
+
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" class="form-control" name="name[@item.Key]" value="@item.Value" placeholder="Name (@item.Key)" />
+                                        </div>
+                                    </div>
+
+                                }
+                                catch (Exception)
+                                {
+
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" class="form-control" name="name[@item.Key]" value="" placeholder="Name (@item.Key)" />
+                                        </div>
+                                    </div>
+
+                                }
+                            }
+
+
+
+
+                            @Html.HiddenFor(model => model.id)
+
+                            <div class="form-actions no-color">
+
+                                <button type="submit" class="btn btn-success save">Save</button>
+                                @Html.ActionLink("Back to List", "Index", "Country", new { }, new { @class = "btn btn-primary back" })
+                            </div>
+ 
+                        }
+
+
+                    </div>
+                </div>
+
+
+
+              
+                   </div>
+</div>
+</div>
+</div>

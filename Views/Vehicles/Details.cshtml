@@ -1,0 +1,77 @@
+﻿@model Chair80CP.Models.vwVehicles
+
+@using Chair80CP.Libs
+@{
+    ViewBag.Title = "Vehicle - Details";
+}
+<div class="row">
+
+    <div class="col-xs-12">
+        <div class="card profile-card" style="overflow:hidden">
+            <div class="profile-header">&nbsp;</div>
+            <div class="profile-body col col-xs-12 col-md-6 col-lg-4">
+                <div class="image-area">
+                    <img src="@Settings.Get("api_url")/img/crope/tbl_vehicles/@Model.id/150x150/main-last.gif" alt="@Model.model, @Model.color">
+                </div>
+                <div class="content-area">
+                    <h3>@Model.model, @Model.color</h3>
+                    <p>
+                        <img src="@Settings.Get("api_url")/img/crope/tbl_accounts/@Model.owner_id/30x30/main-last.gif" alt="@Model.owner">
+                        @Model.owner
+                    </p>
+                </div>
+            </div>
+            <div class=" col hidden-xs hidden-md col-lg-4">
+               
+            </div>
+            <div class="profile-footer col col-xs-12 col-md-6 col-lg-4" >
+                <ul>
+                    <li>
+                        <span>License No.</span>
+                        <span>@Model.license_no</span>
+                    </li>
+                    <li>
+                        <span>Drivers</span>
+                        <span>@Model.Drivers</span>
+                    </li>
+                    <li>
+                        <span>Trips</span>
+                        <span>@Model.Trips</span>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+        @*<div class="card card-about-me">
+            <div class="header">
+                <h2>ABOUT ME</h2>
+            </div>
+            <div class="body">
+              
+            </div>
+        </div>*@
+    </div>
+    <div class="col-xs-12">
+        <div class="card">
+            <div class="body">
+                <div>
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="/Images/?id=@Model.id&model=tbl_vehicles&size=100x100&style=crope" aria-controls="home" role="tab" data-toggle="tab" aria-expanded="true" class="ajax-link" data-target="#content">Images</a></li>
+                        <li role="presentation" class=""><a href="/BookingReport/?vehicle_id=@Model.id" aria-controls="home" role="tab" data-toggle="tab" aria-expanded="true"  class="ajax-link" data-target="#content">Trips</a></li>
+                        <li role="presentation" class=""><a href="/Vehicles/GetField/@Model.id/Vehicles-Drive" aria-controls="settings" role="tab" data-toggle="tab" aria-expanded="false"  class="ajax-link" data-target="#content">Drivers</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        
+                        <div role="tabpanel" class="tab-pane active" id="content">
+                            
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+ 
+ 

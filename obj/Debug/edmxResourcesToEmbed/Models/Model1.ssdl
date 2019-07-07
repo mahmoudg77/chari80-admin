@@ -1,0 +1,3523 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FollowupDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="clients">
+    <Key>
+      <PropertyRef Name="client_id" />
+    </Key>
+    <Property Name="client_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="client_id" Type="int" Nullable="false" />
+    <Property Name="email" Type="nvarchar" MaxLength="50" />
+    <Property Name="phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="client_representative" Type="nvarchar" MaxLength="50" />
+    <Property Name="rep_phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="rep_email" Type="nvarchar" MaxLength="50" />
+    <Property Name="company_name" Type="nvarchar" MaxLength="100" />
+    <Property Name="comp_website" Type="nvarchar" MaxLength="50" />
+    <Property Name="comp_bbox" Type="varchar" MaxLength="50" />
+    <Property Name="comp_phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="mailing_id" Type="int" />
+    <Property Name="client_nationalityid" Type="int" />
+    <Property Name="rep_nationalityid" Type="int" />
+  </EntityType>
+  <EntityType Name="clients_userpass">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="client_username" Type="nvarchar" MaxLength="50" />
+    <Property Name="client_password" Type="nvarchar" MaxLength="50" />
+    <Property Name="client_id" Type="int" />
+    <Property Name="group_id" Type="int" />
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="employee_id" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'FollowupDB.dbo.CollectedDesign' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="CollectedDesign">
+          <Property Name="id" Type="float" />
+          <Property Name="invoice_number" Type="float" />
+          <Property Name="invoice_amount" Type="float" />
+          <Property Name="invoice_date" Type="datetime" />
+          <Property Name="proj_id" Type="float" />
+          <Property Name="ChequeNo" Type="float" />
+        </EntityType>-->
+  <EntityType Name="DailyPlan_Projects">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PermitID" Type="int" Nullable="false" />
+    <Property Name="TaskTypeID" Type="int" />
+    <Property Name="Date" Type="date" Nullable="false" />
+    <Property Name="ProgressPerc" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="userid" Type="int" />
+    <Property Name="reg_date" Type="datetime" />
+    <Property Name="notes" Type="nvarchar" MaxLength="250" />
+    <Property Name="Periority" Type="int" />
+    <Property Name="TaskID" Type="int" />
+  </EntityType>
+  <EntityType Name="DailyPlan_Tasks">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PermitID" Type="int" Nullable="false" />
+    <Property Name="TaskTypeID" Type="int" />
+    <Property Name="PlanHours" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="UserID" Type="int" />
+    <Property Name="UpdatedAt" Type="datetime" />
+    <Property Name="CreatedAt" Type="datetime" />
+    <Property Name="FinishedTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="DailyPlan_Times">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PermitID" Type="int" />
+    <Property Name="TaskTypeID" Type="int" />
+    <Property Name="Date" Type="date" Nullable="false" />
+    <Property Name="FromTime" Type="datetime" />
+    <Property Name="ToTime" Type="datetime" />
+    <Property Name="EmployeeID" Type="int" Nullable="false" />
+    <Property Name="SubTaskTypeID" Type="int" />
+    <Property Name="Duration" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Notes" Type="nvarchar" MaxLength="250" />
+    <Property Name="TaskID" Type="int" />
+  </EntityType>
+  <EntityType Name="Employee_AdminAccess">
+    <Key>
+      <PropertyRef Name="emp_id" />
+    </Key>
+    <Property Name="emp_id" Type="int" Nullable="false" />
+    <Property Name="emp_role" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="emp_username" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="emp_password" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="employee_sysaccess">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="employee_name" Type="nvarchar" MaxLength="100" />
+    <Property Name="employee_id" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="emp_dept" Type="nvarchar" MaxLength="50" />
+    <Property Name="email" Type="nvarchar" MaxLength="50" />
+    <Property Name="phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="nationality" Type="nvarchar" MaxLength="50" />
+    <Property Name="job" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="files">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="300" />
+    <Property Name="file_name" Type="nvarchar" MaxLength="150" />
+    <Property Name="file_path" Type="nvarchar" MaxLength="500" />
+    <Property Name="file_ext" Type="nvarchar" MaxLength="10" />
+    <Property Name="upload_date" Type="datetime" />
+    <Property Name="model_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="model_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="InvoicesD">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="invoice_number" Type="nvarchar" MaxLength="50" />
+    <Property Name="invoice_amount" Type="money" />
+    <Property Name="invoice_date" Type="datetime" />
+    <Property Name="proj_id" Type="int" />
+  </EntityType>
+  <EntityType Name="InvoicesDesign">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="invoice_number" Type="nvarchar" MaxLength="50" />
+    <Property Name="invoice_amount" Type="money" Nullable="false" />
+    <Property Name="invoice_date" Type="datetime" />
+    <Property Name="proj_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="InvoicesS">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="invoice_number" Type="nvarchar" MaxLength="50" />
+    <Property Name="invoice_amount" Type="money" />
+    <Property Name="invoice_date" Type="datetime" />
+    <Property Name="proj_id" Type="int" />
+    <Property Name="method_id" Type="int" />
+  </EntityType>
+  <EntityType Name="InvoicesSupervision">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="invoice_number" Type="nvarchar" MaxLength="50" />
+    <Property Name="invoice_amount" Type="money" />
+    <Property Name="invoice_date" Type="datetime" />
+    <Property Name="proj_id" Type="int" />
+    <Property Name="method_id" Type="int" />
+  </EntityType>
+  <EntityType Name="nationalities_list">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="255" />
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'FollowupDB.dbo.NewPermits' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="NewPermits">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="proj_ref" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="proj_ref" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="permit_type" Type="nvarchar" MaxLength="50" />
+    <Property Name="permit_scope" Type="nvarchar" MaxLength="50" />
+    <Property Name="addressee" Type="nvarchar" MaxLength="50" />
+    <Property Name="permit_id" Type="nvarchar" MaxLength="50" />
+    <Property Name="issue_date" Type="nvarchar" MaxLength="50" />
+    <Property Name="response_date" Type="nvarchar" MaxLength="50" />
+    <Property Name="approve_date" Type="nvarchar" MaxLength="50" />
+    <Property Name="permit_status" Type="nvarchar" MaxLength="50" />
+    <Property Name="kashaf_comments" Type="nvarchar" MaxLength="1000" />
+    <Property Name="client_comments" Type="nvarchar" MaxLength="1000" />
+    <Property Name="iss" Type="int" />
+    <Property Name="rej" Type="int" />
+    <Property Name="reiss" Type="int" />
+    <Property Name="preacc" Type="int" />
+    <Property Name="acc" Type="int" />
+    <Property Name="proj_id" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'FollowupDB.dbo.NewPermitTable' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="NewPermitTable">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="permit_id" Type="nvarchar" MaxLength="50" />
+    <Property Name="issue_date" Type="datetime" />
+    <Property Name="response_date" Type="datetime" />
+    <Property Name="approve_date" Type="datetime" />
+    <Property Name="kashaf_comments" Type="nvarchar" MaxLength="3000" />
+    <Property Name="client_comments" Type="nvarchar" MaxLength="3000" />
+    <Property Name="proj_id" Type="int" />
+    <Property Name="permit_type_id" Type="int" />
+    <Property Name="permit_scope_id" Type="int" />
+    <Property Name="addressee_id" Type="int" />
+    <Property Name="permit_status_id" Type="int" />
+  </EntityType>
+  <EntityType Name="NewPermLog">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="permit_id" Type="int" Nullable="false" />
+    <Property Name="status_id" Type="int" Nullable="false" />
+    <Property Name="action_date" Type="date" Nullable="false" />
+    <Property Name="comment" Type="nvarchar" MaxLength="3000" />
+  </EntityType>
+  <EntityType Name="NewSchedule">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="proj_ref" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="contract_date" Type="nvarchar" MaxLength="50" />
+    <Property Name="cont_Expctd_date" Type="nvarchar" MaxLength="50" />
+    <Property Name="document_recv_date" Type="nvarchar" MaxLength="50" />
+    <Property Name="down_recv_date" Type="nvarchar" MaxLength="50" />
+    <Property Name="progstart_date" Type="nvarchar" MaxLength="50" />
+    <Property Name="planed_date" Type="nvarchar" MaxLength="50" />
+    <Property Name="actual_finish_date" Type="nvarchar" MaxLength="50" />
+    <Property Name="dev_days" Type="nvarchar" MaxLength="50" />
+    <Property Name="proj_id" Type="int" />
+  </EntityType>
+  <EntityType Name="NewScope">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="scope" Type="nvarchar" MaxLength="50" />
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="notify">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fromid" Type="int" Nullable="false" />
+    <Property Name="toid" Type="int" Nullable="false" />
+    <Property Name="subject" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="body" Type="nvarchar" MaxLength="550" />
+    <Property Name="related_controller" Type="nvarchar" MaxLength="50" />
+    <Property Name="related_method" Type="nvarchar" MaxLength="50" />
+    <Property Name="related_id" Type="int" />
+    <Property Name="sent_time" Type="datetime" />
+    <Property Name="notified_time" Type="datetime" />
+    <Property Name="received_time" Type="datetime" />
+    <Property Name="parent_id" Type="int" />
+  </EntityType>
+  <EntityType Name="payment_type_list">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Payments_Scope_list">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="permits_addreesees">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="Name" Type="nvarchar" MaxLength="255" />
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Permits_ProjectsNew">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="permit_id" Type="nvarchar" MaxLength="50" />
+    <Property Name="issue_date" Type="datetime" />
+    <Property Name="response_date" Type="datetime" />
+    <Property Name="approve_date" Type="datetime" />
+    <Property Name="kashaf_comments" Type="nvarchar" MaxLength="3000" />
+    <Property Name="client_comments" Type="nvarchar" MaxLength="3000" />
+    <Property Name="proj_id" Type="int" />
+    <Property Name="permit_type_id" Type="int" />
+    <Property Name="permit_scope_id" Type="int" />
+    <Property Name="addressee_id" Type="int" />
+    <Property Name="permit_status_id" Type="int" />
+  </EntityType>
+  <EntityType Name="permits_status">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="255" />
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="css_style" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="permits_status_log">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="permit_id" Type="int" Nullable="false" />
+    <Property Name="status_id" Type="int" Nullable="false" />
+    <Property Name="action_date" Type="datetime" Nullable="false" />
+    <Property Name="comment" Type="nvarchar" MaxLength="4000" />
+  </EntityType>
+  <EntityType Name="PerTB">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="proj_ref" Type="nvarchar" MaxLength="255" />
+    <Property Name="permit_type" Type="nvarchar" MaxLength="255" />
+    <Property Name="permit_scope" Type="nvarchar" MaxLength="255" />
+    <Property Name="addressee" Type="nvarchar" MaxLength="255" />
+    <Property Name="permit_id" Type="nvarchar" MaxLength="255" />
+    <Property Name="issue_date" Type="datetime" />
+    <Property Name="response_date" Type="nvarchar" MaxLength="255" />
+    <Property Name="approve_date" Type="nvarchar" MaxLength="255" />
+    <Property Name="permit_status" Type="nvarchar" MaxLength="255" />
+    <Property Name="kashaf_comments" Type="nvarchar" MaxLength="255" />
+    <Property Name="client_comments" Type="nvarchar" MaxLength="255" />
+    <Property Name="iss" Type="nvarchar" MaxLength="255" />
+    <Property Name="rej" Type="nvarchar" MaxLength="255" />
+    <Property Name="reiss" Type="nvarchar" MaxLength="255" />
+    <Property Name="preacc" Type="nvarchar" MaxLength="255" />
+    <Property Name="acc" Type="nvarchar" MaxLength="255" />
+    <Property Name="F18" Type="nvarchar" MaxLength="255" />
+    <Property Name="F19" Type="nvarchar" MaxLength="255" />
+    <Property Name="proj_id" Type="int" />
+  </EntityType>
+  <EntityType Name="proj_conditions_list">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="255" />
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="proj_delivers_list">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="proj_disciplines_list">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="255" />
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="division_id" Type="int" />
+    <Property Name="ShortCut" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="proj_req_list">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="500" />
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="proj_req_status_log">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="proj_req_id" Type="int" Nullable="false" />
+    <Property Name="status_id" Type="int" Nullable="false" />
+    <Property Name="action_date" Type="datetime" Nullable="false" />
+    <Property Name="next_followup_date" Type="datetime" />
+    <Property Name="comment" Type="nvarchar" MaxLength="400" />
+  </EntityType>
+  <EntityType Name="proj_stages_list">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="proj_status_list">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="proj_types_list">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="255" />
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="proj_workscope_list">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="255" />
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="project_category_list">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="project_collecte_details">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CollectID" Type="int" Nullable="false" />
+    <Property Name="ScopeID" Type="int" />
+    <Property Name="Value" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="project_collectes">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="proj_id" Type="int" />
+    <Property Name="invoice_number" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="invoice_amount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="invoice_date" Type="datetime" />
+    <Property Name="ChequeNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="InvoiceID" Type="int" />
+    <Property Name="CreatedAt" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="UpdatedAt" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="ApprovedAt" Type="datetime" />
+    <Property Name="ApprovedBy" Type="int" />
+    <Property Name="PaymentTypeID" Type="int" />
+  </EntityType>
+  <EntityType Name="project_fees">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="proj_id" Type="int" Nullable="false" />
+    <Property Name="ScopeID" Type="int" Nullable="false" />
+    <Property Name="Value" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="CreatedAt" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="UpdatedAt" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="ApprovedAt" Type="datetime" />
+    <Property Name="ApprovedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="project_invoice_details">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="InvoiceID" Type="int" Nullable="false" />
+    <Property Name="ScopeID" Type="int" />
+    <Property Name="Value" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="project_invoices">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="proj_id" Type="int" />
+    <Property Name="invoice_number" Type="nvarchar" MaxLength="50" />
+    <Property Name="invoice_amount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="invoice_date" Type="datetime" />
+    <Property Name="method_id" Type="int" />
+    <Property Name="PaymentID" Type="int" />
+    <Property Name="CreatedAt" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="UpdatedAt" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="ApprovedAt" Type="datetime" />
+    <Property Name="ApprovedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="project_payment_config">
+    <Key>
+      <PropertyRef Name="proj_id" />
+    </Key>
+    <Property Name="proj_id" Type="int" Nullable="false" />
+    <Property Name="VisitCost" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="TimeIntervalID" Type="int" />
+    <Property Name="Target" Type="int" />
+    <Property Name="DueDayInMounth" Type="int" />
+    <Property Name="DueDayInWeek" Type="int" />
+  </EntityType>
+  <EntityType Name="project_payment_details">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PaymentID" Type="int" Nullable="false" />
+    <Property Name="ScopeID" Type="int" Nullable="false" />
+    <Property Name="Perc" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Value" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="project_payments">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="proj_id" Type="int" />
+    <Property Name="PaymentTypeID" Type="int" />
+    <Property Name="PaymentIndex" Type="int" />
+    <Property Name="Perc" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Value" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="DueAt" Type="datetime" />
+    <Property Name="Conditions" Type="nvarchar(max)" />
+    <Property Name="Notes" Type="nvarchar" MaxLength="250" />
+    <Property Name="CreatedAt" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="UpdatedAt" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="ApprovedAt" Type="datetime" />
+    <Property Name="ApprovedBy" Type="int" />
+    <Property Name="ConditionTypeID" Type="int" />
+  </EntityType>
+  <EntityType Name="project_services_list">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="project_usage_list">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="project_visits">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmployeeID" Type="int" Nullable="false" />
+    <Property Name="VisitDate" Type="datetime" Nullable="false" />
+    <Property Name="proj_id" Type="int" Nullable="false" />
+    <Property Name="Notes" Type="nvarchar(max)" />
+    <Property Name="VisitCost" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="project_visits_contract">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="proj_id" Type="int" Nullable="false" />
+    <Property Name="DivisionID" Type="int" Nullable="false" />
+    <Property Name="Visits" Type="int" Nullable="false" />
+    <Property Name="ExtraVisitCost" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="projects">
+    <Key>
+      <PropertyRef Name="sn" />
+    </Key>
+    <Property Name="sn" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="proj_client_id" Type="int" />
+    <Property Name="proj_name" Type="nvarchar" MaxLength="500" />
+    <Property Name="proj_ref" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="building_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="proj_area" Type="nvarchar" MaxLength="50" />
+    <Property Name="proj_floors" Type="nvarchar" MaxLength="50" />
+    <Property Name="discplns_list" Type="nvarchar" MaxLength="4000" />
+    <Property Name="progress_stage" Type="nvarchar" MaxLength="2000" />
+    <Property Name="proj_deliverable" Type="nvarchar" MaxLength="200" />
+    <Property Name="dpme_projid" Type="int" />
+    <Property Name="location_id" Type="int" />
+    <Property Name="usag_id" Type="int" />
+    <Property Name="category_id" Type="int" />
+    <Property Name="type_id" Type="int" />
+    <Property Name="scope_id" Type="int" />
+    <Property Name="status_id" Type="int" />
+  </EntityType>
+  <EntityType Name="projects_balance">
+    <Key>
+      <PropertyRef Name="proj_id" />
+    </Key>
+    <Property Name="projdesign_balance" Type="nvarchar" MaxLength="50" />
+    <Property Name="projstudy_balance" Type="nvarchar" MaxLength="50" />
+    <Property Name="projsup_balance" Type="nvarchar" MaxLength="50" />
+    <Property Name="proj_totalbalance" Type="nvarchar" MaxLength="50" />
+    <Property Name="proj_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Projects_BuildingList">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="building_typeid" Type="int" />
+  </EntityType>
+  <EntityType Name="projects_collectedfees_design">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="invoice_number" Type="nvarchar" MaxLength="50" />
+    <Property Name="invoice_amount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="invoice_date" Type="datetime" />
+    <Property Name="proj_id" Type="int" />
+    <Property Name="ChequeNo" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="projects_collectedfees_study">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="invoice_number" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="invoice_amount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="invoice_date" Type="datetime" />
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="proj_id" Type="int" />
+    <Property Name="ChequeNo" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="projects_collectedfees_supervision">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="supervision_type" Type="nvarchar" MaxLength="50" />
+    <Property Name="invoice_number" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="invoice_amount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="invoice_date" Type="datetime" />
+    <Property Name="proj_id" Type="int" />
+    <Property Name="ChequeNo" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="projects_conditions">
+    <Key>
+      <PropertyRef Name="SN" />
+    </Key>
+    <Property Name="SN" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="condition_category" Type="nvarchar" MaxLength="50" />
+    <Property Name="proj_condition" Type="nvarchar" MaxLength="3000" />
+    <Property Name="proj_id" Type="int" />
+    <Property Name="category_id" Type="int" />
+  </EntityType>
+  <EntityType Name="projects_fees">
+    <Key>
+      <PropertyRef Name="proj_id" />
+    </Key>
+    <Property Name="proj_design_fees" Type="int" />
+    <Property Name="proj_supervs_fees" Type="int" />
+    <Property Name="proj_study_fees" Type="int" />
+    <Property Name="pro_total" Type="int" />
+    <Property Name="proj_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="projects_invoicefees_design">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="invoice_number" Type="nvarchar" MaxLength="50" />
+    <Property Name="invoice_amount" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="invoice_date" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="proj_id" Type="int" />
+  </EntityType>
+  <EntityType Name="projects_invoicefees_study">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="invoive_number" Type="nvarchar" MaxLength="50" />
+    <Property Name="invoice_amount" Type="money" />
+    <Property Name="invoice_date" Type="datetime" />
+    <Property Name="proj_id" Type="int" />
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="projects_invoicefees_supervision">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="invoice_number" Type="nvarchar" MaxLength="50" />
+    <Property Name="invoice_amount" Type="nvarchar" MaxLength="50" />
+    <Property Name="invoice_date" Type="nvarchar" MaxLength="50" />
+    <Property Name="proj_id" Type="int" />
+    <Property Name="method_id" Type="int" />
+  </EntityType>
+  <EntityType Name="projects_payment_design">
+    <Key>
+      <PropertyRef Name="proj_id" />
+    </Key>
+    <Property Name="downpayment" Type="nvarchar" MaxLength="50" />
+    <Property Name="downpayment_cond" Type="nvarchar" MaxLength="2000" />
+    <Property Name="firstpayment" Type="nvarchar" MaxLength="50" />
+    <Property Name="firstpayment_cond" Type="nvarchar" MaxLength="2000" />
+    <Property Name="secondpayment" Type="nvarchar" MaxLength="50" />
+    <Property Name="secondpayment_cond" Type="nvarchar" MaxLength="2000" />
+    <Property Name="thirdpayment" Type="nvarchar" MaxLength="50" />
+    <Property Name="thirdpayment_cond" Type="nvarchar" MaxLength="2000" />
+    <Property Name="fourthpayment" Type="nvarchar" MaxLength="50" />
+    <Property Name="fourthpayment_cond" Type="nvarchar" MaxLength="2000" />
+    <Property Name="fifthpayment" Type="nvarchar" MaxLength="50" />
+    <Property Name="fifthpayment_cond" Type="nvarchar" MaxLength="2000" />
+    <Property Name="sixthpayment" Type="nvarchar" MaxLength="50" />
+    <Property Name="sixthpayment_cond" Type="nvarchar" MaxLength="2000" />
+    <Property Name="sevenpayment" Type="nvarchar" MaxLength="50" />
+    <Property Name="sevenpayment_cond" Type="nvarchar" MaxLength="2000" />
+    <Property Name="proj_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="projects_payment_instsupvs">
+    <Key>
+      <PropertyRef Name="proj_id" />
+    </Key>
+    <Property Name="downpayment" Type="nvarchar" MaxLength="50" />
+    <Property Name="downpayment_cond" Type="nvarchar" MaxLength="2000" />
+    <Property Name="firstpayment" Type="nvarchar" MaxLength="50" />
+    <Property Name="firstpayment_cond" Type="nvarchar" MaxLength="2000" />
+    <Property Name="secondpayment" Type="nvarchar" MaxLength="50" />
+    <Property Name="secondpayment_cond" Type="nvarchar" MaxLength="2000" />
+    <Property Name="thirdpayment" Type="nvarchar" MaxLength="50" />
+    <Property Name="thirdpayment_cond" Type="nvarchar" MaxLength="2000" />
+    <Property Name="fourthpayment" Type="nvarchar" MaxLength="50" />
+    <Property Name="fourthpayment_cond" Type="nvarchar" MaxLength="2000" />
+    <Property Name="fifthpayment" Type="nvarchar" MaxLength="50" />
+    <Property Name="fifthpayment_cond" Type="nvarchar" MaxLength="2000" />
+    <Property Name="sixthpayment" Type="nvarchar" MaxLength="50" />
+    <Property Name="sixthpayment_cond" Type="nvarchar" MaxLength="2000" />
+    <Property Name="sevenpayment" Type="nvarchar" MaxLength="50" />
+    <Property Name="sevenpayment_cond" Type="nvarchar" MaxLength="2000" />
+    <Property Name="proj_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="projects_payment_study">
+    <Key>
+      <PropertyRef Name="proj_id" />
+    </Key>
+    <Property Name="downpayment" Type="nvarchar" MaxLength="50" />
+    <Property Name="downpayment_cond" Type="nvarchar" MaxLength="100" />
+    <Property Name="firstpayment" Type="nvarchar" MaxLength="50" />
+    <Property Name="firstpayment_cond" Type="nvarchar" MaxLength="100" />
+    <Property Name="proj_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="projects_payment_sup">
+    <Key>
+      <PropertyRef Name="proj_id" />
+    </Key>
+    <Property Name="fees_sup" Type="nvarchar" MaxLength="50" />
+    <Property Name="proj_id" Type="int" Nullable="false" />
+    <Property Name="payment_typeid" Type="int" />
+  </EntityType>
+  <EntityType Name="projects_permits">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="permit_id" Type="nvarchar" MaxLength="50" />
+    <Property Name="client_comments" Type="nvarchar" MaxLength="3000" />
+    <Property Name="proj_id" Type="int" />
+    <Property Name="permit_type_id" Type="int" />
+    <Property Name="permit_scope_id" Type="int" />
+    <Property Name="addressee_id" Type="int" />
+    <Property Name="uploadsys" Type="int" />
+    <Property Name="branch_id" Type="int" />
+    <Property Name="contract_design_time" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="contract_approve_time" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="CreatedAt" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="UpdatedAt" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="projects_requirements">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="requested_date" Type="nvarchar" MaxLength="50" />
+    <Property Name="collected_date" Type="nvarchar" MaxLength="50" />
+    <Property Name="req_comments" Type="nvarchar" MaxLength="1000" />
+    <Property Name="proj_id" Type="int" />
+    <Property Name="permit_typeid" Type="int" />
+    <Property Name="req_id" Type="int" />
+    <Property Name="status_id" Type="int" />
+    <Property Name="ScopeID" Type="int" />
+  </EntityType>
+  <EntityType Name="projects_schedule">
+    <Key>
+      <PropertyRef Name="proj_id" />
+    </Key>
+    <Property Name="contract_date" Type="date" />
+    <Property Name="cont_Expctd_date" Type="date" />
+    <Property Name="Sup_Expctd_date" Type="nvarchar" MaxLength="200" />
+    <Property Name="document_recv_date" Type="date" />
+    <Property Name="down_recv_date" Type="date" />
+    <Property Name="progstart_date" Type="date" />
+    <Property Name="planed_date" Type="date" />
+    <Property Name="actual_finish_date" Type="date" />
+    <Property Name="dev_days" Type="int" />
+    <Property Name="proj_id" Type="int" Nullable="false" />
+    <Property Name="ExpectedDesignDuration" Type="int" />
+  </EntityType>
+  <EntityType Name="projects_schedule_tb">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="contract_date" Type="nvarchar" MaxLength="50" />
+    <Property Name="cont_Expctd_date" Type="nvarchar" MaxLength="50" />
+    <Property Name="document_recv_date" Type="nvarchar" MaxLength="50" />
+    <Property Name="down_recv_date" Type="nvarchar" MaxLength="50" />
+    <Property Name="progstart_date" Type="nvarchar" MaxLength="50" />
+    <Property Name="planed_date" Type="nvarchar" MaxLength="50" />
+    <Property Name="actual_finish_date" Type="nvarchar" MaxLength="50" />
+    <Property Name="dev_days" Type="nvarchar" MaxLength="50" />
+    <Property Name="proj_id" Type="int" />
+  </EntityType>
+  <EntityType Name="projects_status_log">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="proj_id" Type="int" Nullable="false" />
+    <Property Name="status_id" Type="int" Nullable="false" />
+    <Property Name="action_date" Type="datetime" Nullable="false" />
+    <Property Name="planned_date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="projects_types_list">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="type" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="ProjectSchedule">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="contract_date" Type="nvarchar" MaxLength="50" />
+    <Property Name="cont_Expctd_date" Type="nvarchar" MaxLength="50" />
+    <Property Name="document_recv_date" Type="nvarchar" MaxLength="50" />
+    <Property Name="down_recv_date" Type="nvarchar" MaxLength="50" />
+    <Property Name="progstart_date" Type="nvarchar" MaxLength="50" />
+    <Property Name="planed_date" Type="nvarchar" MaxLength="50" />
+    <Property Name="actual_finish_date" Type="nvarchar" MaxLength="50" />
+    <Property Name="dev_days" Type="nvarchar" MaxLength="50" />
+    <Property Name="newcontr" Type="datetime" />
+    <Property Name="proj_id" Type="int" />
+  </EntityType>
+  <EntityType Name="qat_cities_list">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="255" />
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="req_status_list">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="ScheduleTest">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="proj_ref" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="contract_date" Type="date" />
+    <Property Name="cont_Expctd_date" Type="date" />
+    <Property Name="document_recv_date" Type="date" />
+    <Property Name="down_recv_date" Type="date" />
+    <Property Name="progstart_date" Type="date" />
+    <Property Name="planed_date" Type="date" />
+    <Property Name="actual_finish_date" Type="date" />
+    <Property Name="dev_days" Type="int" />
+    <Property Name="proj_id" Type="int" />
+  </EntityType>
+  <EntityType Name="sec_group_permissions">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="controller_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="action_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="group_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sec_groups">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="sec_users_groups_rel">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GroupID" Type="int" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Sheet1schedule">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="proj_ref" Type="nvarchar" MaxLength="50" />
+    <Property Name="contract_date" Type="date" />
+    <Property Name="cont_Expctd_date" Type="datetime" />
+    <Property Name="document_recv_date" Type="datetime" />
+    <Property Name="down_recv_date" Type="datetime" />
+    <Property Name="progstart_date" Type="datetime" />
+    <Property Name="planed_date" Type="datetime" />
+    <Property Name="actual_finish_date" Type="nvarchar" MaxLength="50" />
+    <Property Name="dev_days" Type="int" />
+    <Property Name="proj_id" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'FollowupDB.dbo.ST-IDTime' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="ST-IDTime">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'FollowupDB.dbo.Table_1' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Table_1">
+          <Property Name="sc" Type="nvarchar" MaxLength="250" />
+          <Property Name="name" Type="nvarchar" MaxLength="250" />
+        </EntityType>-->
+  <EntityType Name="TaskTypes">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="OnPermit" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TimeIntervals">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="UploadSystems">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Shortcut" Type="nvarchar" MaxLength="10" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'FollowupDB.dbo.dpme_clients' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="dpme_clients">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="company_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="address" Type="nvarchar" MaxLength="100" />
+    <Property Name="tel" Type="nvarchar" MaxLength="75" />
+    <Property Name="fax" Type="nvarchar" MaxLength="75" />
+    <Property Name="mobile" Type="nvarchar" MaxLength="75" />
+    <Property Name="web" Type="nvarchar" MaxLength="50" />
+    <Property Name="email" Type="nvarchar" MaxLength="50" />
+    <Property Name="cat" Type="smallint" />
+    <Property Name="notes" Type="ntext" />
+    <Property Name="lastupdate" Type="datetime" />
+    <Property Name="Code" Type="nvarchar" MaxLength="50" />
+    <Property Name="WorkedWith" Type="nvarchar" MaxLength="1000" />
+    <Property Name="Competitors" Type="nvarchar" MaxLength="1000" />
+    <Property Name="Importance_ID" Type="int" />
+    <Property Name="CityID" Type="int" />
+    <Property Name="ClassID" Type="int" />
+    <Property Name="isdeleted" Type="bit" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'FollowupDB.dbo.dpme_projects' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="dpme_projects">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="EmployeeMasterWorkingGroupID" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="code" Type="nvarchar" MaxLength="50" />
+    <Property Name="name" Type="nvarchar" MaxLength="255" />
+    <Property Name="type" Type="smallint" />
+    <Property Name="country" Type="int" />
+    <Property Name="location" Type="ntext" />
+    <Property Name="client" Type="int" />
+    <Property Name="client_contact" Type="int" />
+    <Property Name="client_what" Type="int" />
+    <Property Name="owner" Type="int" />
+    <Property Name="owner_contact" Type="int" />
+    <Property Name="conslt" Type="int" />
+    <Property Name="conslt_contact" Type="int" />
+    <Property Name="planguage" Type="int" />
+    <Property Name="plevel" Type="int" />
+    <Property Name="draw_scale" Type="int" />
+    <Property Name="scale" Type="int" />
+    <Property Name="DrawingsSizeID" Type="int" />
+    <Property Name="similars" Type="nvarchar" MaxLength="255" />
+    <Property Name="stage" Type="smallint" />
+    <Property Name="date_Entering" Type="datetime" />
+    <Property Name="date_in" Type="datetime" />
+    <Property Name="StartingDate" Type="datetime" />
+    <Property Name="date_due" Type="datetime" />
+    <Property Name="ExpectedFinishingDate" Type="datetime" />
+    <Property Name="manager" Type="int" />
+    <Property Name="secr" Type="int" />
+    <Property Name="coord" Type="int" />
+    <Property Name="branch" Type="smallint" />
+    <Property Name="lastupdate" Type="datetime" />
+    <Property Name="ContractValue" Type="money" />
+    <Property Name="ActualFinishingDate" Type="datetime" />
+    <Property Name="IsOldProject" Type="bit" />
+    <Property Name="EmployeeMasterWorkingGroupID" Type="int" Nullable="false" />
+    <Property Name="ConsultationServices" Type="nvarchar" MaxLength="1000" />
+    <Property Name="ReceivedClientDocument" Type="nvarchar" MaxLength="1000" />
+    <Property Name="ClientDocumentReceivedDate" Type="smalldatetime" />
+    <Property Name="ClientDocumentServerPath" Type="nvarchar" MaxLength="400" />
+    <Property Name="ClientRequest" Type="nvarchar" MaxLength="1000" />
+    <Property Name="Payment" Type="nvarchar" MaxLength="1000" />
+    <Property Name="ContractCondition" Type="nvarchar" MaxLength="1000" />
+    <Property Name="MainOfficeContractPercentage" Type="real" />
+    <Property Name="DesignDepartmentContractPercentage" Type="real" />
+    <Property Name="BranchContractPercentage" Type="real" />
+    <Property Name="BranchID" Type="int" />
+    <Property Name="CurrencyID" Type="int" />
+    <Property Name="EquvWorkTypeID" Type="int" />
+    <Property Name="ElectricEquivalentDrawingFee" Type="money" />
+    <Property Name="HvacEquivalentDrawingFee" Type="money" />
+    <Property Name="PlumbingEquivalentDrawingFee" Type="money" />
+    <Property Name="ContractDate" Type="smalldatetime" />
+    <Property Name="DesignDepartmentReceivingDate" Type="smalldatetime" />
+    <Property Name="CurrencyExchangeRate" Type="real" />
+    <Property Name="Parent" Type="int" />
+    <Property Name="FieldOfWork" Type="int" />
+    <Property Name="Description" Type="nvarchar" MaxLength="250" />
+    <Property Name="Area" Type="nvarchar" MaxLength="50" />
+    <Property Name="TypeID" Type="int" />
+    <Property Name="PinNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="Fees" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Due" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="RollID" Type="int" />
+    <Property Name="Serial" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'FollowupDB.dbo.repPermitsLastStatus' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="repPermitsLastStatus">
+    <Key>
+      <PropertyRef Name="proj_ref" />
+      <PropertyRef Name="Last_Status" />
+      <PropertyRef Name="AllPermits" />
+      <PropertyRef Name="AcceptedPermits" />
+    </Key>
+    <Property Name="id" Type="int" />
+    <Property Name="permit_id" Type="nvarchar" MaxLength="50" />
+    <Property Name="client_comments" Type="nvarchar" MaxLength="3000" />
+    <Property Name="ProjectName" Type="nvarchar" MaxLength="200" />
+    <Property Name="PermitType" Type="nvarchar" MaxLength="255" />
+    <Property Name="Scope" Type="nvarchar" MaxLength="255" />
+    <Property Name="Addreessee" Type="nvarchar" MaxLength="255" />
+    <Property Name="proj_ref" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="proj_id" Type="int" />
+    <Property Name="permit_type_id" Type="int" />
+    <Property Name="permit_scope_id" Type="int" />
+    <Property Name="addressee_id" Type="int" />
+    <Property Name="contract_date" Type="date" />
+    <Property Name="client_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="progstart_date" Type="date" />
+    <Property Name="Last_Status" Type="int" Nullable="false" />
+    <Property Name="Last_Status_Name" Type="nvarchar" MaxLength="255" />
+    <Property Name="Last_Date" Type="datetime" />
+    <Property Name="Location" Type="nvarchar" MaxLength="255" />
+    <Property Name="project_status" Type="int" />
+    <Property Name="project_status_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Last_Comment" Type="nvarchar" MaxLength="4000" />
+    <Property Name="building_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="actual_finish_date" Type="date" />
+    <Property Name="css_style" Type="nvarchar" MaxLength="250" />
+    <Property Name="client_id" Type="int" />
+    <Property Name="Balance" Type="decimal" Precision="38" Scale="2" />
+    <Property Name="AllPermits" Type="int" Nullable="false" />
+    <Property Name="AcceptedPermits" Type="int" Nullable="false" />
+    <Property Name="PermitTypeShortcut" Type="nvarchar" MaxLength="50" />
+    <Property Name="division_id" Type="int" />
+    <Property Name="proj_area" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'FollowupDB.dbo.sample_permitsstatus_groupby' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="sample_permitsstatus_groupby">
+          <Property Name="permit_id" Type="nvarchar" MaxLength="50" />
+          <Property Name="client_comments" Type="nvarchar" MaxLength="3000" />
+          <Property Name="proj_id" Type="int" />
+          <Property Name="permit_type_id" Type="int" />
+          <Property Name="permit_scope_id" Type="int" />
+          <Property Name="addressee_id" Type="int" />
+          <Property Name="status_id" Type="int" />
+          <Property Name="action_date" Type="datetime" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'FollowupDB.dbo.sample_permitsstatus_subquery' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="sample_permitsstatus_subquery">
+    <Key>
+      <PropertyRef Name="status_id" />
+      <PropertyRef Name="action_date" />
+    </Key>
+    <Property Name="permit_id" Type="nvarchar" MaxLength="50" />
+    <Property Name="client_comments" Type="nvarchar" MaxLength="3000" />
+    <Property Name="proj_id" Type="int" />
+    <Property Name="permit_type_id" Type="int" />
+    <Property Name="permit_scope_id" Type="int" />
+    <Property Name="addressee_id" Type="int" />
+    <Property Name="status_id" Type="int" Nullable="false" />
+    <Property Name="action_date" Type="datetime" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'FollowupDB.dbo.vw_DailyPlan' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="vw_DailyPlan">
+          <Property Name="ID" Type="int" />
+          <Property Name="PermitID" Type="int" />
+          <Property Name="Date" Type="date" />
+          <Property Name="ProgressPerc" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="userid" Type="int" />
+          <Property Name="reg_date" Type="datetime" />
+          <Property Name="notes" Type="nvarchar" MaxLength="250" />
+          <Property Name="FromTime" Type="datetime" />
+          <Property Name="ToTime" Type="datetime" />
+          <Property Name="EmployeeID" Type="int" />
+          <Property Name="proj_name" Type="nvarchar" MaxLength="200" />
+          <Property Name="Permit Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'FollowupDB.dbo.vw_OurCompany' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vw_OurCompany">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ar_CompnyName" Type="nvarchar" MaxLength="50" />
+    <Property Name="En_CompnyName" Type="nvarchar" MaxLength="50" />
+    <Property Name="NationalitiesID" Type="int" />
+    <Property Name="CompanyAddress" Type="nvarchar" MaxLength="100" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="fax" Type="nvarchar" MaxLength="50" />
+    <Property Name="Logo" Type="nvarchar" MaxLength="400" />
+    <Property Name="DPMEIsEncrypted" Type="bit" />
+    <Property Name="DPMEAllowUpdate" Type="bit" />
+    <Property Name="MaxUploadSize" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="MaxMessagesCount" Type="int" />
+    <Property Name="MsgTimerInterval" Type="int" />
+    <Property Name="FileServerPath" Type="nvarchar" MaxLength="255" />
+    <Property Name="WebSite" Type="nvarchar" MaxLength="200" />
+    <Property Name="Mail_Sign_En" Type="nvarchar" MaxLength="255" />
+    <Property Name="Mail_Sign_Ar" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'FollowupDB.dbo.vwAllCollected' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vwAllCollected">
+    <Key>
+      <PropertyRef Name="invoice_number" />
+      <PropertyRef Name="scope" />
+    </Key>
+    <Property Name="proj_id" Type="int" />
+    <Property Name="invoice_amount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="invoice_date" Type="datetime" />
+    <Property Name="invoice_number" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="worktype" Type="nvarchar" MaxLength="50" />
+    <Property Name="scope" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'FollowupDB.dbo.vwClientEmails' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="vwClientEmails">
+          <Property Name="FromBranchID" Type="int" />
+          <Property Name="FromDivisionID" Type="int" />
+          <Property Name="FromEmployeeID" Type="int" />
+          <Property Name="FromCompanyID" Type="int" />
+          <Property Name="ProjectID" Type="int" />
+          <Property Name="Subject" Type="nvarchar" MaxLength="100" />
+          <Property Name="Purpose" Type="ntext" />
+          <Property Name="State" Type="int" />
+          <Property Name="FromBranch" Type="nvarchar" MaxLength="50" />
+          <Property Name="FromDivision" Type="nvarchar" MaxLength="50" />
+          <Property Name="FromEmployee" Type="nvarchar" MaxLength="255" />
+          <Property Name="FromCompany" Type="nvarchar" MaxLength="50" />
+          <Property Name="ProjectName" Type="nvarchar" MaxLength="255" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'FollowupDB.dbo.vwClientMailling' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vwClientMailling">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="ProjectID" Type="int" />
+    <Property Name="Subject" Type="nvarchar" MaxLength="100" />
+    <Property Name="Purpose" Type="ntext" />
+    <Property Name="State" Type="int" />
+    <Property Name="FromPerson" Type="nvarchar" MaxLength="50" />
+    <Property Name="FromCompany" Type="nvarchar" MaxLength="50" />
+    <Property Name="ProjectName" Type="nvarchar" MaxLength="255" />
+    <Property Name="IsEmployee" Type="int" />
+    <Property Name="ToDivision" Type="nvarchar" MaxLength="50" />
+    <Property Name="ToEmployee" Type="nvarchar" MaxLength="255" />
+    <Property Name="ToBranch" Type="nvarchar" MaxLength="50" />
+    <Property Name="FromCompanyID" Type="int" />
+    <Property Name="FromPersonID" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'FollowupDB.dbo.vwDivisions' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vwDivisions">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="DivisionName" Type="nvarchar" MaxLength="50" />
+    <Property Name="DivisionTypeID" Type="int" />
+    <Property Name="DivisionShortcutName" Type="char" MaxLength="4" />
+    <Property Name="OrderBy" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'FollowupDB.dbo.vwEmployees' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vwEmployees">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="DateOfDeparture" />
+      <PropertyRef Name="FunctionalNamesID" />
+      <PropertyRef Name="SpecializationsID" />
+      <PropertyRef Name="EmployeesWorkingGroupsID" />
+      <PropertyRef Name="EmployeesWorkingGroupsManagerID" />
+      <PropertyRef Name="EmployeeMasterWorkingGroupsID" />
+      <PropertyRef Name="EmployeeMasterWorkingGroupsManagerID" />
+      <PropertyRef Name="OurCompanyID" />
+      <PropertyRef Name="BirthDate" />
+      <PropertyRef Name="Gender" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="255" />
+    <Property Name="Salary" Type="real" />
+    <Property Name="name_e" Type="nvarchar" MaxLength="255" />
+    <Property Name="DepartmentID" Type="smallint" />
+    <Property Name="DepartmentManager" Type="int" />
+    <Property Name="Division" Type="int" />
+    <Property Name="DivisionManager" Type="int" />
+    <Property Name="nationality" Type="int" />
+    <Property Name="SalaryGroupID" Type="int" />
+    <Property Name="Deleted" Type="bit" />
+    <Property Name="EmploymentDate" Type="datetime" />
+    <Property Name="DateOfDeparture" Type="datetime" Nullable="false" />
+    <Property Name="FunctionalNamesID" Type="int" Nullable="false" />
+    <Property Name="SpecializationsID" Type="int" Nullable="false" />
+    <Property Name="EmployeesWorkingGroupsID" Type="int" Nullable="false" />
+    <Property Name="EmployeesWorkingGroupsManagerID" Type="int" Nullable="false" />
+    <Property Name="EmployeeMasterWorkingGroupsID" Type="int" Nullable="false" />
+    <Property Name="EmployeeMasterWorkingGroupsManagerID" Type="int" Nullable="false" />
+    <Property Name="EmployeeStatusID" Type="bigint" />
+    <Property Name="PersonalPhoto" Type="image" />
+    <Property Name="OurCompanyID" Type="int" Nullable="false" />
+    <Property Name="BranchManagerID" Type="int" />
+    <Property Name="BirthDate" Type="datetime" Nullable="false" />
+    <Property Name="Gender" Type="bit" Nullable="false" />
+    <Property Name="Signature" Type="image" />
+    <Property Name="SignaturePass" Type="nvarchar" MaxLength="50" />
+    <Property Name="NameVoice" Type="binary" MaxLength="50" />
+    <Property Name="SalaryDescription" Type="nvarchar" MaxLength="255" />
+    <Property Name="AccID" Type="int" />
+    <Property Name="Token" Type="uniqueidentifier" />
+    <Property Name="SignatureHTML" Type="nvarchar(max)" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'FollowupDB.dbo.vwLastActionLog' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vwLastActionLog">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="permit_id" />
+      <PropertyRef Name="status_id" />
+      <PropertyRef Name="action_date" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="permit_id" Type="int" Nullable="false" />
+    <Property Name="status_id" Type="int" Nullable="false" />
+    <Property Name="action_date" Type="datetime" Nullable="false" />
+    <Property Name="comment" Type="nvarchar" MaxLength="4000" />
+    <Property Name="proj_id" Type="int" />
+    <Property Name="DurDays" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'FollowupDB.dbo.vwLastPlan' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vwLastPlan">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="TaskTypeID" Type="int" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastPlan_ProgressPerc" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="LastPlan_Date" Type="date" />
+    <Property Name="LastPlan_ID" Type="int" />
+    <Property Name="LastPlan_TaskID" Type="int" />
+    <Property Name="LastPlan_Periority" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'FollowupDB.dbo.vwNextPlan' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vwNextPlan">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="TaskTypeID" Type="int" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="NextPlan_ProgressPerc" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="NextPlan_Date" Type="date" />
+    <Property Name="NextPlan_ID" Type="int" />
+    <Property Name="NextPlan_TaskID" Type="int" />
+    <Property Name="NextPlan_Periority" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'FollowupDB.dbo.vwPermitsByStatus' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vwPermitsByStatus">
+    <Key>
+      <PropertyRef Name="status_id" />
+    </Key>
+    <Property Name="proj_id" Type="int" />
+    <Property Name="status_id" Type="int" Nullable="false" />
+    <Property Name="CountPermit" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'FollowupDB.dbo.vwPermitsLastStatus' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vwPermitsLastStatus">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="proj_ref" />
+      <PropertyRef Name="Last_Status" />
+      <PropertyRef Name="Last_Date" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="permit_id" Type="nvarchar" MaxLength="50" />
+    <Property Name="client_comments" Type="nvarchar" MaxLength="3000" />
+    <Property Name="ProjectName" Type="nvarchar" MaxLength="200" />
+    <Property Name="PermitType" Type="nvarchar" MaxLength="255" />
+    <Property Name="Scope" Type="nvarchar" MaxLength="255" />
+    <Property Name="Addreessee" Type="nvarchar" MaxLength="255" />
+    <Property Name="proj_ref" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="proj_id" Type="int" />
+    <Property Name="permit_type_id" Type="int" />
+    <Property Name="permit_scope_id" Type="int" />
+    <Property Name="addressee_id" Type="int" />
+    <Property Name="contract_date" Type="date" />
+    <Property Name="client_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="progstart_date" Type="date" />
+    <Property Name="Last_Status" Type="int" Nullable="false" />
+    <Property Name="Last_Status_Name" Type="nvarchar" MaxLength="255" />
+    <Property Name="Last_Date" Type="datetime" Nullable="false" />
+    <Property Name="Location" Type="nvarchar" MaxLength="255" />
+    <Property Name="comment" Type="nvarchar" MaxLength="4000" />
+    <Property Name="building_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="DurDays" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'FollowupDB.dbo.vwPlanDatasource' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vwPlanDatasource">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="Last_Status" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="permit_id" Type="nvarchar" MaxLength="50" />
+    <Property Name="client_comments" Type="nvarchar" MaxLength="3000" />
+    <Property Name="ProjectName" Type="nvarchar" MaxLength="500" />
+    <Property Name="PermitType" Type="nvarchar" MaxLength="255" />
+    <Property Name="Scope" Type="nvarchar" MaxLength="255" />
+    <Property Name="Addreessee" Type="nvarchar" MaxLength="255" />
+    <Property Name="proj_ref" Type="nvarchar" MaxLength="50" />
+    <Property Name="proj_id" Type="int" />
+    <Property Name="permit_type_id" Type="int" />
+    <Property Name="permit_scope_id" Type="int" />
+    <Property Name="addressee_id" Type="int" />
+    <Property Name="contract_date" Type="date" />
+    <Property Name="client_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="progstart_date" Type="date" />
+    <Property Name="Last_Status" Type="int" Nullable="false" />
+    <Property Name="Last_Status_Name" Type="nvarchar" MaxLength="255" />
+    <Property Name="Last_Date" Type="datetime" />
+    <Property Name="Location" Type="nvarchar" MaxLength="255" />
+    <Property Name="project_status" Type="int" />
+    <Property Name="project_status_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Last_Comment" Type="nvarchar" MaxLength="4000" />
+    <Property Name="building_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="actual_finish_date" Type="date" />
+    <Property Name="css_style" Type="nvarchar" MaxLength="250" />
+    <Property Name="client_id" Type="int" />
+    <Property Name="PermitTypeShortcut" Type="nvarchar" MaxLength="50" />
+    <Property Name="division_id" Type="int" />
+    <Property Name="LastPlan_TaskName" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastPlan_ProgressPerc" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="LastPlan_Date" Type="date" />
+    <Property Name="TaskTypeID" Type="int" />
+    <Property Name="NextPlan_TaskName" Type="nvarchar" MaxLength="50" />
+    <Property Name="NextPlan_ProgressPerc" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="NextPlan_Date" Type="date" />
+    <Property Name="NextPlan_ID" Type="int" />
+    <Property Name="LastPlan_ID" Type="int" />
+    <Property Name="LastPlan_TaskID" Type="int" />
+    <Property Name="NextPlan_TaskID" Type="int" />
+    <Property Name="LastPlan_PlanHours" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="NextPlan_PlanHours" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="NextPlan_Periority" Type="int" />
+    <Property Name="LastPlan_Periority" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'FollowupDB.dbo.vwProjectBalance' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vwProjectBalance">
+    <Key>
+      <PropertyRef Name="sn" />
+    </Key>
+    <Property Name="sn" Type="int" Nullable="false" />
+    <Property Name="TotalCollected" Type="decimal" Precision="38" Scale="2" />
+    <Property Name="ToTalFees" Type="decimal" Precision="38" Scale="2" />
+    <Property Name="Balance" Type="decimal" Precision="38" Scale="2" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'FollowupDB.dbo.vwProjectRequirements' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vwProjectRequirements">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="RequuirementName" Type="nvarchar" MaxLength="500" />
+    <Property Name="PermitName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Scope" Type="nvarchar" MaxLength="50" />
+    <Property Name="proj_id" Type="int" />
+    <Property Name="proj_ref" Type="nvarchar" MaxLength="50" />
+    <Property Name="proj_name" Type="nvarchar" MaxLength="500" />
+    <Property Name="StatusName" Type="nvarchar" MaxLength="50" />
+    <Property Name="action_date" Type="datetime" />
+    <Property Name="LastComment" Type="nvarchar" MaxLength="400" />
+    <Property Name="next_followup_date" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'FollowupDB.dbo.vwProjectsView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vwProjectsView">
+    <Key>
+      <PropertyRef Name="sn" />
+      <PropertyRef Name="proj_ref" />
+      <PropertyRef Name="AcceptedPermits" />
+    </Key>
+    <Property Name="sn" Type="int" Nullable="false" />
+    <Property Name="proj_name" Type="nvarchar" MaxLength="200" />
+    <Property Name="proj_ref" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="building_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="proj_area" Type="nvarchar" MaxLength="50" />
+    <Property Name="proj_floors" Type="nvarchar" MaxLength="50" />
+    <Property Name="discplns_list" Type="nvarchar" MaxLength="4000" />
+    <Property Name="progress_stage" Type="nvarchar" MaxLength="2000" />
+    <Property Name="proj_deliverable" Type="nvarchar" MaxLength="200" />
+    <Property Name="dpme_projid" Type="int" />
+    <Property Name="location_id" Type="int" />
+    <Property Name="usag_id" Type="int" />
+    <Property Name="category_id" Type="int" />
+    <Property Name="type_id" Type="int" />
+    <Property Name="scope_id" Type="int" />
+    <Property Name="status_id" Type="int" />
+    <Property Name="proj_client_id" Type="int" />
+    <Property Name="AllPermitsCount" Type="int" />
+    <Property Name="AcceptedPermits" Type="int" Nullable="false" />
+    <Property Name="client_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="qat_cities_list" Type="nvarchar" MaxLength="255" />
+    <Property Name="project_usage_list" Type="nvarchar" MaxLength="50" />
+    <Property Name="project_category_list" Type="nvarchar" MaxLength="50" />
+    <Property Name="proj_types_list" Type="nvarchar" MaxLength="255" />
+    <Property Name="proj_workscope_list" Type="nvarchar" MaxLength="255" />
+    <Property Name="proj_workscope_list_1" Type="nvarchar" MaxLength="255" />
+    <Property Name="proj_status_list" Type="nvarchar" MaxLength="50" />
+    <Property Name="InBrogressPermits" Type="int" />
+    <Property Name="DaysFromExpDes" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'FollowupDB.dbo.vwPVPermits' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vwPVPermits">
+    <Key>
+      <PropertyRef Name="log_date" />
+    </Key>
+    <Property Name="log_status" Type="nvarchar" MaxLength="255" />
+    <Property Name="log_date" Type="datetime" Nullable="false" />
+    <Property Name="log_comment" Type="nvarchar" MaxLength="4000" />
+    <Property Name="permit_id" Type="nvarchar" MaxLength="50" />
+    <Property Name="permit_client_comment" Type="nvarchar" MaxLength="3000" />
+    <Property Name="addressee" Type="nvarchar" MaxLength="255" />
+    <Property Name="permit_type" Type="nvarchar" MaxLength="255" />
+    <Property Name="permit_scope" Type="nvarchar" MaxLength="255" />
+    <Property Name="project_name" Type="nvarchar" MaxLength="200" />
+    <Property Name="project_ref" Type="nvarchar" MaxLength="50" />
+    <Property Name="project_category" Type="nvarchar" MaxLength="50" />
+    <Property Name="client_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="client_id" Type="int" />
+    <Property Name="fees_design" Type="int" />
+    <Property Name="fees_supervs" Type="int" />
+    <Property Name="fees_study" Type="int" />
+    <Property Name="fees_total" Type="int" />
+    <Property Name="balance_design" Type="nvarchar" MaxLength="50" />
+    <Property Name="balance_study" Type="nvarchar" MaxLength="50" />
+    <Property Name="balance_sup" Type="nvarchar" MaxLength="50" />
+    <Property Name="balance_total" Type="nvarchar" MaxLength="50" />
+    <Property Name="payment_sup_fees" Type="nvarchar" MaxLength="50" />
+    <Property Name="payment_sup_type" Type="nvarchar" MaxLength="50" />
+    <Property Name="payment_study_down" Type="nvarchar" MaxLength="50" />
+    <Property Name="payment_study_down_cond" Type="nvarchar" MaxLength="100" />
+    <Property Name="payment_study_first" Type="nvarchar" MaxLength="50" />
+    <Property Name="payment_study_first_cond" Type="nvarchar" MaxLength="100" />
+    <Property Name="payment_design_down" Type="nvarchar" MaxLength="50" />
+    <Property Name="payment_design_down_cond" Type="nvarchar" MaxLength="2000" />
+    <Property Name="payment_design_first" Type="nvarchar" MaxLength="50" />
+    <Property Name="payment_design_first_cond" Type="nvarchar" MaxLength="2000" />
+    <Property Name="payment_design_second" Type="nvarchar" MaxLength="50" />
+    <Property Name="payment_design_second_cond" Type="nvarchar" MaxLength="2000" />
+    <Property Name="payment_design_third" Type="nvarchar" MaxLength="50" />
+    <Property Name="payment_design_third_cond" Type="nvarchar" MaxLength="2000" />
+    <Property Name="payment_design_fourth" Type="nvarchar" MaxLength="50" />
+    <Property Name="payment_design_fourth_cond" Type="nvarchar" MaxLength="2000" />
+    <Property Name="payment_design_fifth" Type="nvarchar" MaxLength="50" />
+    <Property Name="payment_design_fifth_cond" Type="nvarchar" MaxLength="2000" />
+    <Property Name="payment_design_sixth" Type="nvarchar" MaxLength="50" />
+    <Property Name="payment_design_sixth_cond" Type="nvarchar" MaxLength="2000" />
+    <Property Name="payment_design_seven" Type="nvarchar" MaxLength="50" />
+    <Property Name="payment_design_seven_cond" Type="nvarchar" MaxLength="2000" />
+    <Property Name="payment_instsupvs_down" Type="nvarchar" MaxLength="50" />
+    <Property Name="payment_instsupvs_down_cond" Type="nvarchar" MaxLength="2000" />
+    <Property Name="payment_instsupvs_first" Type="nvarchar" MaxLength="50" />
+    <Property Name="payment_instsupvs_first_cond" Type="nvarchar" MaxLength="2000" />
+    <Property Name="payment_instsupvs_second" Type="nvarchar" MaxLength="50" />
+    <Property Name="payment_instsupvs_second_cond" Type="nvarchar" MaxLength="2000" />
+    <Property Name="payment_instsupvs_third" Type="nvarchar" MaxLength="50" />
+    <Property Name="payment_instsupvs_third_cond" Type="nvarchar" MaxLength="2000" />
+    <Property Name="payment_instsupvs_fourth" Type="nvarchar" MaxLength="50" />
+    <Property Name="payment_instsupvs_fourth_cond" Type="nvarchar" MaxLength="2000" />
+    <Property Name="payment_instsupvs_fifth" Type="nvarchar" MaxLength="50" />
+    <Property Name="payment_instsupvs_fifth_cond" Type="nvarchar" MaxLength="2000" />
+    <Property Name="payment_instsupvs_sixth" Type="nvarchar" MaxLength="50" />
+    <Property Name="payment_instsupvs_sixth_cond" Type="nvarchar" MaxLength="2000" />
+    <Property Name="payment_instsupvs_seven" Type="nvarchar" MaxLength="50" />
+    <Property Name="payment_instsupvs_seven_cond" Type="nvarchar" MaxLength="2000" />
+    <Property Name="schedule_contract_date" Type="date" />
+    <Property Name="schedule_cont_Expctd_date" Type="date" />
+    <Property Name="schedule_document_recv_date" Type="date" />
+    <Property Name="schedule_down_recv_date" Type="date" />
+    <Property Name="schedule_progstart_date" Type="date" />
+    <Property Name="schedule_planed_date" Type="date" />
+    <Property Name="schedule_actual_finish_date" Type="date" />
+    <Property Name="schedule_dev_days" Type="int" />
+    <Property Name="project_scope" Type="nvarchar" MaxLength="255" />
+    <Property Name="project_usage" Type="nvarchar" MaxLength="50" />
+    <Property Name="project_type" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <Association Name="FK_clients_nationalities_list">
+    <End Role="nationalities_list" Type="Self.nationalities_list" Multiplicity="0..1" />
+    <End Role="clients" Type="Self.clients" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="nationalities_list">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="clients">
+        <PropertyRef Name="client_nationalityid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_clients_nationalities_list1">
+    <End Role="nationalities_list" Type="Self.nationalities_list" Multiplicity="0..1" />
+    <End Role="clients" Type="Self.clients" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="nationalities_list">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="clients">
+        <PropertyRef Name="rep_nationalityid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DailyPlan_Projects_DailyPlan_Tasks">
+    <End Role="DailyPlan_Tasks" Type="Self.DailyPlan_Tasks" Multiplicity="0..1" />
+    <End Role="DailyPlan_Projects" Type="Self.DailyPlan_Projects" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DailyPlan_Tasks">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DailyPlan_Projects">
+        <PropertyRef Name="TaskID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DailyPlan_Projects_projects_permits">
+    <End Role="projects_permits" Type="Self.projects_permits" Multiplicity="1" />
+    <End Role="DailyPlan_Projects" Type="Self.DailyPlan_Projects" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="projects_permits">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="DailyPlan_Projects">
+        <PropertyRef Name="PermitID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DailyPlan_Tasks_projects_permits">
+    <End Role="projects_permits" Type="Self.projects_permits" Multiplicity="1" />
+    <End Role="DailyPlan_Tasks" Type="Self.DailyPlan_Tasks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="projects_permits">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="DailyPlan_Tasks">
+        <PropertyRef Name="PermitID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DailyPlan_Tasks_TaskTypes">
+    <End Role="TaskTypes" Type="Self.TaskTypes" Multiplicity="0..1" />
+    <End Role="DailyPlan_Tasks" Type="Self.DailyPlan_Tasks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TaskTypes">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DailyPlan_Tasks">
+        <PropertyRef Name="TaskTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DailyPlan_Times_DailyPlan_Tasks">
+    <End Role="DailyPlan_Tasks" Type="Self.DailyPlan_Tasks" Multiplicity="0..1" />
+    <End Role="DailyPlan_Times" Type="Self.DailyPlan_Times" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DailyPlan_Tasks">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DailyPlan_Times">
+        <PropertyRef Name="TaskID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DailyPlan_Times_projects_permits">
+    <End Role="projects_permits" Type="Self.projects_permits" Multiplicity="0..1" />
+    <End Role="DailyPlan_Times" Type="Self.DailyPlan_Times" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="projects_permits">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="DailyPlan_Times">
+        <PropertyRef Name="PermitID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DailyPlan_Times_SubTaskType">
+    <End Role="TaskTypes" Type="Self.TaskTypes" Multiplicity="0..1" />
+    <End Role="DailyPlan_Times" Type="Self.DailyPlan_Times" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TaskTypes">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DailyPlan_Times">
+        <PropertyRef Name="SubTaskTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DailyPlan_Times_TaskTypes">
+    <End Role="TaskTypes" Type="Self.TaskTypes" Multiplicity="0..1" />
+    <End Role="DailyPlan_Times" Type="Self.DailyPlan_Times" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TaskTypes">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DailyPlan_Times">
+        <PropertyRef Name="TaskTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_clients_userpass_dbo_clients">
+    <End Role="clients" Type="Self.clients" Multiplicity="0..1" />
+    <End Role="clients_userpass" Type="Self.clients_userpass" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="clients">
+        <PropertyRef Name="client_id" />
+      </Principal>
+      <Dependent Role="clients_userpass">
+        <PropertyRef Name="client_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_AdminAccess_employee_sysaccess">
+    <End Role="employee_sysaccess" Type="Self.employee_sysaccess" Multiplicity="1" />
+    <End Role="Employee_AdminAccess" Type="Self.Employee_AdminAccess" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="employee_sysaccess">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Employee_AdminAccess">
+        <PropertyRef Name="emp_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_notify_clients">
+    <End Role="clients_userpass" Type="Self.clients_userpass" Multiplicity="1" />
+    <End Role="notify" Type="Self.notify" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="clients_userpass">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="notify">
+        <PropertyRef Name="fromid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_notify_clients1">
+    <End Role="clients_userpass" Type="Self.clients_userpass" Multiplicity="1" />
+    <End Role="notify" Type="Self.notify" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="clients_userpass">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="notify">
+        <PropertyRef Name="toid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Permits_ProjectsNew_projects">
+    <End Role="projects" Type="Self.projects" Multiplicity="0..1" />
+    <End Role="Permits_ProjectsNew" Type="Self.Permits_ProjectsNew" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="projects">
+        <PropertyRef Name="sn" />
+      </Principal>
+      <Dependent Role="Permits_ProjectsNew">
+        <PropertyRef Name="proj_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_permits_status_log_permits_status">
+    <End Role="permits_status" Type="Self.permits_status" Multiplicity="1" />
+    <End Role="permits_status_log" Type="Self.permits_status_log" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="permits_status">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="permits_status_log">
+        <PropertyRef Name="status_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_permits_status_log_projects_permits">
+    <End Role="projects_permits" Type="Self.projects_permits" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="permits_status_log" Type="Self.permits_status_log" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="projects_permits">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="permits_status_log">
+        <PropertyRef Name="permit_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_proj_req_status_log_projects_requirements">
+    <End Role="projects_requirements" Type="Self.projects_requirements" Multiplicity="1" />
+    <End Role="proj_req_status_log" Type="Self.proj_req_status_log" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="projects_requirements">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="proj_req_status_log">
+        <PropertyRef Name="proj_req_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_proj_req_status_log_req_status_list">
+    <End Role="req_status_list" Type="Self.req_status_list" Multiplicity="1" />
+    <End Role="proj_req_status_log" Type="Self.proj_req_status_log" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="req_status_list">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="proj_req_status_log">
+        <PropertyRef Name="status_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_project_collecte_details_Payments_Scope_list">
+    <End Role="Payments_Scope_list" Type="Self.Payments_Scope_list" Multiplicity="0..1" />
+    <End Role="project_collecte_details" Type="Self.project_collecte_details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Payments_Scope_list">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="project_collecte_details">
+        <PropertyRef Name="ScopeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_project_collecte_details_project_collectes">
+    <End Role="project_collectes" Type="Self.project_collectes" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="project_collecte_details" Type="Self.project_collecte_details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="project_collectes">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="project_collecte_details">
+        <PropertyRef Name="CollectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_project_collectes_payment_type_list">
+    <End Role="payment_type_list" Type="Self.payment_type_list" Multiplicity="0..1" />
+    <End Role="project_collectes" Type="Self.project_collectes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="payment_type_list">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="project_collectes">
+        <PropertyRef Name="PaymentTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_project_collectes_project_invoices">
+    <End Role="project_invoices" Type="Self.project_invoices" Multiplicity="0..1" />
+    <End Role="project_collectes" Type="Self.project_collectes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="project_invoices">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="project_collectes">
+        <PropertyRef Name="InvoiceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_project_collectes_projects">
+    <End Role="projects" Type="Self.projects" Multiplicity="0..1" />
+    <End Role="project_collectes" Type="Self.project_collectes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="projects">
+        <PropertyRef Name="sn" />
+      </Principal>
+      <Dependent Role="project_collectes">
+        <PropertyRef Name="proj_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_project_fees_Payments_Scope_list">
+    <End Role="Payments_Scope_list" Type="Self.Payments_Scope_list" Multiplicity="1" />
+    <End Role="project_fees" Type="Self.project_fees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Payments_Scope_list">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="project_fees">
+        <PropertyRef Name="ScopeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_project_fees_projects">
+    <End Role="projects" Type="Self.projects" Multiplicity="1" />
+    <End Role="project_fees" Type="Self.project_fees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="projects">
+        <PropertyRef Name="sn" />
+      </Principal>
+      <Dependent Role="project_fees">
+        <PropertyRef Name="proj_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_project_invoice_details_Payments_Scope_list">
+    <End Role="Payments_Scope_list" Type="Self.Payments_Scope_list" Multiplicity="0..1" />
+    <End Role="project_invoice_details" Type="Self.project_invoice_details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Payments_Scope_list">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="project_invoice_details">
+        <PropertyRef Name="ScopeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_project_invoice_details_project_invoice_details">
+    <End Role="project_invoices" Type="Self.project_invoices" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="project_invoice_details" Type="Self.project_invoice_details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="project_invoices">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="project_invoice_details">
+        <PropertyRef Name="InvoiceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_project_invoices_payment_type_list">
+    <End Role="payment_type_list" Type="Self.payment_type_list" Multiplicity="0..1" />
+    <End Role="project_invoices" Type="Self.project_invoices" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="payment_type_list">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="project_invoices">
+        <PropertyRef Name="method_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_project_invoices_project_payments">
+    <End Role="project_payments" Type="Self.project_payments" Multiplicity="0..1" />
+    <End Role="project_invoices" Type="Self.project_invoices" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="project_payments">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="project_invoices">
+        <PropertyRef Name="PaymentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_project_invoices_projects">
+    <End Role="projects" Type="Self.projects" Multiplicity="0..1" />
+    <End Role="project_invoices" Type="Self.project_invoices" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="projects">
+        <PropertyRef Name="sn" />
+      </Principal>
+      <Dependent Role="project_invoices">
+        <PropertyRef Name="proj_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_project_payment_config_projects">
+    <End Role="projects" Type="Self.projects" Multiplicity="1" />
+    <End Role="project_payment_config" Type="Self.project_payment_config" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="projects">
+        <PropertyRef Name="sn" />
+      </Principal>
+      <Dependent Role="project_payment_config">
+        <PropertyRef Name="proj_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_project_payment_config_TimeIntervals">
+    <End Role="TimeIntervals" Type="Self.TimeIntervals" Multiplicity="0..1" />
+    <End Role="project_payment_config" Type="Self.project_payment_config" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TimeIntervals">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="project_payment_config">
+        <PropertyRef Name="TimeIntervalID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_project_payment_details_Payments_Scope_list">
+    <End Role="Payments_Scope_list" Type="Self.Payments_Scope_list" Multiplicity="1" />
+    <End Role="project_payment_details" Type="Self.project_payment_details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Payments_Scope_list">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="project_payment_details">
+        <PropertyRef Name="ScopeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_project_payment_details_project_payments">
+    <End Role="project_payments" Type="Self.project_payments" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="project_payment_details" Type="Self.project_payment_details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="project_payments">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="project_payment_details">
+        <PropertyRef Name="PaymentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_project_payments_payment_type_list">
+    <End Role="payment_type_list" Type="Self.payment_type_list" Multiplicity="0..1" />
+    <End Role="project_payments" Type="Self.project_payments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="payment_type_list">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="project_payments">
+        <PropertyRef Name="PaymentTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_project_payments_projects">
+    <End Role="projects" Type="Self.projects" Multiplicity="0..1" />
+    <End Role="project_payments" Type="Self.project_payments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="projects">
+        <PropertyRef Name="sn" />
+      </Principal>
+      <Dependent Role="project_payments">
+        <PropertyRef Name="proj_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_project_visits_contract_projects">
+    <End Role="projects" Type="Self.projects" Multiplicity="1" />
+    <End Role="project_visits_contract" Type="Self.project_visits_contract" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="projects">
+        <PropertyRef Name="sn" />
+      </Principal>
+      <Dependent Role="project_visits_contract">
+        <PropertyRef Name="proj_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_project_visits_projects">
+    <End Role="projects" Type="Self.projects" Multiplicity="1" />
+    <End Role="project_visits" Type="Self.project_visits" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="projects">
+        <PropertyRef Name="sn" />
+      </Principal>
+      <Dependent Role="project_visits">
+        <PropertyRef Name="proj_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Projects_BuildingList_projects_types_list">
+    <End Role="projects_types_list" Type="Self.projects_types_list" Multiplicity="0..1" />
+    <End Role="Projects_BuildingList" Type="Self.Projects_BuildingList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="projects_types_list">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Projects_BuildingList">
+        <PropertyRef Name="building_typeid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_projects_clients">
+    <End Role="clients" Type="Self.clients" Multiplicity="0..1" />
+    <End Role="projects" Type="Self.projects" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="clients">
+        <PropertyRef Name="client_id" />
+      </Principal>
+      <Dependent Role="projects">
+        <PropertyRef Name="proj_client_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_projects_conditions_project_category_list">
+    <End Role="project_category_list" Type="Self.project_category_list" Multiplicity="0..1" />
+    <End Role="projects_conditions" Type="Self.projects_conditions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="project_category_list">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="projects_conditions">
+        <PropertyRef Name="category_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_projects_conditions_projects">
+    <End Role="projects" Type="Self.projects" Multiplicity="0..1" />
+    <End Role="projects_conditions" Type="Self.projects_conditions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="projects">
+        <PropertyRef Name="sn" />
+      </Principal>
+      <Dependent Role="projects_conditions">
+        <PropertyRef Name="proj_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_projects_fees_projects">
+    <End Role="projects" Type="Self.projects" Multiplicity="1" />
+    <End Role="projects_fees" Type="Self.projects_fees" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="projects">
+        <PropertyRef Name="sn" />
+      </Principal>
+      <Dependent Role="projects_fees">
+        <PropertyRef Name="proj_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_projects_invoicefees_supervision_payment_type_list">
+    <End Role="payment_type_list" Type="Self.payment_type_list" Multiplicity="0..1" />
+    <End Role="projects_invoicefees_supervision" Type="Self.projects_invoicefees_supervision" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="payment_type_list">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="projects_invoicefees_supervision">
+        <PropertyRef Name="method_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_projects_payment_sup_payment_type_list">
+    <End Role="payment_type_list" Type="Self.payment_type_list" Multiplicity="0..1" />
+    <End Role="projects_payment_sup" Type="Self.projects_payment_sup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="payment_type_list">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="projects_payment_sup">
+        <PropertyRef Name="payment_typeid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_projects_permits_permits_addreesees">
+    <End Role="permits_addreesees" Type="Self.permits_addreesees" Multiplicity="0..1" />
+    <End Role="projects_permits" Type="Self.projects_permits" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="permits_addreesees">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="projects_permits">
+        <PropertyRef Name="addressee_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_projects_permits_proj_disciplines_list">
+    <End Role="proj_disciplines_list" Type="Self.proj_disciplines_list" Multiplicity="0..1" />
+    <End Role="projects_permits" Type="Self.projects_permits" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="proj_disciplines_list">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="projects_permits">
+        <PropertyRef Name="permit_type_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_projects_permits_proj_workscope_list">
+    <End Role="proj_workscope_list" Type="Self.proj_workscope_list" Multiplicity="0..1" />
+    <End Role="projects_permits" Type="Self.projects_permits" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="proj_workscope_list">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="projects_permits">
+        <PropertyRef Name="permit_scope_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_projects_permits_projects">
+    <End Role="projects" Type="Self.projects" Multiplicity="0..1" />
+    <End Role="projects_permits" Type="Self.projects_permits" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="projects">
+        <PropertyRef Name="sn" />
+      </Principal>
+      <Dependent Role="projects_permits">
+        <PropertyRef Name="proj_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_projects_permits_UploadSystems">
+    <End Role="UploadSystems" Type="Self.UploadSystems" Multiplicity="0..1" />
+    <End Role="projects_permits" Type="Self.projects_permits" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UploadSystems">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="projects_permits">
+        <PropertyRef Name="uploadsys" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_projects_proj_status_list">
+    <End Role="proj_status_list" Type="Self.proj_status_list" Multiplicity="0..1" />
+    <End Role="projects" Type="Self.projects" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="proj_status_list">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="projects">
+        <PropertyRef Name="status_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_projects_proj_types_list">
+    <End Role="proj_types_list" Type="Self.proj_types_list" Multiplicity="0..1" />
+    <End Role="projects" Type="Self.projects" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="proj_types_list">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="projects">
+        <PropertyRef Name="type_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_projects_proj_workscope_list">
+    <End Role="proj_workscope_list" Type="Self.proj_workscope_list" Multiplicity="0..1" />
+    <End Role="projects" Type="Self.projects" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="proj_workscope_list">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="projects">
+        <PropertyRef Name="scope_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_projects_project_category_list">
+    <End Role="project_category_list" Type="Self.project_category_list" Multiplicity="0..1" />
+    <End Role="projects" Type="Self.projects" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="project_category_list">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="projects">
+        <PropertyRef Name="category_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_projects_project_usage_list">
+    <End Role="project_usage_list" Type="Self.project_usage_list" Multiplicity="0..1" />
+    <End Role="projects" Type="Self.projects" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="project_usage_list">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="projects">
+        <PropertyRef Name="usag_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_projects_qat_cities_list">
+    <End Role="qat_cities_list" Type="Self.qat_cities_list" Multiplicity="0..1" />
+    <End Role="projects" Type="Self.projects" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="qat_cities_list">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="projects">
+        <PropertyRef Name="location_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_projects_requirements_Payments_Scope_list">
+    <End Role="Payments_Scope_list" Type="Self.Payments_Scope_list" Multiplicity="0..1" />
+    <End Role="projects_requirements" Type="Self.projects_requirements" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Payments_Scope_list">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="projects_requirements">
+        <PropertyRef Name="ScopeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_projects_requirements_proj_req_list">
+    <End Role="proj_req_list" Type="Self.proj_req_list" Multiplicity="0..1" />
+    <End Role="projects_requirements" Type="Self.projects_requirements" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="proj_req_list">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="projects_requirements">
+        <PropertyRef Name="req_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_projects_requirements_projects">
+    <End Role="project_services_list" Type="Self.project_services_list" Multiplicity="0..1" />
+    <End Role="projects_requirements" Type="Self.projects_requirements" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="project_services_list">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="projects_requirements">
+        <PropertyRef Name="permit_typeid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_projects_requirements_req_status_list">
+    <End Role="req_status_list" Type="Self.req_status_list" Multiplicity="0..1" />
+    <End Role="projects_requirements" Type="Self.projects_requirements" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="req_status_list">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="projects_requirements">
+        <PropertyRef Name="status_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_projects_schedule_projects">
+    <End Role="projects" Type="Self.projects" Multiplicity="1" />
+    <End Role="projects_schedule" Type="Self.projects_schedule" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="projects">
+        <PropertyRef Name="sn" />
+      </Principal>
+      <Dependent Role="projects_schedule">
+        <PropertyRef Name="proj_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_sec_group_permissions_sec_groups">
+    <End Role="sec_groups" Type="Self.sec_groups" Multiplicity="1" />
+    <End Role="sec_group_permissions" Type="Self.sec_group_permissions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sec_groups">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="sec_group_permissions">
+        <PropertyRef Name="group_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_sec_users_groups_rel_clients_userpass">
+    <End Role="clients_userpass" Type="Self.clients_userpass" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="sec_users_groups_rel" Type="Self.sec_users_groups_rel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="clients_userpass">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="sec_users_groups_rel">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_sec_users_groups_rel_sec_groups">
+    <End Role="sec_groups" Type="Self.sec_groups" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="sec_users_groups_rel" Type="Self.sec_users_groups_rel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sec_groups">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="sec_users_groups_rel">
+        <PropertyRef Name="GroupID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="acc_employee_insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="emp_id" Type="int" Mode="In" />
+    <Parameter Name="emp_role" Type="varchar" Mode="In" />
+    <Parameter Name="emp_username" Type="nvarchar" Mode="In" />
+    <Parameter Name="emp_password" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="check_employee_access" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="check-employee-access">
+    <Parameter Name="username" Type="nvarchar" Mode="In" />
+    <Parameter Name="password" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="CountDesignBalance" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="reference" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="CountsupervisionBalance" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="reference" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="Delete_proj_Conditions" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Delete_proj_permits" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Delete_proj_permits_Test" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Delete_proj_requirements" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Delete_proj_schedule" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="get_employee_accessinfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="get-employee-accessinfo">
+    <Parameter Name="empid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="getPlanTimeByDate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PlanDate" Type="date" Mode="In" />
+    <Parameter Name="PlanUser" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetProjectsDevs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Client_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetProjectsPayments" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="reference" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetProjectsPaymentsCollectedSu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="reference" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetProjectsPaymentsNew" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="reference" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetProjectsPaymentsNewSu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="reference" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="insert_proj_designpayment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="proj_ref" Type="nvarchar" Mode="In" />
+    <Parameter Name="downpayment" Type="nvarchar" Mode="In" />
+    <Parameter Name="downpayment_cond" Type="nvarchar" Mode="In" />
+    <Parameter Name="firstpayment" Type="nvarchar" Mode="In" />
+    <Parameter Name="firstpayment_cond" Type="nvarchar" Mode="In" />
+    <Parameter Name="secondpayment" Type="nvarchar" Mode="In" />
+    <Parameter Name="secondpayment_cond" Type="nvarchar" Mode="In" />
+    <Parameter Name="thirdpayment" Type="nvarchar" Mode="In" />
+    <Parameter Name="thirdpayment_cond" Type="nvarchar" Mode="In" />
+    <Parameter Name="fourthpayment" Type="nvarchar" Mode="In" />
+    <Parameter Name="fourthpayment_cond" Type="nvarchar" Mode="In" />
+    <Parameter Name="fifthpayment" Type="nvarchar" Mode="In" />
+    <Parameter Name="fifthpayment_cond" Type="nvarchar" Mode="In" />
+    <Parameter Name="sixthpayment" Type="nvarchar" Mode="In" />
+    <Parameter Name="sixthpayment_cond" Type="nvarchar" Mode="In" />
+    <Parameter Name="sevenpayment" Type="nvarchar" Mode="In" />
+    <Parameter Name="sevenpayment_cond" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="insert_proj_desinvoice" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="proj_ref" Type="nvarchar" Mode="In" />
+    <Parameter Name="invoice_number" Type="nvarchar" Mode="In" />
+    <Parameter Name="invoice_amount" Type="nvarchar" Mode="In" />
+    <Parameter Name="invoice_date" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="insert_proj_fees" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="proj_ref" Type="nvarchar" Mode="In" />
+    <Parameter Name="proj_design_fees" Type="nvarchar" Mode="In" />
+    <Parameter Name="proj_supervs_fees" Type="nvarchar" Mode="In" />
+    <Parameter Name="proj_study_fees" Type="nvarchar" Mode="In" />
+    <Parameter Name="pro_total" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="insert_proj_instsuppayment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="proj_ref" Type="nvarchar" Mode="In" />
+    <Parameter Name="downpayment" Type="nvarchar" Mode="In" />
+    <Parameter Name="downpayment_cond" Type="nvarchar" Mode="In" />
+    <Parameter Name="firstpayment" Type="nvarchar" Mode="In" />
+    <Parameter Name="firstpayment_cond" Type="nvarchar" Mode="In" />
+    <Parameter Name="secondpayment" Type="nvarchar" Mode="In" />
+    <Parameter Name="secondpayment_cond" Type="nvarchar" Mode="In" />
+    <Parameter Name="thirdpayment" Type="nvarchar" Mode="In" />
+    <Parameter Name="thirdpayment_cond" Type="nvarchar" Mode="In" />
+    <Parameter Name="fourthpayment" Type="nvarchar" Mode="In" />
+    <Parameter Name="fourthpayment_cond" Type="nvarchar" Mode="In" />
+    <Parameter Name="fifthpayment" Type="nvarchar" Mode="In" />
+    <Parameter Name="fifthpayment_cond" Type="nvarchar" Mode="In" />
+    <Parameter Name="sixthpayment" Type="nvarchar" Mode="In" />
+    <Parameter Name="sixthpayment_cond" Type="nvarchar" Mode="In" />
+    <Parameter Name="sevenpayment" Type="nvarchar" Mode="In" />
+    <Parameter Name="sevenpayment_cond" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="insert_proj_requirements" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="proj_ref" Type="nvarchar" Mode="In" />
+    <Parameter Name="permit_type" Type="nvarchar" Mode="In" />
+    <Parameter Name="proj_req" Type="nvarchar" Mode="In" />
+    <Parameter Name="req_status" Type="nvarchar" Mode="In" />
+    <Parameter Name="requested_date" Type="nvarchar" Mode="In" />
+    <Parameter Name="collected_date" Type="nvarchar" Mode="In" />
+    <Parameter Name="req_comments" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="insert_proj_studyinvoice" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="proj_ref" Type="nvarchar" Mode="In" />
+    <Parameter Name="invoice_number" Type="nvarchar" Mode="In" />
+    <Parameter Name="invoice_amount" Type="nvarchar" Mode="In" />
+    <Parameter Name="invoice_date" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="insert_proj_studynewinvoice" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="proj_ref" Type="nvarchar" Mode="In" />
+    <Parameter Name="invoice_number" Type="nvarchar" Mode="In" />
+    <Parameter Name="invoice_amount" Type="nvarchar" Mode="In" />
+    <Parameter Name="invoice_date" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="insert_proj_studypayment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="proj_ref" Type="nvarchar" Mode="In" />
+    <Parameter Name="downpayment" Type="nvarchar" Mode="In" />
+    <Parameter Name="downpayment_cond" Type="nvarchar" Mode="In" />
+    <Parameter Name="firstpayment" Type="nvarchar" Mode="In" />
+    <Parameter Name="firstpayment_cond" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="insert_proj_supercolcinvoice" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="proj_ref" Type="nvarchar" Mode="In" />
+    <Parameter Name="supervision_type" Type="nvarchar" Mode="In" />
+    <Parameter Name="invoice_number" Type="nvarchar" Mode="In" />
+    <Parameter Name="invoice_amount" Type="nvarchar" Mode="In" />
+    <Parameter Name="invoice_date" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="insert_proj_superinvoice" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="proj_ref" Type="nvarchar" Mode="In" />
+    <Parameter Name="supinvoice_method" Type="nvarchar" Mode="In" />
+    <Parameter Name="invoice_number" Type="nvarchar" Mode="In" />
+    <Parameter Name="invoice_amount" Type="nvarchar" Mode="In" />
+    <Parameter Name="invoice_date" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="insert_proj_supinvoice" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="proj_ref" Type="nvarchar" Mode="In" />
+    <Parameter Name="supinvoice_method" Type="nvarchar" Mode="In" />
+    <Parameter Name="invoice_number" Type="nvarchar" Mode="In" />
+    <Parameter Name="invoice_amount" Type="nvarchar" Mode="In" />
+    <Parameter Name="invoice_date" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="insert_proj_suppayment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="proj_ref" Type="nvarchar" Mode="In" />
+    <Parameter Name="suppayment_method" Type="nvarchar" Mode="In" />
+    <Parameter Name="fees_sup" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="new_client_insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="clientname" Type="varchar" Mode="In" />
+    <Parameter Name="client_id" Type="nvarchar" Mode="In" />
+    <Parameter Name="client_nationality" Type="nvarchar" Mode="In" />
+    <Parameter Name="email" Type="nvarchar" Mode="In" />
+    <Parameter Name="phone" Type="nvarchar" Mode="In" />
+    <Parameter Name="company_name" Type="nvarchar" Mode="In" />
+    <Parameter Name="comp_phone" Type="nvarchar" Mode="In" />
+    <Parameter Name="comp_bbox" Type="varchar" Mode="In" />
+    <Parameter Name="comp_website" Type="nvarchar" Mode="In" />
+    <Parameter Name="client_representative" Type="nvarchar" Mode="In" />
+    <Parameter Name="rep_nationality" Type="nvarchar" Mode="In" />
+    <Parameter Name="rep_phone" Type="nvarchar" Mode="In" />
+    <Parameter Name="rep_email" Type="nvarchar" Mode="In" />
+    <Parameter Name="mailing_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="new_employee_insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="employee_name" Type="varchar" Mode="In" />
+    <Parameter Name="employee_id" Type="nvarchar" Mode="In" />
+    <Parameter Name="emp_dept" Type="nvarchar" Mode="In" />
+    <Parameter Name="email" Type="nvarchar" Mode="In" />
+    <Parameter Name="phone" Type="nvarchar" Mode="In" />
+    <Parameter Name="nationality" Type="nvarchar" Mode="In" />
+    <Parameter Name="job" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="PERMITSUPDATE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IncrementValue" Type="int" Mode="In" />
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SelectProjectInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="proj_ref" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="select_project_payment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="select-project-payment">
+    <Parameter Name="reference" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="select_projects_payments" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="select-projects-payments">
+    <Parameter Name="reference" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="select_project_status" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="select-project-status">
+    <Parameter Name="reference" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="spClientMailngTo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="companyid" Type="int" Mode="In" />
+    <Parameter Name="projectid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="update_proj_permits_New" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="proj_ref" Type="nvarchar" Mode="In" />
+    <Parameter Name="permit_type" Type="nvarchar" Mode="In" />
+    <Parameter Name="permit_scope" Type="nvarchar" Mode="In" />
+    <Parameter Name="addressee" Type="nvarchar" Mode="In" />
+    <Parameter Name="permit_id" Type="nvarchar" Mode="In" />
+    <Parameter Name="issue_date" Type="nvarchar" Mode="In" />
+    <Parameter Name="response_date" Type="nvarchar" Mode="In" />
+    <Parameter Name="approve_date" Type="nvarchar" Mode="In" />
+    <Parameter Name="permit_status" Type="nvarchar" Mode="In" />
+    <Parameter Name="kashaf_comments" Type="nvarchar" Mode="In" />
+    <Parameter Name="client_comments" Type="nvarchar" Mode="In" />
+    <Parameter Name="iss" Type="int" Mode="In" />
+    <Parameter Name="rej" Type="int" Mode="In" />
+    <Parameter Name="reiss" Type="int" Mode="In" />
+    <Parameter Name="preacc" Type="int" Mode="In" />
+    <Parameter Name="acc" Type="int" Mode="In" />
+  </Function>
+  <Function Name="update_proj_permits_NewTT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="proj_ref" Type="nvarchar" Mode="In" />
+    <Parameter Name="permit_type" Type="nvarchar" Mode="In" />
+    <Parameter Name="permit_scope" Type="nvarchar" Mode="In" />
+    <Parameter Name="addressee" Type="nvarchar" Mode="In" />
+    <Parameter Name="permit_id" Type="nvarchar" Mode="In" />
+    <Parameter Name="issue_date" Type="nvarchar" Mode="In" />
+    <Parameter Name="response_date" Type="nvarchar" Mode="In" />
+    <Parameter Name="approve_date" Type="nvarchar" Mode="In" />
+    <Parameter Name="permit_status" Type="nvarchar" Mode="In" />
+    <Parameter Name="kashaf_comments" Type="nvarchar" Mode="In" />
+    <Parameter Name="client_comments" Type="nvarchar" Mode="In" />
+    <Parameter Name="iss" Type="int" Mode="In" />
+    <Parameter Name="rej" Type="int" Mode="In" />
+    <Parameter Name="reiss" Type="int" Mode="In" />
+    <Parameter Name="preacc" Type="int" Mode="In" />
+    <Parameter Name="acc" Type="int" Mode="In" />
+  </Function>
+  <Function Name="update_proj_permits_test" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="proj_ref" Type="nvarchar" Mode="In" />
+    <Parameter Name="permit_type" Type="nvarchar" Mode="In" />
+    <Parameter Name="permit_scope" Type="nvarchar" Mode="In" />
+    <Parameter Name="addressee" Type="nvarchar" Mode="In" />
+    <Parameter Name="permit_id" Type="nvarchar" Mode="In" />
+    <Parameter Name="issue_date" Type="nvarchar" Mode="In" />
+    <Parameter Name="response_date" Type="nvarchar" Mode="In" />
+    <Parameter Name="approve_date" Type="nvarchar" Mode="In" />
+    <Parameter Name="permit_status" Type="nvarchar" Mode="In" />
+    <Parameter Name="kashaf_comments" Type="nvarchar" Mode="In" />
+    <Parameter Name="client_comments" Type="nvarchar" Mode="In" />
+    <Parameter Name="iss" Type="int" Mode="In" />
+    <Parameter Name="rej" Type="int" Mode="In" />
+    <Parameter Name="reiss" Type="int" Mode="In" />
+    <Parameter Name="preacc" Type="int" Mode="In" />
+    <Parameter Name="acc" Type="int" Mode="In" />
+  </Function>
+  <Function Name="updatepermitstatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="FollowupDBModelStoreContainer">
+    <EntitySet Name="clients" EntityType="Self.clients" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="clients_userpass" EntityType="Self.clients_userpass" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DailyPlan_Projects" EntityType="Self.DailyPlan_Projects" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DailyPlan_Tasks" EntityType="Self.DailyPlan_Tasks" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DailyPlan_Times" EntityType="Self.DailyPlan_Times" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employee_AdminAccess" EntityType="Self.Employee_AdminAccess" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="employee_sysaccess" EntityType="Self.employee_sysaccess" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="files" EntityType="Self.files" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="InvoicesD" EntityType="Self.InvoicesD" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="InvoicesDesign" EntityType="Self.InvoicesDesign" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="InvoicesS" EntityType="Self.InvoicesS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="InvoicesSupervision" EntityType="Self.InvoicesSupervision" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="nationalities_list" EntityType="Self.nationalities_list" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NewPermLog" EntityType="Self.NewPermLog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NewSchedule" EntityType="Self.NewSchedule" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NewScope" EntityType="Self.NewScope" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="notify" EntityType="Self.notify" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="payment_type_list" EntityType="Self.payment_type_list" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Payments_Scope_list" EntityType="Self.Payments_Scope_list" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="permits_addreesees" EntityType="Self.permits_addreesees" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Permits_ProjectsNew" EntityType="Self.Permits_ProjectsNew" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="permits_status" EntityType="Self.permits_status" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="permits_status_log" EntityType="Self.permits_status_log" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PerTB" EntityType="Self.PerTB" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="proj_conditions_list" EntityType="Self.proj_conditions_list" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="proj_delivers_list" EntityType="Self.proj_delivers_list" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="proj_disciplines_list" EntityType="Self.proj_disciplines_list" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="proj_req_list" EntityType="Self.proj_req_list" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="proj_req_status_log" EntityType="Self.proj_req_status_log" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="proj_stages_list" EntityType="Self.proj_stages_list" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="proj_status_list" EntityType="Self.proj_status_list" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="proj_types_list" EntityType="Self.proj_types_list" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="proj_workscope_list" EntityType="Self.proj_workscope_list" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="project_category_list" EntityType="Self.project_category_list" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="project_collecte_details" EntityType="Self.project_collecte_details" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="project_collectes" EntityType="Self.project_collectes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="project_fees" EntityType="Self.project_fees" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="project_invoice_details" EntityType="Self.project_invoice_details" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="project_invoices" EntityType="Self.project_invoices" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="project_payment_config" EntityType="Self.project_payment_config" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="project_payment_details" EntityType="Self.project_payment_details" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="project_payments" EntityType="Self.project_payments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="project_services_list" EntityType="Self.project_services_list" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="project_usage_list" EntityType="Self.project_usage_list" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="project_visits" EntityType="Self.project_visits" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="project_visits_contract" EntityType="Self.project_visits_contract" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="projects" EntityType="Self.projects" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="projects_balance" EntityType="Self.projects_balance" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Projects_BuildingList" EntityType="Self.Projects_BuildingList" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="projects_collectedfees_design" EntityType="Self.projects_collectedfees_design" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="projects_collectedfees_study" EntityType="Self.projects_collectedfees_study" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="projects_collectedfees_supervision" EntityType="Self.projects_collectedfees_supervision" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="projects_conditions" EntityType="Self.projects_conditions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="projects_fees" EntityType="Self.projects_fees" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="projects_invoicefees_design" EntityType="Self.projects_invoicefees_design" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="projects_invoicefees_study" EntityType="Self.projects_invoicefees_study" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="projects_invoicefees_supervision" EntityType="Self.projects_invoicefees_supervision" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="projects_payment_design" EntityType="Self.projects_payment_design" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="projects_payment_instsupvs" EntityType="Self.projects_payment_instsupvs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="projects_payment_study" EntityType="Self.projects_payment_study" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="projects_payment_sup" EntityType="Self.projects_payment_sup" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="projects_permits" EntityType="Self.projects_permits" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="projects_requirements" EntityType="Self.projects_requirements" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="projects_schedule" EntityType="Self.projects_schedule" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="projects_schedule_tb" EntityType="Self.projects_schedule_tb" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="projects_status_log" EntityType="Self.projects_status_log" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="projects_types_list" EntityType="Self.projects_types_list" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProjectSchedule" EntityType="Self.ProjectSchedule" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="qat_cities_list" EntityType="Self.qat_cities_list" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="req_status_list" EntityType="Self.req_status_list" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ScheduleTest" EntityType="Self.ScheduleTest" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sec_group_permissions" EntityType="Self.sec_group_permissions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sec_groups" EntityType="Self.sec_groups" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sec_users_groups_rel" EntityType="Self.sec_users_groups_rel" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sheet1schedule" EntityType="Self.Sheet1schedule" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TaskTypes" EntityType="Self.TaskTypes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TimeIntervals" EntityType="Self.TimeIntervals" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UploadSystems" EntityType="Self.UploadSystems" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NewPermits" EntityType="Self.NewPermits" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [NewPermits].[id] AS [id], 
+    [NewPermits].[proj_ref] AS [proj_ref], 
+    [NewPermits].[permit_type] AS [permit_type], 
+    [NewPermits].[permit_scope] AS [permit_scope], 
+    [NewPermits].[addressee] AS [addressee], 
+    [NewPermits].[permit_id] AS [permit_id], 
+    [NewPermits].[issue_date] AS [issue_date], 
+    [NewPermits].[response_date] AS [response_date], 
+    [NewPermits].[approve_date] AS [approve_date], 
+    [NewPermits].[permit_status] AS [permit_status], 
+    [NewPermits].[kashaf_comments] AS [kashaf_comments], 
+    [NewPermits].[client_comments] AS [client_comments], 
+    [NewPermits].[iss] AS [iss], 
+    [NewPermits].[rej] AS [rej], 
+    [NewPermits].[reiss] AS [reiss], 
+    [NewPermits].[preacc] AS [preacc], 
+    [NewPermits].[acc] AS [acc], 
+    [NewPermits].[proj_id] AS [proj_id]
+    FROM [dbo].[NewPermits] AS [NewPermits]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="NewPermitTable" EntityType="Self.NewPermitTable" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [NewPermitTable].[id] AS [id], 
+    [NewPermitTable].[permit_id] AS [permit_id], 
+    [NewPermitTable].[issue_date] AS [issue_date], 
+    [NewPermitTable].[response_date] AS [response_date], 
+    [NewPermitTable].[approve_date] AS [approve_date], 
+    [NewPermitTable].[kashaf_comments] AS [kashaf_comments], 
+    [NewPermitTable].[client_comments] AS [client_comments], 
+    [NewPermitTable].[proj_id] AS [proj_id], 
+    [NewPermitTable].[permit_type_id] AS [permit_type_id], 
+    [NewPermitTable].[permit_scope_id] AS [permit_scope_id], 
+    [NewPermitTable].[addressee_id] AS [addressee_id], 
+    [NewPermitTable].[permit_status_id] AS [permit_status_id]
+    FROM [dbo].[NewPermitTable] AS [NewPermitTable]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="ST-IDTime" EntityType="Self.ST-IDTime" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [ST-IDTime].[id] AS [id], 
+    [ST-IDTime].[date] AS [date]
+    FROM [dbo].[ST-IDTime] AS [ST-IDTime]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="dpme_clients" EntityType="Self.dpme_clients" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [dpme_clients].[id] AS [id], 
+    [dpme_clients].[company_name] AS [company_name], 
+    [dpme_clients].[address] AS [address], 
+    [dpme_clients].[tel] AS [tel], 
+    [dpme_clients].[fax] AS [fax], 
+    [dpme_clients].[mobile] AS [mobile], 
+    [dpme_clients].[web] AS [web], 
+    [dpme_clients].[email] AS [email], 
+    [dpme_clients].[cat] AS [cat], 
+    [dpme_clients].[notes] AS [notes], 
+    [dpme_clients].[lastupdate] AS [lastupdate], 
+    [dpme_clients].[Code] AS [Code], 
+    [dpme_clients].[WorkedWith] AS [WorkedWith], 
+    [dpme_clients].[Competitors] AS [Competitors], 
+    [dpme_clients].[Importance_ID] AS [Importance_ID], 
+    [dpme_clients].[CityID] AS [CityID], 
+    [dpme_clients].[ClassID] AS [ClassID], 
+    [dpme_clients].[isdeleted] AS [isdeleted]
+    FROM [dbo].[dpme_clients] AS [dpme_clients]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="dpme_projects" EntityType="Self.dpme_projects" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [dpme_projects].[id] AS [id], 
+    [dpme_projects].[code] AS [code], 
+    [dpme_projects].[name] AS [name], 
+    [dpme_projects].[type] AS [type], 
+    [dpme_projects].[country] AS [country], 
+    [dpme_projects].[location] AS [location], 
+    [dpme_projects].[client] AS [client], 
+    [dpme_projects].[client_contact] AS [client_contact], 
+    [dpme_projects].[client_what] AS [client_what], 
+    [dpme_projects].[owner] AS [owner], 
+    [dpme_projects].[owner_contact] AS [owner_contact], 
+    [dpme_projects].[conslt] AS [conslt], 
+    [dpme_projects].[conslt_contact] AS [conslt_contact], 
+    [dpme_projects].[planguage] AS [planguage], 
+    [dpme_projects].[plevel] AS [plevel], 
+    [dpme_projects].[draw_scale] AS [draw_scale], 
+    [dpme_projects].[scale] AS [scale], 
+    [dpme_projects].[DrawingsSizeID] AS [DrawingsSizeID], 
+    [dpme_projects].[similars] AS [similars], 
+    [dpme_projects].[stage] AS [stage], 
+    [dpme_projects].[date_Entering] AS [date_Entering], 
+    [dpme_projects].[date_in] AS [date_in], 
+    [dpme_projects].[StartingDate] AS [StartingDate], 
+    [dpme_projects].[date_due] AS [date_due], 
+    [dpme_projects].[ExpectedFinishingDate] AS [ExpectedFinishingDate], 
+    [dpme_projects].[manager] AS [manager], 
+    [dpme_projects].[secr] AS [secr], 
+    [dpme_projects].[coord] AS [coord], 
+    [dpme_projects].[branch] AS [branch], 
+    [dpme_projects].[lastupdate] AS [lastupdate], 
+    [dpme_projects].[ContractValue] AS [ContractValue], 
+    [dpme_projects].[ActualFinishingDate] AS [ActualFinishingDate], 
+    [dpme_projects].[IsOldProject] AS [IsOldProject], 
+    [dpme_projects].[EmployeeMasterWorkingGroupID] AS [EmployeeMasterWorkingGroupID], 
+    [dpme_projects].[ConsultationServices] AS [ConsultationServices], 
+    [dpme_projects].[ReceivedClientDocument] AS [ReceivedClientDocument], 
+    [dpme_projects].[ClientDocumentReceivedDate] AS [ClientDocumentReceivedDate], 
+    [dpme_projects].[ClientDocumentServerPath] AS [ClientDocumentServerPath], 
+    [dpme_projects].[ClientRequest] AS [ClientRequest], 
+    [dpme_projects].[Payment] AS [Payment], 
+    [dpme_projects].[ContractCondition] AS [ContractCondition], 
+    [dpme_projects].[MainOfficeContractPercentage] AS [MainOfficeContractPercentage], 
+    [dpme_projects].[DesignDepartmentContractPercentage] AS [DesignDepartmentContractPercentage], 
+    [dpme_projects].[BranchContractPercentage] AS [BranchContractPercentage], 
+    [dpme_projects].[BranchID] AS [BranchID], 
+    [dpme_projects].[CurrencyID] AS [CurrencyID], 
+    [dpme_projects].[EquvWorkTypeID] AS [EquvWorkTypeID], 
+    [dpme_projects].[ElectricEquivalentDrawingFee] AS [ElectricEquivalentDrawingFee], 
+    [dpme_projects].[HvacEquivalentDrawingFee] AS [HvacEquivalentDrawingFee], 
+    [dpme_projects].[PlumbingEquivalentDrawingFee] AS [PlumbingEquivalentDrawingFee], 
+    [dpme_projects].[ContractDate] AS [ContractDate], 
+    [dpme_projects].[DesignDepartmentReceivingDate] AS [DesignDepartmentReceivingDate], 
+    [dpme_projects].[CurrencyExchangeRate] AS [CurrencyExchangeRate], 
+    [dpme_projects].[Parent] AS [Parent], 
+    [dpme_projects].[FieldOfWork] AS [FieldOfWork], 
+    [dpme_projects].[Description] AS [Description], 
+    [dpme_projects].[Area] AS [Area], 
+    [dpme_projects].[TypeID] AS [TypeID], 
+    [dpme_projects].[PinNo] AS [PinNo], 
+    [dpme_projects].[Fees] AS [Fees], 
+    [dpme_projects].[Due] AS [Due], 
+    [dpme_projects].[RollID] AS [RollID], 
+    [dpme_projects].[Serial] AS [Serial]
+    FROM [dbo].[dpme_projects] AS [dpme_projects]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="repPermitsLastStatus" EntityType="Self.repPermitsLastStatus" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [repPermitsLastStatus].[id] AS [id], 
+    [repPermitsLastStatus].[permit_id] AS [permit_id], 
+    [repPermitsLastStatus].[client_comments] AS [client_comments], 
+    [repPermitsLastStatus].[ProjectName] AS [ProjectName], 
+    [repPermitsLastStatus].[PermitType] AS [PermitType], 
+    [repPermitsLastStatus].[Scope] AS [Scope], 
+    [repPermitsLastStatus].[Addreessee] AS [Addreessee], 
+    [repPermitsLastStatus].[proj_ref] AS [proj_ref], 
+    [repPermitsLastStatus].[proj_id] AS [proj_id], 
+    [repPermitsLastStatus].[permit_type_id] AS [permit_type_id], 
+    [repPermitsLastStatus].[permit_scope_id] AS [permit_scope_id], 
+    [repPermitsLastStatus].[addressee_id] AS [addressee_id], 
+    [repPermitsLastStatus].[contract_date] AS [contract_date], 
+    [repPermitsLastStatus].[client_name] AS [client_name], 
+    [repPermitsLastStatus].[progstart_date] AS [progstart_date], 
+    [repPermitsLastStatus].[Last_Status] AS [Last_Status], 
+    [repPermitsLastStatus].[Last_Status_Name] AS [Last_Status_Name], 
+    [repPermitsLastStatus].[Last_Date] AS [Last_Date], 
+    [repPermitsLastStatus].[Location] AS [Location], 
+    [repPermitsLastStatus].[project_status] AS [project_status], 
+    [repPermitsLastStatus].[project_status_name] AS [project_status_name], 
+    [repPermitsLastStatus].[Last_Comment] AS [Last_Comment], 
+    [repPermitsLastStatus].[building_name] AS [building_name], 
+    [repPermitsLastStatus].[actual_finish_date] AS [actual_finish_date], 
+    [repPermitsLastStatus].[css_style] AS [css_style], 
+    [repPermitsLastStatus].[client_id] AS [client_id], 
+    [repPermitsLastStatus].[Balance] AS [Balance], 
+    [repPermitsLastStatus].[AllPermits] AS [AllPermits], 
+    [repPermitsLastStatus].[AcceptedPermits] AS [AcceptedPermits], 
+    [repPermitsLastStatus].[PermitTypeShortcut] AS [PermitTypeShortcut], 
+    [repPermitsLastStatus].[division_id] AS [division_id], 
+    [repPermitsLastStatus].[proj_area] AS [proj_area]
+    FROM [dbo].[repPermitsLastStatus] AS [repPermitsLastStatus]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="sample_permitsstatus_subquery" EntityType="Self.sample_permitsstatus_subquery" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [sample_permitsstatus_subquery].[permit_id] AS [permit_id], 
+    [sample_permitsstatus_subquery].[client_comments] AS [client_comments], 
+    [sample_permitsstatus_subquery].[proj_id] AS [proj_id], 
+    [sample_permitsstatus_subquery].[permit_type_id] AS [permit_type_id], 
+    [sample_permitsstatus_subquery].[permit_scope_id] AS [permit_scope_id], 
+    [sample_permitsstatus_subquery].[addressee_id] AS [addressee_id], 
+    [sample_permitsstatus_subquery].[status_id] AS [status_id], 
+    [sample_permitsstatus_subquery].[action_date] AS [action_date]
+    FROM [dbo].[sample_permitsstatus_subquery] AS [sample_permitsstatus_subquery]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vw_OurCompany" EntityType="Self.vw_OurCompany" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vw_OurCompany].[ID] AS [ID], 
+    [vw_OurCompany].[Ar_CompnyName] AS [Ar_CompnyName], 
+    [vw_OurCompany].[En_CompnyName] AS [En_CompnyName], 
+    [vw_OurCompany].[NationalitiesID] AS [NationalitiesID], 
+    [vw_OurCompany].[CompanyAddress] AS [CompanyAddress], 
+    [vw_OurCompany].[Phone] AS [Phone], 
+    [vw_OurCompany].[fax] AS [fax], 
+    [vw_OurCompany].[Logo] AS [Logo], 
+    [vw_OurCompany].[DPMEIsEncrypted] AS [DPMEIsEncrypted], 
+    [vw_OurCompany].[DPMEAllowUpdate] AS [DPMEAllowUpdate], 
+    [vw_OurCompany].[MaxUploadSize] AS [MaxUploadSize], 
+    [vw_OurCompany].[MaxMessagesCount] AS [MaxMessagesCount], 
+    [vw_OurCompany].[MsgTimerInterval] AS [MsgTimerInterval], 
+    [vw_OurCompany].[FileServerPath] AS [FileServerPath], 
+    [vw_OurCompany].[WebSite] AS [WebSite], 
+    [vw_OurCompany].[Mail_Sign_En] AS [Mail_Sign_En], 
+    [vw_OurCompany].[Mail_Sign_Ar] AS [Mail_Sign_Ar]
+    FROM [dbo].[vw_OurCompany] AS [vw_OurCompany]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vwAllCollected" EntityType="Self.vwAllCollected" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vwAllCollected].[proj_id] AS [proj_id], 
+    [vwAllCollected].[invoice_amount] AS [invoice_amount], 
+    [vwAllCollected].[invoice_date] AS [invoice_date], 
+    [vwAllCollected].[invoice_number] AS [invoice_number], 
+    [vwAllCollected].[worktype] AS [worktype], 
+    [vwAllCollected].[scope] AS [scope]
+    FROM [dbo].[vwAllCollected] AS [vwAllCollected]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vwClientMailling" EntityType="Self.vwClientMailling" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vwClientMailling].[ID] AS [ID], 
+    [vwClientMailling].[ProjectID] AS [ProjectID], 
+    [vwClientMailling].[Subject] AS [Subject], 
+    [vwClientMailling].[Purpose] AS [Purpose], 
+    [vwClientMailling].[State] AS [State], 
+    [vwClientMailling].[FromPerson] AS [FromPerson], 
+    [vwClientMailling].[FromCompany] AS [FromCompany], 
+    [vwClientMailling].[ProjectName] AS [ProjectName], 
+    [vwClientMailling].[IsEmployee] AS [IsEmployee], 
+    [vwClientMailling].[ToDivision] AS [ToDivision], 
+    [vwClientMailling].[ToEmployee] AS [ToEmployee], 
+    [vwClientMailling].[ToBranch] AS [ToBranch], 
+    [vwClientMailling].[FromCompanyID] AS [FromCompanyID], 
+    [vwClientMailling].[FromPersonID] AS [FromPersonID]
+    FROM [dbo].[vwClientMailling] AS [vwClientMailling]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vwDivisions" EntityType="Self.vwDivisions" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vwDivisions].[ID] AS [ID], 
+    [vwDivisions].[DivisionName] AS [DivisionName], 
+    [vwDivisions].[DivisionTypeID] AS [DivisionTypeID], 
+    [vwDivisions].[DivisionShortcutName] AS [DivisionShortcutName], 
+    [vwDivisions].[OrderBy] AS [OrderBy]
+    FROM [dbo].[vwDivisions] AS [vwDivisions]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vwEmployees" EntityType="Self.vwEmployees" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vwEmployees].[ID] AS [ID], 
+    [vwEmployees].[name] AS [name], 
+    [vwEmployees].[Salary] AS [Salary], 
+    [vwEmployees].[name_e] AS [name_e], 
+    [vwEmployees].[DepartmentID] AS [DepartmentID], 
+    [vwEmployees].[DepartmentManager] AS [DepartmentManager], 
+    [vwEmployees].[Division] AS [Division], 
+    [vwEmployees].[DivisionManager] AS [DivisionManager], 
+    [vwEmployees].[nationality] AS [nationality], 
+    [vwEmployees].[SalaryGroupID] AS [SalaryGroupID], 
+    [vwEmployees].[Deleted] AS [Deleted], 
+    [vwEmployees].[EmploymentDate] AS [EmploymentDate], 
+    [vwEmployees].[DateOfDeparture] AS [DateOfDeparture], 
+    [vwEmployees].[FunctionalNamesID] AS [FunctionalNamesID], 
+    [vwEmployees].[SpecializationsID] AS [SpecializationsID], 
+    [vwEmployees].[EmployeesWorkingGroupsID] AS [EmployeesWorkingGroupsID], 
+    [vwEmployees].[EmployeesWorkingGroupsManagerID] AS [EmployeesWorkingGroupsManagerID], 
+    [vwEmployees].[EmployeeMasterWorkingGroupsID] AS [EmployeeMasterWorkingGroupsID], 
+    [vwEmployees].[EmployeeMasterWorkingGroupsManagerID] AS [EmployeeMasterWorkingGroupsManagerID], 
+    [vwEmployees].[EmployeeStatusID] AS [EmployeeStatusID], 
+    [vwEmployees].[PersonalPhoto] AS [PersonalPhoto], 
+    [vwEmployees].[OurCompanyID] AS [OurCompanyID], 
+    [vwEmployees].[BranchManagerID] AS [BranchManagerID], 
+    [vwEmployees].[BirthDate] AS [BirthDate], 
+    [vwEmployees].[Gender] AS [Gender], 
+    [vwEmployees].[Signature] AS [Signature], 
+    [vwEmployees].[SignaturePass] AS [SignaturePass], 
+    [vwEmployees].[NameVoice] AS [NameVoice], 
+    [vwEmployees].[SalaryDescription] AS [SalaryDescription], 
+    [vwEmployees].[AccID] AS [AccID], 
+    [vwEmployees].[Token] AS [Token], 
+    [vwEmployees].[SignatureHTML] AS [SignatureHTML]
+    FROM [dbo].[vwEmployees] AS [vwEmployees]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vwLastActionLog" EntityType="Self.vwLastActionLog" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vwLastActionLog].[id] AS [id], 
+    [vwLastActionLog].[permit_id] AS [permit_id], 
+    [vwLastActionLog].[status_id] AS [status_id], 
+    [vwLastActionLog].[action_date] AS [action_date], 
+    [vwLastActionLog].[comment] AS [comment], 
+    [vwLastActionLog].[proj_id] AS [proj_id], 
+    [vwLastActionLog].[DurDays] AS [DurDays]
+    FROM [dbo].[vwLastActionLog] AS [vwLastActionLog]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vwLastPlan" EntityType="Self.vwLastPlan" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vwLastPlan].[id] AS [id], 
+    [vwLastPlan].[TaskTypeID] AS [TaskTypeID], 
+    [vwLastPlan].[Name] AS [Name], 
+    [vwLastPlan].[LastPlan_ProgressPerc] AS [LastPlan_ProgressPerc], 
+    [vwLastPlan].[LastPlan_Date] AS [LastPlan_Date], 
+    [vwLastPlan].[LastPlan_ID] AS [LastPlan_ID], 
+    [vwLastPlan].[LastPlan_TaskID] AS [LastPlan_TaskID], 
+    [vwLastPlan].[LastPlan_Periority] AS [LastPlan_Periority]
+    FROM [dbo].[vwLastPlan] AS [vwLastPlan]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vwNextPlan" EntityType="Self.vwNextPlan" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vwNextPlan].[id] AS [id], 
+    [vwNextPlan].[TaskTypeID] AS [TaskTypeID], 
+    [vwNextPlan].[Name] AS [Name], 
+    [vwNextPlan].[NextPlan_ProgressPerc] AS [NextPlan_ProgressPerc], 
+    [vwNextPlan].[NextPlan_Date] AS [NextPlan_Date], 
+    [vwNextPlan].[NextPlan_ID] AS [NextPlan_ID], 
+    [vwNextPlan].[NextPlan_TaskID] AS [NextPlan_TaskID], 
+    [vwNextPlan].[NextPlan_Periority] AS [NextPlan_Periority]
+    FROM [dbo].[vwNextPlan] AS [vwNextPlan]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vwPermitsByStatus" EntityType="Self.vwPermitsByStatus" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vwPermitsByStatus].[proj_id] AS [proj_id], 
+    [vwPermitsByStatus].[status_id] AS [status_id], 
+    [vwPermitsByStatus].[CountPermit] AS [CountPermit]
+    FROM [dbo].[vwPermitsByStatus] AS [vwPermitsByStatus]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vwPermitsLastStatus" EntityType="Self.vwPermitsLastStatus" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vwPermitsLastStatus].[id] AS [id], 
+    [vwPermitsLastStatus].[permit_id] AS [permit_id], 
+    [vwPermitsLastStatus].[client_comments] AS [client_comments], 
+    [vwPermitsLastStatus].[ProjectName] AS [ProjectName], 
+    [vwPermitsLastStatus].[PermitType] AS [PermitType], 
+    [vwPermitsLastStatus].[Scope] AS [Scope], 
+    [vwPermitsLastStatus].[Addreessee] AS [Addreessee], 
+    [vwPermitsLastStatus].[proj_ref] AS [proj_ref], 
+    [vwPermitsLastStatus].[proj_id] AS [proj_id], 
+    [vwPermitsLastStatus].[permit_type_id] AS [permit_type_id], 
+    [vwPermitsLastStatus].[permit_scope_id] AS [permit_scope_id], 
+    [vwPermitsLastStatus].[addressee_id] AS [addressee_id], 
+    [vwPermitsLastStatus].[contract_date] AS [contract_date], 
+    [vwPermitsLastStatus].[client_name] AS [client_name], 
+    [vwPermitsLastStatus].[progstart_date] AS [progstart_date], 
+    [vwPermitsLastStatus].[Last_Status] AS [Last_Status], 
+    [vwPermitsLastStatus].[Last_Status_Name] AS [Last_Status_Name], 
+    [vwPermitsLastStatus].[Last_Date] AS [Last_Date], 
+    [vwPermitsLastStatus].[Location] AS [Location], 
+    [vwPermitsLastStatus].[comment] AS [comment], 
+    [vwPermitsLastStatus].[building_name] AS [building_name], 
+    [vwPermitsLastStatus].[DurDays] AS [DurDays]
+    FROM [dbo].[vwPermitsLastStatus] AS [vwPermitsLastStatus]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vwPlanDatasource" EntityType="Self.vwPlanDatasource" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vwPlanDatasource].[id] AS [id], 
+    [vwPlanDatasource].[permit_id] AS [permit_id], 
+    [vwPlanDatasource].[client_comments] AS [client_comments], 
+    [vwPlanDatasource].[ProjectName] AS [ProjectName], 
+    [vwPlanDatasource].[PermitType] AS [PermitType], 
+    [vwPlanDatasource].[Scope] AS [Scope], 
+    [vwPlanDatasource].[Addreessee] AS [Addreessee], 
+    [vwPlanDatasource].[proj_ref] AS [proj_ref], 
+    [vwPlanDatasource].[proj_id] AS [proj_id], 
+    [vwPlanDatasource].[permit_type_id] AS [permit_type_id], 
+    [vwPlanDatasource].[permit_scope_id] AS [permit_scope_id], 
+    [vwPlanDatasource].[addressee_id] AS [addressee_id], 
+    [vwPlanDatasource].[contract_date] AS [contract_date], 
+    [vwPlanDatasource].[client_name] AS [client_name], 
+    [vwPlanDatasource].[progstart_date] AS [progstart_date], 
+    [vwPlanDatasource].[Last_Status] AS [Last_Status], 
+    [vwPlanDatasource].[Last_Status_Name] AS [Last_Status_Name], 
+    [vwPlanDatasource].[Last_Date] AS [Last_Date], 
+    [vwPlanDatasource].[Location] AS [Location], 
+    [vwPlanDatasource].[project_status] AS [project_status], 
+    [vwPlanDatasource].[project_status_name] AS [project_status_name], 
+    [vwPlanDatasource].[Last_Comment] AS [Last_Comment], 
+    [vwPlanDatasource].[building_name] AS [building_name], 
+    [vwPlanDatasource].[actual_finish_date] AS [actual_finish_date], 
+    [vwPlanDatasource].[css_style] AS [css_style], 
+    [vwPlanDatasource].[client_id] AS [client_id], 
+    [vwPlanDatasource].[PermitTypeShortcut] AS [PermitTypeShortcut], 
+    [vwPlanDatasource].[division_id] AS [division_id], 
+    [vwPlanDatasource].[LastPlan_TaskName] AS [LastPlan_TaskName], 
+    [vwPlanDatasource].[LastPlan_ProgressPerc] AS [LastPlan_ProgressPerc], 
+    [vwPlanDatasource].[LastPlan_Date] AS [LastPlan_Date], 
+    [vwPlanDatasource].[TaskTypeID] AS [TaskTypeID], 
+    [vwPlanDatasource].[NextPlan_TaskName] AS [NextPlan_TaskName], 
+    [vwPlanDatasource].[NextPlan_ProgressPerc] AS [NextPlan_ProgressPerc], 
+    [vwPlanDatasource].[NextPlan_Date] AS [NextPlan_Date], 
+    [vwPlanDatasource].[NextPlan_ID] AS [NextPlan_ID], 
+    [vwPlanDatasource].[LastPlan_ID] AS [LastPlan_ID], 
+    [vwPlanDatasource].[LastPlan_TaskID] AS [LastPlan_TaskID], 
+    [vwPlanDatasource].[NextPlan_TaskID] AS [NextPlan_TaskID], 
+    [vwPlanDatasource].[LastPlan_PlanHours] AS [LastPlan_PlanHours], 
+    [vwPlanDatasource].[NextPlan_PlanHours] AS [NextPlan_PlanHours], 
+    [vwPlanDatasource].[NextPlan_Periority] AS [NextPlan_Periority], 
+    [vwPlanDatasource].[LastPlan_Periority] AS [LastPlan_Periority]
+    FROM [dbo].[vwPlanDatasource] AS [vwPlanDatasource]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vwProjectBalance" EntityType="Self.vwProjectBalance" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vwProjectBalance].[sn] AS [sn], 
+    [vwProjectBalance].[TotalCollected] AS [TotalCollected], 
+    [vwProjectBalance].[ToTalFees] AS [ToTalFees], 
+    [vwProjectBalance].[Balance] AS [Balance]
+    FROM [dbo].[vwProjectBalance] AS [vwProjectBalance]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vwProjectRequirements" EntityType="Self.vwProjectRequirements" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vwProjectRequirements].[id] AS [id], 
+    [vwProjectRequirements].[RequuirementName] AS [RequuirementName], 
+    [vwProjectRequirements].[PermitName] AS [PermitName], 
+    [vwProjectRequirements].[Scope] AS [Scope], 
+    [vwProjectRequirements].[proj_id] AS [proj_id], 
+    [vwProjectRequirements].[proj_ref] AS [proj_ref], 
+    [vwProjectRequirements].[proj_name] AS [proj_name], 
+    [vwProjectRequirements].[StatusName] AS [StatusName], 
+    [vwProjectRequirements].[action_date] AS [action_date], 
+    [vwProjectRequirements].[LastComment] AS [LastComment], 
+    [vwProjectRequirements].[next_followup_date] AS [next_followup_date]
+    FROM [dbo].[vwProjectRequirements] AS [vwProjectRequirements]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vwProjectsView" EntityType="Self.vwProjectsView" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vwProjectsView].[sn] AS [sn], 
+    [vwProjectsView].[proj_name] AS [proj_name], 
+    [vwProjectsView].[proj_ref] AS [proj_ref], 
+    [vwProjectsView].[building_name] AS [building_name], 
+    [vwProjectsView].[proj_area] AS [proj_area], 
+    [vwProjectsView].[proj_floors] AS [proj_floors], 
+    [vwProjectsView].[discplns_list] AS [discplns_list], 
+    [vwProjectsView].[progress_stage] AS [progress_stage], 
+    [vwProjectsView].[proj_deliverable] AS [proj_deliverable], 
+    [vwProjectsView].[dpme_projid] AS [dpme_projid], 
+    [vwProjectsView].[location_id] AS [location_id], 
+    [vwProjectsView].[usag_id] AS [usag_id], 
+    [vwProjectsView].[category_id] AS [category_id], 
+    [vwProjectsView].[type_id] AS [type_id], 
+    [vwProjectsView].[scope_id] AS [scope_id], 
+    [vwProjectsView].[status_id] AS [status_id], 
+    [vwProjectsView].[proj_client_id] AS [proj_client_id], 
+    [vwProjectsView].[AllPermitsCount] AS [AllPermitsCount], 
+    [vwProjectsView].[AcceptedPermits] AS [AcceptedPermits], 
+    [vwProjectsView].[client_name] AS [client_name], 
+    [vwProjectsView].[qat_cities_list] AS [qat_cities_list], 
+    [vwProjectsView].[project_usage_list] AS [project_usage_list], 
+    [vwProjectsView].[project_category_list] AS [project_category_list], 
+    [vwProjectsView].[proj_types_list] AS [proj_types_list], 
+    [vwProjectsView].[proj_workscope_list] AS [proj_workscope_list], 
+    [vwProjectsView].[proj_workscope_list_1] AS [proj_workscope_list_1], 
+    [vwProjectsView].[proj_status_list] AS [proj_status_list], 
+    [vwProjectsView].[InBrogressPermits] AS [InBrogressPermits], 
+    [vwProjectsView].[DaysFromExpDes] AS [DaysFromExpDes]
+    FROM [dbo].[vwProjectsView] AS [vwProjectsView]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vwPVPermits" EntityType="Self.vwPVPermits" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vwPVPermits].[log_status] AS [log_status], 
+    [vwPVPermits].[log_date] AS [log_date], 
+    [vwPVPermits].[log_comment] AS [log_comment], 
+    [vwPVPermits].[permit_id] AS [permit_id], 
+    [vwPVPermits].[permit_client_comment] AS [permit_client_comment], 
+    [vwPVPermits].[addressee] AS [addressee], 
+    [vwPVPermits].[permit_type] AS [permit_type], 
+    [vwPVPermits].[permit_scope] AS [permit_scope], 
+    [vwPVPermits].[project_name] AS [project_name], 
+    [vwPVPermits].[project_ref] AS [project_ref], 
+    [vwPVPermits].[project_category] AS [project_category], 
+    [vwPVPermits].[client_name] AS [client_name], 
+    [vwPVPermits].[client_id] AS [client_id], 
+    [vwPVPermits].[fees_design] AS [fees_design], 
+    [vwPVPermits].[fees_supervs] AS [fees_supervs], 
+    [vwPVPermits].[fees_study] AS [fees_study], 
+    [vwPVPermits].[fees_total] AS [fees_total], 
+    [vwPVPermits].[balance_design] AS [balance_design], 
+    [vwPVPermits].[balance_study] AS [balance_study], 
+    [vwPVPermits].[balance_sup] AS [balance_sup], 
+    [vwPVPermits].[balance_total] AS [balance_total], 
+    [vwPVPermits].[payment_sup_fees] AS [payment_sup_fees], 
+    [vwPVPermits].[payment_sup_type] AS [payment_sup_type], 
+    [vwPVPermits].[payment_study_down] AS [payment_study_down], 
+    [vwPVPermits].[payment_study_down_cond] AS [payment_study_down_cond], 
+    [vwPVPermits].[payment_study_first] AS [payment_study_first], 
+    [vwPVPermits].[payment_study_first_cond] AS [payment_study_first_cond], 
+    [vwPVPermits].[payment_design_down] AS [payment_design_down], 
+    [vwPVPermits].[payment_design_down_cond] AS [payment_design_down_cond], 
+    [vwPVPermits].[payment_design_first] AS [payment_design_first], 
+    [vwPVPermits].[payment_design_first_cond] AS [payment_design_first_cond], 
+    [vwPVPermits].[payment_design_second] AS [payment_design_second], 
+    [vwPVPermits].[payment_design_second_cond] AS [payment_design_second_cond], 
+    [vwPVPermits].[payment_design_third] AS [payment_design_third], 
+    [vwPVPermits].[payment_design_third_cond] AS [payment_design_third_cond], 
+    [vwPVPermits].[payment_design_fourth] AS [payment_design_fourth], 
+    [vwPVPermits].[payment_design_fourth_cond] AS [payment_design_fourth_cond], 
+    [vwPVPermits].[payment_design_fifth] AS [payment_design_fifth], 
+    [vwPVPermits].[payment_design_fifth_cond] AS [payment_design_fifth_cond], 
+    [vwPVPermits].[payment_design_sixth] AS [payment_design_sixth], 
+    [vwPVPermits].[payment_design_sixth_cond] AS [payment_design_sixth_cond], 
+    [vwPVPermits].[payment_design_seven] AS [payment_design_seven], 
+    [vwPVPermits].[payment_design_seven_cond] AS [payment_design_seven_cond], 
+    [vwPVPermits].[payment_instsupvs_down] AS [payment_instsupvs_down], 
+    [vwPVPermits].[payment_instsupvs_down_cond] AS [payment_instsupvs_down_cond], 
+    [vwPVPermits].[payment_instsupvs_first] AS [payment_instsupvs_first], 
+    [vwPVPermits].[payment_instsupvs_first_cond] AS [payment_instsupvs_first_cond], 
+    [vwPVPermits].[payment_instsupvs_second] AS [payment_instsupvs_second], 
+    [vwPVPermits].[payment_instsupvs_second_cond] AS [payment_instsupvs_second_cond], 
+    [vwPVPermits].[payment_instsupvs_third] AS [payment_instsupvs_third], 
+    [vwPVPermits].[payment_instsupvs_third_cond] AS [payment_instsupvs_third_cond], 
+    [vwPVPermits].[payment_instsupvs_fourth] AS [payment_instsupvs_fourth], 
+    [vwPVPermits].[payment_instsupvs_fourth_cond] AS [payment_instsupvs_fourth_cond], 
+    [vwPVPermits].[payment_instsupvs_fifth] AS [payment_instsupvs_fifth], 
+    [vwPVPermits].[payment_instsupvs_fifth_cond] AS [payment_instsupvs_fifth_cond], 
+    [vwPVPermits].[payment_instsupvs_sixth] AS [payment_instsupvs_sixth], 
+    [vwPVPermits].[payment_instsupvs_sixth_cond] AS [payment_instsupvs_sixth_cond], 
+    [vwPVPermits].[payment_instsupvs_seven] AS [payment_instsupvs_seven], 
+    [vwPVPermits].[payment_instsupvs_seven_cond] AS [payment_instsupvs_seven_cond], 
+    [vwPVPermits].[schedule_contract_date] AS [schedule_contract_date], 
+    [vwPVPermits].[schedule_cont_Expctd_date] AS [schedule_cont_Expctd_date], 
+    [vwPVPermits].[schedule_document_recv_date] AS [schedule_document_recv_date], 
+    [vwPVPermits].[schedule_down_recv_date] AS [schedule_down_recv_date], 
+    [vwPVPermits].[schedule_progstart_date] AS [schedule_progstart_date], 
+    [vwPVPermits].[schedule_planed_date] AS [schedule_planed_date], 
+    [vwPVPermits].[schedule_actual_finish_date] AS [schedule_actual_finish_date], 
+    [vwPVPermits].[schedule_dev_days] AS [schedule_dev_days], 
+    [vwPVPermits].[project_scope] AS [project_scope], 
+    [vwPVPermits].[project_usage] AS [project_usage], 
+    [vwPVPermits].[project_type] AS [project_type]
+    FROM [dbo].[vwPVPermits] AS [vwPVPermits]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_clients_nationalities_list" Association="Self.FK_clients_nationalities_list">
+      <End Role="nationalities_list" EntitySet="nationalities_list" />
+      <End Role="clients" EntitySet="clients" />
+    </AssociationSet>
+    <AssociationSet Name="FK_clients_nationalities_list1" Association="Self.FK_clients_nationalities_list1">
+      <End Role="nationalities_list" EntitySet="nationalities_list" />
+      <End Role="clients" EntitySet="clients" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DailyPlan_Projects_DailyPlan_Tasks" Association="Self.FK_DailyPlan_Projects_DailyPlan_Tasks">
+      <End Role="DailyPlan_Tasks" EntitySet="DailyPlan_Tasks" />
+      <End Role="DailyPlan_Projects" EntitySet="DailyPlan_Projects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DailyPlan_Projects_projects_permits" Association="Self.FK_DailyPlan_Projects_projects_permits">
+      <End Role="projects_permits" EntitySet="projects_permits" />
+      <End Role="DailyPlan_Projects" EntitySet="DailyPlan_Projects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DailyPlan_Tasks_projects_permits" Association="Self.FK_DailyPlan_Tasks_projects_permits">
+      <End Role="projects_permits" EntitySet="projects_permits" />
+      <End Role="DailyPlan_Tasks" EntitySet="DailyPlan_Tasks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DailyPlan_Tasks_TaskTypes" Association="Self.FK_DailyPlan_Tasks_TaskTypes">
+      <End Role="TaskTypes" EntitySet="TaskTypes" />
+      <End Role="DailyPlan_Tasks" EntitySet="DailyPlan_Tasks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DailyPlan_Times_DailyPlan_Tasks" Association="Self.FK_DailyPlan_Times_DailyPlan_Tasks">
+      <End Role="DailyPlan_Tasks" EntitySet="DailyPlan_Tasks" />
+      <End Role="DailyPlan_Times" EntitySet="DailyPlan_Times" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DailyPlan_Times_projects_permits" Association="Self.FK_DailyPlan_Times_projects_permits">
+      <End Role="projects_permits" EntitySet="projects_permits" />
+      <End Role="DailyPlan_Times" EntitySet="DailyPlan_Times" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DailyPlan_Times_SubTaskType" Association="Self.FK_DailyPlan_Times_SubTaskType">
+      <End Role="TaskTypes" EntitySet="TaskTypes" />
+      <End Role="DailyPlan_Times" EntitySet="DailyPlan_Times" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DailyPlan_Times_TaskTypes" Association="Self.FK_DailyPlan_Times_TaskTypes">
+      <End Role="TaskTypes" EntitySet="TaskTypes" />
+      <End Role="DailyPlan_Times" EntitySet="DailyPlan_Times" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_clients_userpass_dbo_clients" Association="Self.FK_dbo_clients_userpass_dbo_clients">
+      <End Role="clients" EntitySet="clients" />
+      <End Role="clients_userpass" EntitySet="clients_userpass" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_AdminAccess_employee_sysaccess" Association="Self.FK_Employee_AdminAccess_employee_sysaccess">
+      <End Role="employee_sysaccess" EntitySet="employee_sysaccess" />
+      <End Role="Employee_AdminAccess" EntitySet="Employee_AdminAccess" />
+    </AssociationSet>
+    <AssociationSet Name="FK_notify_clients" Association="Self.FK_notify_clients">
+      <End Role="clients_userpass" EntitySet="clients_userpass" />
+      <End Role="notify" EntitySet="notify" />
+    </AssociationSet>
+    <AssociationSet Name="FK_notify_clients1" Association="Self.FK_notify_clients1">
+      <End Role="clients_userpass" EntitySet="clients_userpass" />
+      <End Role="notify" EntitySet="notify" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Permits_ProjectsNew_projects" Association="Self.FK_Permits_ProjectsNew_projects">
+      <End Role="projects" EntitySet="projects" />
+      <End Role="Permits_ProjectsNew" EntitySet="Permits_ProjectsNew" />
+    </AssociationSet>
+    <AssociationSet Name="FK_permits_status_log_permits_status" Association="Self.FK_permits_status_log_permits_status">
+      <End Role="permits_status" EntitySet="permits_status" />
+      <End Role="permits_status_log" EntitySet="permits_status_log" />
+    </AssociationSet>
+    <AssociationSet Name="FK_permits_status_log_projects_permits" Association="Self.FK_permits_status_log_projects_permits">
+      <End Role="projects_permits" EntitySet="projects_permits" />
+      <End Role="permits_status_log" EntitySet="permits_status_log" />
+    </AssociationSet>
+    <AssociationSet Name="FK_proj_req_status_log_projects_requirements" Association="Self.FK_proj_req_status_log_projects_requirements">
+      <End Role="projects_requirements" EntitySet="projects_requirements" />
+      <End Role="proj_req_status_log" EntitySet="proj_req_status_log" />
+    </AssociationSet>
+    <AssociationSet Name="FK_proj_req_status_log_req_status_list" Association="Self.FK_proj_req_status_log_req_status_list">
+      <End Role="req_status_list" EntitySet="req_status_list" />
+      <End Role="proj_req_status_log" EntitySet="proj_req_status_log" />
+    </AssociationSet>
+    <AssociationSet Name="FK_project_collecte_details_Payments_Scope_list" Association="Self.FK_project_collecte_details_Payments_Scope_list">
+      <End Role="Payments_Scope_list" EntitySet="Payments_Scope_list" />
+      <End Role="project_collecte_details" EntitySet="project_collecte_details" />
+    </AssociationSet>
+    <AssociationSet Name="FK_project_collecte_details_project_collectes" Association="Self.FK_project_collecte_details_project_collectes">
+      <End Role="project_collectes" EntitySet="project_collectes" />
+      <End Role="project_collecte_details" EntitySet="project_collecte_details" />
+    </AssociationSet>
+    <AssociationSet Name="FK_project_collectes_payment_type_list" Association="Self.FK_project_collectes_payment_type_list">
+      <End Role="payment_type_list" EntitySet="payment_type_list" />
+      <End Role="project_collectes" EntitySet="project_collectes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_project_collectes_project_invoices" Association="Self.FK_project_collectes_project_invoices">
+      <End Role="project_invoices" EntitySet="project_invoices" />
+      <End Role="project_collectes" EntitySet="project_collectes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_project_collectes_projects" Association="Self.FK_project_collectes_projects">
+      <End Role="projects" EntitySet="projects" />
+      <End Role="project_collectes" EntitySet="project_collectes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_project_fees_Payments_Scope_list" Association="Self.FK_project_fees_Payments_Scope_list">
+      <End Role="Payments_Scope_list" EntitySet="Payments_Scope_list" />
+      <End Role="project_fees" EntitySet="project_fees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_project_fees_projects" Association="Self.FK_project_fees_projects">
+      <End Role="projects" EntitySet="projects" />
+      <End Role="project_fees" EntitySet="project_fees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_project_invoice_details_Payments_Scope_list" Association="Self.FK_project_invoice_details_Payments_Scope_list">
+      <End Role="Payments_Scope_list" EntitySet="Payments_Scope_list" />
+      <End Role="project_invoice_details" EntitySet="project_invoice_details" />
+    </AssociationSet>
+    <AssociationSet Name="FK_project_invoice_details_project_invoice_details" Association="Self.FK_project_invoice_details_project_invoice_details">
+      <End Role="project_invoices" EntitySet="project_invoices" />
+      <End Role="project_invoice_details" EntitySet="project_invoice_details" />
+    </AssociationSet>
+    <AssociationSet Name="FK_project_invoices_payment_type_list" Association="Self.FK_project_invoices_payment_type_list">
+      <End Role="payment_type_list" EntitySet="payment_type_list" />
+      <End Role="project_invoices" EntitySet="project_invoices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_project_invoices_project_payments" Association="Self.FK_project_invoices_project_payments">
+      <End Role="project_payments" EntitySet="project_payments" />
+      <End Role="project_invoices" EntitySet="project_invoices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_project_invoices_projects" Association="Self.FK_project_invoices_projects">
+      <End Role="projects" EntitySet="projects" />
+      <End Role="project_invoices" EntitySet="project_invoices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_project_payment_config_projects" Association="Self.FK_project_payment_config_projects">
+      <End Role="projects" EntitySet="projects" />
+      <End Role="project_payment_config" EntitySet="project_payment_config" />
+    </AssociationSet>
+    <AssociationSet Name="FK_project_payment_config_TimeIntervals" Association="Self.FK_project_payment_config_TimeIntervals">
+      <End Role="TimeIntervals" EntitySet="TimeIntervals" />
+      <End Role="project_payment_config" EntitySet="project_payment_config" />
+    </AssociationSet>
+    <AssociationSet Name="FK_project_payment_details_Payments_Scope_list" Association="Self.FK_project_payment_details_Payments_Scope_list">
+      <End Role="Payments_Scope_list" EntitySet="Payments_Scope_list" />
+      <End Role="project_payment_details" EntitySet="project_payment_details" />
+    </AssociationSet>
+    <AssociationSet Name="FK_project_payment_details_project_payments" Association="Self.FK_project_payment_details_project_payments">
+      <End Role="project_payments" EntitySet="project_payments" />
+      <End Role="project_payment_details" EntitySet="project_payment_details" />
+    </AssociationSet>
+    <AssociationSet Name="FK_project_payments_payment_type_list" Association="Self.FK_project_payments_payment_type_list">
+      <End Role="payment_type_list" EntitySet="payment_type_list" />
+      <End Role="project_payments" EntitySet="project_payments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_project_payments_projects" Association="Self.FK_project_payments_projects">
+      <End Role="projects" EntitySet="projects" />
+      <End Role="project_payments" EntitySet="project_payments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_project_visits_contract_projects" Association="Self.FK_project_visits_contract_projects">
+      <End Role="projects" EntitySet="projects" />
+      <End Role="project_visits_contract" EntitySet="project_visits_contract" />
+    </AssociationSet>
+    <AssociationSet Name="FK_project_visits_projects" Association="Self.FK_project_visits_projects">
+      <End Role="projects" EntitySet="projects" />
+      <End Role="project_visits" EntitySet="project_visits" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Projects_BuildingList_projects_types_list" Association="Self.FK_Projects_BuildingList_projects_types_list">
+      <End Role="projects_types_list" EntitySet="projects_types_list" />
+      <End Role="Projects_BuildingList" EntitySet="Projects_BuildingList" />
+    </AssociationSet>
+    <AssociationSet Name="FK_projects_clients" Association="Self.FK_projects_clients">
+      <End Role="clients" EntitySet="clients" />
+      <End Role="projects" EntitySet="projects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_projects_conditions_project_category_list" Association="Self.FK_projects_conditions_project_category_list">
+      <End Role="project_category_list" EntitySet="project_category_list" />
+      <End Role="projects_conditions" EntitySet="projects_conditions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_projects_conditions_projects" Association="Self.FK_projects_conditions_projects">
+      <End Role="projects" EntitySet="projects" />
+      <End Role="projects_conditions" EntitySet="projects_conditions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_projects_fees_projects" Association="Self.FK_projects_fees_projects">
+      <End Role="projects" EntitySet="projects" />
+      <End Role="projects_fees" EntitySet="projects_fees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_projects_invoicefees_supervision_payment_type_list" Association="Self.FK_projects_invoicefees_supervision_payment_type_list">
+      <End Role="payment_type_list" EntitySet="payment_type_list" />
+      <End Role="projects_invoicefees_supervision" EntitySet="projects_invoicefees_supervision" />
+    </AssociationSet>
+    <AssociationSet Name="FK_projects_payment_sup_payment_type_list" Association="Self.FK_projects_payment_sup_payment_type_list">
+      <End Role="payment_type_list" EntitySet="payment_type_list" />
+      <End Role="projects_payment_sup" EntitySet="projects_payment_sup" />
+    </AssociationSet>
+    <AssociationSet Name="FK_projects_permits_permits_addreesees" Association="Self.FK_projects_permits_permits_addreesees">
+      <End Role="permits_addreesees" EntitySet="permits_addreesees" />
+      <End Role="projects_permits" EntitySet="projects_permits" />
+    </AssociationSet>
+    <AssociationSet Name="FK_projects_permits_proj_disciplines_list" Association="Self.FK_projects_permits_proj_disciplines_list">
+      <End Role="proj_disciplines_list" EntitySet="proj_disciplines_list" />
+      <End Role="projects_permits" EntitySet="projects_permits" />
+    </AssociationSet>
+    <AssociationSet Name="FK_projects_permits_proj_workscope_list" Association="Self.FK_projects_permits_proj_workscope_list">
+      <End Role="proj_workscope_list" EntitySet="proj_workscope_list" />
+      <End Role="projects_permits" EntitySet="projects_permits" />
+    </AssociationSet>
+    <AssociationSet Name="FK_projects_permits_projects" Association="Self.FK_projects_permits_projects">
+      <End Role="projects" EntitySet="projects" />
+      <End Role="projects_permits" EntitySet="projects_permits" />
+    </AssociationSet>
+    <AssociationSet Name="FK_projects_permits_UploadSystems" Association="Self.FK_projects_permits_UploadSystems">
+      <End Role="UploadSystems" EntitySet="UploadSystems" />
+      <End Role="projects_permits" EntitySet="projects_permits" />
+    </AssociationSet>
+    <AssociationSet Name="FK_projects_proj_status_list" Association="Self.FK_projects_proj_status_list">
+      <End Role="proj_status_list" EntitySet="proj_status_list" />
+      <End Role="projects" EntitySet="projects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_projects_proj_types_list" Association="Self.FK_projects_proj_types_list">
+      <End Role="proj_types_list" EntitySet="proj_types_list" />
+      <End Role="projects" EntitySet="projects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_projects_proj_workscope_list" Association="Self.FK_projects_proj_workscope_list">
+      <End Role="proj_workscope_list" EntitySet="proj_workscope_list" />
+      <End Role="projects" EntitySet="projects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_projects_project_category_list" Association="Self.FK_projects_project_category_list">
+      <End Role="project_category_list" EntitySet="project_category_list" />
+      <End Role="projects" EntitySet="projects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_projects_project_usage_list" Association="Self.FK_projects_project_usage_list">
+      <End Role="project_usage_list" EntitySet="project_usage_list" />
+      <End Role="projects" EntitySet="projects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_projects_qat_cities_list" Association="Self.FK_projects_qat_cities_list">
+      <End Role="qat_cities_list" EntitySet="qat_cities_list" />
+      <End Role="projects" EntitySet="projects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_projects_requirements_Payments_Scope_list" Association="Self.FK_projects_requirements_Payments_Scope_list">
+      <End Role="Payments_Scope_list" EntitySet="Payments_Scope_list" />
+      <End Role="projects_requirements" EntitySet="projects_requirements" />
+    </AssociationSet>
+    <AssociationSet Name="FK_projects_requirements_proj_req_list" Association="Self.FK_projects_requirements_proj_req_list">
+      <End Role="proj_req_list" EntitySet="proj_req_list" />
+      <End Role="projects_requirements" EntitySet="projects_requirements" />
+    </AssociationSet>
+    <AssociationSet Name="FK_projects_requirements_projects" Association="Self.FK_projects_requirements_projects">
+      <End Role="project_services_list" EntitySet="project_services_list" />
+      <End Role="projects_requirements" EntitySet="projects_requirements" />
+    </AssociationSet>
+    <AssociationSet Name="FK_projects_requirements_req_status_list" Association="Self.FK_projects_requirements_req_status_list">
+      <End Role="req_status_list" EntitySet="req_status_list" />
+      <End Role="projects_requirements" EntitySet="projects_requirements" />
+    </AssociationSet>
+    <AssociationSet Name="FK_projects_schedule_projects" Association="Self.FK_projects_schedule_projects">
+      <End Role="projects" EntitySet="projects" />
+      <End Role="projects_schedule" EntitySet="projects_schedule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_sec_group_permissions_sec_groups" Association="Self.FK_sec_group_permissions_sec_groups">
+      <End Role="sec_groups" EntitySet="sec_groups" />
+      <End Role="sec_group_permissions" EntitySet="sec_group_permissions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_sec_users_groups_rel_clients_userpass" Association="Self.FK_sec_users_groups_rel_clients_userpass">
+      <End Role="clients_userpass" EntitySet="clients_userpass" />
+      <End Role="sec_users_groups_rel" EntitySet="sec_users_groups_rel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_sec_users_groups_rel_sec_groups" Association="Self.FK_sec_users_groups_rel_sec_groups">
+      <End Role="sec_groups" EntitySet="sec_groups" />
+      <End Role="sec_users_groups_rel" EntitySet="sec_users_groups_rel" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
