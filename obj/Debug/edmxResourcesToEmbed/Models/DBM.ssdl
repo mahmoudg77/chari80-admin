@@ -67,6 +67,7 @@
     <Property Name="mail_verified" Type="bit" />
     <Property Name="phone_verified" Type="bit" />
     <Property Name="firebase_uid" Type="nvarchar" MaxLength="300" />
+    <Property Name="camera_status" Type="bit" />
   </EntityType>
   <EntityType Name="sec_users_roles">
     <Key>
@@ -488,6 +489,10 @@ warning 6002: The table/view 'chari80_db.dbo.vwTripsDetails' does not have a pri
     <Property Name="trip_gender_name" Type="nvarchar" MaxLength="300" Nullable="false" />
     <Property Name="trip_id" Type="int" Nullable="false" />
     <Property Name="guid" Type="uniqueidentifier" />
+    <Property Name="started_seats" Type="int" />
+    <Property Name="ended_seats" Type="int" />
+    <Property Name="reached_seats" Type="int" />
+    <Property Name="camera_status" Type="bit" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'chari80_db.dbo.vwTripSeatDetails' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -1024,7 +1029,11 @@ warning 6002: The table/view 'chari80_db.dbo.vwVehicles' does not have a primary
     [vwTripsDetails].[acc_country] AS [acc_country], 
     [vwTripsDetails].[trip_gender_name] AS [trip_gender_name], 
     [vwTripsDetails].[trip_id] AS [trip_id], 
-    [vwTripsDetails].[guid] AS [guid]
+    [vwTripsDetails].[guid] AS [guid], 
+    [vwTripsDetails].[started_seats] AS [started_seats], 
+    [vwTripsDetails].[ended_seats] AS [ended_seats], 
+    [vwTripsDetails].[reached_seats] AS [reached_seats], 
+    [vwTripsDetails].[camera_status] AS [camera_status]
     FROM [dbo].[vwTripsDetails] AS [vwTripsDetails]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="vwTripSeatDetails" EntityType="Self.vwTripSeatDetails" store:Type="Views" store:Schema="dbo">

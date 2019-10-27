@@ -213,6 +213,11 @@ $(function () {
                 maxHeight: 200
                 /*allSelectedText: 'All'*/
             });
+            //Gellary
+            $('#aniimated-thumbnials').lightGallery({
+                thumbnail: true,
+                selector: 'a'
+            });
         }, function (data, status, xhr) {
             $(btn.data("target")).html("<div class='alert alert-danger text-center'><strong>Sorry; </strong>" + xhr.status + " " + xhr.statusText + "</div>");
 

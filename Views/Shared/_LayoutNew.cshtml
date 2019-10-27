@@ -112,8 +112,8 @@
                             <li><a href="/Profiles/Details/@UserSession.User.sec_users.id"><i class="material-icons">person</i>Profile</a></li>
                             @*<li role="separator" class="divider"></li>*@
                             @*<li><a href="javascript:void(0);"><i class="material-icons">group</i>Followers</a></li>
-                            <li><a href="javascript:void(0);"><i class="material-icons">shopping_cart</i>Sales</a></li>
-                            <li><a href="javascript:void(0);"><i class="material-icons">favorite</i>Likes</a></li>*@
+                                <li><a href="javascript:void(0);"><i class="material-icons">shopping_cart</i>Sales</a></li>
+                                <li><a href="javascript:void(0);"><i class="material-icons">favorite</i>Likes</a></li>*@
                             <li role="separator" class="divider"></li>
                             <li><a href="/Login/Logout"><i class="material-icons">input</i>Sign Out</a></li>
                         </ul>
@@ -152,11 +152,11 @@
                                     <a href="/Profiles/ByRoles?c=&roles=3&roles=2">Owner & Driver</a>
                                 </li>
                                 @*<li>
-                        <a href="/Users">Users</a>
-                    </li>
-                    <li>
-                        <a href="/UserRoles">User Roles</a>
-                    </li>*@
+                                        <a href="/Users">Users</a>
+                                    </li>
+                                    <li>
+                                        <a href="/UserRoles">User Roles</a>
+                                    </li>*@
                                 <li>
                                     <a href="/Sessions">Sessiosn</a>
                                 </li>
@@ -276,7 +276,7 @@
                         </li>
                     }
                 </ul>
-</div>
+            </div>
             <!-- #Menu -->
 
         </aside>
@@ -289,24 +289,23 @@
             <!--<div class="block-header">
                 <h2>DASHBOARD</h2>
             </div>-->
-
             <!-- Widgets -->
             @*<div class="row clearfix">*@
-                <!-- Main content -->
-                    @if (ViewBag.Results != null && ViewBag.Results.Count > 0)
-                    {
-                        foreach (var item in ViewBag.Results)
-                        {
-                            <div class="alert alert-@item.Name">
-                                <span>@item.Value</span>
-                            </div>
-                        }
-                        <hr />
-                    }
+            <!-- Main content -->
+            @if (ViewBag.Results != null && ViewBag.Results.Count > 0)
+            {
+                foreach (var item in ViewBag.Results)
+                {
+                    <div class="alert alert-@item.Name">
+                        <span>@item.Value</span>
+                    </div>
+                }
+                <hr />
+            }
 
-                    @RenderBody()
+            @RenderBody()
 
-                <!-- /.content -->
+            <!-- /.content -->
             @*</div>*@
 
         </div>
@@ -401,6 +400,12 @@
     <script src="~/Scripts/bootstrap-multiselect.js"></script>
     <script src="~/Scripts/iziToast.min.js"></script>
 
+    <!-- Light Gallery Plugin Js -->
+    <script src="/Content/plugins/light-gallery/js/lightgallery-all.js"></script>
+
+    <!-- Custom Js -->
+    <script src="/Content/js/pages/medias/image-gallery.js"></script>
+
 
     <script src="/Content/js/demo.js"></script>
     <script>
@@ -409,8 +414,8 @@
     <script src="/Content/js/script.js"></script>
 
 
-     
-    
+
+
 
 
 </body>

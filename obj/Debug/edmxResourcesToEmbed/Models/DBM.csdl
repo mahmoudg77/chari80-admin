@@ -74,6 +74,7 @@
     <NavigationProperty Name="sec_sessions" Relationship="Self.FK_sec_sessions_sec_users" FromRole="sec_users" ToRole="sec_sessions" />
     <NavigationProperty Name="sec_users_roles" Relationship="Self.FK_sec_users_roles_sec_users" FromRole="sec_users" ToRole="sec_users_roles" />
     <NavigationProperty Name="tbl_accounts" Relationship="Self.FK_sec_users_tbl_accounts" FromRole="sec_users" ToRole="tbl_accounts" />
+    <Property Name="camera_status" Type="Boolean" />
   </EntityType>
   <EntityType Name="sec_users_roles">
     <Key>
@@ -401,6 +402,10 @@
     <Property Name="trip_id" Type="Int32" Nullable="false" />
     <Property Name="trip_gender_name" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
     <Property Name="guid" Type="Guid" />
+    <Property Name="started_seats" Type="Int32" />
+    <Property Name="ended_seats" Type="Int32" />
+    <Property Name="reached_seats" Type="Int32" />
+    <Property Name="camera_status" Type="Boolean" />
   </EntityType>
   <EntityType Name="vwTripSeatDetails">
     <Key>

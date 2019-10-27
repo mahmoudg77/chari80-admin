@@ -93,7 +93,7 @@
 
 
 
-                                    <a data-type="popup" class="modal-link" href="http://www.google.com/maps/dir/?api=1&origin=@item.from_plc&destination=@item.to_plc&travelmode=drive">View In Map</a>
+                                    <a data-type="popup" class="modal-link" href="http://www.google.com/maps/dir/?api=1&origin=@item.from_lng,@item.from_lat&destination=@item.to_lng,@item.to_lat&travelmode=drive">View In Map</a>
                                 </td>
                                 @if (!ViewBag.SearchBy.Contains("status"))
                                 {
@@ -150,7 +150,6 @@
             </td>*@
 
                                     <td>
-                                        @Html.ActionLink("remove_red_eye", "Details", new { id = item.id }, new { @class = "btn material-icons details" })
                                         @Html.ActionLink("delete", "Delete", new { id = item.id }, new { @class = "btn text-danger material-icons delete" })
                                     </td>
 

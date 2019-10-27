@@ -1,18 +1,26 @@
 ﻿@model IEnumerable<Chair80CP.Models.tbl_images>
 @using Chair80CP.Libs
+<link href="/Content/plugins/light-gallery/css/lightgallery.css" rel="stylesheet">
 
-<div class="row">
-    @{ 
+<div id="aniimated-thumbnials" class="list-unstyled row clearfix">
+    @{
         var x = 0;
     }
+
     @foreach (var i in Model)
     {
+        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 
-        <a data-type="image" title="Vehicle Image" class="modal-link" href="@Settings.Get("api_url")/img/@ViewBag.style/@i.model_name/@i.model_id/original/main-@{@x}.gif">
+            <a href="@Settings.Get("api_url")/img/@ViewBag.style/@i.model_name/@i.model_id/original/@i.model_tag-@{@x}.gif" data-sub-html="@(i.created_at!=null?i.created_at.Value.ToString("yyyy-MM-dd hh:mm:ss tt"):"")">
+                <img class="img-responsive thumbnail" src="@Settings.Get("api_url")/img/@ViewBag.style/@i.model_name/@i.model_id/@ViewBag.size/main-@{@x}.gif">
+            </a>
+            </div>
 
-            <img class="img-thumbnail" src="@Settings.Get("api_url")/img/@ViewBag.style/@i.model_name/@i.model_id/@ViewBag.size/main-@{@x}.gif">
-        
-        </a>
-        x++;
-    }
-</div>
+            @*<a data-type="image" title="@i.model_tag" class="modal-link" href="@Settings.Get("api_url")/img/@ViewBag.style/@i.model_name/@i.model_id/original/main-@{@x}.gif">
+
+                    <img class="img-thumbnail" src="@Settings.Get("api_url")/img/@ViewBag.style/@i.model_name/@i.model_id/@ViewBag.size/main-@{@x}.gif">
+
+                </a>*@
+            x++;
+            }
+        </div>

@@ -57,5 +57,9 @@ namespace Chair80CP.Models
         public int trip_id { get; set; }
         public string trip_gender_name { get; set; }
         public Nullable<System.Guid> guid { get; set; }
+        public Nullable<int> started_seats { get; set; }
+        public Nullable<int> ended_seats { get; set; }
+        public Nullable<int> reached_seats { get; set; }
+        public Nullable<bool> camera_status { get; set; }
     }
 }

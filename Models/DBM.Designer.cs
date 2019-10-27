@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'E:\Works\Chari80\Chair80-dashboard\AlkashafFollow-Qatar\Models\DBM.edmx'. 
+﻿// T4 code generation is enabled for model 'E:\Works\Chari80\Chair80-dashboard\Chair80CP\Models\DBM.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

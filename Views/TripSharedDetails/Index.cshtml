@@ -91,7 +91,8 @@
                 </td>
             
                 <td>
-                    @Html.ActionLink("remove_red_eye", "Details", new { id = item.id }, new { @class = "btn material-icons details" })
+                    <a href="/Trip/Tracking/@item.guid" class="btn material-icons">remove_red_eye</a>
+
                     @Html.ActionLink("delete", "Delete", new { id = item.id }, new { @class = "btn text-danger material-icons delete" })
                 </td>
 

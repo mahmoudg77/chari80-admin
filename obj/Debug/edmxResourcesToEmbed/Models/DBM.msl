@@ -60,6 +60,7 @@
     <EntitySetMapping Name="sec_users">
       <EntityTypeMapping TypeName="MainModel.sec_users">
         <MappingFragment StoreEntitySet="sec_users">
+          <ScalarProperty Name="camera_status" ColumnName="camera_status" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="pwd" ColumnName="pwd" />
           <ScalarProperty Name="reset_pwd_token" ColumnName="reset_pwd_token" />
@@ -321,6 +322,10 @@
     <EntitySetMapping Name="vwTripsDetails">
       <EntityTypeMapping TypeName="MainModel.vwTripsDetails">
         <MappingFragment StoreEntitySet="vwTripsDetails">
+          <ScalarProperty Name="camera_status" ColumnName="camera_status" />
+          <ScalarProperty Name="reached_seats" ColumnName="reached_seats" />
+          <ScalarProperty Name="ended_seats" ColumnName="ended_seats" />
+          <ScalarProperty Name="started_seats" ColumnName="started_seats" />
           <ScalarProperty Name="guid" ColumnName="guid" />
           <ScalarProperty Name="trip_gender_name" ColumnName="trip_gender_name" />
           <ScalarProperty Name="seats" ColumnName="seats" />

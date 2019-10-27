@@ -8,7 +8,7 @@ using Chair80CP.BLL;
 using Chair80CP.Models;
 namespace Chair80CP.Controllers
 {
-    [LoginFilter]
+    
     public class ImagesController : Controller
     {
         private Models.MainEntities db = new Models.MainEntities();
@@ -17,9 +17,10 @@ namespace Chair80CP.Controllers
         {
             ViewBag.style = style;
             ViewBag.size = size;
-            var Images = db.tbl_images.Where(a => a.model_name == model && a.model_id == id && a.model_tag == tag);
-            return View(Images);
+            var Images = db.tbl_images.Where(a => a.model_name == model && a.model_id == id && a.model_tag == tag).ToList();
+            return PartialView(Images);
         }
+        [LoginFilter]
         public ActionResult Delete(int id)
         {
 
@@ -47,7 +48,7 @@ namespace Chair80CP.Controllers
 
             
         }
-
+        [LoginFilter]
         public ActionResult Upload(string model, int model_id, string model_tag = "main")
         {
 

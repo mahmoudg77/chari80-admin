@@ -1,51 +1,154 @@
 ﻿@model Chair80CP.Models.vwTripsDetails
+    @using Chair80CP.Libs
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Trip Details";
 
     Layout = "~/Views/Shared/_LayoutPublic.cshtml";
 }
-<link href="/Content/plugins/light-gallery/css/lightgallery.css" rel="stylesheet">
 
-<div class="body">
-    <div class="panel">
-        <div class="panel-heading"><h2>Trip Details</h2></div>
-        <div class="modal-body">
-            <table class="table">
-                <tr>
-                    <td>Kick Off :</td>     
-                    <td>@Model.from_plc</td>    
-                </tr>
-                <tr>
-                    <td>Destination :</td>  
-                    <td>@Model.to_plc</td>      
-                </tr>
-                <tr>
-                    <td>Route :</td>     
-                    <td><a href="https://www.google.com/maps/dir/?api=1&origin=@Model.from_plc&destination=@Model.to_plc&travelmode=drive">View in map</a></a?></td>    
-                </tr>
-                <tr>
-                    <td>Started At :</td>
-                    <td>@Model.trip_start_date</td>
-                </tr>
-            </table>
-        </div>
-    </div> 
-    <div class="panel">
-        <div class="panel-heading"><h2>Trip Route</h2></div>
-        <div class="modal-body">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d13814.852478108138!2d31.220034917490665!3d30.045087160111382!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e6!4m5!1s0x145846cd25871d93%3A0x74a1ef05b4ecdc48!2z2KfZhNiv2YLZitiMINin2YTYr9mC2YnYjCDYp9mE2KzZitiy2Kk!3m2!1d30.039451099999997!2d31.2025336!4m5!1s0x14584127cad1cd5d%3A0xf12159ea97150310!2z2KfZhNi52KzZiNiy2KnYjCDYrdmKINin2YTYudis2YjYstip2Iwg2KfZhNis2YrYstip!3m2!1d30.0511223!2d31.2125529!5e0!3m2!1sar!2seg!4v1562352002512!5m2!1sar!2seg" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+<div class="body row">
+    <div class="col-sm-12 col-md-4">
+
+        <div class="panel panel-success">
+            <div class="panel-heading"><h2>Trip Details</h2></div>
+            <div class="modal-body">
+                <table class="table">
+                    <tr>
+                        <td>Pick Up :</td>
+                        <td>@Model.from_plc</td>
+                    </tr>
+                    <tr>
+                        <td>Droup Of :</td>
+                        <td>@Model.to_plc</td>
+                    </tr>
+                    <tr>
+                        <td>Route :</td>
+                        <td><a href="https://www.google.com/maps/dir/?api=1&origin=@Model.from_lat,@Model.from_lng&destination=@Model.to_lat,@Model.to_lng&travelmode=drive">View in map</a></td>
+                    </tr>
+                    <tr>
+                        <td>Started At :</td>
+                        <td>@Model.trip_start_date</td>
+                    </tr>
+
+                </table>
+
+            </div>
         </div>
     </div>
-    
-    <div id="aniimated-thumbnials" class="list-unstyled row clearfix">
+    <div class="col-sm-12 col-md-4">
+        <div class="panel panel-warning">
+            <div class="panel-heading"><h2>Driver Details</h2></div>
+            <div class="modal-body">
+                <div class="row">
 
-        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-            <a href="/Content/images/image-gallery/1.jpg" data-sub-html="Demo Description">
-                <img class="img-responsive thumbnail" src="/Content/images/image-gallery/thumb/thumb-1.jpg">
-            </a>
-        </div>
-       
+                <div class="col col-sm-12 col-lg-3">
+                    <img class="img-responsive" src="@Settings.Get("api_url")/img/crope/tbl_accounts/@Model.driver_id/400x400/main-last.gif" onerror="this.src = '/Content/images/user.png';" width="300" height="300" alt="User" />
+
+                </div>
+                <div class="col col-sm-12 col-lg-9">
+
+                    <table class="table">
+                        <tr>
+                            <td>Name :</td>
+                            <td>@Model.acc_first_name @Model.acc_last_name</td>
+                        </tr>
+                        <tr>
+                            <td>Gender :</td>
+                            <td>@Model.acc_gender.local()</td>
+                        </tr>
+                        <tr>
+                            <td>Phone :</td>
+                            <td><a href="tel:@Model.acc_mobile">@Model.acc_mobile</a></td>
+                        </tr>
+                        <tr>
+                            <td>License :</td>
+                            <td>@Model.acc_driver_license_no</td>
+                        </tr>
+
+                    </table>
+                </div>
+                </div>
+                </div>
+            </div>
+
     </div>
+   <div class="col-sm-12 col-md-4">
+        <div class="panel panel-info">
+            <div class="panel-heading"><h2>Car Details</h2></div>
+            <div class="modal-body">
+                <div class="row">
+
+                <div class="col col-sm-12 col-lg-3">
+                    <img class="img-responsive" src="@Settings.Get("api_url")/img/crope/tbl_vehicles/@Model.car_id/400x400/main-last.gif" onerror="this.src = '/Content/images/user.png';" width="300" height="300" alt="User" />
+
+                </div>
+                <div class="col col-sm-12 col-lg-9">
+
+                    <table class="table">
+                        <tr>
+                            <td>Model :</td>
+                            <td>@Model.car_model, @Model.car_color</td>
+                        </tr>
+                        <tr>
+                            <td>Capacity :</td>
+                            <td>@Model.car_capacity</td>
+                        </tr>
+                        <tr>
+                            <td>License :</td>
+                            <td>@Model.car_license_no</td>
+                        </tr>
+                        <tr>
+                            <td>Camera :</td>
+                            @if ((Model.camera_status == null ? false : (bool)Model.camera_status))
+                            {
+                                <td>
+                                    <i class="fa fa-play-circle-o text-success"></i>
+                                     <span>On</span>
+
+                                </td>
+
+                            }
+                            else
+                            {
+                                <td>
+                                    <i class="fa fa-stop-circle-o text-danger"></i>
+                                    <span>Off</span>
+                                </td>
+                            }
+                            </tr >
+
+                            </table>
+                            </div>
+                            </div>
+                            </div>
+                            </div>
+
+                            </div>
+
+                            <div class="col-sm-12">
+                            <div class="panel">
+                                <div class="modal-body">
+                                    @*<iframe src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d13814.852478108138!2d31.220034917490665!3d30.045087160111382!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e6!4m5!1s0x145846cd25871d93%3A0x74a1ef05b4ecdc48!2z2KfZhNiv2YLZitiMINin2YTYr9mC2YnYjCDYp9mE2KzZitiy2Kk!3m2!1d30.039451099999997!2d31.2025336!4m5!1s0x14584127cad1cd5d%3A0xf12159ea97150310!2z2KfZhNi52KzZiNiy2KnYjCDYrdmKINin2YTYudis2YjYstip2Iwg2KfZhNis2YrYstip!3m2!1d30.0511223!2d31.2125529!5e0!3m2!1sar!2seg!4v1562352002512!5m2!1sar!2seg" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>*@
+                                    <iframe src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyBX0W6LZ4nu-FBMHlcB7mHjoiXqRSkTdC8&origin=@Model.from_lat,@Model.from_lng&destination=@Model.to_lat,@Model.to_lng&avoid=tolls" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+
+
+                                </div>
+                            </div>
+
 </div>
+    <div class="col-sm-12">
+        <div class="panel">
+            <div class="panel-heading"><h2>Photos</h2></div>
+            <div class="modal-body">
+
+                @{
+                    Html.RenderAction("Index", "Images", new { id = @Model.trip_id, model = "tbl_trips", size = "300x300", style = "crope" });
+
+                }
+
+            </div>
+        </div>
+    </div>
+    </div>
 
 

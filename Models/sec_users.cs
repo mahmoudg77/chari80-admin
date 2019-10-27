@@ -32,6 +32,7 @@ namespace Chair80CP.Models
         public Nullable<bool> mail_verified { get; set; }
         public Nullable<bool> phone_verified { get; set; }
         public string firebase_uid { get; set; }
+        public Nullable<bool> camera_status { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<sec_sessions> sec_sessions { get; set; }
