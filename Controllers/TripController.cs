@@ -13,6 +13,7 @@ namespace Chair80CP.Controllers
         public ActionResult Tracking(Guid id)
         {
             Models.vwTripsDetails trip = db.vwTripsDetails.FirstOrDefault(a => a.guid == id);
+            ViewBag.Booking = db.trip_book.Where(a => a.trip_share_details_id == trip.trip_id).FirstOrDefault();
             ViewBag.Images = db.tbl_images.Where(a => a.model_name == "tbl_trips" && a.model_id == trip.trip_id).ToList();
             return View(trip);
         }

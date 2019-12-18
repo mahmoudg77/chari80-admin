@@ -1,5 +1,5 @@
 ﻿@model Chair80CP.Models.vwTripsDetails
-    @using Chair80CP.Libs
+@using Chair80CP.Libs
 @{
     ViewBag.Title = "Trip Details";
 
@@ -41,101 +41,102 @@
             <div class="modal-body">
                 <div class="row">
 
-                <div class="col col-sm-12 col-lg-3">
-                    <img class="img-responsive" src="@Settings.Get("api_url")/img/crope/tbl_accounts/@Model.driver_id/400x400/main-last.gif" onerror="this.src = '/Content/images/user.png';" width="300" height="300" alt="User" />
+                    <div class="col col-sm-12 col-lg-3">
+                        <img class="img-responsive" src="@Settings.Get("api_url")/img/crope/tbl_accounts/@Model.driver_id/400x400/main-last.gif" onerror="this.src = '/Content/images/user.png';" width="300" height="300" alt="User" />
 
-                </div>
-                <div class="col col-sm-12 col-lg-9">
+                    </div>
+                    <div class="col col-sm-12 col-lg-9">
 
-                    <table class="table">
-                        <tr>
-                            <td>Name :</td>
-                            <td>@Model.acc_first_name @Model.acc_last_name</td>
-                        </tr>
-                        <tr>
-                            <td>Gender :</td>
-                            <td>@Model.acc_gender.local()</td>
-                        </tr>
-                        <tr>
-                            <td>Phone :</td>
-                            <td><a href="tel:@Model.acc_mobile">@Model.acc_mobile</a></td>
-                        </tr>
-                        <tr>
-                            <td>License :</td>
-                            <td>@Model.acc_driver_license_no</td>
-                        </tr>
+                        <table class="table">
+                            <tr>
+                                <td>Name :</td>
+                                <td>@Model.acc_first_name @Model.acc_last_name</td>
+                            </tr>
+                            <tr>
+                                <td>Gender :</td>
+                                <td>@Model.acc_gender.local()</td>
+                            </tr>
+                            <tr>
+                                <td>Phone :</td>
+                                <td><a href="tel:@Model.acc_mobile">@Model.acc_mobile</a></td>
+                            </tr>
+                            <tr>
+                                <td>License :</td>
+                                <td>@Model.acc_driver_license_no</td>
+                            </tr>
 
-                    </table>
-                </div>
-                </div>
+                        </table>
+                    </div>
                 </div>
             </div>
+        </div>
 
     </div>
-   <div class="col-sm-12 col-md-4">
+    <div class="col-sm-12 col-md-4">
         <div class="panel panel-info">
             <div class="panel-heading"><h2>Car Details</h2></div>
             <div class="modal-body">
                 <div class="row">
 
-                <div class="col col-sm-12 col-lg-3">
-                    <img class="img-responsive" src="@Settings.Get("api_url")/img/crope/tbl_vehicles/@Model.car_id/400x400/main-last.gif" onerror="this.src = '/Content/images/user.png';" width="300" height="300" alt="User" />
+                    <div class="col col-sm-12 col-lg-3">
+                        <img class="img-responsive" src="@Settings.Get("api_url")/img/crope/tbl_vehicles/@Model.car_id/400x400/main-last.gif" onerror="this.src = '/Content/images/user.png';" width="300" height="300" alt="User" />
 
+                    </div>
+                    <div class="col col-sm-12 col-lg-9">
+
+                        <table class="table">
+                            <tr>
+                                <td>Model :</td>
+                                <td>@Model.car_model, @Model.car_color</td>
+                            </tr>
+                            <tr>
+                                <td>Capacity :</td>
+                                <td>@Model.car_capacity</td>
+                            </tr>
+                            <tr>
+                                <td>License :</td>
+                                <td>@Model.car_license_no</td>
+                            </tr>
+                            <tr>
+                                <td>Camera :</td>
+                                @if ((Model.camera_status == null ? false : (bool)Model.camera_status))
+                                {
+                                    <td>
+                                        <i class="fa fa-play-circle-o text-success"></i>
+                                        <span>On</span>
+
+                                    </td>
+
+                                }
+                                else
+                                {
+                                    <td>
+                                        <i class="fa fa-stop-circle-o text-danger"></i>
+                                        <span>Off</span>
+                                    </td>
+                                }
+                            </tr>
+
+                        </table>
+                    </div>
                 </div>
-                <div class="col col-sm-12 col-lg-9">
+            </div>
+        </div>
 
-                    <table class="table">
-                        <tr>
-                            <td>Model :</td>
-                            <td>@Model.car_model, @Model.car_color</td>
-                        </tr>
-                        <tr>
-                            <td>Capacity :</td>
-                            <td>@Model.car_capacity</td>
-                        </tr>
-                        <tr>
-                            <td>License :</td>
-                            <td>@Model.car_license_no</td>
-                        </tr>
-                        <tr>
-                            <td>Camera :</td>
-                            @if ((Model.camera_status == null ? false : (bool)Model.camera_status))
-                            {
-                                <td>
-                                    <i class="fa fa-play-circle-o text-success"></i>
-                                     <span>On</span>
+    </div>
 
-                                </td>
+    <div class="col-sm-12">
+        <div class="panel">
+            <div class="modal-body">
+                @*<iframe src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d13814.852478108138!2d31.220034917490665!3d30.045087160111382!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e6!4m5!1s0x145846cd25871d93%3A0x74a1ef05b4ecdc48!2z2KfZhNiv2YLZitiMINin2YTYr9mC2YnYjCDYp9mE2KzZitiy2Kk!3m2!1d30.039451099999997!2d31.2025336!4m5!1s0x14584127cad1cd5d%3A0xf12159ea97150310!2z2KfZhNi52KzZiNiy2KnYjCDYrdmKINin2YTYudis2YjYstip2Iwg2KfZhNis2YrYstip!3m2!1d30.0511223!2d31.2125529!5e0!3m2!1sar!2seg!4v1562352002512!5m2!1sar!2seg" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>*@
+                @*<iframe src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyBX0W6LZ4nu-FBMHlcB7mHjoiXqRSkTdC8&origin=@Model.from_lat,@Model.from_lng&destination=@Model.to_lat,@Model.to_lng&avoid=tolls" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>*@
 
-                            }
-                            else
-                            {
-                                <td>
-                                    <i class="fa fa-stop-circle-o text-danger"></i>
-                                    <span>Off</span>
-                                </td>
-                            }
-                            </tr >
+                <div id="map" style="width: 100%;height: 600px;"></div>
 
-                            </table>
-                            </div>
-                            </div>
-                            </div>
-                            </div>
+            </div>
+        </div>
 
-                            </div>
-
-                            <div class="col-sm-12">
-                            <div class="panel">
-                                <div class="modal-body">
-                                    @*<iframe src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d13814.852478108138!2d31.220034917490665!3d30.045087160111382!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e6!4m5!1s0x145846cd25871d93%3A0x74a1ef05b4ecdc48!2z2KfZhNiv2YLZitiMINin2YTYr9mC2YnYjCDYp9mE2KzZitiy2Kk!3m2!1d30.039451099999997!2d31.2025336!4m5!1s0x14584127cad1cd5d%3A0xf12159ea97150310!2z2KfZhNi52KzZiNiy2KnYjCDYrdmKINin2YTYudis2YjYstip2Iwg2KfZhNis2YrYstip!3m2!1d30.0511223!2d31.2125529!5e0!3m2!1sar!2seg!4v1562352002512!5m2!1sar!2seg" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>*@
-                                    <iframe src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyBX0W6LZ4nu-FBMHlcB7mHjoiXqRSkTdC8&origin=@Model.from_lat,@Model.from_lng&destination=@Model.to_lat,@Model.to_lng&avoid=tolls" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-
-
-                                </div>
-                            </div>
-
-</div>
+    </div>
     <div class="col-sm-12">
         <div class="panel">
             <div class="panel-heading"><h2>Photos</h2></div>
@@ -149,6 +150,122 @@
             </div>
         </div>
     </div>
-    </div>
+</div>
 
 
+<!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+<!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
+
+<!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+<script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-analytics.js"></script>
+
+<!-- Add Firebase products that you want to use -->
+<script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-database.js"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBX0W6LZ4nu-FBMHlcB7mHjoiXqRSkTdC8&callback=initMap&libraries=geometry"
+        type="text/javascript"></script>
+<script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+        apiKey: "AIzaSyCsaX_LsrPRGL8W0OMgFfUc5AN8qLHIyys",
+        authDomain: "chari80-test.firebaseapp.com",
+        databaseURL: "https://chari80-test.firebaseio.com",
+        projectId: "chari80-test",
+        storageBucket: "chari80-test.appspot.com",
+        messagingSenderId: "827687878178",
+        appId: "1:827687878178:web:027ad9abe3307dbc"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    var map;
+    var marker=null;
+    var database = firebase.database();
+	
+	 function getAngle( from, to ) {
+        const angle = google.maps.geometry.spherical.computeHeading(
+		  from,
+		  to
+		);
+		return  angle - 90;
+    }
+	var iconAngle=0;
+    function initMap() {
+    
+        var directionsService = new google.maps.DirectionsService();
+        var directionsRenderer = new google.maps.DirectionsRenderer();
+        var fromLocation = new google.maps.LatLng(@Model.from_lat, @Model.from_lng);
+        var toLocation = new google.maps.LatLng(@Model.to_lat, @Model.to_lng);
+
+        var mapOptions = {
+            zoom: 14,
+            center: fromLocation,
+            avoid:'tolls'
+        }
+         map = new google.maps.Map(document.getElementById('map'), mapOptions);
+        directionsRenderer.setMap(map);
+        var request = {
+            origin: fromLocation,
+            destination: toLocation,
+            travelMode: google.maps.TravelMode['DRIVING']
+        };
+        directionsService.route(request, function (response, status) {
+            if (status == 'OK') {
+                directionsRenderer.setDirections(response);
+            }
+        });
+		  iconAngle=getAngle(new google.maps.LatLng(@Model.from_lat, @Model.from_lng),new google.maps.LatLng(@Model.to_lat, @Model.to_lng));
+		
+		 
+		
+	}
+
+  
+
+</script>
+@if(@ViewBag.Booking!=null){
+	<script>
+	    //database.ref('/Drivers/@Model.acc_firebase_uid').on('value',function (snapshot) {
+
+    database.ref('/Trips/@Model.acc_firebase_uid/@ViewBag.Booking.id/tracks').on('value',function (snapshot) {
+        var data = snapshot.val();
+		//var currentLocation = snapshot.val();
+        var count = Object.keys(data).length;
+        var currentLocation = data[Object.keys(data)[count - 1]];
+        //console.log(data[Object.keys(data)[count - 1]]);
+        var carLocation = new google.maps.LatLng(currentLocation.Latitude, currentLocation.Longitude);
+
+        console.log(currentLocation);
+        if (marker == null)
+            marker = new google.maps.Marker(
+                {
+                    position: carLocation,
+                    map: map,
+                    title: '',
+                    icon: {
+					url:'@General.ApplicationUrl()/Content/imgs/car.png',
+					id:'carMarker'
+					}
+					
+					
+					//rotate:currentLocation.rotate
+                }
+            );
+        else{
+		
+            marker.setPosition(carLocation);
+			 const markerIcon = document.querySelector(`[src="@General.ApplicationUrl()/Content/imgs/car.png"]`);
+			//console.log(iconAngle);
+			if (markerIcon) {
+			  markerIcon.style.transform = `rotate(${iconAngle}deg)`;
+			}
+			
+		}
+ 			
+		 
+		
+		 
+    });
+    </script>
+	}

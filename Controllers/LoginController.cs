@@ -15,6 +15,20 @@ namespace Chair80CP.Controllers
         public ActionResult Index(string next = "/Home")
         {
             ViewBag.next = next;
+
+            // Since the dinosaur-facts repo no longer works, populate your own one with sample data in "sample.json"
+            //var firebase = new FirebaseClient("https://dinosaur-facts.firebaseio.com/");
+            //var dinos = await firebase
+            //  .Child("dinosaurs")
+            //  .OrderByKey()
+            //  .StartAt("pterodactyl")
+            //  .LimitToFirst(2)
+            //  .OnceAsync<Dinosaur>();
+
+            //foreach (var dino in dinos)
+            //{
+            //    Console.WriteLine($"{dino.Key} is {dino.Object.Height}m high.");
+            //}
             return View();
         }
 

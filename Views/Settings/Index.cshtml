@@ -8,83 +8,102 @@
 
 <div class="row clearfix">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <div class="card">
-            <div class="header">
-                <h2>
-                    @ViewBag.Title
-                </h2>
-                
-            </div>
-            <div class="body">
+        @using (Html.BeginForm("Save", "Settings", FormMethod.Post, new { @class = "ajaxform general-validate" }))
+        {
+            <div class="card">
+                <div class="header">
+                    <h2>
+                        @ViewBag.Title
 
-                <div class="panel-group" id="accordion">
-                    @foreach(var group in Model.GroupBy(a => new { a.setting_group,section=a.setting_group.Replace(" ","_").Replace(".","_") }))
-                    {
+                        <button type="submit" class="btn btn-success pull-right">Save</button>
 
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#@group.Key.section">
-                                    @group.Key.setting_group
-                                </a>
-                            </h4>
-                        </div>
-                        <div id="@group.Key.section" class="panel-collapse collapse">
-                            <div class="panel-body">
-                                @foreach (var itm in group)
-                                {
-                                    if (itm.setting_type == 1)
-                                    {
+                    </h2>
 
-                                        <label for="setting[@itm.id]">@itm.setting_name</label>
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                <input type="text" name="setting[@itm.id]" value="@itm.setting_value" class="form-control" />
-                                            </div>
-                                        </div>
-                                    }
-                                    if (itm.setting_type == 2)
-                                    {
-                                        <label for="setting[@itm.id]">@itm.setting_name</label>
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                <textarea name="setting[@itm.id]" class="form-control">@itm.setting_value</textarea>
-                                            </div>
-                                        </div>
-                                    }
-                                    if (itm.setting_type == 3)
-                                    {
-                                        <div class="custom-control custom-checkbox ">
-                                            <input type="checkbox" id="@itm.setting_key" class="custom-control-input" name="setting[@itm.id]" @(itm.setting_value == "1" ? "checked" : "")>
-                                            <label class="custom-control-label" for="@itm.setting_key">@itm.setting_name</label>
-                                        </div>
-                                    }
-                                    if (itm.setting_type == 4)
-                                    {
-                                        <label for="setting[@itm.id]">@itm.setting_name</label>
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                <select class="form-control">
-                                                    @foreach (var elem in JsonConvert.DeserializeObject<List<dynamic>>(itm.datasource_json))
-                                                    {
-                                                        <option value="@elem.id">@elem.name</option>
-                                                    }
-                                                </select>
-                                            </div>
-                                        </div>
-                                    }
-                                    
-
-
-                                }
-                            </div>
-                        </div>
-                    </div>
-    }
-                 
                 </div>
+                <div class="body">
+
+                    @Html.AntiForgeryToken()
+                    <div class="panel-group" id="accordion">
+                        @foreach (var group in Model.OrderBy(a => a.setting_group).GroupBy(a => new { a.setting_group, section = a.setting_group.Replace(" ", "_").Replace(".", "_") }))
+                        {
+
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#@group.Key.section">
+                                            @group.Key.setting_group
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="@group.Key.section" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        @foreach (var itm in group)
+                                        {
+                                            <input type="hidden" name="id[]" value="@itm.id" />
+                                            if (itm.setting_type == 1)
+                                            {
+
+                                                <label for="setting_value[]">@itm.setting_name</label>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" name="setting_value[]" value="@itm.setting_value" class="form-control" />
+                                                    </div>
+                                                </div>
+                                            }else
+                                            if (itm.setting_type == 2)
+                                            {
+                                                <label for="setting_value[]">@itm.setting_name</label>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <textarea name="setting_value[]" class="form-control">@itm.setting_value</textarea>
+                                                    </div>
+                                                </div>
+                                            }else
+                                            if (itm.setting_type == 3)
+                                            {
+                                                <div class="custom-control custom-checkbox ">
+                                                    <input type="checkbox" id="@itm.setting_key" class="custom-control-input" name="setting_value[]" @(itm.setting_value == "1" ? "checked" : "")>
+                                                    <label class="custom-control-label" for="@itm.setting_key">@itm.setting_name</label>
+                                                </div>
+                                            }else
+                                            if (itm.setting_type == 4)
+                                            {
+                                                <label for="setting_value[]">@itm.setting_name</label>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <select class="form-control" name="setting_value[]">
+                                                            @foreach (var elem in JsonConvert.DeserializeObject<List<dynamic>>(itm.datasource_json))
+                                                            {
+                                                                <option value="@elem.id">@elem.name</option>
+                                                            }
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <label for="setting_value[]">@itm.setting_name</label>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" name="setting_value[]" value="@itm.setting_value" class="form-control" />
+                                                    </div>
+                                                </div>
+                                            }
 
 
+
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+
+                    
+                </div>
             </div>
+        }
         </div>
-    </div>
+        </div>
+

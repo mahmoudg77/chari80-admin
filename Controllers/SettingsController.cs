@@ -90,6 +90,31 @@ namespace Chair80CP.Controllers
             return View(tbl_setting);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Save(List<tbl_setting> request)
+        {//setting
+            var ids = Request.Form.GetValues("id[]") ;
+            var setting_values = Request.Form.GetValues("setting_value[]") ;
+            for(int x=0;x<ids.Length;x++)
+            {
+                var entity = db.tbl_setting.Find(int.Parse(ids[x]));
+
+                entity.setting_value = (string)setting_values[x];
+                db.Entry(entity).State = System.Data.Entity.EntityState.Modified;
+            }
+
+            //db.Entry(tbl_setting).State = EntityState.Modified;
+            db.SaveChanges();
+                return RedirectToAction("Index");
+        
+            
+
+            //return RedirectToAction("Index");
+             
+          //  return View(tbl_setting);
+        }
+
         // GET: Settions/Delete/5
         public ActionResult Delete(int? id)
         {

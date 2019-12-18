@@ -21,13 +21,13 @@
             <thead>
                 <tr>
                     <th>
+                        Start Date
+                    </th>
+                    <th>
                         Rider
                     </th>
                     <th>
                         Seats
-                    </th>
-                    <th>
-                        Start Date
                     </th>
                     
                     <th>
@@ -48,19 +48,20 @@
 @foreach (var item in Model) {
             <tr>
                 <td>
+                    @(item.start_at_date != null ? item.start_at_date.Value.ToString("yyyy-MM-dd") : "")
+                </td>
+
+                <td>
                     <a href="/Profiles/Details/@item.rider_id">
 
                         <img src="@Settings.Get("api_url")/img/crope/tbl_accounts/@item.rider_id/30x30/main-last.gif" class="img-circle img-profile">
                         @item.tbl_accounts.first_name  @item.tbl_accounts.last_name
-                        </a>
+                    </a>
                 </td>
                 <td>
                     @item.seats
                 </td>
-                <td>
-                    @(item.start_at_date != null ? item.start_at_date.Value.ToString("yyyy-MM-dd") : "")
-                </td>
-                
+
                 <td>
                     @(item.trip_request_details.FirstOrDefault() != null ? item.trip_request_details.FirstOrDefault().from_plc : "")
                 </td>
@@ -72,7 +73,7 @@
 
                         @item.trip_request_details.Count()
                     </a>
-                </td>  
+                </td>
                 <td>
                     @item.trip_types.name.local()
                 </td>

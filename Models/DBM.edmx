@@ -148,6 +148,7 @@
           <Property Name="original" Type="nvarchar" MaxLength="255" />
           <Property Name="created_at" Type="datetime" />
           <Property Name="created_by" Type="int" />
+          <Property Name="deleted_at" Type="datetime" />
         </EntityType>
         <EntityType Name="tbl_rate_reasons">
           <Key>
@@ -378,6 +379,8 @@ warning 6002: The table/view 'chari80_db.dbo.vwProfile' does not have a primary 
           <Property Name="MyVehicles" Type="int" />
           <Property Name="DriveVehicles" Type="int" />
           <Property Name="MyDrivers" Type="int" />
+          <Property Name="rate_total" Type="decimal" Precision="12" Scale="6" />
+          <Property Name="rate_count" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'chari80_db.dbo.vwSeatsHistory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -691,18 +694,6 @@ warning 6002: The table/view 'chari80_db.dbo.vwVehicles' does not have a primary
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_tbl_drivers_vechiles_rel_vechile">
-          <End Role="tbl_vehicles" Type="Self.tbl_vehicles" Multiplicity="0..1" />
-          <End Role="tbl_drivers_vehicles_rel" Type="Self.tbl_drivers_vehicles_rel" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbl_vehicles">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="tbl_drivers_vehicles_rel">
-              <PropertyRef Name="vehicle_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_tbl_drivers_vehicles_rel_driver">
           <End Role="tbl_accounts" Type="Self.tbl_accounts" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
@@ -732,7 +723,9 @@ warning 6002: The table/view 'chari80_db.dbo.vwVehicles' does not have a primary
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_trip_book_trip_share_details">
-          <End Role="trip_share_details" Type="Self.trip_share_details" Multiplicity="1" />
+          <End Role="trip_share_details" Type="Self.trip_share_details" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="trip_book" Type="Self.trip_book" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="trip_share_details">
@@ -756,7 +749,9 @@ warning 6002: The table/view 'chari80_db.dbo.vwVehicles' does not have a primary
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_trip_request_details_trip_request">
-          <End Role="trip_request" Type="Self.trip_request" Multiplicity="1" />
+          <End Role="trip_request" Type="Self.trip_request" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="trip_request_details" Type="Self.trip_request_details" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="trip_request">
@@ -768,7 +763,9 @@ warning 6002: The table/view 'chari80_db.dbo.vwVehicles' does not have a primary
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_trip_request_tbl_accounts">
-          <End Role="tbl_accounts" Type="Self.tbl_accounts" Multiplicity="1" />
+          <End Role="tbl_accounts" Type="Self.tbl_accounts" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="trip_request" Type="Self.trip_request" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbl_accounts">
@@ -942,7 +939,9 @@ warning 6002: The table/view 'chari80_db.dbo.vwVehicles' does not have a primary
     [vwProfile].[firebase_uid] AS [firebase_uid], 
     [vwProfile].[MyVehicles] AS [MyVehicles], 
     [vwProfile].[DriveVehicles] AS [DriveVehicles], 
-    [vwProfile].[MyDrivers] AS [MyDrivers]
+    [vwProfile].[MyDrivers] AS [MyDrivers], 
+    [vwProfile].[rate_total] AS [rate_total], 
+    [vwProfile].[rate_count] AS [rate_count]
     FROM [dbo].[vwProfile] AS [vwProfile]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="vwSeatsHistory" EntityType="Self.vwSeatsHistory" store:Type="Views" store:Schema="dbo">
@@ -1130,10 +1129,6 @@ warning 6002: The table/view 'chari80_db.dbo.vwVehicles' does not have a primary
           <AssociationSet Name="FK_tbl_cities_tbl_countries" Association="Self.FK_tbl_cities_tbl_countries">
             <End Role="tbl_countries" EntitySet="tbl_countries" />
             <End Role="tbl_cities" EntitySet="tbl_cities" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tbl_drivers_vechiles_rel_vechile" Association="Self.FK_tbl_drivers_vechiles_rel_vechile">
-            <End Role="tbl_vehicles" EntitySet="tbl_vehicles" />
-            <End Role="tbl_drivers_vehicles_rel" EntitySet="tbl_drivers_vehicles_rel" />
           </AssociationSet>
           <AssociationSet Name="FK_tbl_drivers_vehicles_rel_driver" Association="Self.FK_tbl_drivers_vehicles_rel_driver">
             <End Role="tbl_accounts" EntitySet="tbl_accounts" />
@@ -1344,6 +1339,7 @@ warning 6002: The table/view 'chari80_db.dbo.vwVehicles' does not have a primary
           <Property Name="original" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="created_at" Type="DateTime" Precision="3" />
           <Property Name="created_by" Type="Int32" />
+          <Property Name="deleted_at" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="tbl_setting">
           <Key>
@@ -1533,6 +1529,8 @@ warning 6002: The table/view 'chari80_db.dbo.vwVehicles' does not have a primary
           <Property Name="MyVehicles" Type="Int32" />
           <Property Name="DriveVehicles" Type="Int32" />
           <Property Name="MyDrivers" Type="Int32" />
+          <Property Name="rate_total" Type="Decimal" Precision="12" Scale="6" />
+          <Property Name="rate_count" Type="Int32" />
         </EntityType>
         <EntityType Name="vwTripsDetails">
           <Key>
@@ -2352,6 +2350,7 @@ warning 6002: The table/view 'chari80_db.dbo.vwVehicles' does not have a primary
           <EntitySetMapping Name="tbl_images">
             <EntityTypeMapping TypeName="MainModel.tbl_images">
               <MappingFragment StoreEntitySet="tbl_images">
+                <ScalarProperty Name="deleted_at" ColumnName="deleted_at" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="model_name" ColumnName="model_name" />
                 <ScalarProperty Name="model_id" ColumnName="model_id" />
@@ -2512,6 +2511,8 @@ warning 6002: The table/view 'chari80_db.dbo.vwVehicles' does not have a primary
           <EntitySetMapping Name="vwProfile">
             <EntityTypeMapping TypeName="MainModel.vwProfile">
               <MappingFragment StoreEntitySet="vwProfile">
+                <ScalarProperty Name="rate_count" ColumnName="rate_count" />
+                <ScalarProperty Name="rate_total" ColumnName="rate_total" />
                 <ScalarProperty Name="MyDrivers" ColumnName="MyDrivers" />
                 <ScalarProperty Name="DriveVehicles" ColumnName="DriveVehicles" />
                 <ScalarProperty Name="MyVehicles" ColumnName="MyVehicles" />

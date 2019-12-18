@@ -4,7 +4,11 @@
     ViewBag.Title = "Trip - Booking";
 }
 
-
+<style>
+    .info-box{
+        box-shadow:none;
+    }
+</style>
 <div class="row clearfix">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="card">
@@ -54,7 +58,7 @@
                                 {
                                     <td>
                                         <div class="info-box">
-                                            <div class="icon bg-green">
+                                            <div class="icon bg-white">
                                                 <img src="@Settings.Get("api_url")/img/crope/tbl_accounts/@item.rider_id/80x80/main-last.gif" class="img-circle img-profile">
                                             </div>
                                             <div class="content">
@@ -73,7 +77,7 @@
                                 }
                                 <td>
                                     <div class="info-box">
-                                        <div class="icon bg-green">
+                                        <div class="icon bg-white">
                                             <img src="@Settings.Get("api_url")/img/crope/tbl_accounts/@item.driver_id/80x80/main-last.gif" class="img-circle img-profile">
                                         </div>
                                         <div class="content">

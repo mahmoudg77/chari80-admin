@@ -22,10 +22,10 @@
             <thead>
                 <tr>
                     <th>
-                        Driver
+                        Start Date
                     </th>
                     <th>
-                        Start Date
+                        Driver
                     </th>
                    
                     <th>
@@ -50,14 +50,14 @@
 @foreach (var item in Model) {
             <tr>
                 <td>
+                    @(item.start_at_date != null ? item.start_at_date.Value.ToString("yyyy-MM-dd") : "")
+                </td>
+                <td>
                     <a href="/Profiles/Details/@item.driver_id">
 
                         <img src="@Settings.Get("api_url")/img/crope/tbl_accounts/@item.driver_id/30x30/main-last.gif" class="img-circle img-profile">
                         @item.tbl_accounts.first_name  @item.tbl_accounts.last_name
                     </a>
-                </td>
-                <td>
-                    @(item.start_at_date != null ? item.start_at_date.Value.ToString("yyyy-MM-dd") : "")
                 </td>
                 
                 <td>

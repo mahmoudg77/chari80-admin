@@ -4,6 +4,13 @@
 @{
     ViewBag.Title = "Details";
 }
+
+<style>
+    .checked {
+        color: orange;
+        font-size: 1.9rem;
+    }
+</style>
 <div class="row">
 
     <div class="col-xs-12 col-sm-3">
@@ -35,7 +42,20 @@
                     </li>
                     <li>
                         <span>Rate</span>
-                        <span>4/5</span>
+                        <span>
+                           
+
+                            @Model.rate_total.Value.ToString("0.00")
+                            
+                            <i class="material-icons checked">@((double)Model.rate_total < 1 && (double)Model.rate_total >= 0.25 ? "star_half" : (Model.rate_total > 0 ? "star" : "star_border"))</i>
+                            <i class="material-icons checked">@((double)Model.rate_total < 2 && (double)Model.rate_total >= 1.25 ? "star_half" : (Model.rate_total > 1 ? "star" : "star_border"))</i>
+                            <i class="material-icons checked">@((double)Model.rate_total < 3 && (double)Model.rate_total >= 2.25 ? "star_half" : (Model.rate_total > 2 ? "star" : "star_border"))</i>
+                            <i class="material-icons checked">@((double)Model.rate_total < 4 && (double)Model.rate_total >= 3.25 ? "star_half" : (Model.rate_total > 3 ? "star" : "star_border"))</i>
+                            
+                                <br />
+                            by @Model.rate_count Reviews
+                            
+                        </span>
                     </li>
                 </ul>
             </div>

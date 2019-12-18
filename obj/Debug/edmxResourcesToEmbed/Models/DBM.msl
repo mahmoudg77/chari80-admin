@@ -132,6 +132,7 @@
     <EntitySetMapping Name="tbl_images">
       <EntityTypeMapping TypeName="MainModel.tbl_images">
         <MappingFragment StoreEntitySet="tbl_images">
+          <ScalarProperty Name="deleted_at" ColumnName="deleted_at" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="model_name" ColumnName="model_name" />
           <ScalarProperty Name="model_id" ColumnName="model_id" />
@@ -292,6 +293,8 @@
     <EntitySetMapping Name="vwProfile">
       <EntityTypeMapping TypeName="MainModel.vwProfile">
         <MappingFragment StoreEntitySet="vwProfile">
+          <ScalarProperty Name="rate_count" ColumnName="rate_count" />
+          <ScalarProperty Name="rate_total" ColumnName="rate_total" />
           <ScalarProperty Name="MyDrivers" ColumnName="MyDrivers" />
           <ScalarProperty Name="DriveVehicles" ColumnName="DriveVehicles" />
           <ScalarProperty Name="MyVehicles" ColumnName="MyVehicles" />

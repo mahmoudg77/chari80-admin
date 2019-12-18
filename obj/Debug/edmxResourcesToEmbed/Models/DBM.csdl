@@ -156,6 +156,7 @@
     <Property Name="original" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
     <Property Name="created_at" Type="DateTime" Precision="3" />
     <Property Name="created_by" Type="Int32" />
+    <Property Name="deleted_at" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="tbl_setting">
     <Key>
@@ -345,6 +346,8 @@
     <Property Name="MyVehicles" Type="Int32" />
     <Property Name="DriveVehicles" Type="Int32" />
     <Property Name="MyDrivers" Type="Int32" />
+    <Property Name="rate_total" Type="Decimal" Precision="12" Scale="6" />
+    <Property Name="rate_count" Type="Int32" />
   </EntityType>
   <EntityType Name="vwTripsDetails">
     <Key>

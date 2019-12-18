@@ -38,5 +38,7 @@ namespace Chair80CP.Models
         public Nullable<int> MyVehicles { get; set; }
         public Nullable<int> DriveVehicles { get; set; }
         public Nullable<int> MyDrivers { get; set; }
+        public Nullable<decimal> rate_total { get; set; }
+        public Nullable<int> rate_count { get; set; }
     }
 }
