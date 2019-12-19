@@ -17,7 +17,7 @@ namespace Chair80CP.Controllers
         private MainEntities db = new MainEntities();
 
         // GET: trip_share_details
-        public ActionResult Index(int? id,int? type=0,DateTime? from=null,DateTime? to=null, bool? successed =null)
+        public ActionResult Index(int? id,int? type=0,DateTime? from=null,DateTime? to=null, bool? successed =null,int? driver=0)
         {
 
             var trip_share_details = db.trip_share_details.Include(t => t.trip_share).AsQueryable();
@@ -50,6 +50,12 @@ namespace Chair80CP.Controllers
             {
                 trip_share_details = trip_share_details.Where(a => a.trip_book.Where(b => b.canceled_at == null).Count() > 0 && a.trip_book.Where(b => b.end_at == null && b.canceled_at == null).Count() > 0);
             }
+
+            if (driver > 0)
+            {
+                trip_share_details = trip_share_details.Where(a => a.trip_share.driver_id == driver);
+            }
+            
 
             return View(trip_share_details.ToList());
         }

@@ -27,7 +27,7 @@
                     </tr>
                     <tr>
                         <td>Started At :</td>
-                        <td>@Model.trip_start_date</td>
+                        <td>@Model.trip_start_date.Value.Add( Model.start_at_time.Value).ToString("dd-MMM-yyyy hh:mm TT")</td>
                     </tr>
 
                 </table>

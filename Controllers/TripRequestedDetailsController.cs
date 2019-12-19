@@ -17,7 +17,7 @@ namespace Chair80CP.Controllers
         private MainEntities db = new MainEntities();
 
         // GET: TripRequestedDetails
-        public ActionResult Index(int? id,int? type = 0, DateTime? from = null, DateTime? to = null)
+        public ActionResult Index(int? id,int? type = 0, DateTime? from = null, DateTime? to = null, int? rider = 0)
         {
             if (!UserSession.HasRole("admin"))
             {
@@ -42,6 +42,10 @@ namespace Chair80CP.Controllers
             if (to != null)
             {
                 trip_request_details = trip_request_details.Where(a => a.start_at_date <= to);
+            }
+            if (rider>0)
+            {
+                trip_request_details = trip_request_details.Where(a => a.trip_request.rider_id ==rider);
             }
             return View(trip_request_details.ToList());
         }
